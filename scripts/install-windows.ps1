@@ -41,7 +41,9 @@ Write-Host "Folder: $Dir"
 
 # 1. Tools
 Refresh-Path
-$needWinget = (-not (Has 'git')) -or (-not (Node-Ok)) -or (-not (Python-Ok)) -or (-not (Has 'ffmpeg')) -or (-not (Has 'ffprobe'))
+# The Microsoft Visual C++ runtime: the speech-alignment package (faster-whisper) cannot load without it, and a new Windows does not have it (found in the clean-machine test).
+function VcRuntime-Ok { (Test-Path -LiteralPath (Join-Path $env:SystemRoot 'System32\msvcp140.dll')) -and (Test-Path -LiteralPath (Join-Path $env:SystemRoot 'System32\vcruntime140_1.dll')) }
+$needWinget = (-not (Has 'git')) -or (-not (Node-Ok)) -or (-not (Python-Ok)) -or (-not (Has 'ffmpeg')) -or (-not (Has 'ffprobe')) -or (-not (VcRuntime-Ok))
 if ($needWinget -and -not (Has 'winget')) {
   Stop-Install 'winget was not found. Open the Microsoft Store, install "App Installer", then run the install line again.'
 }
@@ -49,8 +51,10 @@ if (Has 'git') { Ok 'Git found' } else { Winget-Install 'Git.Git' 'Git' }
 if (Node-Ok) { Ok "Node.js found ($(Try-Run 'node' @('-v')))" } else { Winget-Install 'OpenJS.NodeJS.22' 'Node.js 22' }
 if (Python-Ok) { Ok "Python found ($(Try-Run 'python' @('--version')))" } else { Winget-Install 'Python.Python.3.12' 'Python 3.12' }
 if ((Has 'ffmpeg') -and (Has 'ffprobe')) { Ok 'ffmpeg found' } else { Winget-Install 'Gyan.FFmpeg' 'ffmpeg' }
+if (VcRuntime-Ok) { Ok 'Visual C++ runtime found' } else { Winget-Install 'Microsoft.VCRedist.2015+.x64' 'Microsoft Visual C++ runtime' }
 
 $missing = @()
+if (-not (VcRuntime-Ok)) { $missing += 'Microsoft Visual C++ runtime' }
 if (-not (Has 'git')) { $missing += 'Git' }
 if (-not (Node-Ok)) { $missing += 'Node.js 22.12 or newer' }
 if (-not (Has 'npm')) { $missing += 'npm' }

@@ -54,7 +54,11 @@ if (-not $SkipPackages) {
   else {
     Say 'Installing Python packages (numpy, scipy, faster-whisper)'
     & python -m pip install --upgrade --disable-pip-version-check numpy scipy faster-whisper | Out-Host
-    if (-not (Python-Has-Packages)) { Fail 'The Python packages could not be installed (pip). Check your internet connection and run this again.' }
+    if (-not (Python-Has-Packages)) {
+      # Show the real reason (a failed download, or a package that is installed but cannot load).
+      try { & python -c 'import numpy, scipy, faster_whisper' 2>&1 | ForEach-Object { "$_" } | Select-Object -Last 6 | Out-Host } catch { }
+      Fail 'The Python packages are not ready (see the lines above). If they say a module or DLL could not be found, install the Microsoft Visual C++ runtime (winget install --id Microsoft.VCRedist.2015+.x64 -e) and run this again; otherwise check your internet connection and run this again.'
+    }
   }
 }
 

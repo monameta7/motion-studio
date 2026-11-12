@@ -20,6 +20,7 @@ This file lists what ships inside this package and what the installer downloads,
 | Python 3.12 | winget `Python.Python.3.12` | PSF License |
 | ffmpeg | winget `Gyan.FFmpeg` | GPL build by gyan.dev (ffmpeg.org/legal.html) |
 | Git | winget `Git.Git` | GPL-2.0 |
+| Microsoft Visual C++ runtime | winget `Microsoft.VCRedist.2015+.x64` | Microsoft Software License Terms |
 | Claude Code | `https://claude.ai/install.ps1` | Anthropic's terms; needs your own Claude subscription |
 | Chromium (render engine) | Playwright download | BSD-3-Clause and others |
 | numpy, scipy, faster-whisper | pip | BSD-3-Clause, BSD-3-Clause, MIT |
