@@ -1,12 +1,16 @@
 // Responsibility: tell the owner what happened (docs/09): store every event for the bell list, show a Windows toast while the app runs (clicking it opens the related screen), and write the Persian texts of the events.
+import fs from 'node:fs';
+import path from 'node:path';
 import { APP_TIMEZONE } from '../calendar/zone.js';
+import { PROJECT_ROOT } from '../config.js';
 import type { Db } from '../db/db.js';
 import { settingsRepo } from '../db/repositories.js';
 import { faNum } from '../fa.js';
 
 export type NotifyKind = 'job_done' | 'blocked' | 'failed' | 'paused_quota' | 'quota_warning' | 'topics_low' | 'missed_run' | 'skipped' | 'test';
 export const APP_ID = 'Mahdiyar.MotionStudio';
-export const TOAST_TITLE = 'استودیو محتوا';
+/** D81: a copy installed from the package (it has a starter/ folder) is called «استودیو محتوا»; the owner's own app keeps its name. */
+export const TOAST_TITLE = fs.existsSync(path.join(PROJECT_ROOT, 'starter')) ? 'استودیو محتوا' : 'استودیو موشن مهدیار';
 
 export interface NotifyInput {
   kind: NotifyKind;

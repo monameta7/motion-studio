@@ -33,7 +33,7 @@ export function Welcome({ onDone }: { onDone: () => void }) {
 
         {step === 0 && (
           <section className="stack" aria-labelledby="w0">
-            <h1 id="w0">به استودیوی محتوا خوش آمدی</h1>
+            <h1 id="w0">{__APP_NAMES__.welcome}</h1>
             <p>این برنامه از یک موضوع، یک ویدیوی موشن‌گرافیک کامل با صدای فارسی می‌سازد: متن، صدا، صحنه‌ها، کاور و کپشن.</p>
             <p>برای شروع چند کار کوتاه لازم است: بررسی ابزارهای کامپیوتر، ورود به حساب Claude و وارد کردن کلید Gemini برای صدا. حدود ۵ دقیقه طول می‌کشد.</p>
             <div className="actions"><button type="button" className="btn primary big" onClick={next}>شروع</button></div>
