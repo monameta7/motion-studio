@@ -8,7 +8,7 @@ const list = z.array(z.string().trim().min(1).max(1000)).max(60);
 const reqList = list.min(1, 'required');
 
 /** Section ids in the order the page shows them (docs/11). */
-export const BRAND_SECTIONS = ['identity', 'position', 'audience', 'offers', 'message', 'voice', 'language', 'strategy', 'guardrails', 'examples', 'visual'] as const;
+export const BRAND_SECTIONS = ['identity', 'position', 'audience', 'offers', 'message', 'voice', 'language', 'strategy', 'guardrails', 'examples', 'visual', 'summary'] as const;
 export type BrandSection = (typeof BRAND_SECTIONS)[number];
 
 const pair = <K extends string>(...keys: K[]) => z.looseObject(Object.fromEntries(keys.map((k) => [k, text.optional()])) as Record<K, z.ZodOptional<typeof text>>);
@@ -106,6 +106,8 @@ export const BrandAnswers = z.strictObject({
     outro_tagline: text.optional(),
     look: text.optional(), video: text.optional(), logo_rules: text.optional(),
   }),
+  /** «ده قانون طلایی» (Q36, from Content Studio's `summary` section): at most ten short rules; answers saved before this section existed have none. */
+  summary: z.strictObject({ top: z.array(z.string().trim().min(1).max(1000)).max(10).optional() }).default({}),
 });
 export type BrandAnswers = z.infer<typeof BrandAnswers>;
 

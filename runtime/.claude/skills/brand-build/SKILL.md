@@ -30,6 +30,7 @@ The prompt names:
 The voice and message bible the script writer (hook) and the fact checker (truth) read. Structure (headings `#`, `##`; keep the order; skip a subsection only when the answers give nothing for it, with the one-line note of rule 1):
 
 1. `# <نام برند> — راهنمای برند` and a 3–5 line summary: who, for whom, the result, how.
+   When `answers.md` has a section «ده قانون طلایی»: right after the summary write `## ده قانون طلایی` with the owner's rules verbatim, numbered, in the owner's order; never add, drop, merge or reword a rule. No such section in the answers: no such heading.
 2. `## هویت`: one-liner (verbatim), mission, vision, values (each with «در محتوا یعنی»), story (only the owner's facts), the face of the brand, official addresses.
 3. `## جایگاه و تمایز`: category, alternatives, differentiators with their benefit, positioning statement, points of view («باور ← پس ما …»).
 4. `## مخاطب`: main audience as a concrete person, other segments, goals, pains (in the audience's own words when given), objections with the owner's honest answers, conditions, who it is not for. Personas only from these answers.

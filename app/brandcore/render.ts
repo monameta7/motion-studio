@@ -18,8 +18,9 @@ function renderValue(q: Question, v: unknown): string {
 /** The answers as Markdown; `visual` also lists the palette and fonts the code decided (the skill must copy them exactly). */
 export function answersToMarkdown(a: BrandAnswers): string {
   const out: string[] = [`# پاسخ‌های برند «${a.identity.name}»`, ''];
-  for (const s of SECTIONS) {
-    const block = a[s.id] as Record<string, unknown>;
+  // «ده قانون طلایی» comes first in the text (it is the last tab on the page).
+  for (const s of [...SECTIONS.filter((x) => x.id === 'summary'), ...SECTIONS.filter((x) => x.id !== 'summary')]) {
+    const block = (a[s.id] ?? {}) as Record<string, unknown>;
     const lines: string[] = [];
     for (const q of s.questions) {
       const v = block[q.id];

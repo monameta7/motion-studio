@@ -120,6 +120,10 @@ export const SECTIONS: SectionDef[] = [
     Q('video', 'para', 'سبک ویدیو', 'ویدیوهایت چه شکلی‌اند؟ قاب، پس‌زمینه، زیرنویس، متن روی تصویر.', 3),
     Q('logo_rules', 'para', 'قواعد لوگو', 'لوگو کجا و چطور استفاده شود؟', 3),
   ] },
+  // Last on the page, first in the text Claude reads (render.ts), as in Content Studio: models use the start of a long text best.
+  { id: 'summary', title: 'ده قانون طلایی', why: 'وقتی بقیه را پر کردی، مهم‌ترین‌ها را اینجا جمع کن. این بخش در متنی که Claude می‌خواند اول از همه می‌آید و بالای راهنمای برند نوشته می‌شود.', questions: [
+    Q('top', 'list', 'ده قانون طلایی', 'اگر فقط ده قانون در یاد بماند، کدام‌ها باشند؟', 2, { help: 'کوتاه و دستوری، هرکدام در یک خط؛ بیشتر «این کار را بکن» تا «این کار را نکن». می‌توانی از قاعده‌های بخش‌های بالا انتخاب کنی. حداکثر ده قانون.' }),
+  ] },
 ];
 
 export const SECTION_TITLES: Record<BrandSection, string> = Object.fromEntries(SECTIONS.map((s) => [s.id, s.title])) as Record<BrandSection, string>;
@@ -147,6 +151,7 @@ export const SECTION_DOCS: Record<BrandSection, ClaudeDoc[]> = {
   guardrails: ['brand-guide', 'tokens'],
   examples: ['brand-guide'],
   visual: ['design-system', 'cover-system', 'tokens'],
+  summary: ['brand-guide'],
 };
 
 export { BRAND_SECTIONS };

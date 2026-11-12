@@ -43,10 +43,15 @@ export function sectionHashes(a: BrandAnswers): Record<BrandSection, string> {
   return out;
 }
 
-/** Sections whose hash differs from the last build (all of them before the first build). */
+/**
+ * Sections whose hash differs from the last build (all of them before the first build). A section the last build did not know yet
+ * (added to the questionnaire later, like «ده قانون طلایی») and that is still empty is not a change: an existing brand must not be
+ * asked to rebuild a doc because the app got a new question.
+ */
 export function changedSections(a: BrandAnswers, build: BrandBuild | null): BrandSection[] {
   const now = sectionHashes(a);
-  return BRAND_SECTIONS.filter((s) => build?.sections[s] !== now[s]);
+  const empty = sha(canonical({}));
+  return BRAND_SECTIONS.filter((s) => build?.sections[s] !== now[s] && !(build && build.sections[s] === undefined && now[s] === empty));
 }
 
 export const docPath = (dir: string, d: ClaudeDoc) => path.join(dir, DOC_FILES[d]);
