@@ -1,0 +1,208 @@
+{
+  "slug": "glass-ui-type-01",
+  "key": {
+    "sha256": "fc8444ea7112f4bcefef1b4925b33ab24dfb77efd67b38f1aa55512880db9fd8"
+  },
+  "read_at": "2026-10-28",
+  "probe": {
+    "duration": 22.85,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true
+  },
+  "rights_note": "third-party short found on Pinterest (file name GatesFX_pindown.io), given by the owner via Downloads/refrencee on 2026-10-27; origin not stated → plan mode ADAPT, never RECREATE",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party film of unknown origin: borrow the motion language and patterns only, never its shots one by one, its characters' exact design, its copy or its end card (owner note); a voiceover package defaults to REEL. The reference is itself a voiceover reel with UI-card scenes, so UI patterns (glass dashboard, BUY press) are available inside REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        22.85
+      ],
+      "why": "all English on-screen copy ('Most people / aren't trading, / they're gambling.', 'is chasing setups', 'luck saves you.', 'Structured Execution', 'The chart doesn't care how confident you feel', 'It only rewards discipline.', 'Share this post') is third-party copy; never reused as text"
+    },
+    {
+      "span": [
+        3,
+        7.07
+      ],
+      "why": "Bitcoin and Solana names/icons and the exact dollar values are third-party content; only the 'live counter that changes colour with risk' pattern is borrowed, with our own numbers from the package"
+    },
+    {
+      "span": [
+        19.6,
+        22.5
+      ],
+      "why": "'Share this post' end card is the third party's CTA; our ending is the brand's own CTA and logo outro"
+    },
+    {
+      "span": [
+        22.5,
+        22.85
+      ],
+      "why": "black tail frames, no content"
+    }
+  ],
+  "method": "SHA-256 matched meta.json; ffprobe; ffmpeg contact sheets fps=2 (4 sheets, 6x2, all viewed); scene detect gt(scene,0.3) found 3 hard cuts at 7.07, 9.00 and 14.97 s, other shot changes placed from the sheets; dense fps=15 sheets at 2.3–3.3 s (dice → glass-lens reveal) and 18.9–19.9 s (statement → end card). Audio present (voiceover with captions synced phrase by phrase) but not analysed: whether caption changes land on music beats is unverified",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        1.9
+      ],
+      "shot": "medium, group of three glass-bubble characters (one large hero, two small) in front of a frosted glass card",
+      "camera": "slow push-in with a drift to the left; the card rises and grows toward camera",
+      "moves": "glass card behind the characters scales up and lifts (0–1.0 s, smooth ease-out) while a thin navy line chart draws left to right across it; small characters bob; caption swaps phrase by phrase, top-centre",
+      "text": "Most people → aren't trading, → they're gambling.",
+      "transition_out": "camera pans right / group slides off left (about 0.4 s, smooth ease-in-out), revealing empty gradient where the dice tumble in",
+      "palette": "white-to-cobalt vertical gradient, frosted translucent blue glass, white highlights, navy chart line, dark caption text",
+      "built": "code-like (2.5D glass layers, gradients, SVG line chart); characters are soft-shaded spheres buildable with radial gradients",
+      "reusable": "yes: characters standing in front of a glass card whose chart draws as the first line is spoken; the card is the 'world' the topic lives in"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        1.9,
+        3
+      ],
+      "shot": "medium, two white glass dice floating in mid-air",
+      "camera": "static, slight drift",
+      "moves": "two dice tumble slowly in 3D (about 30–40° rotation over 1 s, linear-smooth), drifting apart; a large soft blue glow sits off-centre left",
+      "text": "they're gambling. → Gambling",
+      "transition_out": "glass-lens iris: a circular refractive glass ring appears at the centre and expands past the frame edges in about 0.3–0.4 s (fast ease-out), showing the next scene inside it",
+      "palette": "white dice with blue pips, cobalt glow, white haze top right",
+      "built": "code-buildable (CSS 3D cubes with soft shading) or generated",
+      "reusable": "yes: one-object metaphor insert for a single spoken word (here 'gambling'), plus the glass-lens iris as the signature transition"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        3,
+        7.07
+      ],
+      "shot": "medium, hero character (glowing orb head on glass body) centred in front of two tilted glass data cards, big number above its head",
+      "camera": "near-static, slow push-in",
+      "moves": "bold number counts continuously (up from about 600 to about 9900 by 5.0 s, then down to about 4100 by 6.6 s); the caption under the number swaps with the voice; the orb, cards, floor gradient and number change colour together blue → purple → red as risk rises (about 4.7–5.5 s, smooth cross-fade); sparklines on the cards wiggle",
+      "text": "$953 / Gambling → $3798 / is chasing setups → $8647 / with no plan, → $9367 / no risk → $4111 / management",
+      "transition_out": "hard cut (7.07 s)",
+      "palette": "white top, blue glass cards and orb shifting to purple then red; number in bold cobalt, then purple, then red",
+      "built": "code-native (count-up number, colour-variable theme shift, glass cards, SVG sparklines)",
+      "reusable": "yes: live counter whose colour shifts with danger; whole scene re-tints through one colour variable. Use only true numbers from the package"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        7.07,
+        9
+      ],
+      "shot": "medium-wide, lone glass character in a dark room",
+      "camera": "slow tilt down / character rises slowly in frame",
+      "moves": "vertical white light shafts hang from the top like a curtain; the single character has a sad face and drifts upward; low-energy beat",
+      "text": "and hoping → luck saves you.",
+      "transition_out": "hard cut to white (9.0 s)",
+      "palette": "navy to deep cobalt gradient, white light shafts, pale blue glass character",
+      "built": "code-native (gradients, blurred vertical bars)",
+      "reusable": "yes: mood drop: whole palette darkens to the deepest brand tone for the 'problem' line, one character alone; cut back to light for the solution"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        9,
+        11.5
+      ],
+      "shot": "medium to close-up, large glass dashboard panel in 3D perspective, big pale sphere behind",
+      "camera": "panel turns from tilted-away (about 25–30° Y) to facing camera while the camera pushes in through it (about 2 s, smooth ease-in-out); near edges go out of focus (depth of field)",
+      "moves": "panel shows a search bar, percentage stats with labels, a heading and an area chart; the area chart rises into waves; heading slides in from the left",
+      "text": "caption: Trading → is controlled → risk, structured → execution; on panel: Structured Execution, 85 % SAFE, 93 %, 58 %, 35 %, BUY",
+      "transition_out": "continuous: camera tilts down along the panel (no cut)",
+      "palette": "white background, frosted cobalt panel with white UI text, darker cobalt area chart, pale sphere",
+      "built": "code-native (CSS 3D transform, backdrop blur, SVG area chart, CSS blur for depth of field)",
+      "reusable": "yes: the solution as one calm UI surface the camera enters; stats appear as quiet labels, not flying numbers"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        11.5,
+        14.97
+      ],
+      "shot": "close-up, lower half of the dashboard with a white BUY pill",
+      "camera": "settles after the tilt, then static",
+      "moves": "a glass triangle cursor floats up from the bottom (about 1 s, smooth ease-out with a gentle bob) and docks under the BUY pill, nudging it; chart strip parallaxes at top",
+      "text": "execution → and knowing → your edge → before you → click buy",
+      "transition_out": "hard cut (14.97 s)",
+      "palette": "cobalt panel, white pill with blue label, glass triangle, lilac floor",
+      "built": "code-native",
+      "reusable": "yes: one decisive action shown as a glass cursor reaching one button; maps to any 'do this one thing' line"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        14.97,
+        17.5
+      ],
+      "shot": "close-up kinetic type over a glass card with a rising candlestick chart",
+      "camera": "slow drift right to left",
+      "moves": "small label above a huge condensed bold headline; headline blurs and slides in from the left (about 0.3 s), holds about 2 s, then exits left with motion blur; candlestick chart card sits below, soft focus at its bottom",
+      "text": "The chart doesn't care / how confident you feel",
+      "transition_out": "slide left with motion blur (about 0.4 s, ease-in)",
+      "palette": "white top light, cobalt condensed type, frosted blue card with pale candles",
+      "built": "code-native",
+      "reusable": "yes: the one big-type statement of the film: small kicker plus giant condensed line, edge-cropped and sliding"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        17.5,
+        19.6
+      ],
+      "shot": "empty gradient, one short line of text left of centre",
+      "camera": "static; the line drifts slowly to the right (about 60 px over 2 s, linear)",
+      "moves": "nothing else moves: a deliberate pause",
+      "text": "It only rewards discipline.",
+      "transition_out": "the line drifts out right and the end-card character slides in (soft cut, about 0.2 s)",
+      "palette": "white top light to cobalt bottom, navy bold text",
+      "built": "code-native",
+      "reusable": "yes: silence beat before the CTA: empty frame, one sentence, slow drift"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        19.6,
+        22.5
+      ],
+      "shot": "end card: hero character at right, giant word at left",
+      "camera": "static",
+      "moves": "a paper plane flies in from bottom left and lands on the character's body (19.6–20.3 s); a giant condensed word reveals letter by letter from translucent to solid (about 0.1 s per letter); an italic second line fades in under it; the top caption keeps changing with the last voice line",
+      "text": "Share / this post; caption: a trader. → Still rolling → the dice.",
+      "transition_out": "cut to black (22.5 s)",
+      "palette": "same white-to-cobalt gradient as the opening, navy display type, glass character",
+      "built": "code-native",
+      "reusable": "partly: the bookend (hero character returns from r1-s1 on the opening gradient) and the letter-by-letter giant word; the CTA copy is not borrowed. For Persian, reveal per word or per non-joining letter group, never split joined letters"
+    }
+  ],
+  "visual_language": "Light, clean 2.5D glass world: frosted translucent cards, glass-bubble characters with glowing orb heads and simple dot faces, soft spheres and dice, all on a vertical gradient from white light at the top to cobalt at the bottom. Almost everything is code-native (gradients, backdrop blur, CSS 3D tilts, SVG line/area/candle charts, count-up numbers). Typography is two-tier: small geometric-sans captions centred near the top that swap phrase by phrase with the voice (roughly every 0.5–0.9 s), plus a few heavy moments: a huge bold counter, and a giant condensed display headline used once mid-film and once on the end card. Rhythm: 9 shots in 22.5 s (about 2.5 s each), only 3 hard cuts; most changes are camera moves, a pan-off, a glass-lens iris and slides with motion blur. Moves are smooth (ease-in-out, 0.3–2 s), never elastic. Palette is nearly monochrome cobalt; colour itself carries meaning: the scene re-tints to purple then red as risk climbs, and darkens to navy for the low point. Signature moments: the glass-lens iris from the dice into the counter scene, the risk counter changing colour, the camera entering the tilted glass dashboard, the cursor reaching BUY, and the empty-frame pause before the CTA.",
+  "continuity": [
+    "The glass-bubble hero character is the through-line: in the opening group (r1-s1), alone in the counter scene (r1-s3), alone in the dark (r1-s4) and back on the end card (r1-s9).",
+    "One background world: the white-top to cobalt-bottom gradient persists in every shot except the deliberate navy low point (r1-s4).",
+    "Glass cards are the single UI material: the opening chart card, the crypto cards, the dashboard and the candlestick card are all the same frosted glass.",
+    "Charts recur as one motif that grows: a small line (r1-s1) → sparklines (r1-s3) → area waves (r1-s5) → candles (r1-s7).",
+    "Colour as state: the whole scene re-tints through one variable (blue → purple → red → navy → back to blue) to show risk and mood.",
+    "Captions stay in one fixed slot (top-centre, same size and font) for the whole film, so text never jumps while scenes change.",
+    "Round shapes link scenes: the dice and orb heads lead into the circular glass-lens iris, and a big pale sphere sits behind the dashboard."
+  ],
+  "code_translation": "Very code-buildable (estimate 90 %+): CSS gradients, backdrop-filter glass, CSS 3D transforms for card tilts and the camera push, SVG charts, count-up numbers, CSS 3D cube dice, radial-gradient glass characters, a clip-path circle with a refractive ring (blur and highlight) for the lens iris, translate plus blur for slides. Persian adaptation: captions are RTL in the brand font in the same fixed top slot; counters use the brand's digit rule; the giant condensed line maps to the brand's heaviest display weight (no Latin condensed font); slide directions mirror to RTL (text enters from the right).",
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the characters' exact design, the copy, the crypto names, the dollar values, the 'Share this post' card or the shot order one by one.",
+    "Reference colours (cobalt, purple, red, navy) map onto brand colour roles: gradient = background role, glass and characters = primary role, counter danger states = the brand's warning/accent roles; never used as literal hex values, and no banned brand colour is introduced by the purple/red risk shift.",
+    "Captions swap every 0.5–0.9 s; for Persian, every caption must still meet the minimum hold time, so phrases may be merged; readability wins over pace.",
+    "A Latin condensed display face carries the big-type moments; the brand's Persian fonts are not condensed, so the giant line must be shorter (one or two words) to fit the width inside the safe zone.",
+    "Light background with thin dark captions: contrast must be checked against the brand's text colour on the white top of the gradient.",
+    "Audio not analysed: caption timing in our film comes from our own voice timing (L2), not from the reference."
+  ],
+  "sha256": "fc8444ea7112f4bcefef1b4925b33ab24dfb77efd67b38f1aa55512880db9fd8"
+}

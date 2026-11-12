@@ -1,0 +1,324 @@
+{
+  "slug": "cartoon-story-01",
+  "key": {
+    "sha256": "cc8223f75ca1611b124241cf7c762e9e522f6cb8a871f91bdd1089f926054cb7"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 30,
+    "w": 1920,
+    "h": 1080,
+    "fps": 24,
+    "audio": true,
+    "format_note": "16:9 landscape, single full-frame film (720 frames at 24 fps). Stereo AAC 48 kHz, continuous track with no silence longer than 0.3 s at -40 dB (mean -16.8 dB, peak -1.8 dB); its content (music, voice, effects) was not analysed and is never reused. Container title is English third-party copy (ignored)."
+  },
+  "rights_note": "third-party video (file «bf04eab3-200f-4fdf-9367-aa4fc904eb41.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "داستان کارتونی تصویرسازی‌شده",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "EXPLAINER",
+    "alt_film_mode": "REEL when the content package is a hook-problem-solution-CTA reel with no recurring character",
+    "why": "third-party film of unknown origin: borrow the motion language and look only, never its shots one by one, its characters, its documents, its map or its copy (owner note); the reference is a character story that dives into an explanatory document and comes back to the characters, which is the EXPLAINER grammar"
+  },
+  "code_buildable_pct": 62,
+  "buildable_note": "5.75-24.5 s (18.75 of 30 s) is flat vector infographic on paper and is code-native; 0-5.75 s and 24.5-30 s (11.25 s, about 38%) are painted cartoon illustration with character acting, which code cannot match: those scenes need illustrated stills (generated or supplied) animated in code (push-ins, parallax, small cut-outs), or must be rebuilt as flat vector characters. Warning per D55: painted illustration.",
+  "ignored": [
+    {
+      "span": [
+        0,
+        30
+      ],
+      "why": "all characters (the girl in the mustard hoodie, the moustached desk agent, the grey tabby cat in glasses) and the airport check-in setting are third-party characters and scenery; never reused, never redrawn as look-alikes. Our characters and setting come from the voiceover."
+    },
+    {
+      "span": [
+        5.75,
+        24.5
+      ],
+      "why": "all document content and English copy ('PET PASSPORT', 'EUROPEAN UNION', 'EU PET PASSPORT', 'Description of animal', 'Marking of animal', the pet name, microchip number, dates, batch code, 'Dr A. Moreau', 'VALID', 'MATCH', 'Within the EU', 'Outside the EU', 'Rules vary', the three question chips, 'CHECK BEFORE YOU TRAVEL', the footnote) is third-party copy and figures; never reused as text or numbers"
+    },
+    {
+      "span": [
+        5.75,
+        8.3
+      ],
+      "why": "the circle-of-stars emblem is an official institutional symbol; never reused or imitated"
+    },
+    {
+      "span": [
+        20.1,
+        24.5
+      ],
+      "why": "the map of Europe and its routes are the reference's subject; a map appears in our film only if the voiceover needs one, drawn from our own content"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px (5 sheets, all viewed; frame time = (sheet-1)*6 + index*0.5 s); scene detect gt(scene,0.3): cuts at 1.08, 2.92, 4.29, 24.50, 25.58, 26.17, 28.21, 29.00 s, plus flags at 12.42 s (polaroid arrival, not a cut) and 20.25-20.42 s (gatefold reveal of the map, not a hard cut); dense sheets fps=8 at 320 px over 5-7, 14.5-16.5, 19.5-21.5 and 23.5-25.5 s (4 sheets, all viewed; frame time = start + index*0.125 s); silencedetect and volumedetect on the audio. Spans inside the document section read from the 0.5 s sheets are accurate to about ±0.25 s, those around the dense windows to about ±0.1 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        1.08
+      ],
+      "shot": "wide, side-on: the protagonist rushes into the setting toward the second character, holding up the key object",
+      "camera": "near static, slight follow drift in the running direction",
+      "moves": "a held running pose with speed lines behind the figure and a small bob; limited character animation (pose holds, small secondary motion on hair and bag) rather than full frame-by-frame run cycle",
+      "text": "none",
+      "transition_out": "hard cut at 1.08 s to the other character (shot / reverse shot)",
+      "palette": "warm cream interior light, mustard and denim on the character, teal accent prop, navy on the second character",
+      "built": "generated (painted cartoon illustration with character acting)",
+      "reusable": "yes: open in the middle of an action with a held dynamic pose and speed lines, the key object visible in the first second; motion only, never their characters"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        1.08,
+        2.92
+      ],
+      "shot": "medium, the second character behind a counter reacts and gestures (points at the viewer, then down at the counter)",
+      "camera": "static, very slow push-in",
+      "moves": "two acting beats about 0.9 s each: point forward, then point down to where the object must go; eyelids and mouth change between beats (pose-to-pose)",
+      "text": "none",
+      "transition_out": "hard cut at 2.92 s following the pointing gesture (the gesture motivates the cut to what it points at)",
+      "palette": "warm cream and rose wall, navy jacket, teal and mustard striped scarf, dark grey monitors",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: a character gesture points at the next shot's subject and the cut follows the gesture; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        2.92,
+        4.29
+      ],
+      "shot": "medium, the third character (the subject of the story) sits inside a carrier on the counter, background deeply blurred",
+      "camera": "slow push-in (about 5% over the shot), smooth",
+      "moves": "facial acting only: neutral → unimpressed squint, about 0.5 s per change; strong depth of field keeps the background soft",
+      "text": "none",
+      "transition_out": "hard cut at 4.29 s to a close-up of the paw on the object (cut in on the action)",
+      "palette": "teal carrier, grey tabby with green eyes, warm blurred interior with orange and blue counters",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: introduce the subject with a slow push-in and a reaction, background blurred; motion only, never the character"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        4.29,
+        5.75
+      ],
+      "shot": "close-up, the subject's hand/paw rests on the key object (a booklet with coloured tabs) on the counter",
+      "camera": "static, slight push",
+      "moves": "the paw taps and slides the object a little toward camera; the face settles; about 1.4 s hold so the object is clearly read before the dive",
+      "text": "none",
+      "transition_out": "lift-out (no cut), 5.75-6.9 s: a flat vector version of the object pops out of the painted one, the painted scene blurs and dims behind it (see r1-s5)",
+      "palette": "navy booklet with red, yellow, teal and green tabs, cream counter, grey fur",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: a close-up on the object the explanation is about, held long enough to read, just before diving into it; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        5.75,
+        6.9
+      ],
+      "shot": "the object leaves the story world: a flat graphic version of it lifts out of the painted close-up and opens to fill the frame",
+      "camera": "static; the object, not the camera, grows",
+      "moves": "5.75 s a small flat card appears on top of the painted object; 5.85-6.2 s it rises and scales up to centre with a slight overshoot while the painted scene blurs heavily (about 0.15 s) and later dims toward a dark teal; 6.2 s a small sparkle at its corner; 6.35-6.5 s the cover swings open (page edge visible); 6.5-6.9 s the opened booklet scales from about 25% to nearly full frame (strong ease-out), leaving a thin dark teal border",
+      "text": "the cover's own short title only (third-party copy, ignored)",
+      "transition_out": "no cut: the opened spread becomes the stage of the next shots; the dark teal border stays for the whole document section",
+      "palette": "navy cover with yellow emblem, cream pages, blurred warm scene → dark teal surround",
+      "built": "code-native (flat vector card over a blurred, dimmed still)",
+      "reusable": "yes, signature device: a real object in the story is lifted out as a flat diagram of itself, the world blurs behind it, and the diagram opens into the explainer stage; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        6.9,
+        8.3
+      ],
+      "shot": "full frame, opened booklet spread (two pages) as a stage: title page on the left, blank right page",
+      "camera": "static",
+      "moves": "6.9-7.2 s an emblem draws in (small icons pop around a centre icon, stagger about 0.03 s, back-out ease); 6.9-7.3 s the title types in character by character (fast, linear), then a subtitle line fades up; 7.3-8.0 s hold; 8.0-8.3 s the title page elements fade and two header bars wipe in from the start edge",
+      "text": "one heavy condensed sans title and one small subtitle line on the page (third-party copy, ignored)",
+      "transition_out": "in-place change: the page content is replaced without a cut (header bars wipe in, old content fades)",
+      "palette": "aged cream paper with grain, navy type, mustard icons, teal header bars, dark teal surround",
+      "built": "code-native",
+      "reusable": "yes: the document is the stage; every step is a new page state written onto the same paper rather than a new shot; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        8.3,
+        12
+      ],
+      "shot": "full frame spread, left page: a flat silhouette of the subject with labelled fields; right page: a detail being verified",
+      "camera": "static",
+      "moves": "8.3-8.7 s header labels type into the teal bars; 8.9-9.1 s the silhouette pops in (scale 0.8 → 1 with back-out); 9.2-10.0 s six label/value fields type in top to bottom, each with a thin leader line drawn from its body point to the field (stagger about 0.12 s, typing linear); 10.4-10.6 s a small detail illustration (capsule inside an outlined bubble) pops in on the right page with a pointer label; 10.7-11.0 s a handheld tool slides in from the bottom edge (ease-out) and touches the silhouette; a ring pulse at the contact point, a readout box appears and its value types; 11.3-11.6 s the value is highlighted in yellow and a green check badge pops in with overshoot",
+      "text": "small header labels in white caps on teal bars, tiny label caps over typewriter-style values; all third-party copy, ignored",
+      "transition_out": "no cut: the tool slides out down and the next element arrives on the same spread",
+      "palette": "cream paper, navy silhouette, teal bars and tool, yellow highlight, green check badge, red dots at leader ends",
+      "built": "code-native",
+      "reusable": "yes: a silhouette of the subject annotated with leader lines and typed fields, then a tool checks one detail and a check badge confirms it — 'inspect and verify' as motion; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        12,
+        14.9
+      ],
+      "shot": "same spread: a photo card lands on the right page and dashed connectors tie it to the silhouette and to the verified detail",
+      "camera": "static",
+      "moves": "12.0-12.4 s an empty instant-photo frame drops in tilted from below with a small bounce, the tool leaves; 12.4-12.6 s the picture fades/develops inside it, two tape strips pop on its corners, the caption types; 12.9-13.3 s a red dashed connector draws from a point on the silhouette to the photo (smooth ease-in-out), 13.3-13.6 s a second dashed connector draws from the silhouette to the verified value; 13.6-14.9 s hold",
+      "text": "a one-word handwritten-style caption under the photo (third-party, ignored)",
+      "transition_out": "page turn, 14.9-15.3 s: the lower right corner curls up (about 0.25 s), then the page turns right → left with a soft shadow (about 0.2 s), leaving a blank spread",
+      "palette": "cream paper, white photo frame with soft drop shadow, beige tape, teal photo background, red dashed lines",
+      "built": "code-native (the photo inside the frame is a small illustrated still)",
+      "reusable": "yes: dashed connectors draw between pieces of evidence so the viewer sees they belong together; page turn as the chapter cut; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        15.3,
+        18
+      ],
+      "shot": "fresh spread: a new chapter page is filled in, then made official with a sticker, a signature and a stamp",
+      "camera": "static",
+      "moves": "15.4-15.6 s a header bar wipes in from the start edge, its label types; 15.6-16.3 s three date fields type (linear, about 15 characters per second); 16.3 s an empty timeline track draws on the right page; 16.4-16.6 s a shield icon pops in with overshoot, then a syringe icon slides diagonally onto it; 16.5-16.9 s a label sticker flies in from the lower right, rotated about 15°, and lands flat with a small settle; 17.0-17.4 s a signature writes itself with a moving pen (stroke reveal), a small caption fades under it; 17.5-17.9 s a rubber stamp drops from above, presses (squash about 0.1 s), lifts away leaving a round stamp mark",
+      "text": "small header caps, typed date values, a handwritten signature, a sticker label; all third-party, ignored",
+      "transition_out": "no cut: the same spread continues into the check of r1-s10",
+      "palette": "cream paper, teal shield, mustard syringe, white sticker with barcode, navy ink signature, brown wooden stamp, teal stamp mark",
+      "built": "code-native",
+      "reusable": "yes: making something official in three physical gestures (sticker lands, pen signs, stamp presses) — tactile, satisfying micro-actions on paper; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        18,
+        20.1
+      ],
+      "shot": "same spread: a magnifier checks two values and a timeline shows a date falling inside the valid range",
+      "camera": "static",
+      "moves": "18.0-18.4 s a magnifying glass glides onto the first value, the value under it enlarges, then a yellow highlight stays behind; 18.4-18.8 s it glides to the second value (smooth ease-in-out) and highlights it; 18.0-18.8 s a green bar fills the timeline track from start to end in step with the glass; 19.0-19.2 s a map pin drops onto the bar with a ring pulse and a small date tag pops above it; 19.4-19.6 s a large green tilted stamp word slams in (scale 1.3 → 1 with squash, small sparkle marks); 19.6-20.1 s hold",
+      "text": "small date tag, one stamped word (third-party, ignored)",
+      "transition_out": "gatefold reveal, 20.1-20.5 s: the booklet's pages fold outward like doors (each half rotates away in perspective, about 0.25 s) revealing a full-frame map that was underneath; the map's side flaps settle flat",
+      "palette": "cream paper, yellow highlights, green bar and stamp, red pin, gold magnifier rim",
+      "built": "code-native",
+      "reusable": "yes: check two values with a moving magnifier, show the range as a filling bar, drop the case as a pin inside it, then a stamp gives the verdict — a numeric check made visible; motion only, never their dates"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        20.5,
+        24.5
+      ],
+      "shot": "full frame, a vintage-style paper map becomes the stage for the wider picture: routes, labels, a list and a final warning banner",
+      "camera": "static",
+      "moves": "20.7-20.9 s an origin pin appears with a pulse ring; 21.0 s a pill label pops; 21.1-21.3 s a green dashed route draws to a second point (smooth), 21.25 s a tag with an icon pops at the end and its check mark draws; 21.5-21.8 s an orange dashed route draws off the frame edge with a small plane icon at its head and an orange 'outside' pill; 21.9-22.3 s an orange header chip and three question chips stack in below it (stagger about 0.1 s, back-out); 22.4-22.7 s a white card with an illustrated character inset pops in at the lower corner; 22.9-23.2 s a red ribbon banner unrolls over the card's bottom edge and a small footnote strip fades in; 23.2-24.5 s hold",
+      "text": "pill labels, a stacked list of three short question chips, one banner line in white caps, one small footnote (third-party copy, ignored)",
+      "transition_out": "hard cut at 24.50 s back to the painted story world (no transition effect)",
+      "palette": "muted sea teal, cream land with dark brown outlines, ochre corner land, green 'yes' route, orange 'it depends' route, red banner",
+      "built": "code-native (vector map; the character card is a small illustrated still)",
+      "reusable": "yes: zoom out from the single case to the whole picture; a green path for the simple case and an orange path for the uncertain one, the uncertainty listed as question chips, closed by one warning banner; motion only, never their map"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        24.5,
+        25.58
+      ],
+      "shot": "wide, back in the story world: the protagonist holds a sheaf of papers, worried; the subject sits on the counter next to the key object",
+      "camera": "static",
+      "moves": "pose holds; the protagonist shuffles the papers (small hand and paper motion), eyes move; the subject looks at her",
+      "text": "none",
+      "transition_out": "hard cut at 25.58 s to a quick reaction close-up",
+      "palette": "warm cream interior, mustard hoodie, teal carrier and backpack, grey tabby, white papers",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: return to the characters after the explainer to show the problem from the human side; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        25.58,
+        26.17
+      ],
+      "shot": "medium close, the subject reads the key object, adjusting glasses (comic counterpoint)",
+      "camera": "static",
+      "moves": "one gesture, about 0.6 s (paw to glasses)",
+      "text": "none",
+      "transition_out": "hard cut at 26.17 s",
+      "palette": "grey tabby, gold glasses, navy booklet, warm blurred background",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: a 0.6 s reaction insert between two longer shots for comic rhythm; motion only"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        26.17,
+        28.21
+      ],
+      "shot": "medium, the protagonist hugs her papers, anxious",
+      "camera": "static, slight push",
+      "moves": "facial acting over about 2 s: mouth open (sigh) → lips pressed → eyes lowered; papers held tight",
+      "text": "none",
+      "transition_out": "hard cut at 28.21 s",
+      "palette": "warm cream window light, mustard hoodie, teal backpack",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: a held emotional beat before the payoff; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        28.21,
+        29
+      ],
+      "shot": "medium, the subject sits on the counter beside the closed key object and 'speaks' the moral",
+      "camera": "static",
+      "moves": "mouth opens and closes (talking), slight head tilt, about 0.8 s",
+      "text": "none",
+      "transition_out": "hard cut at 29.00 s",
+      "palette": "grey tabby, gold glasses, navy booklet, warm orange and blue background",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: the wise character delivers the takeaway in one short beat; motion only"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        29,
+        30
+      ],
+      "shot": "close-up, the protagonist smiles, relieved",
+      "camera": "static",
+      "moves": "expression shifts from uncertain to a small smile and glance down (about 0.5 s), hold to the end",
+      "text": "none",
+      "transition_out": "end of film",
+      "palette": "warm cream window light, mustard hoodie, freckled skin, brown hair",
+      "built": "generated (painted cartoon illustration)",
+      "reusable": "yes: end on the human's emotional resolution, the opposite of the anxious beat before it; motion only"
+    }
+  ],
+  "visual_language": "A small character story that dives into the object at its centre, explains it on paper, and comes back to the characters. Medium: two registers. The story world (0-5.75 s and 24.5-30 s) is painted 2D cartoon illustration with ink outlines, soft painted shading, warm window light, paper grain and strong background blur, animated pose-to-pose with small acting beats (expressions, gestures) and slow push-ins. The explainer (5.75-24.5 s) is flat vector infographic on aged cream paper inside a dark teal frame: one opened booklet as the stage, filled step by step — header bars wipe in, typewriter values type, icons pop with overshoot, stickers fly in and land, a pen signs, a stamp presses, a magnifier checks, a bar fills, a pin drops, a stamp word slams; then a gatefold opens onto a paper map where dashed routes draw, chips stack and a ribbon banner closes the argument. Typography: heavy condensed sans caps for page titles and banners, tiny label caps over typewriter-style values, a handwritten signature and caption. Rhythm: the story shots are short (0.6-2 s, average about 1.3 s, hard cuts that follow gestures or cut in on the action); the explainer is one continuous 18.75 s sequence without a hard cut, its beats spaced about 0.3-0.6 s apart, chapters separated by a page turn and a gatefold. Arrivals are snappy with back-out overshoot (0.15-0.3 s), lines and routes draw smoothly (0.2-0.4 s), typing is linear. Palette: cream paper, dark teal surround, navy, teal, mustard, with traffic-light semantics — green for confirmed, yellow for highlighted, orange for 'it depends', red for warnings and pins. Signature moments: the object lifting out of the painted scene as a flat diagram of itself, the annotated silhouette checked by a tool, sticker-signature-stamp, the magnifier and the filling validity bar, the gatefold onto the map.",
+  "look": "Flat 2D throughout, no real 3D. Story world: painted cartoon illustration, ink outlines, soft painted shading and warm interior light, visible paper grain, strong depth-of-field blur on backgrounds, no hard cast shadows. Explainer: flat vector shapes on a textured aged cream paper with slight vignetting, thin dark outlines on icons and map coasts, soft short drop shadows under stickers, photo frames, cards and the tool (paper-cutout feel), the booklet sits on a flat dark teal backdrop with a soft shadow; the only perspective moments are the page curl/turn and the gatefold fold-out; during the lift-out the painted scene is gaussian-blurred and dimmed behind the flat graphic.",
+  "code_translation": "Explainer section code-native in HTML/CSS/SVG in headless Chromium: a paper texture layer (noise + vignette) under SVG content; header bars as scaleX wipes from the reading start edge; typed values by revealing whole Persian words (never splitting joined letters) with the shaped brand font; leader lines and dashed connectors as stroke-dashoffset draws; pops as scale with back-out easing; sticker fly-in as translate+rotate with a settle; signature as an SVG stroke reveal following a pen sprite; stamp as a drop with a 0.1 s squash leaving an ink mark; magnifier as a moving circular mask with a scaled copy under it; validity bar as a scaleX fill; page curl and gatefold as CSS 3D rotateY on page halves with a moving shadow gradient. Story section: painted illustration cannot be drawn in code at this quality — use illustrated stills (generated or supplied) in the same painted cartoon style, animated in code with slow push-ins, slight parallax between a blurred background layer and the characters, and pose changes by cutting between stills on beats; the lift-out transition is a blurred, dimmed copy of the last still with the flat vector card scaling out of it.",
+  "continuity": [
+    "Lift-out: the object the story is about is lifted out of the scene as a flat diagram of itself, the world blurs and dims behind it, and the diagram opens to become the stage of the explanation.",
+    "One stage, many states: the whole explanation happens on one surface (a document spread) that is written, annotated, stamped and turned, instead of cutting between shots.",
+    "Chapter breaks are physical: a page corner curls and the page turns; a gatefold opens to reveal a wider view underneath.",
+    "Annotate the subject: a silhouette of the subject gets leader lines to labelled fields, so facts are attached to the body they describe.",
+    "Evidence is tied together by dashed connectors drawn between the pieces after they all appear.",
+    "Tactile verification: a tool touches the subject and a check badge pops; a magnifier passes over values and leaves highlights; a stamp gives the verdict.",
+    "A range shown as a filling bar with the case dropped onto it as a pin, so 'inside the limits' is seen, not read.",
+    "Zoom from the single case to the whole picture (one document → a map of where it applies), with a simple path and an uncertain path in different semantic colours.",
+    "The object comes back: after the explainer, the same object reappears physically in the painted scene, so the viewer knows the explanation happened inside it.",
+    "Story bookend: the film opens on a rushed action and closes on the character's relief, with a short comic insert of the second character between anxious and relieved beats.",
+    "Cuts in the story world follow a gesture or cut in on an action (a point leads to what is pointed at; a close-up of a hand on the object)."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its characters (girl, desk agent, tabby cat), the airport setting, the passport design, the circle-of-stars emblem, the map of Europe, any English copy, names, numbers or dates, or the shot order one by one.",
+    "About 38% of the reference (0-5.75 s and 24.5-30 s) is painted cartoon illustration with character acting: not buildable in code at this quality. Those scenes need illustrated stills in the same style (generated or supplied) animated in code, or a flat vector character fallback; warning per D55 (painted illustration).",
+    "Source is 16:9 landscape and the explainer stage is a two-page spread: a 9:16 film must rebuild it vertically (a single tall page, or the spread rotated with the second page below the first), keeping everything inside the 9:16 safe zone.",
+    "Explainer labels and typed values are tiny in the reference: Persian text sizes and hold times win over the reference's density (readability ranks above the reference); fewer fields per page, larger type, longer holds.",
+    "The reference reads left to right (header bars wipe from the left, page turns right to left, routes and the timeline fill left to right, the gatefold is symmetric): for Persian follow references/rtl-grammar.md — bars wipe from the right, the page turns left to right, a time bar fills right to left; typing reveals whole joined words, never letter by letter in a way that breaks joining; the signature reveal must follow Persian stroke direction.",
+    "Reference colours (cream paper, dark teal surround, navy, teal, mustard, green/yellow/orange/red semantics) map onto brand colour roles (light surface, dark background, primary, accent, success, warning, danger); never used as literal hex values. Colours were read by eye, not sampled.",
+    "The reference has a continuous audio track; our film's cuts follow the voiceover first, and L6 places accents (typing ticks, pops, stamp thud, page turn) on our own cuts rather than reusing their audio."
+  ],
+  "sha256": "cc8223f75ca1611b124241cf7c762e9e522f6cb8a871f91bdd1089f926054cb7"
+}

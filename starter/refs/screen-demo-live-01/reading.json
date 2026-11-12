@@ -1,0 +1,526 @@
+{
+  "slug": "screen-demo-live-01",
+  "key": {
+    "sha256": "641497eb79e63d9b4166dd763c9344617c5ab26cfe5bd6965a5c24abc8659e60"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 75.5,
+    "w": 1920,
+    "h": 1080,
+    "fps": 30,
+    "audio": true,
+    "format_note": "16:9 landscape, one full-frame film. Stereo AAC 48 kHz. Half-second RMS measured, not listened to: a steady music bed that alternates about -21.6 / -23.7 dB on a 1.0 s period across the film; one deep dip at 2.5 s (-35.6 dB) followed by the loudest early peak at 3.0 s (-18.4 dB), which lands on the first UI scene; louder, irregular passages at 12-14.5 s, 15.5-18 s and 68-71 s match the on-screen spoken captions; the bed sits lower (about -28 dB) under the live shot at 66.5-68 s; short dips near 11, 15, 41, 65, 71 and 73.5 s (about -28 dB)."
+  },
+  "rights_note": "third-party video (file «ae37400d-dfb8-4f6e-87e2-2500036124d1.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "دموی نرم‌افزار با فیلم واقعی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "UI when the content package shows software, an app or a workflow",
+    "why": "third-party film of unknown origin: borrow the motion language and look only, never its shots one by one, its logos, its product names, its copy, its UI screens or its person (owner note); a voiceover package defaults to REEL, and the reference's own grammar is a software workflow demo"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        75.5
+      ],
+      "why": "the 'Higgsfield' name and squiggle logo, the 'ChatGPT' name, the 'Genjutsu' name and the closing line 'HIGGSFIELD EXTENSION IS AVAILABLE NOW IN CHATGPT' are third-party branding and copy; never reused as text or logo"
+    },
+    {
+      "span": [
+        10.73,
+        18.17
+      ],
+      "why": "the real person, their face, clothes and the kitchen are never copied; this applies to every live-action shot (10.73-18.17, 29.97-33.63, 47.27-49.23, 65-70.47, 73-75.5), as do the coffee machine, the drive and the spill on the floor"
+    },
+    {
+      "span": [
+        12,
+        18.17
+      ],
+      "why": "the spoken captions ('Please edit the commercial video for my client', 'And fix all possible issues', later 'OH MY CREDITS') and all the agent's lines ('Found a continuity error.', 'Let's patch it with some aerial footage.', 'Some shots need cleanup.', 'Using Higgsfield Genjutsu for a hybrid production workflow', 'Locating footage...', 'Generating', 'Done.') are third-party copy; only the way they appear is reusable"
+    },
+    {
+      "span": [
+        3,
+        10.73
+      ],
+      "why": "third-party UI content: the sidebar labels, the plugin page, its gallery images and the ad cards with their brand names and figures (such as '+$200') are never reused"
+    },
+    {
+      "span": [
+        24.97,
+        39.23
+      ],
+      "why": "the 'STILL' editor, 'CAR_FOOTAGE', the file and folder names, the project names and the car clips are third-party content; the film-edit story itself is not our subject"
+    },
+    {
+      "span": [
+        54.9,
+        64.5
+      ],
+      "why": "the car footage and the file name 'Car_commercial_final.mp4' are third-party content"
+    },
+    {
+      "span": [
+        70.47,
+        73
+      ],
+      "why": "the account name 'Rin96', the 'Weekly limit' menu and the figures 100% and 91% are third-party content, never their figures; any number on screen comes from our package"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px (13 sheets, all viewed); scene detect gt(scene,0.3): 2.57, 2.60, 2.73, 2.90, 7.17, 8.27, 10.73, 11.97, 15.17, 18.17, 20.13, 21.17, 24.97, 27.60, 29.97, 33.63, 39.23, 47.27, 49.23, 59.90, 61.67, 65.00, 70.47, 73.00 s; dense sheets at 10-15 fps over 2.2-3.8, 6.4-8.0, 12.0-13.6, 17.4-19.0, 21.0-23.4, 34.4-36.8, 43.6-46.0, 61.2-63.6 and 71.2-72.8 s; half-second RMS of the audio with astats. Boundaries at 2.47, 3.0, 5.0, 35.75, 43.7, 45.8 and 54.9 s are not scene-detect cuts: they are whips or flashes placed by eye, accurate to about 0.25 s at 5.0 and 54.9 s and about 0.1 s at the others. Colours were read by eye, not sampled. The audio was measured, not heard, so voice versus music is inferred from loudness and captions.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.47
+      ],
+      "shot": "title card: one rectangular label on a soft pale field",
+      "camera": "static, slight drift to the left in the last second",
+      "moves": "a small flat rectangle grows out of a halftone dot ring (first 0.5 s); its fill steps lime → maroon → black while the letters resolve in scattered pieces; chevrons slide in beside the second line; a thin vertical arrow line draws down at the right; tiny square pixels hover; soft colour blobs drift; from about 1.5 s small round dot characters with eyes enter in an arc from the left and queue toward the label; snappy steps, smooth drift",
+      "text": "two short centred lines in white on the black label, with an inline logo and icon",
+      "transition_out": "the leading dot reaches the centre of the label and sets off the flash in the next shot",
+      "palette": "near-white field, lime and sage blurred blobs, faint pink, black label, small mint and pink pixels, dots in purple, green, blue and grey",
+      "built": "code-native (HTML/CSS, blurred gradients, halftone mask, SVG)",
+      "reusable": "yes: a label assembles from noise and a small character sets off the transition; motion only, never the logo, words or characters' design"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.47,
+        3
+      ],
+      "shot": "colour-flash transition over the same label",
+      "camera": "fast push-in with slight scale pulse",
+      "moves": "a glowing ring opens from the dot on the label; in about 0.5 s the whole frame steps through hard palette swaps (black with lime confetti and a cyan ring → pink-magenta ring → lilac with blue shards) and then a white disc expands to fill the frame; each palette holds 2-3 frames; very snappy",
+      "text": "the same label, its colours inverted on each step",
+      "transition_out": "white-out, the next scene arrives out of the white",
+      "palette": "black, lime, cyan, magenta, lilac, saturated blue, then white",
+      "built": "code-native (stepped palette swap, radial ring, particles, expanding white disc)",
+      "reusable": "yes: the signature opening hit; short palette-swap burst into white on the first music hit, using brand colour roles only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        3,
+        5
+      ],
+      "shot": "close, then medium, on a light app menu on an empty off-white stage, no window frame",
+      "camera": "starts at about 2x and eases out to 1x over about 0.6 s, then almost static with a tiny drift",
+      "moves": "the title arrives motion-blurred; list rows cascade in from top to bottom, one every 0.1-0.15 s, each from blur and light opacity; about 1.2 s later a soft blue highlight pill sweeps over one row with a small dot at its end, from slightly offset and scaling up; strong ease-out",
+      "text": "UI labels at reading size, heavy title, regular list items, line icons",
+      "transition_out": "soft cut on the same off-white background, so the page change reads as continuous",
+      "palette": "off-white, near-black text, pale blue highlight, one saturated blue dot",
+      "built": "code-native (HTML/CSS UI)",
+      "reusable": "yes: a list of options builds row by row and one is chosen with a highlight; our own items"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        5,
+        7.17
+      ],
+      "shot": "search page: heading, one-line description, search field, then one result row",
+      "camera": "small at first, jumps closer in about 0.2 s with blur (scale about 1.6x), slides up to follow the result",
+      "moves": "the query types in as the camera pushes; the result row arrives from a heavy horizontal motion blur in about 0.2 s; then an accent light streak runs from the centre outward along the top and bottom edges of the row and closes into a glowing outline (6.6-6.95 s); the row blurs out sideways",
+      "text": "large light heading, grey description, typed query, result title with a one-line description, one small dark button",
+      "transition_out": "whip with horizontal motion blur into the dark panel",
+      "palette": "off-white, grey field, near-black text, lime glow streak and icon",
+      "built": "code-native (HTML/CSS UI, animated SVG stroke with glow, directional blur)",
+      "reusable": "yes: a found result is marked by a glowing stroke that traces around it; keep to one accent"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        7.17,
+        8.27
+      ],
+      "shot": "extreme close-up on the corner of a dark sidebar, half the frame a pink diagonal backdrop",
+      "camera": "eases out from about 1.4x to 1x, drifting right",
+      "moves": "the accent tile lands overscaled with blur and settles in about 0.2 s (slight elastic); its name types beside it letter by letter over about 0.4 s; the row above is out of focus and sharpens",
+      "text": "large item name in light grey next to the tile; one neighbouring item above",
+      "transition_out": "cut with vertical motion blur to the same window pulled far back",
+      "palette": "two-tone hot pink diagonal, charcoal panel, grey text, lime tile",
+      "built": "code-native (HTML/CSS UI, CSS scale and blur)",
+      "reusable": "yes: extreme close-up on one small element, then a jump back to the whole window; our own element"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        8.27,
+        10.73
+      ],
+      "shot": "wide: the whole dark app window floating on the pink backdrop, with a large soft shadow",
+      "camera": "slow push and drift; the window sits a little tilted and straightens",
+      "moves": "the page inside scrolls in three smooth stepped moves, each about 0.3 s with ease-in-out, showing rows of image cards; the window grows slightly by the end",
+      "text": "small accent heading over the page, tiny UI labels as texture, never meant to be read",
+      "transition_out": "hard cut to live action; the music dips a little around the following cut",
+      "palette": "pink backdrop, near-black window, lime accents, bright image thumbnails",
+      "built": "code-native (HTML/CSS UI; the card pictures are stand-in images)",
+      "reusable": "yes: a product shown whole as a floating window with a stepped scroll; content from our package"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        10.73,
+        11.97
+      ],
+      "shot": "live action, top-down close-up of a hand doing a small physical action at a desk",
+      "camera": "handheld-feeling, almost static",
+      "moves": "the hand makes one small physical action, real time",
+      "text": "none",
+      "transition_out": "hard cut",
+      "palette": "warm neutrals, cream, stone, dark grey object",
+      "built": "live-action footage, filmed or generated, not buildable in code",
+      "reusable": "no as footage; the idea of a short, quiet real-world detail between UI scenes can be rebuilt as one voice-driven scene in the film's own style"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        11.97,
+        15.17
+      ],
+      "shot": "live action: wide on a person at a laptop, then a sudden close-up as they speak",
+      "camera": "static wide, then a fast push-in with motion blur in about 0.2 s at 12.67 s, on the first spoken word, then a slow drift",
+      "moves": "the caption builds one word at a time in time with the speech; each word fades from about 30% to full opacity in about 0.1 s in a place already reserved for it, so the line never reflows; a tiny blue pill with a waveform stays above the caption while the voice is active",
+      "text": "white regular sans caption at bottom, centred as a whole line, no box",
+      "transition_out": "hard cut to a frontal angle on a voice pause",
+      "palette": "muted cream, warm grey, dark hair and shadow, blue voice pill",
+      "built": "live-action footage with a caption overlay, not buildable in code",
+      "reusable": "partly: the word-by-word reserved-place caption, the small voice pill and the push-in on the first word are reusable; the person and the location never"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        15.17,
+        18.17
+      ],
+      "shot": "live action: frontal medium on the same person, a blurred laptop back in the foreground",
+      "camera": "static, slight drift",
+      "moves": "the next caption line builds word by word; at about 17.6 s the person stands and crosses, filling the frame with blurred motion, and the caption stays on",
+      "text": "same caption style, over the soft foreground shape",
+      "transition_out": "hard cut on the body's motion to the UI",
+      "palette": "muted cream, warm grey, deep red flowers",
+      "built": "live-action footage with a caption overlay, not buildable in code",
+      "reusable": "partly: the request is spoken first, and the action on screen answers it; the subject's motion hides the cut"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        18.17,
+        20.13
+      ],
+      "shot": "close-up of a dark prompt bar at the bottom edge of the app window, a strip of pink below",
+      "camera": "slow drift upward and sideways, almost a slide",
+      "moves": "the page behind scrolls up fast and settles with ease-out while the request fills the bar word by word in about 0.45 s, using the same word fade as the caption; the rest of the shot is a hold",
+      "text": "one line in the bar, regular weight, with a plus icon",
+      "transition_out": "direct move to a closer detail of the same bar",
+      "palette": "near-black, charcoal bar, white text, strip of hot pink",
+      "built": "code-native (HTML/CSS UI)",
+      "reusable": "yes: the spoken caption words reappear as text in the UI, so voice and action are tied together"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        20.13,
+        21.17
+      ],
+      "shot": "extreme close-up of the send control on the corner of the window",
+      "camera": "static, then a small tilt and rotation of the whole panel as it leaves",
+      "moves": "the round grey button with an arrow flips to saturated blue at about 20.6 s, a quick step with no travel; then a rotation of about 8 degrees starts the exit",
+      "text": "small model label beside the button, in large scale",
+      "transition_out": "hard cut on the rotation to the blurred plate of the next shot",
+      "palette": "charcoal, grey to electric blue, hot pink",
+      "built": "code-native (HTML/CSS UI, CSS rotate)",
+      "reusable": "yes: one press shown huge, so the viewer knows the action started"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        21.17,
+        24.97
+      ],
+      "shot": "a mouse pointer alone, large in the centre, on a heavily blurred UI plate",
+      "camera": "slow push from about 0.7x to 2x with the plate held in lens blur",
+      "moves": "the pointer arrives small and scales up over 0.5 s; a card behind it flashes bright blue as the pointer turns white (about 21.7 s), and the pointer morphs into a glowing cyan arrow, with a blue halo; over 0.8 s it cools to deep blue; then a small dot appears beside it at about 22.9 s, grows to a circle, stretches into a pill, and a status line types into it letter by letter until about 24.5 s",
+      "text": "white status label in a glossy blue pill beside the arrow",
+      "transition_out": "cut to the next window while the arrow stays on screen in the same colour",
+      "palette": "near-black, deep blue plate, glowing cyan to royal blue arrow, blue pill",
+      "built": "code-native (SVG pointer morph, CSS blur, glow, pill width animation)",
+      "reusable": "yes: the signature character moment; an ordinary pointer turns into a working helper with its own colour and speech pill; our own words and any shape from our story"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        24.97,
+        27.6
+      ],
+      "shot": "file browser window on the pink backdrop: close-up on the corner, then wide on the whole grid",
+      "camera": "close and static for 1 s, then a pull-back of about 0.2 s to wide, slight drift; exit with lens blur on the grid",
+      "moves": "the helper arrow glides between items, smooth with some inertia; it drags a marquee selection across the grid; selected items dim together; the whole grid pulls out of focus before it leaves",
+      "text": "window title large in the close-up, tiny file labels when wide, texture only",
+      "transition_out": "blurred grid slides out left, the next window arrives from the right",
+      "palette": "hot pink, charcoal panels, grey tiles, blue arrow, traffic-light dots",
+      "built": "code-native (HTML/CSS UI)",
+      "reusable": "yes: the helper selects many items at once with a marquee, close → wide"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        27.6,
+        29.97
+      ],
+      "shot": "editor window entering from the right, then a push-in on its project panel",
+      "camera": "the window slides in with ease-out, shifts left, then pushes in to about 1.5x",
+      "moves": "the panel fills with thumbnails in a staggered grid; the group gets a soft grey halo and dims as it is taken in; thumbnails are replaced by folders that appear one at a time as a soft sort",
+      "text": "tiny UI labels and folder names, texture only",
+      "transition_out": "hard cut to live action on a whole-second beat",
+      "palette": "hot pink, near-black, muted photo thumbnails, grey folders",
+      "built": "code-native (HTML/CSS UI; the thumbnails are stand-in images)",
+      "reusable": "yes: a messy group is sorted into tidy containers, one by one"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        29.97,
+        33.63
+      ],
+      "shot": "live action, low angle on a person's arm working at a kitchen counter while the helper works",
+      "camera": "slow arc around the counter, keeps the motion gentle",
+      "moves": "the person does a small unrelated domestic task, real time",
+      "text": "none",
+      "transition_out": "hard cut to the UI, which has advanced in the meantime",
+      "palette": "warm wood, off-white tile, dark stone, cream knit, one green plant",
+      "built": "live-action footage, filmed or generated, not buildable in code",
+      "reusable": "no as footage; the idea survives: cut away to the person relaxing, return to find the work has moved on, which says 'it works while you do something else'"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        33.63,
+        35.75
+      ],
+      "shot": "editor window on pink, wide, then a jump to the timeline panel close up",
+      "camera": "wide with a slow drift, a push of about 0.15 s into the timeline, then a radial zoom blur as it exits",
+      "moves": "translucent empty tiles (ghosts of the thumbnails) rise as a 3x3 grid and travel with the arrow to the timeline; they dissolve when they land",
+      "text": "track labels and a large timecode, seen for less than a second",
+      "transition_out": "zoom-through with radial blur into the same panel filled",
+      "palette": "pink, near-black, grey translucent tiles, blue arrow",
+      "built": "code-native (HTML/CSS UI, directional and radial blur)",
+      "reusable": "yes: translucent ghost tiles carry a group from one area to another"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        35.75,
+        39.23
+      ],
+      "shot": "the whole editor window near full frame, with its bottom edge and pink below",
+      "camera": "slow push and drift to the left",
+      "moves": "strips fill a track with a soft halo, then get split and rearranged by the arrow as a steady rhythm of small changes; level meters rise; at about 38 s two strips turn glowing red with a blurred, pulsing edge",
+      "text": "tiny labels, texture only; the red is the message",
+      "transition_out": "hard cut to a dark empty stage",
+      "palette": "near-black, pale grey-green strips, muted photo preview, one glowing red, pink strip",
+      "built": "code-native (HTML/CSS UI; the preview picture is stand-in footage)",
+      "reusable": "yes: progress is shown as a filling bar of pieces, and the problem as one red glow inside it; our own subject"
+    },
+    {
+      "id": "r1-s18",
+      "span": [
+        39.23,
+        43.7
+      ],
+      "shot": "dark empty stage with the helper's thinking lines, a chat icon followed by one sentence",
+      "camera": "starts large (about 2x), eases out to small, then a gaussian blur pull and a push back to large for the second line, with blur on every scale change",
+      "moves": "the chat icon fades in alone, then the sentence reveals left to right with a soft edge; the newest letters are the accent colour and cool to white behind the edge (about 1.5 s per line); a second line arrives under it with the brand tile; both hold, then a vertical whip takes them up",
+      "text": "regular sans at about 40 px when small and about 90 px when large, white with an accent leading edge",
+      "transition_out": "vertical whip up; the text stays at the top as the next card rises",
+      "palette": "near-black violet-grey, white text, lime leading edge and tile",
+      "built": "code-native (HTML/CSS type with animated gradient mask, CSS blur)",
+      "reusable": "yes: the helper's reasoning is a sentence on an empty stage, zoomed; for Persian reveal whole words (see risks)"
+    },
+    {
+      "id": "r1-s19",
+      "span": [
+        43.7,
+        45.8
+      ],
+      "shot": "a dark placeholder card below the text, with a small status pill in the middle",
+      "camera": "rises with the whip, holds, then a gentle shift up as the result is revealed",
+      "moves": "a card with a faint grid and accent glow holds a spinner pill ('Generating') for about 0.7 s; then a circle of accent halftone dots opens from the centre (44.5 s), expands as a ring over about 0.6 s, uncovering the finished picture; the leftover dots disperse at the edges; the arrow enters and touches the result",
+      "text": "one small status word in accent colour, plus the sentence above",
+      "transition_out": "whip with horizontal motion blur on the text line and card",
+      "palette": "near-black, olive glow, lime halftone dots, natural green picture",
+      "built": "code-native (canvas or SVG halftone mask over a picture; the revealed picture itself is stand-in footage)",
+      "reusable": "yes: signature moment; a result is uncovered by an expanding ring of accent dots; the revealed content comes from our package and is drawn in the film's style"
+    },
+    {
+      "id": "r1-s20",
+      "span": [
+        45.8,
+        47.27
+      ],
+      "shot": "close-up on a grid of folders on dark",
+      "camera": "drifts up slightly, nearly static",
+      "moves": "the arrow carries a small thumbnail with a blue file-name pill into a folder; the folder flips white and pops as it receives it, then settles grey; a small line briefly appears on the folder",
+      "text": "folder names at reading size, in large scale; blue pill with a file name",
+      "transition_out": "hard cut to live action",
+      "palette": "near-black, grey folders, white pop, royal blue pill and arrow",
+      "built": "code-native (HTML/CSS UI)",
+      "reusable": "yes: drop an item into its place, with a small pop as confirmation"
+    },
+    {
+      "id": "r1-s21",
+      "span": [
+        47.27,
+        49.23
+      ],
+      "shot": "live action, close on a hand finishing a small domestic task",
+      "camera": "slow arc, continuing the earlier shot's move",
+      "moves": "real time; the small task reaches its next stage, so a story runs in parallel with the work",
+      "text": "none",
+      "transition_out": "hard cut to the dark stage on a whole-second beat",
+      "palette": "warm wood, off-white tile, dark stone, terracotta mug, cream knit",
+      "built": "live-action footage, filmed or generated, not buildable in code",
+      "reusable": "no as footage; a side task that progresses across cut-aways can be rebuilt in the film's own style"
+    },
+    {
+      "id": "r1-s22",
+      "span": [
+        49.23,
+        54.9
+      ],
+      "shot": "dark stage again, the same thinking-line device with two new sentences",
+      "camera": "large to small with a gaussian blur pull, push in again for line two, then a fast horizontal pan along a line too long for the frame",
+      "moves": "icon first, then sentence one with the accent leading edge; a full-frame defocus between states (about 0.4 s); line two with the brand tile; a whip carries the viewer along the line to its end, with heavy motion blur",
+      "text": "same type style; a long line read by panning",
+      "transition_out": "horizontal whip into the next state",
+      "palette": "near-black violet-grey, white, lime",
+      "built": "code-native (HTML/CSS type, gradient mask, directional blur)",
+      "reusable": "yes: a line too long for the frame is read by a moving camera; in Persian the pan runs right to left"
+    },
+    {
+      "id": "r1-s23",
+      "span": [
+        54.9,
+        59.9
+      ],
+      "shot": "a video clip appears small in a rounded card under the text, then grows to near full frame on dark",
+      "camera": "the card scales up about 1.6x with blur in about 0.3 s, then a slow drift inside the clip",
+      "moves": "the small card shakes with a little blur, then settles big; the clip plays for about 4 s and its own camera arcs around the subject; the dark margin stays visible, so it reads as a preview, not as a cut to footage",
+      "text": "none once the card is big",
+      "transition_out": "hard cut to the window corner on pink",
+      "palette": "natural greens, cream sky, pale subject, near-black frame",
+      "built": "filmed or generated footage shown in a code-built rounded card",
+      "reusable": "partly: the small card → near-full-frame growth with a visible margin is reusable, the content is not"
+    },
+    {
+      "id": "r1-s24",
+      "span": [
+        59.9,
+        61.67
+      ],
+      "shot": "the top-right corner of the window, seen close, on the pink ribbon backdrop",
+      "camera": "drifts, then pushes as the window corner slides right and up out of frame",
+      "moves": "the arrow taps a text button with a small dip; a small drift; the arrow flies off to the right and the panel leaves with light motion blur",
+      "text": "button label and small panel labels in large scale",
+      "transition_out": "the panel leaves and the backdrop stays, so there is no cut for the viewer",
+      "palette": "two-tone hot pink ribbons, near-black panel, white text, royal blue arrow",
+      "built": "code-native (HTML/CSS UI)",
+      "reusable": "yes: exit by letting the panel leave the frame and keeping only the backdrop"
+    },
+    {
+      "id": "r1-s25",
+      "span": [
+        61.67,
+        65
+      ],
+      "shot": "empty pink backdrop, then one finished file icon alone in the centre with the arrow next to it",
+      "camera": "static, then a slow push of about 1.2x",
+      "moves": "the backdrop holds alone for about 0.3 s with wave ribbons slowly morphing; the icon with its name flies in from the left with heavy blur and lands in about 0.3 s; the arrow backs off; a thin line opens into a 'Done.' pill (about 0.3 s, soft overshoot); it holds about 0.7 s and collapses back the same way; finally the helper arrow turns back into a plain black mouse pointer",
+      "text": "white file name in two lines under the icon, one short word in the blue pill",
+      "transition_out": "hard cut to live action on a whole-second beat",
+      "palette": "two pinks, dark rounded icon, white label, navy-blue arrow and pill, black pointer",
+      "built": "code-native (HTML/CSS, SVG morphing ribbons; the icon picture is a stand-in still)",
+      "reusable": "yes: the helper finishes, reports in one word and turns back into an ordinary pointer, which closes the story opened in r1-s12"
+    },
+    {
+      "id": "r1-s26",
+      "span": [
+        65,
+        70.47
+      ],
+      "shot": "live action, medium-wide on the person at the laptop: a quiet smile, then a shocked reaction",
+      "camera": "slow push, a little off-axis, then almost static",
+      "moves": "about 3 s of calm, then at about 68 s a sudden reaction, hands to face; the bed drops low before this moment and the voice takes over; single large caps words appear one at a time",
+      "text": "white caps caption, one or two words, at bottom centre, with the same small voice pill above",
+      "transition_out": "hard cut, on the spoken word, to the UI detail that answers it",
+      "palette": "muted cream, warm grey, deep red flowers, terracotta mug",
+      "built": "live-action footage with a caption overlay, not buildable in code",
+      "reusable": "partly: the comic set-up and turn, built with a silence before the punchline; the person is never reused, and the beat must be justified by our own voiceover"
+    },
+    {
+      "id": "r1-s27",
+      "span": [
+        70.47,
+        73
+      ],
+      "shot": "account menu popover, then an extreme close-up on one number",
+      "camera": "static for 1 s, then a whip push of about 0.25 s with motion blur into the value, then hold",
+      "moves": "the menu arrives blurred and settles; after the whip the number holds for 0.2 s, then counts down in about 0.25 s to its final value (a snappy count with a few steps, no easing tail) and holds for about 0.8 s; the number is the punchline",
+      "text": "one large light-weight number and word, at about 150 px, right-aligned in a rounded bar",
+      "transition_out": "hard cut to the last wide shot",
+      "palette": "charcoal, dark grey bar, white text, thin pink edge",
+      "built": "code-native (HTML/CSS UI, number count, directional blur)",
+      "reusable": "yes: whip into one huge number and let it count fast; the figure must come from our package and be verified"
+    },
+    {
+      "id": "r1-s28",
+      "span": [
+        73,
+        75.5
+      ],
+      "shot": "live action, a wide pull-back on the person in a room, ending with a sight gag on the floor; a closing line over it",
+      "camera": "steady pull-back from medium to very wide over about 2.5 s, without visible easing out at the end",
+      "moves": "the person's reaction continues while the pull-back reveals more of the room, and at the very end the gag object enters from the bottom of frame; the film ends on the move, with no held end card and no logo",
+      "text": "one centred small line of white caps, unchanged through the shot, laid over the action",
+      "transition_out": "the film ends",
+      "palette": "warm beige, dark wood, white table, brown spill",
+      "built": "live-action footage with a text overlay, not buildable in code",
+      "reusable": "partly: a pull-back that reveals the last joke while a single quiet line sits on top; our brand's logo outro still follows it"
+    }
+  ],
+  "visual_language": "A software workflow demo told as a small comedy: a real person asks a helper for something out loud, the helper does the job on screen while the person gets on with their day, and the film ends on a joke about the cost. Two media alternate: code-built UI on flat coloured stages, and short, calm, photographic live-action cut-aways that act as breathing room. Typography: one clean neo-grotesque sans in regular weight, no heavy display headlines; captions and reasoning lines are sentences, set white and small to large purely by camera scale. Text appears by word fade in reserved places (captions, prompt) or by a soft sweep with an accent-coloured leading edge (reasoning lines), never by a bouncy animation. Rhythm: 28 shots in 75.5 s, average about 2.7 s, and much shorter within scenes: UI shots contain several jumps in scale, so the eye gets a new framing every 0.5-1.5 s, while live shots run 1.2-5.5 s. Cut-to-beat is not proven: 13 of 20 cuts (leaving out the flash at 2.57-2.90 s) fall within 0.25 s of a whole second where chance alone gives about half; the one clear sync is the first hit at 3.0 s. Moves are snappy in with strong ease-out, usually from heavy motion blur, then a long gentle drift on every hold; the frame is rarely fully still. Scale is the main editing tool: UI is shown at huge scale on one element, then pulled back to the whole window (or the reverse), and very often the same panel is shown at three sizes. Palette: hot two-tone pink backdrop, near-black UI, one acid accent, one royal blue that belongs only to the helper, and off-white for the opening pages; live action is desaturated cream and warm grey, which makes the pink feel louder. Signature moments: the palette-swap burst into white on the first hit; the plain pointer morphing into the glowing blue helper; the speech pill growing out of a dot; the accent stroke tracing a found result; the halftone ring uncovering a result; the one-word 'done' pill; the whip into one number that counts down; the pull-back to a sight gag.",
+  "look": "UI scenes are flat with 2.5D touches: flat dark window panels with rounded corners and thin hairline borders, floating on a flat backdrop with a very large, soft drop shadow, sometimes tilted a few degrees in perspective; there are no real 3D objects. Light comes only from glows: soft blue halo on the helper, lime bloom on accents, red glow on errors. Materials are matte dark panels, glossy blue pills with a light top edge, and translucent grey ghost tiles. Depth of field is used heavily as an effect: whole UI plates held in strong lens blur behind a sharp pointer, and defocus pulls between text states; motion blur on every whip, plus radial zoom blur. Backgrounds are an off-white empty stage, a near-black violet-grey empty stage, or a hot pink field with one diagonal or slow-morphing wave ribbons in a second pink, with no ground plane. Live shots are realistic and photographic, soft window light, shallow depth of field, muted colour grade, and they cannot be matched in code as such.",
+  "code_translation": "About two thirds of the film's time is code-native and fits the HTML/CSS/SVG pipeline in headless Chromium: floating UI windows as real DOM, CSS 3D perspective for small tilts, CSS filter blur for lens-blur plates and defocus pulls, directional and radial blur by frame blending or scaled copies for whips and zoom-throughs, SVG path morph for pointer → helper arrow, width-animated pill for the speech bubble, animated stroke-dashoffset with glow for the traced result, a canvas or SVG halftone mask with a growing radius for the reveal, a gradient text mask for the accent leading edge, SVG morphing ribbons for the pink backdrop. It is not a 3D film and three.js is not required. The live-action shots, about a third of the running time counted with the footage card, are the part that cannot be built: L4 replaces each with a scene taken from our voice-over, drawn in the film's own rendering (flat UI-world illustration or simple 3D) and keeping only its job in the rhythm: a short calm breath between busy UI scenes, a side task that progresses, a comic set-up and turn. Never a real face. Stand-in images inside the UI (thumbnails, preview, result) are replaced by owner assets or by code-drawn pictures.",
+  "continuity": [
+    "The pointer as a character: one on-screen pointer changes state and colour (plain → glowing helper → plain), travels across every UI scene and links them; its colour belongs to no other element.",
+    "Speech in place of voice: the helper talks through a small pill that grows out of a dot beside it and collapses back to a line when it has finished.",
+    "Same words, two places: words first seen in a spoken caption reappear typed into the UI, so the viewer connects the request to the action.",
+    "Ask, then wait, then return: the film cuts away to the person's calm side task and comes back to find the work has moved on, without showing the waiting.",
+    "A side task with its own small story progresses in stages across the cut-aways, in parallel with the main job.",
+    "Scale jumps within one object: the same panel appears extreme close, wide and medium in fast succession, so a cut reads as a camera move.",
+    "Backdrop as a carrier: a panel leaves the frame while the backdrop stays, and the next object arrives on it, so no cut is felt.",
+    "Text as the anchor across a whip: a line stays on screen during a vertical whip and sits above the next card, which ties the reasoning to its result.",
+    "Reveal through texture: a result is uncovered by a ring of accent dots opening from the centre; the same dot texture appears in the opening title, so the film's first and later reveals share one device.",
+    "Group handling: many items are selected together, travel as translucent ghost tiles and land in their new place, so a change of screen reads as one continuous act.",
+    "Motion hides the cut: a person's or panel's own fast move (standing up, a rotation, a whip) takes the eye and the cut lands inside it.",
+    "Bookend through the pointer: the helper is born at the start of the job and returns to a plain pointer when the job is over; the last hit (a number, then a pull-back) answers the opening request."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the logos, product names, English copy, UI screens, file and folder names, the account name, the percentages, the car, the person or the kitchen, or the shot order one by one.",
+    "About 34% of the running time is live-action or filmed footage that cannot be built in code; the photographic look and the human reaction are lost. Those beats must be redesigned from our voice-over in the film's own rendering, never as a fake real person.",
+    "The comic ending (shock, then the number, then the spill on the floor) depends on a real performance and on a figure: use it only if our voiceover supports a joke, and any number must come from our approved package.",
+    "Source is 16:9 landscape; a 9:16 film must rebuild each composition vertically. The floating wide window becomes a phone-like panel or a close section of a window, and long sideways pans become vertical moves or shorter lines, inside the 9:16 safe zone.",
+    "UI holds are short and many labels are tiny by design: Persian text hold times and minimum sizes win over this pace (readability ranks above the reference); tiny labels are texture only and never carry meaning the viewer must read.",
+    "The reference reads left to right: sweeps, pans, typing and the left-hand entrances follow references/rtl-grammar.md for Persian. The accent leading-edge sweep and any letter-by-letter typing must not break Persian joining: reveal whole words, or use a mask over fully shaped text.",
+    "Colours were read by eye. The hot pink, near-black, lime and royal blue map onto brand colour roles (main field, dark surface, accent, helper colour); never used as literal hex values, and a brand's banned colours win.",
+    "The palette-swap burst in r1-s2 steps through full-frame colour changes every 2-3 frames; keep it short and within brand roles, and treat it as a possible flicker risk for sensitive viewers.",
+    "The reference has its own music and spoken audio and they were measured, not heard. Our film's cuts follow the voiceover first, and L6 places accents on our cuts rather than reusing its sound."
+  ],
+  "sha256": "641497eb79e63d9b4166dd763c9344617c5ab26cfe5bd6965a5c24abc8659e60"
+}

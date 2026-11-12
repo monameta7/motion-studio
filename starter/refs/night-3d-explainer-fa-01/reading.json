@@ -1,0 +1,324 @@
+{
+  "slug": "night-3d-explainer-fa-01",
+  "key": {
+    "sha256": "89caf0acf393ed45b92d34ba2037d20f5fe6d63606264579e3ba51371485bb32"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 43.53,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1280, 30 fps, 1302 frames (43.4 s video), container 43.53 s. Audio: HE-AAC stereo 44.1 kHz, continuous for the whole film (no silence of 0.4 s or more below -45 dB), mean -16.6 dB, peak -1.4 dB; narrated voice with a bed, not analysed for beats; third-party audio never reused."
+  },
+  "rights_note": "third-party video (file «AQP0k1_uFDWMGDOveNpcWvDLi_Q81AkNs_6A_RD0FyCiejVeOd44C3Q6Em1kwvG.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "توضیح سه‌بعدی شبانه با برچسب فارسی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "EXPLAINER",
+    "why": "third-party film of unknown origin: borrow the motion language, caption/label system and look only, never its shots one by one, its subject, its copy or its figures (owner note); the reference is a narrated how-it-works explainer (cause → mechanism inside → effect → proof numbers → limit → CTA), so EXPLAINER fits; a hook/problem/solution package may still run as REEL in this style"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        43.53
+      ],
+      "why": "the subject (a microwave-pulse cruise missile, its name, the air force, the test site and its year) and every Persian caption, tag, label and CTA line are third-party copy and claims; never reused as voice-over, on-screen text or story"
+    },
+    {
+      "span": [
+        25.67,
+        33.2
+      ],
+      "why": "the figures on the stat cards (a shot count per flight, a target count per hour) are third-party claims; only the stat-card design and its pop-in/fade-out motion are borrowed, our numbers come from the approved package"
+    },
+    {
+      "span": [
+        7.13,
+        10.23
+      ],
+      "why": "the photo card holds a real third-party photograph with a credit line; never reused. The card is a slot for the owner's own images (input/) or sourced visuals the package names, with their own credit"
+    },
+    {
+      "span": [
+        39.93,
+        43.53
+      ],
+      "why": "the end card's handle and share line belong to the third-party channel; our end uses the brand's own CTA and logo outro"
+    },
+    {
+      "span": [
+        0,
+        43.53
+      ],
+      "why": "the scenery and props (night town of white blocks, office with workers, server rack in a mesh cage, desert test site, tripod camera, the missile itself) are the reference's story; our scenes take their subjects from the voice-over and are only drawn in this rendering style"
+    },
+    {
+      "span": [
+        0,
+        43.53
+      ],
+      "why": "the audio track (voice and bed) is third-party; L2/L6 use our own voice and sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2, 480 px, tile 4x3 (8 sheets, all viewed); scene detect gt(scene,0.3) and gt(scene,0.12) (cuts at 3.13, 7.13, 10.23, 14.17, 15.47, 16.87-17.07 push-through, 18.07, 21.83, 23.23, 25.67, 29.63, 35.57, 39.93; 19.93 is an in-shot push, max score 0.80 at 35.57); dense sheets fps=10 over 2.8-3.6 s and 16.6-17.4 s, fps=5 over 32.4-34.0 s (all viewed). Spans from scene detect where a cut exists, otherwise from the sheets (about ±0.25 s). silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        3.13
+      ],
+      "shot": "high three-quarter aerial over a dense grid of simple block buildings at night, a slim flying object crossing mid-frame",
+      "camera": "slow forward drift / gentle truck with the flying object, slight tilt; mild depth of field on the near roofs",
+      "moves": "the object flies right-to-left at a steady speed with a warm glowing exhaust; concentric cyan rings emanate from its nose and expand/fade continuously (about 0.4 s per ring, linear spread, fade-out); window lights are on, a few warm",
+      "text": "top: small chapter tag pill (dark translucent, white small text, coloured status dot, red here) at about 14% height, centred; bottom: caption pill at about 85% height, 2-4 words, word-by-word highlight",
+      "transition_out": "hard cut on the caption phrase change (3.13 s)",
+      "palette": "deep navy night sky with dark mountain silhouettes, cool white-lavender building blocks, warm yellow-white windows, cyan rings, warm orange exhaust glow",
+      "built": "generated (3D render), low-poly flat-shaded blocks",
+      "reusable": "yes: establishing aerial with an actor crossing and an emanating ring effect showing an invisible force; motion only, never the missile or town"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        3.13,
+        7.13
+      ],
+      "shot": "street-level wide on a row of buildings, ground plane in the foreground, glowing lamp halos",
+      "camera": "low eye-level, very slow lateral truck",
+      "moves": "rings arrive from the left as vertical cyan ellipses sweeping across the facade (staggered, about 0.3 s apart, smooth), grow and pass through the camera's space as large loops (4.0-5.0 s); 5.5-6.0 s the rings clear and every window goes dark at once (state switch, near instant) — the effect shown by a change of state, not an explosion",
+      "text": "tag pill unchanged; caption pill phrase by phrase",
+      "transition_out": "hard cut (7.13 s)",
+      "palette": "navy sky, cool white facades, warm window light then dark windows, cyan loops, soft warm lamp bloom",
+      "built": "generated (3D render), low-poly",
+      "reusable": "yes: the invisible force sweeping through as rings, then the consequence as an instant state change (lights off); motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        7.13,
+        10.23
+      ],
+      "shot": "hero close-up of the flying object in profile against a dark mountain ridge, a framed photo card above it",
+      "camera": "near static, slow drift with the object",
+      "moves": "the object floats with a pulsing warm exhaust glow; 7.5 s a card pops in above it (scale up with a slight overshoot, about 0.3 s): a real photograph, a coloured-dot title line and a grey sub line; the tag pill swaps text and dot colour (red → blue) on the cut",
+      "text": "photo card: image with a small credit chip, bold title with a coloured dot, small grey sub line; caption pill at the bottom",
+      "transition_out": "hard cut (10.23 s)",
+      "palette": "navy and slate blue, cool grey metal, warm orange glow, dark card with white text",
+      "built": "generated (3D render) with a composited real photograph card",
+      "reusable": "yes: 'meet the hero' close-up with a proof card popping in above it; the card is where owner images or credited sources go; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        10.23,
+        14.17
+      ],
+      "shot": "cutaway: the hero body shown as a translucent tube lying horizontally, internal parts visible inside, ground below",
+      "camera": "side view, slow push-in",
+      "moves": "inside parts sit still while a glow wave runs along the top and bottom edges of the tube (cyan sine-shaped light, travelling, smooth); 11.5 s a callout label appears (dark box, coloured edge bar on the right, leader line to the part, small grey kicker over a bold name; fade + slide about 0.25 s); 13.0-13.9 s the glow blooms into a large cyan halo that swallows the frame (ease-in)",
+      "text": "callout label (kicker + bold name) tied to a part by a thin leader line; tag pill new text; caption pill",
+      "transition_out": "glow bloom to cyan halo, then hard cut (14.17 s)",
+      "palette": "slate ground, pale lavender translucent shell, dark brown/black parts, cyan glow lines and halo",
+      "built": "generated (3D render), translucent shell with simple primitives inside",
+      "reusable": "yes: x-ray cutaway with one labelled part and an energy wave travelling along it, ending in a glow bloom; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        14.17,
+        15.47
+      ],
+      "shot": "wide high view: the hero small in the sky with a soft cyan halo, a spiral of rings falling from it onto a cluster of buildings, mountains behind",
+      "camera": "wide, slight pan following the hero",
+      "moves": "rings stream from the hero down to the target as a coiling chain (each ring shrinks into the distance, about 0.1 s apart); the hero glides across",
+      "text": "tag pill; caption pill",
+      "transition_out": "hard cut (15.47 s)",
+      "palette": "navy sky with stars, cyan rings and halo, white-lit blocks",
+      "built": "generated (3D render), low-poly",
+      "reusable": "yes: wide 'where it goes' shot linking the cause above to the target below with a chain of rings; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        15.47,
+        17
+      ],
+      "shot": "interior: a room with desks, monitors and seated low-poly figures, a large window on the back wall",
+      "camera": "slow push-in, then a fast forward push-through (16.87-17.0 s) with strong motion blur and a cyan flash",
+      "moves": "big cyan rings enter through the window and pass across the room (smooth, about 0.5 s each); a callout label pops on the window (16.0 s); at the end the camera rushes forward through a ring into the next world",
+      "text": "callout label on the entry point; tag pill swaps (blue question); caption pill",
+      "transition_out": "push-through whip: forward dolly with motion blur and a cyan white-out flash (about 0.13 s)",
+      "palette": "warm grey walls, beige desks, dark chairs, blue window, cyan rings",
+      "built": "generated (3D render), low-poly figures and furniture",
+      "reusable": "yes: the force entering a space through an opening, labelled, then a forward push-through into the hidden layer; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        17,
+        18.07
+      ],
+      "shot": "abstract close-up in darkness: glowing white light lines (a cable path) on a faint blue grid floor",
+      "camera": "static close, slight drift",
+      "moves": "a glowing cyan orb travels along the line to a bend (smooth ease-in-out, about 0.6 s), the line lights up behind it; a small label pops at the entry point (17.4 s)",
+      "text": "small callout label; caption pill",
+      "transition_out": "hard cut (18.07 s)",
+      "palette": "near black, cool blue grid lines, warm white light tubes, cyan orb glow",
+      "built": "generated (3D render), emissive lines",
+      "reusable": "yes: energy shown as a glowing orb running along a light path into the system; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        18.07,
+        21.83
+      ],
+      "shot": "x-ray wireframe version of the room (glowing white edges, ghost cyan figure), then a close-up on a green circuit board inside one box",
+      "camera": "slow push-in (18.1-19.9 s), then a continuous push into the box (19.93 s) and a slow drift on the board",
+      "moves": "warm glowing lines trace through the wireframe (wiring lighting up in sequence, about 0.5 s per segment); a label appears with a leader line (18.5 s); on the board a glowing pulse runs down a trace and bursts into soft white sparks (20.5-21.5 s, pops then fade); a red-edged label points at the board",
+      "text": "callout labels (white text, cyan or red edge bar); tag pill; caption pill",
+      "transition_out": "hard cut (21.83 s)",
+      "palette": "black with blue-white wireframe glow, warm white traced lines, dark green board, cyan and white spark glows, one red accent",
+      "built": "generated (3D render), wireframe/edges and emissive traces",
+      "reusable": "yes: switch the world to an x-ray wireframe layer and push inside to the component where the effect lands; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        21.83,
+        23.23
+      ],
+      "shot": "the same room, real look, now almost black: dark silhouettes at desks, screens off",
+      "camera": "static medium",
+      "moves": "hold; nothing moves (the stillness is the beat); tag pill turns red",
+      "text": "tag pill; caption pill",
+      "transition_out": "hard cut (23.23 s)",
+      "palette": "near black with a dim blue window",
+      "built": "generated (3D render), low-poly",
+      "reusable": "yes: the consequence as a blackout hold of the same set seen before; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        23.23,
+        25.67
+      ],
+      "shot": "exterior street-level of one building at night, intact, ground in the foreground",
+      "camera": "static, very slow push-in",
+      "moves": "a green-edged callout label pops above the roof with a leader line (23.6 s, scale/fade about 0.25 s), holds",
+      "text": "green callout label; tag pill with green dot; caption pill",
+      "transition_out": "hard cut (25.67 s)",
+      "palette": "navy sky, cool white facade, dark windows, green accent",
+      "built": "generated (3D render), low-poly",
+      "reusable": "yes: 'what is not affected' hold with one green label — contrast beat; motion only"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        25.67,
+        29.63
+      ],
+      "shot": "high three-quarter aerial over the block town again, the flying object with rings mid-frame",
+      "camera": "forward drift with the object, near blocks blurred in the foreground (depth of field)",
+      "moves": "rings emanate continuously as in r1-s1; window lights flicker on across the blocks; 27.5 s a stat card pops in at the upper left (scale up with overshoot, about 0.3 s): big orange digits + unit word, small grey sub line, orange edge bar; holds to the cut",
+      "text": "stat card (big orange number, white unit, grey sub line); tag pill with orange dot; caption pill",
+      "transition_out": "hard cut (29.63 s)",
+      "palette": "slate night, cool white blocks, warm windows, cyan rings, orange number",
+      "built": "generated (3D render) with a composited stat card",
+      "reusable": "yes: callback to the opening aerial with a stat card landing on it — the number becomes the scale proof; motion only, never their figure"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        29.63,
+        33.2
+      ],
+      "shot": "daylight wide: one plain building in a flat sand field, pale blue sky, soft hills, a thin post in front",
+      "camera": "static, slow push-in",
+      "moves": "a short train of rings arrives diagonally from the upper right (30.3-31.0 s) and windows flash cyan where they hit; 31.5 s a second stat card pops in (same design); 32.6-33.0 s it fades out (opacity, about 0.3 s)",
+      "text": "stat card; tag pill with orange dot (place/date); caption pill",
+      "transition_out": "no cut: a foreground object slides in from the left and wipes into r1-s13",
+      "palette": "pale blue sky, beige sand, off-white building, black windows, cyan rings, orange digits",
+      "built": "generated (3D render), low-poly with soft haze",
+      "reusable": "yes: change of world from night to daylight to mark 'proof / test'; stat card in and out on the same set; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        33.2,
+        35.57
+      ],
+      "shot": "close-up of a dark box-shaped device on a tripod in the foreground, the test field soft behind",
+      "camera": "lateral dolly right-to-left as the device slides into frame from the left (foreground wipe, 33.0-33.6 s, smooth ease-out, motion blur), then holds",
+      "moves": "a small red indicator glows then dies; 34.0 s a red-edged label pops with a leader line to the indicator",
+      "text": "red callout label (short exclamation); tag pill; caption pill",
+      "transition_out": "hard cut (35.57 s)",
+      "palette": "black device, beige and pale blue soft background, red accent",
+      "built": "generated (3D render), low-poly",
+      "reusable": "yes: foreground-object wipe that turns a wide into a close-up of the next actor; the state change marked by a light going out plus a label; motion only"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        35.57,
+        39.93
+      ],
+      "shot": "large tall box inside a white metal mesh cage filling the frame, a huge cyan ring arc behind it",
+      "camera": "slow orbit/push around the cage (low angle, slight rotation)",
+      "moves": "the cyan ring arc sits behind and fades but cannot pass the mesh; small green LED dots on the box keep blinking (still working); a label with kicker + bold name pops at the upper right (36.0 s)",
+      "text": "callout label (kicker + name); tag pill with green dot; caption pill",
+      "transition_out": "hard cut (39.93 s)",
+      "palette": "dark slate, white mesh, teal glass reflection, cyan ring, green LEDs",
+      "built": "generated (3D render), mesh grid over a box",
+      "reusable": "yes: 'the limit / the defence' beat — the same force shown failing against a barrier, the subject still alive; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        39.93,
+        43.53
+      ],
+      "shot": "hazy dusk over a flat plain, the flying object small at lower left, end card at the top",
+      "camera": "slow tracking with the object",
+      "moves": "40.0-40.5 s a dark overlay fades in (about 0.4 s) and the caption pill goes; the CTA headline (two centred bold lines), a short blue underline bar and a small handle line fade/slide up at the top; holds to the end",
+      "text": "CTA: two-line centred bold headline, blue accent bar, small grey handle",
+      "transition_out": "end of film on the hold",
+      "palette": "warm brown-mauve haze darkening, white headline, blue accent",
+      "built": "generated (3D render) with composited end card",
+      "reusable": "yes: the hero keeps moving under a darkened end card — the place for the brand CTA and logo outro; motion only"
+    }
+  ],
+  "visual_language": "Narrated 3D explainer in simple low-poly, flat-shaded models (boxes, cylinders, basic figures), cut like a documentary: 15 shots in 43.5 s, average about 2.9 s (range 1.1-4.4 s), almost all hard cuts placed on caption phrase changes, plus one forward push-through, one glow bloom and one foreground wipe. The story moves outside → inside → effect → proof → limit: establishing aerial, street level, hero close-up with proof card, x-ray cutaway, wide link shot, interior, abstract energy path, wireframe x-ray, blackout, intact contrast, aerial callback with stat, daylight test, close-up, barrier, end card. The invisible force is always drawn the same way (cyan rings / glow), so it reads across every set. Typography is a full on-screen system: (1) a bottom caption pill (dark translucent rounded box at about 85% height, bold Persian sans, 2-4 words per phrase, karaoke highlight: spoken words white, coming words grey, the current word underlined); (2) a small top chapter-tag pill at about 14% height with a coloured status dot (red = problem/effect, blue = explanation, green = safe/limit, orange = numbers/proof) that swaps with each chapter; (3) callout labels — dark small box with a coloured edge bar on the right and a thin leader line to a dot on the object, optional grey kicker over a bold name; (4) stat cards — dark rounded card, big orange digits + white unit word, grey sub line, orange edge bar; (5) a photo card for a real image with a credit chip. Moves: smooth, mostly linear camera drifts and slow push-ins; UI pops are short scale-ups with a slight overshoot (about 0.25-0.3 s) and fades out (about 0.3 s); effects travel continuously (rings, waves, orbs). Palette: deep navy night with cool white models and warm window light, cyan as the force colour, warm orange glows; daylight beige/pale blue for the proof chapter. Signature moments: rings sweeping through and every light going out at once; the push-through a ring into the hidden wiring; the x-ray wireframe world; the barrier the rings cannot pass.",
+  "look": "Real 3D (not flat), low-poly and flat-shaded with clean bevel-free edges, matte materials (no texture detail except a speckled ground), a few translucent shells (cutaway tube) and emissive lines (light tubes, wireframe edges, traces). Light: cool moonlit night with a soft key, emissive windows and street lamps with bloom halos, warm exhaust glow, cyan energy glows with strong bloom; one bright daylight chapter with soft haze and aerial perspective. Shadows soft and subtle. Depth: real perspective, moderate depth of field (near roofs and foreground blocks blurred), motion blur on the push-through and the foreground wipe, distance haze on mountains. Background: navy gradient sky with a few stars and dark mountain silhouettes; pale blue sky and beige plain in daylight; pure black for the abstract and wireframe layers.",
+  "code_translation": "Built as real 3D in code with three.js (D55), never flattened: low-poly BoxGeometry/CylinderGeometry models with flatShading MeshStandardMaterial in matte finish; emissive window planes and lamp sprites run through an UnrealBloomPass; a hemisphere + soft directional moonlight with soft shadows; fog for distance haze; depth of field as a blur pass (BokehPass) on near objects. The force effect: TorusGeometry rings with an additive emissive cyan material, scaled and faded along a path (instanced, staggered); the travelling wave as an animated emissive shader line; the orb as an additive sprite moving along a CatmullRom curve. X-ray layer: EdgesGeometry / LineSegments in glowing white over black, ghost figures in transparent cyan. Cutaway: MeshPhysicalMaterial with transmission/opacity for the shell. Push-through: fast camera dolly with frame-blend motion blur and a short additive cyan flash. Mesh barrier: thin cylinder grid or a wireframe box. All text is HTML/canvas overlay in the brand Persian font, never 3D-extruded: caption pill with word-by-word highlight synced to audio.json word times, chapter-tag pill with status dot, callout labels with leader lines projected from 3D anchor points (Vector3.project) each frame, stat cards with Persian digits per data-viz.md, photo card that holds the owner's input images unedited.",
+  "continuity": [
+    "One visible sign for the invisible force: the same cyan rings/glow appear in every set, so the cause is readable across all cuts.",
+    "Outside → inside → effect: each chapter goes one layer deeper (aerial, street, room, cable, wiring, component) and then back out.",
+    "Push-through into the hidden layer: the camera rushes forward through the effect itself (a ring) with motion blur and a flash into the next world.",
+    "Same set, two states: a place is shown working, then the same place switched off or dark, so the change of state carries the explanation.",
+    "X-ray switch: the same room re-rendered as glowing wireframe to reveal what is inside the walls, then a push into one component.",
+    "Callback shot: the opening aerial returns later with a stat card on it, closing the loop between the hook and the proof.",
+    "Chapter tag with status colour: a small top pill changes text and dot colour at each chapter (problem, explanation, safe/limit, proof), a steady map of where the story is.",
+    "Labels anchored in space: callouts are tied by leader lines to points on 3D objects and follow them as the camera moves.",
+    "Karaoke captions: one bottom pill carries the voice word by word for the whole film, the only always-on element.",
+    "Day/night shift marks a change of chapter (night story → daylight proof).",
+    "Foreground wipe: an object sliding past the lens turns the wide into the next close-up without a cut.",
+    "Glow bloom to cut: the effect brightens into a halo that fills the frame just before the next shot.",
+    "Hero under the end card: the main actor keeps moving behind a darkened CTA card at the end."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its subject (a weapon), its town/office/server/test-site sets as designs, any caption, tag or label copy, its figures, its photo, its handle, its audio, or its shot order one by one.",
+    "Subject sensitivity: the reference explains a military weapon; our film's subject comes only from the voice-over, and the ring/force language must not make a non-military topic look like an attack.",
+    "Caption pill is small (cap height about 2% of frame height at 720 px) and the tag pill text even smaller: in our film both must meet the minimum sizes, contrast and safe zones (bottom caption above the platform UI band); Persian must be shaped and joined, never letter-split by the word highlight.",
+    "Too many text layers at once (caption + tag + label + stat card): L5 keeps at most one label or card besides the caption per beat and gives each the readability hold time.",
+    "Stat cards pop with a figure: every number must come from the approved package, land and hold, Persian digits per data-viz.md.",
+    "r1-s3's photo card holds a real photograph (counted as not code-buildable); in our film it is filled only with the owner's input images or credited sources from the package, never generated look-alikes of real photos.",
+    "Colours were read by eye: night navy, cyan force colour, orange stat accent and status-dot colours map onto brand colour roles (background, accent, positive/negative), never the literal reference colours.",
+    "Low-poly human figures appear; draw new generic figures only if the voice-over is about people, never trace the reference's.",
+    "Audio is third-party narration and bed; ignored, L6 builds the sound."
+  ],
+  "sha256": "89caf0acf393ed45b92d34ba2037d20f5fe6d63606264579e3ba51371485bb32"
+}

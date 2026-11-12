@@ -1,0 +1,210 @@
+{
+  "slug": "halftone-dots-mono-01",
+  "key": {
+    "sha256": "eb8ea2950846120c506fc49ab6939b84135c70c15c796f30b48d438f6600b1de"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 24,
+    "w": 1920,
+    "h": 1080,
+    "fps": 24,
+    "audio": true,
+    "format_note": "Single 16:9 film, 1920x1080, 24 fps, 576 frames, 24.00 s. Audio: AAC stereo 48 kHz, continuous and loud (mean -14.8 dB, peaks at 0 dB), no silence of 0.3 s or more below -45 dB; beats not analysed, third-party audio never reused."
+  },
+  "rights_note": "third-party video (file «911ab07e-a948-4e44-bbaa-f6d8e17d00cf.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "نقطه‌های هافتون سیاه‌وسفید",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party product teaser of unknown origin: borrow the motion language and look only, never its shots one by one, its app UI, its logo, its copy or its photos (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        24
+      ],
+      "why": "all English copy ('What's inside one click?', 'Drop everything in.', 'photos. videos. chaos.', 'Pick a mood.', 'dreamy. loud.', 'Every cut on the beat.', 'That was one click.', 'Your film is ready.', the tagline, 'AI VIDEO EDITOR', 'Coming soon') is third-party copy; never reused as text"
+    },
+    {
+      "span": [
+        0,
+        2.2
+      ],
+      "why": "the phone app screen (thumbnail grid, DREAMY/SOFT/LOUD chips, round record button) is a third-party UI design; only the dotted-outline drawing and the click-into-the-button push are borrowed"
+    },
+    {
+      "span": [
+        2.25,
+        21
+      ],
+      "why": "the photos and clips inside the cards (dog, people, concert, beach) are the reference's own footage and story props; our cards show subjects from the voice-over or the owner's assets"
+    },
+    {
+      "span": [
+        21.08,
+        24
+      ],
+      "why": "the dot-matrix wordmark 'ROLIK' and its badge are a third-party logo; our film ends on the brand's own logo outro, only the dot-assembly motion is borrowed"
+    },
+    {
+      "span": [
+        0,
+        24
+      ],
+      "why": "the audio track is third-party music; L6 builds our own sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (4 sheets, 4x3, all viewed); scene detect gt(scene,0.3) found cuts at 2.25, 4.00/4.08, 6.21, 7.75-8.08, 11.79, 14.50, 15.00, 15.50, 15.75, 16.00, 16.25, 16.75, 17.46, 21.00/21.08 s; dense sheets fps=12 over 1.75-2.75 s, fps=6 over 5.75-8.25 s and 14.25-17.75 s (3 sheets, all viewed); silencedetect + volumedetect on the audio. Spans accurate to about ±0.1 s from the sheets, cut times to one frame from scene detect. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.25
+      ],
+      "shot": "medium, flat off-white page; a single black dot is the actor, an object outline is drawn around it",
+      "camera": "static, then a fast push-in into the dot (about 2.0-2.2 s, strong ease-in)",
+      "moves": "a small dot and a big black disc sit on the page (0 s); a caption types in letter by letter at the left with a round dot as the cursor at its end (0.3-0.8 s); the disc splits into a few dots that drift into a 3x3 grid (0.5-1.0 s, smooth ease-out); a dotted outline draws itself around the grid as a device frame and the dots become its contents and button (1.0-1.4 s); a cursor arrives and presses the round button (ring pulse, about 1.9 s); the caption collapses into a short Morse-like string of dots and dashes; the camera pushes into the button until the black disc fills the frame, halftone dots spilling from its edge (2.0-2.2 s)",
+      "text": "one short question caption, small medium-weight sans, sentence case, left-middle, cap height about 2.5% of frame height, typed with a dot cursor",
+      "transition_out": "match cut through the dot: the black button grows to fill the frame and the next world starts on black (cut at 2.25 s)",
+      "palette": "off-white page (warm light grey), pure black dot, dotted outlines and type in black",
+      "built": "code (flat vector + typed text)",
+      "reusable": "yes: one dot as the hero actor that splits, arranges and is framed; an outline drawn as a dotted line; typing with a dot cursor; a push-in into a dot that becomes the next world; motion only, never the app screen"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.25,
+        4
+      ],
+      "shot": "wide, black 3D space full of floating cards in perspective, star-like white specks",
+      "camera": "forward fly-through with a slight roll, cards passing on both sides (continuous, near-linear speed)",
+      "moves": "a single white dot appears on black (2.3 s), splits into four (2.4 s) and bursts into many halftone images scattered in depth (2.5 s, fast ease-out); dotted rectangular frames draw on around each image (2.55-2.7 s); frames tilt and turn in 3D while the camera travels; columns of white dots (dotted pillars) sweep past in the foreground; a white dot flies across",
+      "text": "none",
+      "transition_out": "one-frame white flash on a beat (4.00 s), back to black",
+      "palette": "black, white halftone images, white dotted frames and specks",
+      "built": "code-buildable (3D planes with a halftone shader, point sprites)",
+      "reusable": "yes: dot → burst into many framed cards in depth; frames drawn on as dotted lines; camera flying through a field of cards; motion only, never the photos"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        4.08,
+        7.75
+      ],
+      "shot": "wide, the same black card space; one caption line low, then one big word high",
+      "camera": "continues the slow forward drift through the cards, with gentle parallax",
+      "moves": "a caption types in at bottom centre (4.1-4.6 s), then breaks into a Morse dot string (about 5.0 s); a big bold lowercase word ending in a period appears at top centre (5.4 s) and is swapped for the next word on each beat (about every 0.35-0.5 s: three words), one inverted (off-white) frame flashes on a word swap (6.21 s); white dots start raining in and growing over the cards (7.4-7.75 s, accelerating)",
+      "text": "caption: small sans, bottom centre; then one big word, heavy grotesk lowercase with a period, top centre, cap height about 7% of frame height, white on black, hard swaps",
+      "transition_out": "dot-bloom wipe (7.5-8.0 s): white dots multiply and swell until they cover the frame, one plain off-white frame, then the next world (cuts 7.75-8.08 s)",
+      "palette": "black, white type, white halftone cards and dots",
+      "built": "code",
+      "reusable": "yes: list of single words swapped on the beat in one fixed slot; caption that dissolves into a dot string; halftone dots growing until they fill the frame as a wipe; motion only, never their words"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        8,
+        11.79
+      ],
+      "shot": "wide, off-white world: a terrain made of halftone dot rows receding to a horizon, a floating dotted shape above it, black ribbon lines rising out of the ground",
+      "camera": "low angle glide forward over the dot terrain, slow; at the end a tilt down toward the ground (11.3-11.8 s, ease-in)",
+      "moves": "rows of black dots run in perspective to the horizon and ripple like a field; big black dots float above at first and settle into the field (8.0-8.5 s); thick black ribbons rise from the terrain as wave peaks and morph (smooth, about 0.5 s per shape); a dotted outline shape floats at the centre and morphs between square, circle and tilted rectangle on beats; a caption types at bottom centre (9.0-10.0 s) and collapses into dots; big words appear centre, overlapping the dotted shape, swapped on the beat; with the last word the ribbons turn jagged (zig-zag, snappy); a black ellipse (a hole) opens on the terrain with dot rows converging into it (11.5 s)",
+      "text": "caption small sans bottom centre; big heavy lowercase word with a period, centre, cap height about 8% of frame height, black on off-white, sitting in front of the terrain",
+      "transition_out": "dive into the hole: the camera tilts down into the black ellipse and the frame goes black (cut at 11.79 s)",
+      "palette": "off-white, black dots and ribbons, grey haze at the horizon",
+      "built": "code-buildable (3D point grid displaced by noise, line meshes)",
+      "reusable": "yes: a dot-field terrain whose shape reacts to the word (smooth for one, jagged for another); a dotted outline that morphs shape on the beat; a hole in the ground as the door to the next scene; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        11.83,
+        14.5
+      ],
+      "shot": "wide, black space with specks; a ring of white dots, then a row of framed cards on a dotted baseline (a timeline)",
+      "camera": "descending through a circle of dots, then settles into a slightly high, near-frontal view of the row; slow push",
+      "moves": "white specks fall past (the dive continues), a large ring of white dots surrounds the frame (11.9-12.4 s); a caption types at bottom centre (12.5-13.2 s); empty dotted card slots line up on a dotted baseline and halftone images drop into them one after another from above (about every 0.25 s, ease-out); a white playhead dot on a vertical line steps along the row; at 14.0-14.4 s the row compresses into a tight strip with rails",
+      "text": "one caption, small sans, bottom centre, typed with dot cursor",
+      "transition_out": "hard cut on the beat to the off-white flicker sequence (14.50 s)",
+      "palette": "black, white specks, white dotted slots, white halftone images",
+      "built": "code",
+      "reusable": "yes: slots filling one by one along a dotted line with a stepping playhead dot (sequence, progress, steps); motion only, never the timeline UI"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        14.5,
+        17.46
+      ],
+      "shot": "frontal, centred grid of framed cards, background alternating off-white and black",
+      "camera": "static frontal; a few 3D flashes of the card space in between",
+      "moves": "hard cuts on beats (14.50, 15.00, 15.50, 15.75, 16.00, 16.25, 16.75 s, about 0.25-0.5 s apart), each cut inverting the background and doubling the count: 1 card with a dotted ring → 2 → 4 → 8 → 16 cards with a dotted ring → two rows of solid white dots → 1 card in a ring → grid → 3D fly-past → close-up of one card with a thick dotted frame → four white dots in a cluster (17.25 s)",
+      "text": "none",
+      "transition_out": "cut on the beat into a close-up of the off-white page and pull-back (17.46 s)",
+      "palette": "alternating off-white and black; cards and dots in the opposite value",
+      "built": "code",
+      "reusable": "yes: beat-cut multiplication (1→2→4→8→16) with background inversion on every cut, as a build-up before the payoff; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        17.46,
+        21
+      ],
+      "shot": "medium, off-white page: a caption at the left, one tall rounded card at centre-right with a vertical dot pager beside it",
+      "camera": "pull-back from a close-up (17.4-17.8 s, ease-out), then static",
+      "moves": "the camera pulls out from the button to the full device outline; a caption types at the left with a dot cursor (17.6-18.5 s); the card becomes full-colour video and swaps content on every beat (about every 0.5 s); the active dot of the vertical pager grows and steps down with each swap; a second caption replaces the first (19.4-20.1 s); the caption collapses into a dot string (20.5 s)",
+      "text": "small sans caption, left-middle, sentence case, typed; no big words",
+      "transition_out": "one-frame black flash on the beat (21.00 s)",
+      "palette": "off-white page and black outlines; the only full colour of the film is inside the card (the payoff)",
+      "built": "code (card mask, pager, typing) with the inserted media",
+      "reusable": "yes: colour withheld until the payoff, then real media in a dotted card swapping on the beat with a stepping dot pager; motion only, never their clips"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        21.08,
+        24
+      ],
+      "shot": "medium, off-white page, logo at centre, then tagline and a small badge under it",
+      "camera": "static",
+      "moves": "scattered dots converge into a ring and the letters of the wordmark assemble from dot-matrix pieces around one big black dot that stands in for a letter (21.1-21.9 s, ease-out); the logo moves up as a tagline fades in under it (22.3-22.6 s); a small pill badge and a note appear (22.8 s); a dotted ring expands around the lockup (23.0-23.5 s) and fades; hold to the end",
+      "text": "logo, one-line tagline small sans centred, a pill badge in dot-matrix type",
+      "transition_out": "end of film",
+      "palette": "off-white, black",
+      "built": "code",
+      "reusable": "yes: the hero dot of the film lands inside the logo; dots converge into the lockup; expanding dotted ring as the final accent; motion only, never the wordmark (our outro uses the brand logo)"
+    }
+  ],
+  "visual_language": "A beat-driven monochrome teaser in which a single black dot is the protagonist: it splits, is framed, is pressed, becomes the door into a black 3D space, becomes a hole in a dot terrain, a playhead, and finally sits inside the logo. Medium: code-style flat vector plus halftone imagery placed in real 3D perspective (cards floating in depth, a dot-field terrain). Every outline is a dotted line, every image is a halftone dot screen. Typography in two sizes only: small medium-weight sans captions typed letter by letter with a round dot as the cursor, which then collapse into a Morse-like dot string, and big heavy grotesk single words in lowercase ending in a period, swapped hard on the beat in one fixed slot. Rhythm: cuts on a 0.25/0.5 s grid (consistent with about 120 BPM, not measured from the audio); eight scenes in 24 s, average about 3 s, with a burst of 0.25-0.5 s inversion cuts at 14.5-17.5 s before the payoff. Moves: fast ease-out bursts and arrivals (0.15-0.4 s), strong ease-in pushes into the dot (0.2 s), near-linear camera flights, snappy word swaps with no tween. Palette: off-white and black only, alternating between two worlds (off-white page / black space), with one-frame white or black flashes on beats; full colour is held back until the payoff card. Signature moments: push into the button that becomes the black world; dots that grow until they wipe the frame; the terrain whose ribbons go jagged with the word; the 1→2→4→8→16 inverted beat cuts; colour arriving at the end.",
+  "look": "2.5D to real 3D, unlit: flat black and off-white shapes, no shading, no shadows, no reflections, no depth of field (only perspective size and density fade with distance; far dots go grey at the horizon). Images rendered as halftone dot screens (dot size by luminance), cards as thin dotted-line rectangles on planes turned in 3D space; a ground plane of dot rows in perspective; white point specks as stars; no gradients except the haze where the dot terrain meets the horizon. Backgrounds: plain off-white page or plain black void.",
+  "code_translation": "Code-native. Black space and the terrain as a three.js scene: planes with a halftone shader (dot size from image luminance, screen-space dot grid), dotted frames as instanced dots along the rectangle edge, the terrain as an instanced point grid displaced by noise and by a per-word profile, ribbons as thick line meshes, specks as points; camera flights as spline paths. The off-white page scenes as flat SVG/canvas: dot actor, dotted outlines drawn by revealing instanced dots along a path, typed captions from the shaped brand Persian font with a dot cursor at the leading edge (right to left), the Morse collapse as the text glyphs swapped for a dot string of the same width. Beat inversion cuts by swapping the background and foreground colour tokens. No lights or shadows are needed: the reference is unlit, so flat is faithful here.",
+  "continuity": [
+    "One dot is the actor for the whole film: it splits, gets framed, is pressed, opens the next world and ends inside the logo.",
+    "Push into a dot: the camera pushes into a small round element until it fills the frame and becomes the background of the next scene.",
+    "Two worlds, light page and dark space, alternate; each change is a hard cut or a one-frame flash on the beat.",
+    "Dot bloom wipe: dots multiply and grow until they cover the frame, then the next world appears.",
+    "Dive through a hole: a black ellipse opens in the ground and the camera tilts down through it into the next scene.",
+    "Typed caption with a dot cursor that collapses into a Morse dot string before the next caption.",
+    "One fixed slot for big words, swapped hard on the beat; the scene below reacts to each word (shape and texture change).",
+    "Dotted outlines everywhere: frames, rings and shapes are drawn on as lines of dots, and morph between shapes on the beat.",
+    "Slots fill one by one along a dotted line while a playhead dot steps forward.",
+    "Beat-cut multiplication: each cut doubles the number of items and inverts the background.",
+    "Colour held back: the film stays black and off-white until the payoff, where real colour appears inside the hero card.",
+    "Dots converge into the final lockup; an expanding dotted ring closes the film."
+  ],
+  "risks": [
+    "Third-party product teaser of unknown origin: ADAPT only. Never copy the app screen, the mood chips, the timeline UI, the wordmark or badge, the English copy, the photos and clips, the audio, or its shot order one by one.",
+    "Owner assets must not be halftoned, recoloured or cropped into dot screens (CLAUDE.md): show them unedited inside dotted frames, as the reference does with its full-colour payoff card; halftone applies only to elements we draw.",
+    "The reference is 16:9; our default is 9:16. Its left-caption / right-card layouts and the wide terrain must be recomposed for vertical (caption above, card below; terrain filling the lower half) inside the safe zone.",
+    "Captions are small (cap height about 2.5% of the 16:9 frame) and the big words swap every 0.35-0.5 s: in our film every caption meets minimum size and every word holds for the readability hold time; beat swaps are kept for single short words only.",
+    "Persian text is right to left: typing runs from the right with the dot cursor at the left edge of the text; joined letters are never split into dots; the Morse collapse replaces whole words, not letters.",
+    "The 0.25 s inversion cuts and one-frame flashes (14.5-17.5 s, 4.00 s, 21.00 s) are a flashing risk; keep them few, never above 3 flashes per second, and never under a voice line that needs reading.",
+    "The reference's two values (off-white, black) map onto the brand's light and dark neutral roles; the colour payoff maps onto the brand accent or the owner's assets; colours were read by eye, not sampled.",
+    "Audio is third-party, loud and peaks at 0 dB; it is ignored, L6 builds the sound. The 120 BPM grid is inferred from cut times only."
+  ],
+  "sha256": "eb8ea2950846120c506fc49ab6939b84135c70c15c796f30b48d438f6600b1de"
+}

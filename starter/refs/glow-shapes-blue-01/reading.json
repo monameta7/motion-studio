@@ -1,0 +1,255 @@
+{
+  "slug": "glow-shapes-blue-01",
+  "key": {
+    "sha256": "728dc1857eee3c2ad48e948e211692180b6bdc289509e03b7211cc8acd7525a5"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 33.44,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1280, 30 fps, 33.44 s (matches our default vertical format, no re-composition needed). Audio: AAC HE-AACv2 stereo 44.1 kHz, continuous (no silence below -40 dB for 0.3 s or longer), mean -16.9 dB, peak -0.5 dB; the on-screen caption changes phrase by phrase like a narrated script, so read as narration over a music bed (not listened to, not analysed for beats); third-party audio, never reused."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «abstract particles motion design 2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "شکل‌های نورانی آبی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "JOURNEY",
+    "why": "third-party motivational reel of unknown origin: borrow the motion language and the glowing 2.5D shape look only, never its shots one by one, its copy or its scene order (owner note); the whole film is one glossy jelly glyph travelling through an abstract glowing world, the JOURNEY pattern; with a voiceover package L4 may still run it as a REEL arc drawn in this world"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        33.44
+      ],
+      "why": "all English copy (the motivational script: 'when you feel stuck, or dissatisfied in your life, it's a signal ... most basic needs are not being met ... your need for exploration ... everything grows for your entire life, and your soul needs exploration & growth, and the only way you'll get it is by forcing yourself to be uncomfortable') is third-party copy; never reused, translated or paraphrased as our line"
+    },
+    {
+      "span": [
+        0,
+        33.44
+      ],
+      "why": "the specific metaphors tied to that script (a glass phone-like frame for 'stuck', the cup-like ring filling for 'needs', dunes with a tower for 'exploration', a cone growing for 'grows', a compass star for 'soul', a ledge and stepping pads for 'uncomfortable') are the creator's scene ideas; only the techniques may be used, on subjects taken from our voice-over"
+    },
+    {
+      "span": [
+        0,
+        33.44
+      ],
+      "why": "the audio track (narration and music) is third-party; L2 uses our voice-over and L6 builds our sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px wide (6 sheets, 4x3, all viewed); scene detect gt(scene,0.3) found 3 cuts: 13.20, 18.37, 27.63 s; the rest of the film is one continuous morphing shot, so the other shot boundaries (about 2.0, 4.5, 7.5, 9.0, 15.5, 20.5, 23.9, 31.8 s) are motion beats found by eye on the 2 fps sheets; dense sheets at fps=10 around 12.7-13.9, 17.8-19.0, 23.3-24.5 and 27.1-28.3 s (4 dense sheets, all viewed). Spans accurate to about ±0.1 s at detected cuts and ±0.25 s at beats found by eye. silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2
+      ],
+      "shot": "medium, centred: a tall rounded-rectangle frame drawn as a glowing outline (white on one side fading to cyan on the other), with a glossy jelly ball resting at its bottom edge, on the near-black starfield",
+      "camera": "locked, the frame grows slightly from about 75% to 100% of its size over the first second (smooth ease-out)",
+      "moves": "0-0.5 s the frame scales up from the centre; 0.3-1.6 s wide glossy diagonal light stripes (cyan to white gradient) slide through the inside of the frame from top to bottom, clipped by it; small glowing pills and squares fly in from outside the frame on arcs and hit its edges, sliding behind it; 1.5-2.0 s the stripes exit at the top and a pill streaks away off the bottom edge",
+      "text": "caption line only (see visual_language)",
+      "transition_out": "no cut: the stripes clear and the empty frame stays for the next beat (2.0 s)",
+      "palette": "near-black navy ground, white-to-cyan glowing outline, cyan and electric-blue glossy stripes and pills, pale blue jelly ball with a white rim",
+      "built": "code-native (SVG or canvas: rounded-rect stroke with gradient, clip path for the stripes, bloom layer)",
+      "reusable": "yes: a container drawn as a glowing outline, filled for a moment by sliding light stripes and particles hitting its edges, to say 'boxed in' or 'full'; motion only, our subject from the voice-over"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2,
+        4.5
+      ],
+      "shot": "same frame, now empty and dark inside, the jelly ball alone at the bottom",
+      "camera": "locked",
+      "moves": "2.0-3.5 s the ball bounces inside the frame with squash and stretch (it stretches tall on the rise, squashes on the floor, smears into a double blob when it hits the left wall), elastic and springy; 3.4-4.4 s the outline erases itself: the stroke unwinds from the top-right corner around the frame like a line being undrawn (smooth, about 1 s), leaving the ball floating free",
+      "text": "caption line only",
+      "transition_out": "no cut: the outline is gone and the ball stays, moved up to the centre (4.5 s)",
+      "palette": "as r1-s1",
+      "built": "code-native (SVG path with stroke-dashoffset for the undraw, ball as an SVG blob with squash and stretch)",
+      "reusable": "yes: a lone character bounces against the walls of a box, then the box undraws itself and frees it; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        4.5,
+        7.5
+      ],
+      "shot": "medium, centred low: the glossy ball alone, then the source of a burst of wide light beams",
+      "camera": "locked",
+      "moves": "4.5 s a four-point star glint flashes on the ball's upper left (about 0.3 s); 5.0-5.4 s three wide wedge-shaped light beams shoot out from the ball to the frame edges (fast ease-out), with thin cyan spark rays radiating between them; 5.5-7.0 s the beams and rays rotate slowly around the ball; 7.0-7.5 s the beams sweep off-frame and fade, the ball alone again",
+      "text": "caption line only",
+      "transition_out": "no cut: the beams leave and the ball holds (7.5 s)",
+      "palette": "white-to-electric-blue beams with a cyan tip, white glint, cyan spark rays",
+      "built": "code-native (SVG wedges with linear gradients, rotating group, bloom)",
+      "reusable": "yes: a single glint then a burst of light beams from one point to mark the key word ('signal', 'idea', 'answer'); motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        7.5,
+        9
+      ],
+      "shot": "medium, centred high: the ball breaks into pieces",
+      "camera": "locked",
+      "moves": "7.8-8.3 s the ball splits into shards (two crescent halves, a small drop and a little square) that spring apart outward (snappy then elastic settle); 8.3-8.8 s the shards drift apart and fall away to the sides while an empty glowing outline ring is left where the ball was",
+      "text": "caption line only",
+      "transition_out": "no cut: the shards are gone, the empty ring holds (9.0 s)",
+      "palette": "cyan and pale blue glossy shards with white rims; white outline ring",
+      "built": "code-native (SVG shapes with spring easing)",
+      "reusable": "yes: a whole shape breaks into a few clean glossy pieces and leaves its empty outline behind, to show something missing or broken; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        9,
+        13.2
+      ],
+      "shot": "medium: the empty outline ring high in the frame, a soft light column rising from the bottom edge",
+      "camera": "locked until 12.7 s, then the ring travels up and to the right out of frame",
+      "moves": "9.0-9.6 s a glowing vertical light column grows up from the bottom edge behind the caption, with a horizontal band of blurred pixel-like bars across the bottom (light slides along it like a scanning bar); 9.5-11.0 s small particles (a white asterisk flower, cyan pills, tiny squares) orbit around the ring and fly through; 10.5-12.5 s liquid fills the bottom of the ring and sloshes side to side (smooth, wave-like); 12.6-13.1 s the ring rises and slides to the upper right, leaving the frame",
+      "text": "caption line, sitting inside the light column",
+      "transition_out": "hard cut (13.2 s) just as the ring exits upper right",
+      "palette": "white ring, cyan liquid, cyan-to-pale-blue light column, mixed cyan and steel-blue bars at the bottom",
+      "built": "code-native (SVG ring with a clipped wave path for the liquid, CSS blur bars)",
+      "reusable": "yes: an empty container that only partly fills, its liquid sloshing low, to show a need not met; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        13.2,
+        15.5
+      ],
+      "shot": "wide: two overlapping glossy hills fill the lower half (cyan crest fading to electric blue), a white glowing capsule tower stands on the back hill, starfield above",
+      "camera": "locked, slight push-in",
+      "moves": "13.2-13.6 s the jelly ball rolls in from the left edge along the front hill, squashing as it rolls (smooth); 13.4 s a star glint flashes on the tower top; 13.6-14.8 s hold while the ball settles; 14.8-15.5 s the front hill pours forward and morphs into a big capsule-shaped jelly outline that slides down out of frame (shape morph, smooth)",
+      "text": "caption line in white over the blue hill",
+      "transition_out": "no cut: the hills morph into the planet horizon of the next shot (15.5 s)",
+      "palette": "cyan to electric-blue gradient hills, white capsule tower with blue edge, white glint, near-black sky",
+      "built": "code-native (SVG paths with gradients, path morph between hill and capsule)",
+      "reusable": "yes: the character arrives rolling into a new landscape, a beacon on the horizon glints to show where to go; motion only, our landscape from the voice-over"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        15.5,
+        18.37
+      ],
+      "shot": "wide: a curved planet horizon fills the lower third (grainy white rim light along the curve, deep electric blue below), a glossy capsule resting on it",
+      "camera": "locked until 17.4 s, then tilts up a little to follow the beam",
+      "moves": "15.5-16.0 s the capsule rounds into the ball; 16.3-17.0 s a narrow light cone grows straight up from the ground under the ball (smooth ease-out), lifting the ball inside it; 17.0 s a big four-point lens-flare star bursts at the top of the cone; 17.2-18.3 s a pill climbs up the cone, tumbles and flies off to the right",
+      "text": "caption line in white on the blue planet",
+      "transition_out": "hard cut on the action (18.37 s): the flying pill re-enters the next dark shot from the left, moving in the same direction (match on action)",
+      "palette": "white grainy rim, electric blue to cyan planet, cyan-to-white light cone, white lens flare",
+      "built": "code-native (SVG arc with a grain texture, gradient cone, flare as thin crossed lines with bloom)",
+      "reusable": "yes: a beam of light grows from the ground and lifts the character, topped by a flare; then a match-on-action cut carries a moving element into the next scene; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        18.37,
+        20.5
+      ],
+      "shot": "medium: one glowing jelly shape alone in the dark starfield",
+      "camera": "locked",
+      "moves": "18.37-19.3 s a long thin pill enters from the left and tumbles across the frame, getting shorter and fatter; 19.3-20.0 s it morphs from pill to bean to an oval (continuous shape morph, smooth, with slight elastic wobble); 20.0-20.5 s it becomes a round ball and drifts to the centre",
+      "text": "caption line only",
+      "transition_out": "no cut: a cone rises under the ball (20.5 s)",
+      "palette": "electric blue jelly with a white rim and soft glow on the near-black ground",
+      "built": "code-native (SVG path morph, bloom)",
+      "reusable": "yes: one shape changes form step by step while it moves, one form per spoken item; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        20.5,
+        23.9
+      ],
+      "shot": "medium to wide: the ball rides on the tip of a tall flaring cone that grows up from the bottom edge like a fountain or tent",
+      "camera": "rising: the world slides down past the camera, shown by thin vertical speed lines falling and big lens-blurred glossy bubbles passing in the foreground",
+      "moves": "20.5-21.5 s the cone pushes up under the ball and its base flares wide (smooth ease-out), the ball sits on its tip with a glint; 21.5-23.0 s the camera keeps rising, speed lines stream down, blurred bubbles pass at the edges; 23.0-23.9 s the ball shoots up away from the cone, the cone thins to a single line and the ball shrinks to a point near the top of the frame",
+      "text": "caption line; the cone passes in front of and behind the caption (the caption stays readable on it)",
+      "transition_out": "the shape thins to a point, then a near-cut to a dot at the centre of the next shot (about 23.9 s, not caught by scene detect)",
+      "palette": "cyan to white to electric-blue cone, glossy blue bubbles out of focus, pale speed lines",
+      "built": "code-native (SVG cone path, CSS blur on foreground bubbles for depth, speed lines as moving strokes)",
+      "reusable": "yes: growth shown as a shape pushing the character upward while the camera rises, speed lines and blurred foreground giving depth; then everything collapses to a single point; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        23.9,
+        27.63
+      ],
+      "shot": "medium, centred high: a large glowing white disc with glowing neon ribbons wrapping around it",
+      "camera": "locked",
+      "moves": "23.9-24.3 s a tiny white dot at the centre grows fast into a big glowing disc (strong ease-out, a little overshoot); 24.0-25.0 s neon ribbons (cyan to electric blue to white tubes) draw in from the frame edges and loop around the disc, front and behind it; 24.8-25.3 s a blue four-point star blooms inside the disc from its centre; 25.3-27.5 s the star rotates slowly and the ribbons keep drifting",
+      "text": "caption line, crossed by a ribbon",
+      "transition_out": "hard cut (27.63 s)",
+      "palette": "white disc with blue inner glow, electric-blue star, cyan to white ribbons",
+      "built": "code-native (SVG stroke paths drawn by stroke-dashoffset with gradient and bloom, radial gradient star)",
+      "reusable": "yes: a point opens into a big bright disc, lines draw in and wrap around it and a symbol blooms in its centre, for the core idea; motion only"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        27.63,
+        31.8
+      ],
+      "shot": "medium, side view: a curved gradient ledge juts in from the left edge with a white capsule tower on it, a small glowing floating pad to the right across a gap",
+      "camera": "locked",
+      "moves": "27.63-28.2 s the jelly blob slides in from the left along the ledge and settles (smooth); 28.4-29.5 s it gathers: squashes, then stretches up tall into a leaning capsule (anticipation, elastic); 29.5-30.8 s it leaps across the gap in an arc and lands on the right pad, squashing; 30.8-31.5 s it rounds into a ball on the pad",
+      "text": "caption line",
+      "transition_out": "no cut: the camera moves up to reveal more pads (31.8 s)",
+      "palette": "electric-blue to cyan ledge with a white top edge, white tower, white-to-cyan pad, blue jelly",
+      "built": "code-native (SVG shapes, squash-and-stretch transforms, arc path)",
+      "reusable": "yes: anticipation, stretch and a leap across a gap to a new platform, for taking a step or effort; motion only"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        31.8,
+        33.44
+      ],
+      "shot": "medium: the ball on its pad at the lower centre, smaller pads floating above it like a staircase going up",
+      "camera": "a short pan and tilt up so the ball sits low centre and the stepping pads lead the eye upward",
+      "moves": "31.8-32.3 s the pads above slide into place, getting smaller toward the top (depth); 32.3 s a small glint on the ball; a light column glows up from the bottom edge behind the caption; hold to the end",
+      "text": "caption line inside the light column",
+      "transition_out": "end of file",
+      "palette": "white-to-blue gradient pads, blue ball, electric-blue light column at the bottom",
+      "built": "code-native",
+      "reusable": "technique only: a final rest shot that points the way up with a row of steps; our ending is our CTA and the brand logo outro"
+    }
+  ],
+  "visual_language": "An abstract glowing-shape explainer reel: one glossy jelly ball is the protagonist of the whole film and travels through a sequence of simple luminous metaphors (a box, a burst, broken pieces, an empty cup, hills, a planet, a rising cone, a bright disc, a ledge and steps), one per narration phrase, all on the same near-black starfield. Medium: code-built 2.5D vector shapes with gradient fills, bloom and glossy highlights. Typography: only one small caption line (light rounded monospace-like grotesk, lowercase, white with a soft glow, cap height about 1.2% of frame height, centred at about 82% of height) that changes phrase by phrase with the narration; no hero type at all, the shapes carry the meaning. Rhythm: only 3 real cuts in 33 s; between them the film is one continuous morph where each shape becomes the next, with a new motion beat every 1.5-3 s on the caption phrase; average beat about 2.8 s. Easing: elastic squash and stretch on the jelly, fast ease-out pops and bursts, smooth slow drifts and morphs. Palette: near-black navy ground, electric blue, cyan and white light, nothing else. Signature moments: stripes of light sliding through a glass frame; the frame undrawing itself to free the ball; a light-beam burst from the ball; the ball shattering into crescents and leaving an empty ring; liquid sloshing low in the ring; rolling onto glowing hills; a light cone growing from a planet and a match-on-action cut; a pill morphing into a ball; the ball riding a rising cone with speed lines; a dot opening into a bright disc wrapped by neon ribbons; a squash-and-stretch leap to a floating pad.",
+  "look": "Flat-to-2.5D glowing vector, not real 3D: shapes are flat paths with smooth linear gradients (cyan to electric blue to white), each with a strong soft bloom halo. Light and shadow: no cast shadows; light comes from the shapes themselves (glows, beams, lens-flare stars, grainy rim light on the planet edge). Materials: glossy jelly (translucent blue body, bright white rim, specular highlight on the upper left), glowing neon tubes, emissive outlines. Depth: almost none, faked twice by lens-blurred foreground bubbles and by pads shrinking toward the top; no perspective. Background: deep near-black navy with sparse tiny star specks and a faint soft vignette glow, constant through the whole film.",
+  "code_translation": "Built in 2D code, which is faithful because the reference itself is 2.5D (not a 3D film flattened): SVG or canvas shapes with linear and radial gradients mapped onto brand colour roles (ground, accent, secondary accent, highlight); bloom as stacked blurred copies or a canvas glow pass; jelly characters as SVG blobs with squash-and-stretch transforms and path morphing between forms (ball, pill, bean, capsule, shards) with a spring ease; outlines drawn and undrawn with stroke-dashoffset; beams and cones as gradient wedges; lens-flare stars as thin crossed lines with glow; foreground depth as CSS blur on large shapes; speed lines as falling strokes. Caption: one centred line in the brand Persian font, whole words only, never split letters (rtl-grammar.md), larger than the reference to meet the minimum size; centred so it mirrors cleanly for Persian. Subjects come from our voice-over, never the reference's.",
+  "continuity": [
+    "One protagonist glyph: a single glossy jelly ball is present in almost every shot and carries the eye from metaphor to metaphor.",
+    "One world: the same near-black starfield and glow light in every shot, so the three cuts feel like moves inside one place.",
+    "Shape becomes shape: instead of cutting, one form morphs into the next (frame to empty frame, ball to shards to ring, hill to capsule to horizon, pill to bean to ball).",
+    "Undraw to free: a container's outline unwinds itself like a line being erased, leaving only what was inside.",
+    "Break and leave the outline: a solid shape splits into a few pieces that fly off, and its empty outline stays as the next subject.",
+    "Exit with momentum: an element leaves the frame on a clear path and the cut lands as it exits.",
+    "Match on action: a moving element leaves one shot and enters the next from the opposite edge, still moving the same way.",
+    "Collapse to a point, open from a point: a shape thins down to a single dot and the next scene grows out of a dot at the centre.",
+    "Constant caption line: one small phrase line at the same height in every shot changes with the narration while the shapes carry the meaning.",
+    "Squash and stretch as emotion: the jelly character bounces, gathers and leaps, so effort and freedom read through its body."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its English script, its metaphors as a set, its scene order one by one, or its audio.",
+    "The caption line is tiny (cap height about 1.2% of frame height, about 15 px at 1280) and set low at about 82% of height: in our film it must meet the minimum text size, hold times and the bottom safe zone (safe-zones.md), so it is set larger and placed inside the safe zone.",
+    "Persian runs right to left: the centred caption mirrors cleanly, but the ball rolling in from the left, the match-on-action move left to right and the leap to the right are mirrored for Persian (rtl-grammar.md).",
+    "The film has no hero type: key words and numbers in our package still need on-screen text; add them as a short line or a single word in the brand font inside this glow world, not a new style.",
+    "The look is 2.5D glow vector, so a 2D build (SVG or canvas with bloom) is faithful; three.js is not needed, but bloom and blur layers add render time.",
+    "The palette is near-black navy, electric blue, cyan and white: mapped onto brand colour roles, never the literal cyan if the brand bans it; colours read by eye, not sampled.",
+    "Only 3 cuts were detected; the other shot boundaries are motion beats found by eye (±0.25 s); our film's beats are placed on voice timing, not on these spans.",
+    "A dark background with strong glow can band or block up after compression: keep gradients smooth and add slight grain, and check contrast of the caption over bright beams and cones.",
+    "Audio is third-party narration and music; ignored, L2 and L6 build ours."
+  ],
+  "sha256": "728dc1857eee3c2ad48e948e211692180b6bdc289509e03b7211cc8acd7525a5"
+}

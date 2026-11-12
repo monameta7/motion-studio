@@ -1,0 +1,296 @@
+{
+  "slug": "lowpoly-road-data-fa-01",
+  "key": {
+    "sha256": "faea3fd4985a0c24b520a00b89641aade9e3e095504d34e16d5417b9ad572875"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 124.39,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1280, 30 fps, 3729 frames (124.3 s video), container 124.39 s, about 636 kb/s. Audio: HE-AAC stereo 44.1 kHz, continuous for the whole film (no silence of 0.4 s or more below -45 dB), mean -16.8 dB, peak -0.7 dB. The word-by-word captions imply narration; the audio was measured only, not listened to or analysed for beats; third-party audio never reused."
+  },
+  "rights_note": "third-party video (file «AQM61rARJM4HMLh4_2mAOv0L_nK0nggYszBcXXo_jGwRpoVmbTtfW5_JHXj7HiUZzY.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "جاده‌ی سه‌بعدی لوپلی با آمار فارسی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "EXPLAINER",
+    "why": "third-party film of unknown origin: borrow the motion language, data-on-screen system and look only, never its shots one by one, its subject, its copy or its figures (owner note); the reference is a narrated data explainer (common belief → worked example → the mistake named → experiment → formula and chart → second example → consequence → payoff → CTA), so EXPLAINER fits; a hook/problem/solution package may still run as REEL in this style"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        124.39
+      ],
+      "why": "the subject (driving speed, time saved, braking distance, the named cognitive bias) and every Persian caption, headline, pill, label and chart note are third-party copy and claims; never reused as voice-over, on-screen text or story"
+    },
+    {
+      "span": [
+        0,
+        118.93
+      ],
+      "why": "all figures (speeds, route length, times, seconds saved, deltas, braking metres, percentages) are third-party claims; only the way numbers count, compare and appear is borrowed, our numbers come from the approved package"
+    },
+    {
+      "span": [
+        0,
+        124.39
+      ],
+      "why": "the scenery and props (road, pine forest and hills, cars, reflector posts, village houses, racing lanes and finish gate, roadworks barrier and cones, crash) are the reference's story; our scenes take their subjects from the voice-over and are only drawn in this rendering style"
+    },
+    {
+      "span": [
+        122.5,
+        124.39
+      ],
+      "why": "the logo card, its extruded third-party logo and the Follow button belong to the third-party channel; our end uses the brand's own CTA and logo outro"
+    },
+    {
+      "span": [
+        0,
+        124.39
+      ],
+      "why": "the red-orange colour is the reference's accent; it is mapped onto the brand's colour roles, only its role (one hot accent over near-black) is kept"
+    },
+    {
+      "span": [
+        0,
+        124.39
+      ],
+      "why": "the audio track is third-party; L2/L6 use our own voice and sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2, 480 px, tile 4x3 (21 sheets, all viewed); scene detect gt(scene,0.3) and gt(scene,0.12) (cuts at 5.5, 15.6, 27.1, 33.1, 51.3, 72.07, 86.6, 95.13, 104.4, 110.2, 115.2, 118.93; 109.7 is the impact flash inside a shot, 33.13 is the same cut as 33.1, 62.17 at score 0.13 is not a cut, 104.4 was found only at the lower threshold, max score 0.97 at 5.5); dense sheets fps=10 over 5.2-6.4 s, 15.2-16.4 s and 109.2-111.0 s, fps=5 over 1.4-3.8 s (all viewed). Spans from scene detect where a cut exists, in-shot beat times from the 2 fps sheets (about ±0.25 s), so durations outside the dense windows are estimates. silencedetect + volumedetect on the audio. Colours read by eye, not sampled. The video was never watched in motion: easing is inferred from frame spacing.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        5.5
+      ],
+      "shot": "low road-level shot in front of two low-poly actors side by side at dusk, then the camera swings around them to end behind and above, the road running straight to a mountain gap. Composition: actors in the lower middle, headline over the sky or hills, caption at about 79% height",
+      "camera": "one continuous flying move, no cut: slow push-in (0-1.5 s), fast smooth orbit from front to side to rear (about 1.9-2.4 s, strong ease-in-out, motion-blurred at its peak), rising crane to a high rear view (3-5 s), the two actors shrink as the camera climbs; ends on a very fast whip tilt up into the sky (5.2-5.5 s, ease-in)",
+      "moves": "actors roll continuously; headlight pools sweep the ground; big extruded 3D numerals float above each actor as tags and stay attached to it in world space, turning with the camera and showing motion smear; a second one enters for the comparison; the extruded headline slides in from the left edge as the camera turns (0.4-0.6 s, smooth deceleration)",
+      "text": "extruded white 3D numerals with a small flat unit word under them, the second actor's numeral in the accent colour; extruded two-part question headline in the sky band at about 22-30% height; flat caption at about 79% height, centred, 3-7 words, karaoke (spoken white, current word accent, coming grey); thin glowing accent progress line on the very top edge grows right-to-left through the whole film",
+      "transition_out": "whip tilt up into the sky, hard cut at the top of the whip, then a light grey veil clears on the next shot (5.5 s)",
+      "palette": "near-black road and hills, saturated red-orange horizon glow fading to deep maroon then black at the top, one saturated red actor, one warm beige actor, warm white headlight pools, white road lines",
+      "built": "generated (3D render), low-poly flat-shaded",
+      "reusable": "yes: orbiting from the front to behind two compared actors with data tags pinned to them; motion only, never the cars or road"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        5.5,
+        15.6
+      ],
+      "shot": "high overhead view of a faceted terrain with hundreds of tiny trees casting long shadows, a path drawing itself across it. Composition: map fills the frame, glass scoreboard fixed on top, pill under it, caption at about 79% height",
+      "camera": "arrives top-down from the whip and slowly rotates and tilts down toward a three-quarter view (5.5-6.5 s, ease-out), slow drift while the data runs, glide up the path to its far end (about 9.5-10 s, smooth), then a sweeping fly-back along the path (about 10.5-11 s) for the highlighted route",
+      "moves": "path draws from the left edge through its curves (about 0.6-1 s, linear); two timers count together in a blur (about 2.5 s, 6-8.5 s), one stops early and turns accent, the other runs on; pill pops in; small actors run along the path; extruded distance label tumbles in and floats over the map; big accent extruded word drops in at the end point (about 9.5 s); hot accent paint then fills sections of the path in chunks with a rough leading edge, each on one caption word (about 0.3-0.5 s per chunk, 11-12 s); clusters of small buildings pop up beside the path with an overshoot (about 0.3 s) at 13 s; pill text swaps at about 15 s",
+      "text": "top: dark rounded translucent scoreboard at about 4-19% height, two columns with a thin divider, tiny grey label over big digits, the winner's digits in accent; a solid accent rounded pill with soft glow right below it, white bold text; small white tag with a tiny pin on the end point; caption at about 79% height",
+      "transition_out": "camera nudges and hard cut, the next shot opens through the grey veil (15.6 s)",
+      "palette": "warm brown terrain with near-black shadow bands and near-black trees, a few saturated red trees, hot orange-red painted path, black road with white dashes",
+      "built": "generated (3D render), overlay graphics in code",
+      "reusable": "yes: a line that draws itself on a world seen from above, then gets painted section by section while a fixed scoreboard counts; motion only, never the road, terrain or trees"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        15.6,
+        27.1
+      ],
+      "shot": "the neutral stage: horizon silhouette against a red glow, dark faceted ground below, floating low-poly rocks. Composition: object centred on the horizon, headline in the sky band, cards in the middle, caption at about 79% height",
+      "camera": "almost locked with a very slow drift; a small push-in and tilt (about 24-26 s) as the answer lands; slight tilts make the world feel alive",
+      "moves": "extruded accent question mark tumbles in on its axis with scale overshoot (about 0.3 s) then shrinks away; headline scales up with overshoot and settles (about 0.3 s); floating rocks drift very slowly; two dark 3D slab cards tilt in from below one at a time, each landing with a shadow on the ground (about 0.4 s, smooth), a small fill bar inside draws to show the size of the change; the second card is outlined and in accent; a row of small pawn figures pops up one after another on top of the chosen card (about 0.05 s stagger); a solid accent stamp card slams onto the chosen card, rotated about 5 degrees, on the word that rejects it (about 0.2 s, snappy)",
+      "text": "white extruded headline in the sky band at about 25-30% height with a smaller flat sub line; dark cards with big digits, an arrow, a tiny label and a slim progress track; stamp card with one short bold word; caption at about 79% height",
+      "transition_out": "hard cut on the phrase change, grey veil clears on the next shot (27.1 s)",
+      "palette": "red-orange horizon glow, near-black silhouette and rocks, dark maroon faceted ground with a few orange triangles, near-black cards with thin white outline, accent digits on the second card",
+      "built": "generated (3D render), cards as 3D slabs in the same scene",
+      "reusable": "yes: the neutral stage for any abstract idea, options as tilted 3D cards, an audience of pawns choosing, and a stamp that overturns the choice; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        27.1,
+        33.1
+      ],
+      "shot": "the neutral stage with one large low-poly wall clock floating over its own ground shadow, centred. The Latin term is stacked inside the dial",
+      "camera": "small settle after the cut, then a slow drift of a few percent left and right",
+      "moves": "clock scales up from smaller with the veil (about 0.5 s, smooth); both hands spin fast and continuously for the whole shot; three stacked words of the term appear one by one, each on its spoken word (about 0.2 s, quick pop), the last one bigger and in accent; a two-line translation fades in below the clock at about 31.5 s",
+      "text": "small white chapter line in the sky at about 22% height; bold Latin stacked words over the dial, last word accent; small two-line note under the clock; caption at about 79% height",
+      "transition_out": "hard cut, grey veil clears on the next shot (33.1 s)",
+      "palette": "near-black dial with a saturated red low-poly rim, pale ticks and hands, red-orange horizon behind",
+      "built": "generated (3D render), overlay text in code",
+      "reusable": "yes: naming a concept by stacking the term word by word inside a moving symbolic object; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        33.1,
+        51.3
+      ],
+      "shot": "high wide view down a straight multi-lane track toward a finish gate at the far end, actors waiting at the near edge. Composition: strong vanishing lines to the top, four-column scoreboard fixed over the sky, caption at about 79% height. This single shot holds a full experiment",
+      "camera": "slow continuous drift with gentle yaw and height changes while the runs happen (the vanishing point wanders left then right); the camera slowly swings across the track between runs (40-44 s); a low fast push down the track to ground level (about 49.5-50.5 s, smooth) for the closing comparison, ending on a slight roll",
+      "moves": "extruded label slides out to the left edge and shrinks away (about 36-36.5 s); actors run one lane at a time from the near line to the finish, shrinking fast with perspective (about 1.7-2 s per run, linear), the column above each counts up in step and locks; the third and fourth run together and faster (about 1 s), the pace rises as the point is made; a solid accent pill drops in over the gate on the saving (about 43.5 s), a second outlined dark pill appears under it for the surprise (about 48.5 s); the scoreboard and pills fade away as two tall 3D bars grow up from the ground in the foreground (about 0.4 s each, ease-out), each with a floating value on top",
+      "text": "top: wide dark translucent scoreboard at about 9-18% height, four columns, tiny label over big digits over tiny unit, the last column in accent; small label on the finish gate; numerals lying on the ground under the actors; extruded white label floating over the track; caption at about 79% height",
+      "transition_out": "hard cut on the phrase change into the neutral stage (51.3 s); the veil is not visible in the 2 fps sample here, it may be shorter",
+      "palette": "very dark maroon-black track with thin white lane lines, warm brown ground with near-black trees and long shadows, red-orange band of sky, beige and red actors, red and blue-grey bars",
+      "built": "generated (3D render), scoreboard in code",
+      "reusable": "yes: an experiment run lane by lane with a scoreboard counting in step, then bars rising out of the same world; motion only, never the track or cars"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        51.3,
+        72.07
+      ],
+      "shot": "the neutral stage with a formula, then a 3D column chart growing out of the ground with a curve on top. Composition: formula or small note in the sky at about 10-15% height, chart filling the lower middle from edge to edge, caption at about 79% height",
+      "camera": "slow forward push on the headline, tilt down to lift the formula to the top of frame (about 55 s, smooth), then a slow continuous orbit and dolly around the chart (about 60-72 s), the horizon line shifting so depth stays visible",
+      "moves": "formula builds word by word in a row right-to-left, each term popping on its spoken word (about 0.2 s), operators in accent; columns rise from the ground in a wave from left to right (about 1.5 s total, about 0.1 s stagger, smooth); a thick glowing accent curve draws over their tops (about 0.8 s, ease-out); a white ball then rolls down the curve in small slow steps tied to the narration (about 10 s in total), with a short label appearing at each stage; the formula fades and a small note replaces it (about 65 s); columns tint accent one at a time while small delta values pop along the curve one by one (about 0.5 s each), matching the caption rhythm",
+      "text": "extruded white formula words with accent operators, moved to about 10% height; solid red rectangle label naming the curve on the horizon; small white notes beside the curve; tiny accent or white delta values following the curve; caption at about 79% height",
+      "transition_out": "hard cut on the phrase change, grey veil clears on the next shot (72.07 s)",
+      "palette": "near-black columns with faint maroon sides, glowing red-orange curve, pale grey ball, red-orange horizon, floating dark rocks",
+      "built": "generated (3D render), chart as real 3D columns in the scene",
+      "reusable": "yes: columns rising in a wave, a curve drawn over them, a ball that walks the viewer along the curve, values popping one by one; motion only, the chart data comes from the package"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        72.07,
+        86.6
+      ],
+      "shot": "the neutral stage with a small side-on diorama (a thin strip between two blocks, one actor on it) low in the frame, a data bar above it, a gauge above that. Composition: stacked in layers from bottom to top, all aligned to the same width",
+      "camera": "nearly locked, very slow drift; small scale adjustments as each new layer needs room (the whole set slides downward and the sky gets more space at about 78-79 s, smooth)",
+      "moves": "accent sparkle burst with a low-poly gem on the headline (about 0.3 s, overshoot) then fades; actor drives one way along the strip while a beige bar grows beside it in step (about 2 s, linear), then drives back while an accent bar starts growing into the same bar; a half-circle 3D gauge scales up from small (about 0.5 s, overshoot), the needle swings up to the guess with an accent fill on the arc (about 0.5 s, ease-out), holds, then nudges to the true value as the digits turn accent (about 0.3 s); a small accent note appears under the bar at about 85.5 s",
+      "text": "extruded white headline that lifts to the sky; tiny labels over the strip with one value in accent; tiny axis label at the bar's end; big numeral with a question mark under the gauge, replaced by the corrected accent numeral; caption at about 79% height",
+      "transition_out": "hard cut on the phrase change, grey veil clears on the next shot (86.6 s)",
+      "palette": "red-orange horizon with near-black rocks, red and warm-beige bar pair, dark gauge arc with a red fill and pale needle, beige actor and blocks",
+      "built": "generated (3D render), bars and gauge in the same scene",
+      "reusable": "yes: a small live diorama feeding a data bar that feeds a gauge, each layer added on the beat; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        86.6,
+        95.13
+      ],
+      "shot": "the neutral stage with one thin pale curve on an axis, then a second bold accent curve rising across it, a translucent panel under the new curve, and a big accent headline in the sky",
+      "camera": "locked with a very slow drift left, a slight horizon shift on the last seconds",
+      "moves": "the axis line and the pale curve draw together (about 1 s, ease-out); small label fades in near its end; hold; the accent curve then draws from the bottom left up to the top right in one long stroke (about 1.5 s, starts slow and speeds up, about 91-92.5 s) with a translucent dark red area filling under it as it goes; large accent headline pops into the sky on its spoken word (about 0.3 s, overshoot)",
+      "text": "big bold accent headline in the sky at about 16-20% height; small accent and white labels attached to each curve; caption at about 79% height",
+      "transition_out": "hard cut on the phrase change, grey veil clears on the next shot (95.13 s)",
+      "palette": "pale pink-grey old line, glowing red-orange new line, translucent dark red panel, near-black silhouette and rocks",
+      "built": "generated (3D render) with lines in the scene",
+      "reusable": "yes: one old line then one new line crossing it to overturn a belief; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        95.13,
+        104.4
+      ],
+      "shot": "road-level follow behind a low-poly actor heading for an obstacle far ahead, then the camera flies past it to a close view of the obstacle",
+      "camera": "low dolly forward with a steady glide (95-98 s), the actor overtakes into frame from the lower right; camera yaws left and the actor drifts out to the corner (98-100 s); continuous dolly toward the far obstacle, rising and turning (100-102 s, smooth); ends in a close three-quarter view with slight roll while the actor comes back into frame and stops (102-104 s)",
+      "moves": "actor enters from the frame edge with its numeral tag following it in world space; obstacle grows from a dot in the distance to a full frame object in one shot, its tiny label scaling up with it; the numeral counts down fast to zero as the actor brakes (about 1.5 s, ease-out to the stop); warm light from the actor sweeps the props; a short small check note pops at the stop",
+      "text": "tiny note far off in the distance that grows with the obstacle; extruded white numeral that pivots with the camera; small dark caption chip at about 73% height for the scenario's constants; a sign on the obstacle in solid accent with an icon and a bold word; caption at about 79% height",
+      "transition_out": "hard cut with no veil on the phrase change, dark to dark (104.4 s)",
+      "palette": "near-black road, brown hills, near-black trees, a triangle of red sky between dark slopes, saturated red and white striped barrier, orange-red cones, beige actor",
+      "built": "generated (3D render)",
+      "reusable": "yes: following one actor toward a distant target while a number falls to zero as it arrives; motion only, never the barrier or cones"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        104.4,
+        110.2
+      ],
+      "shot": "the same set from the front, a second actor approaching from far away with a falling number, foreground posts passing close to the lens, ending on a collision seen in close-up",
+      "camera": "low and wide, locked on the actor for about 2 s, then a slow push and slight tilt-up while the actor closes the distance (106-109.5 s, accelerating); foreground posts and cones sweep past the lens, adding speed",
+      "moves": "actor grows from small to full size, the numeral above it falls steadily and does not reach zero (about 4 s); props pop into the frame edge ahead of the hit; on impact a red veil flashes over the frame and fades (109.7 s, about 0.4 s), big blocks and cones burst toward the camera in slow motion, tumbling (about 0.4 s); a soft accent pill fades in over the top with the final value and blurs in from out of focus",
+      "text": "accent extruded numeral growing bigger as the actor approaches, ending big at about 20-25% height; dark chip stays at about 73% height; accent pill above the numeral at impact; caption at about 79% height",
+      "transition_out": "hard cut straight from the debris to the next shot through the grey veil (110.2 s)",
+      "palette": "red sky band, brown hills, near-black road with white edge line, saturated red actor and cone, beige block debris, red veil at impact",
+      "built": "generated (3D render)",
+      "reusable": "yes: the same scenario replayed with one change, ending on an impact flash with a slow tumble; the signature hit; motion only, never a crash unless the voice-over calls for one"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        110.2,
+        115.2
+      ],
+      "shot": "the neutral stage, a data comparison: two horizontal 3D bars one above the other in the sky band with counters, and a cause and effect pair of percentages below",
+      "camera": "locked after a small settle, with a very slight rise; the horizon line and rocks drift slowly",
+      "moves": "title scales up in the veil (about 0.3 s); two bars grow from right to left in a staggered pair while their metre values count up with them (about 1 s each, ease-out, the second starting about 0.3 s later and ending longer); first percentage pops (about 0.2 s); after a pause a small arrow appears, then a much bigger accent percentage pops on its spoken word (about 0.3 s, overshoot); floating rocks pass behind the bars",
+      "text": "bold white title at about 25% height; small label right-aligned above each bar, value on the outer left, second value in accent; extruded percentages low on the stage at about 62% height with tiny labels below; caption at about 79% height",
+      "transition_out": "hard cut on the phrase change, grey veil clears on the next shot (115.2 s)",
+      "palette": "beige and red bars over the red-orange horizon, white and accent digits, near-black ground",
+      "built": "generated (3D render), bars in the same scene",
+      "reusable": "yes: bars growing toward the left with live counters, then a small number leading to a big one as cause and effect; motion only, numbers from the package"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        115.2,
+        118.93
+      ],
+      "shot": "the neutral stage with a question line, then the low-poly clock returning large and centred, showing a small accent wedge",
+      "camera": "small settle, then a very slow push; clock scale drifts a few percent",
+      "moves": "question text fades in near the horizon (about 0.3 s) and holds about 1.5 s; the clock pops in full size (about 0.3 s, overshoot) and replaces it; one hand moves through a short arc while an accent wedge sweeps open behind it (about 0.5 s, ease-out); a two-line accent phrase pops in under the clock",
+      "text": "small white two-line question at about 45% height; two-line accent phrase under the clock at about 62-68% height; caption at about 79% height",
+      "transition_out": "hard cut with no veil on the phrase change (118.93 s)",
+      "palette": "near-black dial, red rim, pale ticks, solid orange-red wedge, red-orange horizon",
+      "built": "generated (3D render)",
+      "reusable": "yes: callback to an earlier symbol, now showing the point in one small accent wedge; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        118.93,
+        124.39
+      ],
+      "shot": "the neutral stage as an end card: a line of text in the sky, the small actor rolling in at the bottom right, then a glass logo card with a button and a cursor",
+      "camera": "very slow drift of the horizon and rocks",
+      "moves": "two-line note holds in the sky; a small actor drives in from the lower right edge and parks behind the caption (about 119.5-120.5 s, ease-out); the glass card pops in over the centre with the extruded logo and a glowing pill button (about 123 s, about 0.3 s, overshoot); a cursor glides to the button (about 0.4 s, smooth) and clicks, a white ring ripples out from it (about 0.3 s)",
+      "text": "small white two-line note at about 30% height; dark translucent rounded card at about 40-65% height with an extruded logo and a solid accent pill button; caption at about 79% height",
+      "transition_out": "film ends on the card, no fade (124.39 s)",
+      "palette": "near-black ground and rocks, red-orange horizon, white logo with accent detail, solid accent button with glow",
+      "built": "generated (3D render), card in code",
+      "reusable": "yes: glass CTA card with a cursor click and ripple, as a pre-logo beat; motion only, our CTA and logo outro from the brand, the third-party logo is never reused"
+    }
+  ],
+  "visual_language": "Narrated data explainer in one real-3D low-poly world, cut like a continuous lesson: 13 shots in 124.4 s, average about 9.6 s (range 3.7-20.8 s), far longer than the usual reel because each shot holds many beats instead of cuts. New information lands about every 0.5-2 s through words, counters, pops and camera moves, all timed to the caption, not to a music beat. Two sets alternate: a story set (road or terrain with actors) for examples, and a neutral stage (horizon silhouette, red glow, floating low-poly rocks, faceted ground) for ideas and data, so the film breathes between concrete and abstract. Typography is one system: (1) a flat bold white caption with soft shadow and no pill at about 79% height, centred, 3-7 words, karaoke: spoken words white, the current word accent, coming words grey, with an occasional second line; (2) extruded 3D words and numerals with a pale side and motion smear that live in world space and turn with the camera, pinned to the object they describe; (3) a dark translucent rounded scoreboard fixed at the top of the frame, two or four columns, tiny label over big digits; (4) solid accent pills with a soft glow for the result, plus a dark outlined pill for the surprise; (5) dark 3D slab cards and a solid accent rectangle stamp; (6) a thin glowing accent progress line on the very top edge growing right-to-left. Moves: long smooth flying camera moves with heavy ease-in-out, slow drifts while data runs, pops with slight overshoot (about 0.2-0.3 s), counters and draws in step with the words. Palette: near-black, deep maroon and warm brown under a saturated red-orange horizon glow; one hot accent for what matters now, beige as the neutral comparison colour, white for text. Signature moments: the opening orbit from front to behind the actors; the whip tilt into a top-down map through a grey veil; the path painted hot section by section; the experiment with a counting scoreboard; the ball walking a curve; the second curve overturning the first; the impact with a red flash and a slow tumble; the small number leading to a big one.",
+  "look": "Real 3D (not flat), low-poly and flat-shaded with hard facet edges and no bevels, matte materials, faceted terrain where each triangle catches a different value, a few emissive lines (the accent curve, the painted path). Light: one low warm sun behind the scene giving a saturated red-orange horizon band and very long hard shadows on the ground, plus actors' own light cones (soft warm white pools with visible translucent beam shapes). Strong vignette: the top of the sky and the bottom of the ground fall almost to black. Shadows are hard and long on the story set, soft blobs under floating objects on the stage. Depth: real perspective and aerial layering, mild blur on the far distance, motion blur and smear during fast camera moves and on extruded type, foreground props passing close to the lens. Background: vertical gradient sky (black to maroon to hot red-orange at the horizon) over dark layered silhouettes, with floating low-poly rocks on the stage.",
+  "code_translation": "Built as real 3D in code with three.js (D55), never flattened: low-poly models from BoxGeometry, ConeGeometry, DodecahedronGeometry and displaced PlaneGeometry terrain, all with flatShading matte MeshStandardMaterial; InstancedMesh for forests or crowds of small props; one low DirectionalLight for long hard shadows (high resolution shadow map, low sun angle) plus a warm SpotLight on each actor and a translucent additive cone for the visible beam; sky as a large gradient plane or shader in brand colour roles, fog for layering, a vignette and mild bloom in post (UnrealBloomPass on emissive only). Camera: a CatmullRomCurve3 path per shot with look-at targets, eased with a strong in-out curve; frame-blend motion blur on fast moves; the whip as a fast tilt with a hard cut and a grey veil (flat pale grey overlay at about 50% opacity, cleared in about 0.2-0.3 s). Extruded 3D words and numerals: Persian text shaped first (HarfBuzz or the canvas) into outlines, then ExtrudeGeometry with a pale side material, so joins stay correct; numerals switch to a new mesh per value or use a texture on the front face, with Persian digits per data-viz.md; a directional smear via a short trail or frame blend. Scoreboard, pills, cards labels and captions as HTML/canvas overlay in the brand Persian font: caption with word-by-word highlight synced to audio.json word times, counters driven from the same timeline, labels projected from 3D anchors (Vector3.project) each frame. Painted path: a ribbon along the curve with an emissive material and a rough leading edge through a shader mask, advanced by section. Chart: instanced boxes with scale.y on a stagger, a TubeGeometry with drawRange or a growing tube for the curve, a sphere moved by curve.getPointAt. Bars and slab cards as thin boxes with shadows in the scene. Impact: an accent overlay flash and rigid pieces thrown with a simple velocity and slow time. Top progress line as an overlay driven by film time, growing from right to left per rtl-grammar.md.",
+  "continuity": [
+    "One world, one light: every shot, story or abstract, sits in the same dusk light, horizon glow and faceted ground, so hard cuts still feel like one place.",
+    "Two alternating sets: concrete examples in a story set, ideas and data on a neutral stage, and the switch itself marks a change of thinking.",
+    "The grey veil: most cuts land on a flat pale grey wash that clears in about 0.2-0.3 s, one repeated device that reads as a page turn and hides set changes.",
+    "Whip into a new viewpoint: the camera accelerates into empty sky, cuts, and settles on the new view, so the move carries across the cut.",
+    "Tags live on their subject: a value stays attached to the object in world space through orbits and pushes, so the viewer never loses which number belongs to what.",
+    "Fixed data overlay: a scoreboard stays in the same screen place while the camera moves underneath, and it keeps its values until the next idea, so results accumulate.",
+    "Everything grows from the world: bars, columns and cards rise out of the ground of the current shot rather than appearing as a separate graphic layer.",
+    "One orbit tells the comparison: a single continuous camera move shows the same two subjects from front, side and behind instead of cutting between them.",
+    "Word-locked changes: a colour, a pop, a counter stop or a chart step lands on the word the caption is highlighting, so the caption drives the picture.",
+    "Replay with one change: the same scenario runs again from the same set with one variable altered, and the different ending is the argument.",
+    "Layered building: a small live model feeds a data bar that feeds a gauge, each new layer added above the last in the same frame.",
+    "Symbol callback: an object introduced early returns near the end in a new state that carries the conclusion.",
+    "A thread that keeps time: the progress line on the top edge runs across every cut.",
+    "A hero parked at the end: the main actor returns small and stays in the corner of the end card, closing the story without another shot."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its subject, any caption, headline, pill, label or chart note, its figures, its logo or handle, its audio, or its shot order one by one.",
+    "The film is 124 s, far longer than a usual reel: its average 9.6 s shot works because each shot holds many beats. On a short film keep the beat density and scale the moves down rather than keeping these long holds, or a shot with too few beats will look static.",
+    "Extruded Persian type needs correct shaping before extrusion and must stay readable when it turns with the camera; the reference lets it smear and tilt heavily, which breaks the readability rule at small sizes. Keep it large, limit the turn and hold it still for the required reading time.",
+    "Thin small text is frequent here (scoreboard labels, axis labels, small notes, far-off tags are tiny at 720x1280). Our film must meet the minimum sizes in safe-zones.md; enlarge them instead of copying the sizes.",
+    "The caption sits at about 79% height, and some layers (the dark chip at 73%, actors, cones, road lines) pass behind or very close to it; it has no pill, only a shadow, so contrast can drop over bright props. Check the safe zone and add a stronger shadow or scrim where needed.",
+    "The red-orange and maroon world is the reference's palette. Colours are mapped onto brand colour roles and may change the mood; keep the structure of one hot accent, a glowing horizon and near-black masses.",
+    "The grey veil is a flat wash and looks like a fade fault if overused or mistimed on a very short film; keep it at about 0.2-0.3 s and use plain cuts for dark-to-dark moments, as the reference does at 104.4 s and 118.93 s.",
+    "Real 3D with long shadows, instanced forests and frame-blend motion blur costs render time; budget samples and shadow map size, and reduce instance counts for props that are small on screen.",
+    "Timing outside the dense windows comes from 2 fps sheets (about ±0.25 s), and the easing is inferred from frame spacing without watching in motion; the audio was measured, not listened to. Sample a dense sheet before borrowing a specific move exactly.",
+    "A crash image is a strong device: use the impact pattern only when the voice-over calls for it, and never as decoration."
+  ],
+  "sha256": "faea3fd4985a0c24b520a00b89641aade9e3e095504d34e16d5417b9ad572875"
+}

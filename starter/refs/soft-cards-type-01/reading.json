@@ -1,0 +1,346 @@
+{
+  "slug": "soft-cards-type-01",
+  "key": {
+    "sha256": "3d7eb34a8a2903ed4b02c3c19287377f3c17eb241fbf2c3b8761d4ed36bf2336"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 32.13,
+    "w": 720,
+    "h": 1278,
+    "fps": 30,
+    "audio": true,
+    "format_note": "9:16 (720x1278, non-square SAR close to 1), 962 frames, H.264; stereo HE-AACv2 44.1 kHz music bed (not analysed for tempo). The frame is a 'making-of' presentation: three rounded cards stacked vertically on a light blue-grey background with bubbles and large tilted translucent blue rectangles. Top card (about y 150-455 px) = the editor viewport of the same animation with selection boxes, anchor points and motion paths; middle card (about y 455-815 px, the widest, with a soft drop shadow) = the finished render; bottom dark card (about y 815-1110 px) = a keyframe timeline whose playhead advances. The outer frame and the three cards never move; all motion is inside the cards. The reading table below describes the finished render in the middle card; the outer frame is read separately as 'frame_device'."
+  },
+  "rights_note": "third-party short from Pinterest (file «Pinterest (1).mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "کارت سفید شناور و تایپوگرافی نرم",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "UI when the package launches an app, a tool or a workflow (the reference is an app promo: problem in words, then product, then logo)",
+    "why": "third-party film of unknown origin: borrow the motion language and look only (word-by-word soft type on an off-white card, blur-in/blur-out phrase changes, a glossy 3D icon popping between words, 3D device and ribbon shots, glass card stacks, push-in into type, letter-by-letter logo build), never its shots one by one, its brands, products, people, copy or figures (owner note); a voiceover package defaults to REEL, and the reference is a short problem → solution → logo voice-style reel"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        32.13
+      ],
+      "why": "all third-party brands and marks: the 'phia' wordmark and tagline 'Your personal fashion headquarters', amazon, Nike swoosh, Louis Vuitton, Coach bag names, App Store and Chrome Web Store badges; never reused"
+    },
+    {
+      "span": [
+        0,
+        32.13
+      ],
+      "why": "all English copy ('Ever bought something', 'then found it', '$500 cheaper a week later?', 'we've all been there.', 'Prices change.', 'Discounts come and go.', 'Thousands of stores.', 'One frustrated shopper.', 'Automatically scans deals across', '10,000+ sites', 'No more switching tabs.', 'No more guessing games.', 'Just smart shopping - made simple.') and its figures ($500, 10,000+); never reused as text, our words and numbers come only from the approved package"
+    },
+    {
+      "span": [
+        6.9,
+        14.9
+      ],
+      "why": "product photos (handbags) and photos of a real model inside the phone screens and the full-frame product grid; never reused; the screen slots may hold only owner assets or code-drawn UI"
+    },
+    {
+      "span": [
+        0,
+        32.13
+      ],
+      "why": "the top editor-viewport card (selection handles, motion paths) and the bottom timeline card are screen captures of third-party animation software; their contents are never reused, only the stacked-floating-card frame as a look (see frame_device)"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 of the full frame at 240 px, tile 6x2 (6 sheets, all viewed; frame time = (sheet-1)*6 + index*0.5 s); scene detect gt(scene,0.3) on the full frame found no cuts (the outer frame is static), so scene detect gt(scene,0.12) on a crop of the middle render card (crop=640:340:40:465) found the only hard changes at 12.23, 14.9, 16.73 and 20.8 s; dense sheets fps=10 of the middle card at 0-2, 6.4-9.4, 14.5-17.5, 19.8-22.8 and 25.8-28.8 s (5 sheets, all viewed). Spans between those cuts come from the 0.5 s and 0.1 s sheets, accurate to about ±0.1-0.25 s. Colours read by eye, not sampled. Music not analysed.",
+  "frame_device": {
+    "what": "Three rounded cards stacked vertically and overlapping slightly (top card partly behind the middle one, bottom card behind the middle one), all static, on a light background. The middle card is the widest and brightest (off-white), with a large soft drop shadow; the top card is a slightly greyer, narrower card; the bottom card is near-black.",
+    "background": "light blue-grey to white vertical gradient with soft blue glows at the corners, small outlined blue bubbles of varied size, and big tilted translucent blue rounded rectangles (glass slabs) at the edges, slightly blurred",
+    "reusable": "yes, as a look: content shown inside a floating off-white card with a soft shadow, over a calm light-blue bubble-and-glass background; the card stack suggests 'layers' or 'behind the scenes'. Never reuse the editor viewport or timeline contents; if a stack is used, the other cards hold our own content (a preview, a caption, a progress strip)."
+  },
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        1.4
+      ],
+      "shot": "plain off-white card, one line of small text centred",
+      "camera": "static",
+      "moves": "words arrive one by one, about 0.2-0.25 s apart: each word starts smaller (about 70%), lower by a few px, pale blue and slightly blurred, and settles to full size, sharp and dark (about 0.25 s, smooth ease-out); the last letters of the newest word are still tinted blue while it settles; 1.2-1.4 s the whole line blurs and fades out in place",
+      "text": "one short line of small medium-weight sans (about 3% of card height), dark grey, centred",
+      "transition_out": "soft cut: blur + fade to the empty card, next phrase blurs in",
+      "palette": "off-white card, near-black text, blue tint on the arriving word",
+      "built": "code-native (kinetic type)",
+      "reusable": "yes: the core 'word-by-word soft settle' reveal synced to the voice; motion only"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        1.4,
+        2.3
+      ],
+      "shot": "same card, one short phrase centred in blue",
+      "camera": "static, very slight shrink",
+      "moves": "the whole phrase blurs in at once (heavy gaussian blur → sharp in about 0.2 s, slight scale-down from about 110%), then holds and very slowly shrinks; colour is a blue gradient across the phrase",
+      "text": "one short phrase in medium sans, blue gradient (darker to lighter blue)",
+      "transition_out": "blur + fade out, next line starts on the empty card",
+      "palette": "off-white card, mid-blue to light-blue text",
+      "built": "code-native",
+      "reusable": "yes: whole-phrase blur-in for the answer or twist line, contrasted with the word-by-word build; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        2.3,
+        4.2
+      ],
+      "shot": "same card, one line built word by word, a number word and the last word accented in blue",
+      "camera": "static",
+      "moves": "word-by-word settle as in r1-s1; the accent words stay blue (light blue, lighter weight) while the others turn dark; the line re-centres slightly as it grows; exit by blur + fade",
+      "text": "one line, a figure as the first word, last word in light blue with a question mark",
+      "transition_out": "blur + fade to the empty card",
+      "palette": "off-white, near-black and blue",
+      "built": "code-native",
+      "reusable": "yes: accent colour on the key word (number, question) inside a neutral line; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        4.2,
+        6.9
+      ],
+      "shot": "same card, a line split by a glossy 3D icon in the middle (a blue folder with items sticking out)",
+      "camera": "slow push-in and upward drift of the group (about 5-10% scale over 2 s)",
+      "moves": "first half of the line arrives word by word; the 3D icon pops in between the words (scale 0 → about 110% → 100%, about 0.3 s, elastic overshoot) while the line splits apart to make room; the second half, in blue, arrives with the settle; then the whole group drifts up and grows slightly; 6.4-6.9 s it rises out of the top of the card while the next scene enters from below",
+      "text": "one line in two parts, first part dark, second part blue; the icon sits on the text baseline at about 2x cap height",
+      "transition_out": "push: the group exits upward as a phone slides up from the bottom (with motion blur)",
+      "palette": "off-white, near-black, blue; glossy blue icon with white highlights and a soft blue glow under it",
+      "built": "code-native type; the icon is a glossy 3D object (three.js or a pre-rendered sprite built in code)",
+      "reusable": "yes: a 3D icon popping between two words as the visual noun of the sentence; motion only (our icon comes from the voiceover)"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        6.9,
+        7.6
+      ],
+      "shot": "medium, a phone in portrait rising into the right half of the card, showing a product list",
+      "camera": "static; the phone moves",
+      "moves": "the phone slides up from below the card edge with strong vertical motion blur (about 0.4 s, fast ease-out), a frosted list card already attached to its left side; settles slightly left of where it entered",
+      "text": "none new (UI micro-text inside the phone)",
+      "transition_out": "continuous into r1-s6",
+      "palette": "off-white card, black phone frame, white UI, grey frosted list card",
+      "built": "code-native (phone mock-up and UI as DOM); screen photos are image slots",
+      "reusable": "yes: a device slide-in from below with motion blur that pushes the previous type out; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        7.6,
+        8.6
+      ],
+      "shot": "medium, bold headline at the top-left beside the phone, a frosted glass list card overlapping the phone's left edge",
+      "camera": "slow drift",
+      "moves": "headline words arrive by the soft settle (bold, larger than earlier type); the frosted list card floats with a slow vertical bob; a value in the list updates; 8.3-8.6 s everything fades out together to an empty card",
+      "text": "one bold two-word headline, dark, top-left of the composition",
+      "transition_out": "fade to the empty card",
+      "palette": "off-white, black headline, black phone, frosted white-grey card with soft shadow",
+      "built": "code-native",
+      "reusable": "yes: headline + device + floating frosted card overlapping the device edge; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        8.6,
+        9
+      ],
+      "shot": "empty card, one pale blue word fading in centre",
+      "camera": "static",
+      "moves": "a single word fades up from very faint (almost white) to blue; a breath before the next scene",
+      "text": "one word, light blue",
+      "transition_out": "the next scene builds around the word (no cut)",
+      "palette": "off-white, pale blue",
+      "built": "code-native",
+      "reusable": "yes: a 'breath' beat with one faint word on an empty card before a big scene; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        9,
+        12.2
+      ],
+      "shot": "wide, the camera inside a tunnel made of phones: many phones rotated around the frame edges in perspective, all pointing at the centre, line of text in the middle",
+      "camera": "slow forward dolly through the tunnel with a slight roll",
+      "moves": "phones fly in from the corners at steep angles (rotated 30-60°) and settle into a ring around the text (about 0.5 s, smooth); the ring keeps slowly rotating and coming closer; three short lines replace each other in the centre by the word-by-word settle and blur out (about 1 s per line); colour of the lines alternates blue and dark",
+      "text": "three short lines in turn, small medium sans, centred",
+      "transition_out": "hard cut (12.23 s) to a close-up of a phone screen",
+      "palette": "white phones with black frames and colourful screens on the off-white card",
+      "built": "code-native 3D (CSS 3D or three.js: planes with rounded device frames arranged on a cylinder, camera dolly); screen contents are image slots or code-drawn UI",
+      "reusable": "yes: a tunnel or ring of many identical objects around a small centred line — 'many of X, one of you'; motion only (the objects come from the voiceover)"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        12.2,
+        12.8
+      ],
+      "shot": "full-card close-up of a phone screen showing a 2x2 product grid",
+      "camera": "pull back (zoom out)",
+      "moves": "hard cut in on the screen, the camera pulls back fast to reveal the phone, leading into r1-s10",
+      "text": "none",
+      "transition_out": "continuous pull-back into r1-s10",
+      "palette": "white UI, brown and black product photos",
+      "built": "photos in a code-drawn UI",
+      "reusable": "yes, motion only: cut into a close-up of the screen, then pull back to reveal the device in its world"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        12.8,
+        14.9
+      ],
+      "shot": "medium, a 3D phone tilted back about 20-30° floating on a soft light-blue haze, with wide glossy ribbons (one royal blue, one white) swirling around it; small wordmark top-left",
+      "camera": "slow orbit and push-in; at the end the camera dives into a ribbon",
+      "moves": "the ribbons wrap around the phone as if blown, sliding along their length (smooth, continuous, about 2 s); the phone turns slowly; 14.5-14.9 s the camera pushes into the ribbon fold, everything blurs into a pale haze",
+      "text": "a small wordmark top-left only",
+      "transition_out": "zoom-blur into haze, then hard change (14.9 s) to a dark scene",
+      "palette": "pale blue to lavender haze, royal-blue glossy ribbon, white matte ribbon, black phone",
+      "built": "real 3D (glossy ribbons, soft studio light, soft shadows, depth blur)",
+      "reusable": "yes: the 'hero product' beat — the device with swirling ribbons as a reveal; motion only (our hero object comes from the voiceover or an owner asset)"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        14.9,
+        16.7
+      ],
+      "shot": "medium on a dark navy glowing ground: a frosted search bar near the top, a stack of glass browser cards rising from the bottom, glowing cyan four-point sparkle stars at the sides",
+      "camera": "slow push-in",
+      "moves": "the frosted search bar fades in at the top; three glass cards rise from below one after another, each settling behind the previous one (stagger about 0.3 s, smooth ease-out, light rim glow on their edges); cyan sparkle stars pop in with a scale burst and twinkle; 16.4-16.7 s the scene washes out (brightens and desaturates) to the white card",
+      "text": "tiny UI labels only",
+      "transition_out": "light wash-out (dark → white) into the next type beat",
+      "palette": "deep navy with a teal-blue glow, frosted light-blue glass cards, cyan glowing stars",
+      "built": "code-native 2.5D (glass cards with backdrop blur and rim light, CSS glow) or three.js; logos inside the cards are third-party and replaced",
+      "reusable": "yes: a stack of glass cards rising in stagger under a search bar — 'searching many sources'; the dark glowing scene as a contrast beat; motion only"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        16.7,
+        18.5
+      ],
+      "shot": "plain off-white card, small centred type",
+      "camera": "static",
+      "moves": "two short phrases in turn: the first built word by word (dark), blur-out; the second blurs in as a whole in blue (as r1-s2)",
+      "text": "two short lines in turn, small medium sans",
+      "transition_out": "the next scene grows in behind the text",
+      "palette": "off-white, near-black, blue",
+      "built": "code-native",
+      "reusable": "yes: same type grammar as r1-s1/r1-s2 as the voice moves from problem to solution; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        18.5,
+        20.8
+      ],
+      "shot": "wide, a grid of many light-blue frosted browser windows filling the card, a white bold number with a word over them",
+      "camera": "static, then a fast push-in into the text",
+      "moves": "the windows fade and slide in at slightly different depths (soft parallax); the number appears and its 'plus' and word follow by the settle; the text grows from small to large over about 1.5 s; 20.3-20.8 s a fast push-in scales the text past the card edges (whip zoom with blur)",
+      "text": "one bold white number + one word, large (about 15% of card width, growing to overflow)",
+      "transition_out": "zoom through the text into a soft blue haze (20.8 s)",
+      "palette": "pale blue frosted windows, white text with a soft shadow",
+      "built": "code-native 2.5D",
+      "reusable": "yes: a big figure over a field of many small items, then a push through the figure into the next scene; motion only (our figure must be a sourced value from the package)"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        20.8,
+        22.6
+      ],
+      "shot": "medium, a row of glossy rounded app tiles (dark navy and bright blue alternating) sliding sideways across the card on a pale blue ground, a short line of text above",
+      "camera": "static; the row moves",
+      "moves": "after a soft blue haze (about 0.3 s), tiles slide in from the right and the whole row keeps moving left like a conveyor (linear); text above built word by word; a blurred blue dot flies across the row (a pointer, with motion blur) at about 21.8-22.3 s; tiles have soft drop shadows",
+      "text": "one short line, small medium sans, centred above the tiles",
+      "transition_out": "the tiles zoom slightly and fade, the text stays and becomes the start of the next line",
+      "palette": "pale blue ground, navy and electric-blue glossy tiles with white UI lines, blue dot",
+      "built": "code-native 2.5D (rounded tiles with gradients and shadows, translateX loop)",
+      "reusable": "yes: a conveyor of identical tiles behind a 'no more X' line — repetition shown as endless movement; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        22.6,
+        24.2
+      ],
+      "shot": "plain off-white card, one line with a small sparkle icon at its end",
+      "camera": "static",
+      "moves": "the first word holds, a small blue four-point sparkle icon flies in at the end of the line and spins; the rest of the line settles word by word; 23.8-24.2 s blur-out",
+      "text": "one short line, first word blue, rest dark",
+      "transition_out": "blur + fade",
+      "palette": "off-white, blue, near-black",
+      "built": "code-native",
+      "reusable": "yes: a small icon that leads the cursor at the end of a growing line; motion only"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        24.2,
+        27.4
+      ],
+      "shot": "plain off-white card, one line built word by word, then a push-in so the line becomes large and cropped",
+      "camera": "push-in and slight pan (about 2.5x scale over 0.5 s, then a slow drift left)",
+      "moves": "the line builds word by word (dark first half, blue second half after a dash); at about 26.3 s the camera pushes in fast (strong ease-in-out) so the line overflows the left edge, then drifts slowly; 27.1-27.4 s the line fades out",
+      "text": "one line, first half dark, second half blue, dash in between",
+      "transition_out": "fade to the empty card",
+      "palette": "off-white, near-black, blue",
+      "built": "code-native",
+      "reusable": "yes: the promise line built small, then a push-in makes it huge and cropped — the key message beat; motion only (for RTL the crop and drift directions follow rtl-grammar.md)"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        27.4,
+        32.13
+      ],
+      "shot": "plain off-white card, a serif italic wordmark centred, a small tagline under it, two store badges at the bottom",
+      "camera": "static",
+      "moves": "the wordmark is written letter by letter (each letter grows in from small, about 0.15 s apart, settling with ease-out); the tagline arrives word by word in small grey serif; the badges slide up and fade in (about 0.3 s); 29.5-32.13 s hold",
+      "text": "logo wordmark, one-line tagline, two small badges",
+      "transition_out": "end of film",
+      "palette": "off-white, black wordmark, grey tagline, black badges",
+      "built": "code-native",
+      "reusable": "yes, motion only: letter-by-letter logo build on the plain card with tagline and call-to-action under it; for our film the brand's own logo outro rules win (router conflict order, item 5)"
+    }
+  ],
+  "visual_language": "A calm, soft, mostly typographic app promo presented as a making-of: the finished film sits in a floating off-white card above an editor viewport and below-it timeline, on a light blue bubble-and-glass background. Medium: kinetic type in code for more than half of the running time, broken by a few dimensional beats (a glossy 3D icon between words, a tunnel of phones, a 3D phone wrapped in glossy ribbons, a dark glowing stack of glass cards, a conveyor of glossy tiles, a field of frosted windows). Typography: one clean neutral sans, small (about 3% of card height) for most lines, medium weight, near-black with one or two words in blue; the answer lines are fully blue (sometimes a blue gradient); one bold large headline and one bold white number; the end wordmark is a serif italic. Rhythm: about 17 beats in 32 s (average about 1.9 s), almost no hard cuts (four in the whole film); phrase changes are soft blur-outs and blur-ins on the voice, words land about every 0.2-0.25 s; type beats alternate with 3D or UI beats roughly every 2-3 lines. Palette: off-white, near-black, one blue family (royal, sky, pale), one dark navy contrast scene with cyan glow. Signature moments: the 3D icon popping between two words, the phone tunnel around a tiny line, the ribbons wrapping the phone, the glass card stack rising on navy, the push through a big number, the promise line pushed in until it is cropped, the letter-by-letter wordmark.",
+  "look": "Mixed: flat clean type on a flat off-white card for the type beats (no texture, no shadow on text); real 3D for the dimensional beats — glossy blue plastic icon with highlights and a soft glow, phones with real perspective, glossy royal-blue and matte white ribbons under soft studio light with soft shadows and depth blur, frosted glass cards with backdrop blur and rim light on a deep navy glowing ground, glossy rounded tiles with soft drop shadows, frosted pale-blue windows with parallax. Motion blur on fast moves (phone slide-in, whip push, flying dot) and gaussian blur as the standard phrase transition. Outer frame: floating rounded cards with large soft shadows over a light blue-grey gradient with outlined bubbles and tilted translucent blue glass slabs.",
+  "code_translation": "Code-native with real 3D. Type beats: DOM text in the brand font, words split into spans; each word animates scale 0.7 → 1, translateY +6 px → 0, filter blur(6px) → 0, colour blue → final, about 0.25 s ease-out, staggered on the voice word timings; phrase exit = blur(0 → 10px) + opacity 1 → 0 in about 0.2 s; whole-phrase blur-in for answer lines. 3D beats are built as real 3D in three.js (never flattened into 2D shapes): the glossy icon (MeshPhysicalMaterial, clearcoat, environment light, soft glow), the phone tunnel (rounded device planes on a cylinder, camera dolly with roll), the phone with ribbons (ribbon as an extruded curve or tube with a sliding texture or vertex offset, two materials, soft shadows, depth of field as blur), the glass card stack (transmission or backdrop-blur planes with rim light, additive cyan sparkle sprites). 2.5D beats (window field, tile conveyor) in CSS 3D with soft shadows and parallax. Motion blur by frame blending or directional blur on fast moves. Push-in into type by scaling the type layer with ease-in-out and a short blur. Logo build: letters as spans scaling in one by one (our own logo and outro rules apply). The outer card stack: three rounded divs with large soft shadows over a CSS gradient with SVG bubbles and blurred translucent rounded rectangles. Screen contents of devices: owner assets or code-drawn UI.",
+  "code_buildable_pct": 98.1,
+  "code_buildable_note": "32.13 s total; only r1-s9 (0.6 s full-card product-photo grid) is photo-dependent; 3D renders count as buildable (D55); photos inside phone screens elsewhere are image slots filled with owner assets or code-drawn UI.",
+  "continuity": [
+    "One stage for the whole film: everything happens inside the same floating off-white card, so even the 3D and dark scenes read as one continuous piece.",
+    "Soft blur-out / blur-in instead of cuts between phrases: the previous line dissolves in place and the next one materialises at the same centre, so the eye never has to move.",
+    "Word-by-word build synced to the voice, with the newest word still tinted in the accent colour while it settles — the colour marks 'now'.",
+    "A line splits apart to make room for an object that pops in between its words, then the whole group leaves together (text and object as one unit).",
+    "Push or rise exits: a group drifts up and out of the stage while the next object slides in from the bottom with motion blur, so one scene pushes the other out.",
+    "Breath beat: one faint word on an empty stage, then the next big scene builds around it instead of cutting to it.",
+    "Camera through an object: a cut into a screen close-up followed by a fast pull-back reveals the object in its world; a push into a fold of the hero object blurs into haze, which opens the next scene.",
+    "Push through a big figure: the number grows until it overflows the frame and the zoom carries the camera into the next scene's haze.",
+    "Light wash-out: a dark contrast scene brightens and desaturates to the white stage, so the return to type is soft.",
+    "Repetition shown as many identical objects (a ring of devices, a conveyor of tiles, a field of windows) around or behind one small line of text.",
+    "The final promise line is built small, then pushed in until cropped; the logo then writes itself letter by letter on the same empty stage."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its brand, wordmark, product names, third-party logos (amazon, Nike, Louis Vuitton, Coach, store badges), product or model photos, copy, figures or the shot order one by one.",
+    "The making-of frame (editor viewport card and timeline card around the render) is not the film itself: a film using it fills the extra cards with our own content or drops them; never show third-party software screens.",
+    "Text is very small in the reference (about 3% of card height inside a card that is about half the frame): readability ranks above the reference; Persian lines must meet the minimum sizes and safe zones in safe-zones.md, so type is set larger, or the card is enlarged, for 9:16.",
+    "Word-by-word reveals and the blur-in per word must keep Persian words whole and correctly joined: animate whole words (never letters) for Persian, and keep the right-to-left build order (rtl-grammar.md). The letter-by-letter logo build applies only to a Latin wordmark or as a whole-logo reveal; the brand logo outro rules win.",
+    "Leftward drifts, the tile conveyor moving left and the push-in crop to the left read left → right: for Persian the directions follow references/rtl-grammar.md.",
+    "Real 3D beats (ribbons, phone tunnel, glossy icon, glass stack) are costlier to build and render than type; motion-build must use three.js with lights, soft shadows and depth blur rather than flat 2D stand-ins (D55).",
+    "Reference colours (off-white, near-black, blue family, navy with cyan glow, pale-blue background) map onto brand colour roles (light background, text, primary/accent, dark background); never used as literal hex values. Colours were read by eye, not sampled.",
+    "The reference has its own music bed; our cuts and reveals follow the voiceover first, and L6 sets sound. Tempo was not analysed.",
+    "Any figure shown big (as in r1-s13) must be a sourced value from the package and must end exactly on it (data-viz.md), in Persian digits."
+  ],
+  "sha256": "3d7eb34a8a2903ed4b02c3c19287377f3c17eb241fbf2c3b8761d4ed36bf2336"
+}

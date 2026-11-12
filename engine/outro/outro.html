@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- Responsibility: the generic brand logo outro (3.70 s, 1080x1920, 30 fps): dotted ring builds, the logo appears at 1.0 s, the tagline reveals at 1.45 s with a line; all colours, fonts, logo and text come from window.__params (render.mjs). -->
+<html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden}
+#stage{position:absolute;inset:0}
+#ring{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#logo{position:absolute;left:290px;top:392px;width:500px;height:580px;display:flex;align-items:center;justify-content:center}
+#logo img{max-width:500px;max-height:500px;object-fit:contain}
+#wrap{position:absolute;left:0;right:0;top:1118px;display:flex;flex-direction:column;align-items:center;gap:18px}
+#mask{overflow:hidden;display:flex}
+#t{line-height:1.3;white-space:nowrap}
+#line{height:3px;align-self:center}
+</style></head><body>
+<div id="stage"><svg id="ring" viewBox="0 0 1080 1920"></svg><div id="logo"><img id="img" alt=""></div>
+<div id="wrap"><div id="mask"><div id="t"></div></div><div id="line"></div></div></div>
+<script>
+const P = window.__params;
+const T0 = 1.45, REV = 0.55, LINE0 = 1.6, LINE = 0.5, LOGO0 = 0.55, LOGO_HIT = 1.0, CX = 540, CY = 682, R = 340, N = 72;
+const ease = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.pow(1 - x, 3);
+document.body.style.background = P.bg;
+const style = document.createElement('style');
+style.textContent = P.fontUrl ? `@font-face{font-family:BrandFont;src:url("${P.fontUrl}");font-weight:100 900}` : '';
+document.head.appendChild(style);
+const t = document.getElementById('t'), mask = document.getElementById('mask'), line = document.getElementById('line');
+t.textContent = P.tagline; t.style.cssText += `font:700 62px/1.3 BrandFont,sans-serif;color:${P.textColor};direction:${P.rtl ? 'rtl' : 'ltr'}`;
+mask.style.justifyContent = P.rtl ? 'flex-end' : 'flex-start';
+line.style.background = P.lineColor;
+if (!P.tagline) { t.style.display = 'none'; line.style.display = 'none'; }
+const ring = document.getElementById('ring');
+const dots = [];
+for (let i = 0; i < N; i++) {
+  const a = -Math.PI / 2 + (i / N) * Math.PI * 2;
+  const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  c.setAttribute('cx', CX + R * Math.cos(a)); c.setAttribute('cy', CY + R * Math.sin(a)); c.setAttribute('r', 5); c.setAttribute('fill', P.lineColor);
+  ring.appendChild(c); dots.push(c);
+}
+const img = document.getElementById('img'); img.src = P.logoUrl;
+let W = 0;
+window.__comp = { width: 1080, height: 1920, fps: 30, duration: 3.7 };
+(async () => {
+  if (P.fontUrl) await document.fonts.load('700 62px BrandFont');
+  await new Promise(r => img.complete ? r() : (img.onload = r, img.onerror = r));
+  W = t.getBoundingClientRect().width; mask.style.width = W + 'px';
+  window.__ready = true;
+})();
+window.__seek = async time => {
+  // ring: dots appear one after another over 0-0.6 s, then settle to a quiet 35% after the logo hit
+  dots.forEach((c, i) => {
+    const p = ease((time - (i / N) * 0.6) / 0.18);
+    const settle = 1 - 0.65 * ease((time - LOGO_HIT) / 0.35);
+    c.style.opacity = p * settle;
+  });
+  const lp = ease((time - LOGO0) / (LOGO_HIT - LOGO0));
+  const logo = document.getElementById('logo');
+  logo.style.opacity = lp; logo.style.transform = `scale(${0.94 + 0.06 * lp})`;
+  const p = ease((time - T0) / REV);
+  mask.style.clipPath = P.rtl ? `inset(0 0 0 ${(1 - p) * 100}%)` : `inset(0 ${(1 - p) * 100}% 0 0)`;
+  t.style.transform = `translateY(${(1 - p) * 18}px)`; t.style.opacity = p > 0 ? 1 : 0;
+  line.style.width = (ease((time - LINE0) / LINE) * W * 0.42) + 'px';
+};
+</script></body></html>

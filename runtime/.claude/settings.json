@@ -1,0 +1,22 @@
+{
+  "model": "claude-opus-5-5",
+  "effortLevel": "high",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Bash(ffmpeg *)",
+      "Bash(ffprobe *)",
+      "Bash(node *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(python *)",
+      "Bash(py *)",
+      "WebSearch",
+      "WebFetch"
+    ]
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "slug": "dark-glow-finance-01",
+  "key": {
+    "sha256": "d8628dc6fae9758d40dd15c31112f2e83364582c4fa0ec93d64c4a4e45644d1e"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 31.57,
+    "w": 720,
+    "h": 1278,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1278 (2 px short of 1280), 30 fps, 947 frames, 31.57 s. Audio: AAC HE-AACv2 stereo 44.1 kHz, continuous (no silence below -40 dB for 0.3 s or longer), mean -16.2 dB, peak -1.0 dB; the on-screen words follow a narration, so it is read as voice-over over a bed; not analysed for beats, third-party audio never reused. The film ends on a held save-this-post CTA."
+  },
+  "rights_note": "third-party short from Pinterest (file «R3_Fund_pindown.io_1792257137.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "مالی تاریک با نور قرمز و سبز",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party short of unknown origin: borrow the motion language and look only, never its shots one by one, its object designs, its copy, its figures or its characters (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        31.57
+      ],
+      "why": "the English copy (a trading-psychology story: most people lose money, markets run on fear and greed, know your targets and risk, buy quality, master your mindset, save this post) and every figure in it (the account balance counting $47,275 down to $157, the 'My account' label) are third-party copy and claims; never reused as text, numbers or topic"
+    },
+    {
+      "span": [
+        0,
+        31.57
+      ],
+      "why": "the character designs (the sad sphere-headed bust, the crowd of sphere-headed figures with raised arms, the tiny stick figure on the account bar, the meditating glossy figure) are the creator's designs; our scenes take their subjects from the voice-over and only borrow the rendering style (glossy spheres, rim light, one colour per mood)"
+    },
+    {
+      "span": [
+        16.4,
+        21.47
+      ],
+      "why": "the 'Euphoria / Fear' chart with its 'Buy Quality' and 'Profit' pills is the reference's argument; only the technique (two labelled curves drawing themselves and crossing, dashed markers, a pointer stepping between pills) is borrowed, with our data and labels from the package"
+    },
+    {
+      "span": [
+        0,
+        31.57
+      ],
+      "why": "the audio track (voice and bed) is third-party; L2 uses our voice-over and L6 builds our sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (4 sheets, 6x3, all viewed); scene detect: gt(scene,0.3) and 0.2 found nothing (dark frames score low), gt(scene,0.06) with scene_score printed found cuts at 2.13, 6.97, 12.07, 14.03, 21.47, 24.40 and 26.87 s; the other changes (4.7 s cut to the type shot, 9.7-10.2 s colour turn, 16.4 s chart in, 28.4 s CTA in) were read by eye on dense sheets fps=10 over 1.6-2.8, 3.8-5.0, 9.2-10.4, 11.6-12.8, 13.6-14.8 s and fps=5 over 26.4-28.8 s (6 dense sheets, all viewed). Spans accurate to about ±0.1 s. silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.13
+      ],
+      "shot": "medium, a dark card in the upper half: a small balance figure at its top left, a falling line with a star-shaped glint on its tip, a wide glowing horizontal bar at the bottom with a tiny figure standing on it",
+      "camera": "static, the card tilts very slightly in 3D (perspective on its sides)",
+      "moves": "the number counts down continuously (about 8 updates a second, linear); the line drops right with a cross-flare glint riding its tip; the whole card's light turns from white-green to deep red over about 1 s (smooth cross-fade), the bar keeps a red pill at its left end like a battery level; the caption pops one word per spoken word",
+      "text": "single-word caption at the top centre (about 8% from the top), white neutral grotesk sans, regular weight, cap height about 2% of frame height; the balance number is the largest text, bold white, with a coloured underline",
+      "transition_out": "hard cut at 2.13 s to a new subject on the same black",
+      "palette": "pure black, the card lit from inside: white-green first, then saturated red with a bright white-pink bar; white text",
+      "built": "code-native look (card, counter, line chart, glow bar) with soft glow and flare sprites",
+      "reusable": "yes: a counter that ticks down while its card's light turns from the good colour to the warning colour, a glint riding the chart tip; motion only, our values come from the package"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.13,
+        4.7
+      ],
+      "shot": "medium, a single bust built from two glossy dark spheres (a head and a half-sphere torso) in the centre of a black void, rim-lit from above",
+      "camera": "static, then 4.4-4.7 s a fast push-in (the bust grows about 30%, ease-in) that ends in the cut",
+      "moves": "2.1-3.0 s a two-line caption builds word by word at mid-left above the head (words arrive grey and brighten to white); 3.4-4.4 s a row of five small glowing gems in different colours (magenta, blue, green, white, red) floats in a line above the head with a tiny bob; the face has simple dot eyes and a mouth that changes expression",
+      "text": "first a two-line sentence block (about 30% from the top, left-aligned, larger than the single-word caption, cap height about 3%), then back to the single-word caption at the top",
+      "transition_out": "push-in then hard cut at about 4.7 s to an empty grey gradient frame",
+      "palette": "black, dark grey glossy spheres with white rim light, one row of small saturated colour gems",
+      "built": "generated look (3D glossy spheres) but simple enough for code",
+      "reusable": "yes: one glossy-sphere stand-in for 'a person' with a rim light, a row of small glowing icons appearing above it to show what is in their head, a push-in that punches into the cut; motion and rendering only, never the character"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        4.7,
+        6.97
+      ],
+      "shot": "type only: an empty dark grey diagonal gradient (lighter at the upper left), one line of type centred low in the frame (about 55% from the top)",
+      "camera": "static",
+      "moves": "the small words fade in one at a time from grey to white (about 0.15 s each); the two key words then slam in large and bold, condensed, each in its mood colour (first red, then green) with a tiny 'and' between them, popping in at full size (snappy, about 0.1 s); the single-word caption from the previous shot stays at the top until it fades",
+      "text": "a small regular lead line above two huge condensed bold key words in colour; the key words are about 4 times the cap height of the lead",
+      "transition_out": "hard cut at 6.97 s",
+      "palette": "dark grey to black gradient, white lead, saturated red and green key words",
+      "built": "code-native (type on a gradient)",
+      "reusable": "yes: a breath shot that names the film's two opposing forces as two huge colour-coded words; the two colours then rule the rest of the film; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        6.97,
+        12.07
+      ],
+      "shot": "medium-wide, a frosted glass chart card in the upper middle with a rising line and a star glint at its tip; a crowd of glossy sphere-headed figures fills the lower third; a strong coloured light pours down from the top edge",
+      "camera": "static, with a slight drift (the crowd and card breathe in scale very slightly)",
+      "moves": "7.0-9.7 s green phase: the line draws itself up and right with the glint on its tip (smooth), the crowd bobs with raised arms (a small loop, about 0.5 s); 9.7-10.2 s the whole scene turns from green to red (top light, card tint, glint and crowd rims, smooth cross-fade about 0.4 s) as the crowd thins to four figures in a loose group; 10.2-12.0 s the line peaks into a rounded hump and falls right, the glint riding down; 11.7-12.07 s a glowing white-green orb enters from the left edge with a light streak behind it and crosses the card",
+      "text": "single-word caption at the top centre, white",
+      "transition_out": "the orb's entry carries over a hard cut at 12.07 s into the next shot, where the orb is already flying",
+      "palette": "black base; green phase: saturated green top light, dark green glass card, grey-white figures; red phase: saturated red top light, red glass, red-rimmed figures; white-hot glints",
+      "built": "generated look (3D glass card, glossy figures, volumetric top light)",
+      "reusable": "yes: one scene that flips mood by recolouring the whole world (light, glass, glints, figures) from the good colour to the warning colour while the data line peaks and falls; an object entering at the end that becomes the hero of the next shot; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        12.07,
+        14.03
+      ],
+      "shot": "medium, two big dark-green slabs tilted in 3D (one above, one below, like jaws or the two halves of a split card) with a glowing white-green orb flying through the gap between them",
+      "camera": "static; reads as a fast tracking shot because the orb holds near the centre while speed lines stream past",
+      "moves": "the orb stays near centre-right with a long green light trail and short speed streaks flowing left (looping, linear); the slabs hold with a tiny parallax; green glow from the left edge; 13.9-14.0 s the orb shoots out to the right",
+      "text": "single-word caption at the top centre, white",
+      "transition_out": "the orb exits right and the frame hard cuts to black at 14.03 s; the next line starts where the orb left",
+      "palette": "black and deep green, green slabs, a white-green orb, bright green trail",
+      "built": "code-native look (two rounded slabs, a glowing sphere, streak sprites)",
+      "reusable": "yes: a 'breakthrough' beat: a glowing ball shooting through a gap between two solid blocks with a light trail and speed lines, then out of frame to carry the cut; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        14.03,
+        16.4
+      ],
+      "shot": "type only on pure black: one line of type at mid-low height (about 55% from the top)",
+      "camera": "static",
+      "moves": "the words appear from the left one by one, starting where the orb exited (a 'now' word blinks at the right edge first), each fading in from grey to white (about 0.15 s); the two key nouns are set larger than the rest; a faint grid crosshair glows behind the first key word",
+      "text": "one line of two parallel short sentences, small regular words with larger key nouns, white",
+      "transition_out": "the type fades out at about 16.4 s and the chart draws in on the same black (no cut)",
+      "palette": "pure black, white text, a faint grey grid mark",
+      "built": "code-native (type)",
+      "reusable": "yes: a pure-type rule line with mixed sizes to stress the key nouns, built word by word; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        16.4,
+        21.47
+      ],
+      "shot": "medium, a small line chart in the middle third: a dark grid with a white radial glow at the lower left, two axis labels on the left in green and red, two pill buttons under the chart",
+      "camera": "static",
+      "moves": "two curves (green and red) draw themselves left to right and cross like waves (smooth, about 4 s in all); dashed vertical markers drop in at the turning points; a small green triangle pointer under the pills slides from the first pill to the second as the voice names each (ease-in-out, about 0.4 s), the active pill lights green",
+      "text": "single-word caption at the top centre; tiny labels on the chart (axis names in their colours, white pill labels)",
+      "transition_out": "hard cut at 21.47 s",
+      "palette": "black, grey grid, white glow, green and red curves, dark pills with green and brown outlines",
+      "built": "code-native (SVG chart, pills, pointer)",
+      "reusable": "yes: two opposing curves that draw themselves and cross, markers at the turning points, a pointer stepping between two action pills in time with the voice; motion only, our data and labels from the package"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        21.47,
+        24.4
+      ],
+      "shot": "medium, one glossy green 3D figure sitting cross-legged in the centre of a dark grey gradient, thin orbit ellipses around it",
+      "camera": "static, then 23.9-24.4 s a pull-back (the figure shrinks about 30% and drops lower, ease-in-out)",
+      "moves": "the orbit rings turn slowly; small labelled pills ride the orbits and pop in one at a time as the voice names them (first right, then left, ease-out about 0.2 s); a soft green glow under the figure",
+      "text": "single-word caption at the top centre; tiny labels on the orbit pills",
+      "transition_out": "pull-back then hard cut at 24.4 s",
+      "palette": "dark grey gradient, glossy green-to-white figure with a mint glow, thin grey orbits",
+      "built": "generated look (glossy 3D figure, gradient material)",
+      "reusable": "yes: a calm hero object with labelled pills orbiting it, popping in on the spoken word; a pull-back to end the beat; motion and rendering only, never the figure"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        24.4,
+        26.87
+      ],
+      "shot": "medium, an empty frosted glass card in the upper middle; a long row of green chrome coin stacks along the bottom of the card",
+      "camera": "static",
+      "moves": "the coin stacks slide in from the left with heavy horizontal motion blur and keep stacking (fast ease-out, staggered); a thin white line draws itself inside the card as a curve bending steeply upward (exponential feel, about 2 s)",
+      "text": "single-word caption at the top centre",
+      "transition_out": "hard cut at 26.87 s to black (the caption word holds for a moment on black)",
+      "palette": "black and dark grey, a glass card with a soft edge highlight, metallic green-and-white chrome coins, a white line",
+      "built": "generated look (glass card, chrome coins with motion blur)",
+      "reusable": "yes: growth shown as a line bending upward while metallic objects pile up below with motion blur; motion and rendering only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        26.87,
+        28.4
+      ],
+      "shot": "type only: a large bold condensed line across the middle of the frame, a big soft green radial glow at the upper right with faint concentric rings",
+      "camera": "the type itself moves: it swings in from the right in 3D (rotateY, perspective) and keeps drifting left past the frame edge",
+      "moves": "27.0-27.6 s the words swing in one by one in 3D, grey to white, the line tightening as it lands; 27.6-28.2 s the whole line keeps sliding slowly to the left; 28.2-28.4 s it fades out",
+      "text": "one short bold condensed line, very large (cap height about 4%), white",
+      "transition_out": "fade to the CTA on the same green-glow background (no cut)",
+      "palette": "black with a soft green radial glow, white type",
+      "built": "code-native (type with CSS 3D)",
+      "reusable": "yes: a punchline that swings in in 3D and drifts across the frame on a glowing background; motion only"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        28.4,
+        31.57
+      ],
+      "shot": "type only, the same green-glow background: a two-line CTA in the middle with a small bookmark icon under it",
+      "camera": "static",
+      "moves": "the letters of each word fade in wide-tracked and grey, then the tracking tightens and they brighten to white (about 0.4 s per word, smooth); 29.0 s a bookmark outline appears under the text and a small green cursor arrow rises to tap it; holds to the end",
+      "text": "two centred lines, regular weight, cap height about 2%, white",
+      "transition_out": "end of file",
+      "palette": "black with a soft green radial glow, white type, a green outline icon",
+      "built": "code-native (type and an icon)",
+      "reusable": "yes: a CTA whose letters tighten from wide tracking into place, with a small icon tapped by a cursor; motion only, our CTA from the package and the brand outro after it"
+    }
+  ],
+  "visual_language": "A dark, glowing finance-psychology short told by one narrating voice whose words appear on screen one at a time. Medium: simple 3D-looking objects (glossy spheres as people, frosted glass chart cards, chrome coins, a glossy figure) and code-like charts, all floating in a pure black void and lit from inside or from a strong coloured light above. Two mood colours run the whole film: green means gain, calm, the right way; red means loss, fear, panic. Each scene is lit in one of them, and a scene can turn from one to the other in about half a second to show the mood flip. Typography: a small white neutral grotesk sans single-word caption at the top centre that changes with every spoken word (no sentence build, one word at a time), broken by pure-type shots where a sentence builds word by word in the middle of the frame (words fade from grey to white), sometimes with key words larger, condensed and colour-coded, or swung in in 3D. Rhythm: 11 shots in 31.6 s (about 2.9 s each), hard cuts on phrase boundaries, never on a beat; some cuts are carried by an object (an orb enters at the end of one shot and is the hero of the next, then flies out to begin the type that follows). Moves are smooth and slow on objects (self-drawing lines, slow orbits, a gentle crowd bob), fast on accents (counters ticking, glints riding line tips, speed streaks, short push-ins and pull-backs into cuts). Signature moments: the balance counting down while the card turns red; the whole crowd scene flipping from green to red at the peak; the glowing orb breaking through two slabs; two colour-coded giant words naming the forces.",
+  "look": "2.5D leaning to real 3D in a pure black studio void. Materials: glossy dark spheres with white rim light (people stand-ins), frosted glass cards with a faint grid and soft edge highlight, metallic green chrome coins with motion blur, a glossy green-to-white gradient figure, matte dark-green slabs. Light: a strong coloured volumetric light from the top edge (green or red) in the crowd scene, objects glowing from inside, rim lights from above, star-shaped cross-flare glints on line tips, a soft radial glow at a corner of the frame for type shots. Depth: shallow; objects mostly sit in one plane with soft perspective tilt, no heavy depth of field. Background: pure black most of the time, a dark grey diagonal gradient for two shots, a soft green radial glow with faint rings at the end.",
+  "code_translation": "Mostly code-native with 3D accents. Per D55 the 3D parts are built as real 3D in code with three.js: glossy spheres and the figure with MeshPhysicalMaterial (low roughness, clearcoat) plus a white rim light from above; frosted glass cards as rounded boxes with transmission and roughness plus a grid texture and an emissive edge; chrome coins as cylinders with a metallic material and a horizontal motion-blur pass (or stretched copies with falling opacity); the coloured top light as a spot light plus an additive cone sprite. The mood flip is one tween on a shared colour uniform (light, emissive tints, glints, rims) from the brand's positive role to its warning role over about 0.4 s. Charts and counters are SVG or canvas: stroke-dashoffset line draws with an additive cross-flare sprite riding the tip, counters tweened with Persian digits and separators per data-viz.md. The single-word caption and the pure-type shots are HTML type in the brand Persian font, whole words only (rtl-grammar.md), timed from audio.json word times: words fade grey to white in about 0.15 s, key words larger and in the mood colour; the 3D swing-in uses CSS rotateY with perspective, the tightening CTA uses a letter-spacing tween on whole words (never on joined Persian letters one by one). The orb streak is a glowing sphere with a trail sprite and looping speed lines.",
+  "continuity": [
+    "One word on screen at a time: a small caption at the top centre swaps with every spoken word, so the voice is always readable without covering the subject.",
+    "Two mood colours run the film: every scene is lit in the positive colour or the warning colour, never both at once, and the meaning of each colour never changes.",
+    "Mood flip in place: instead of cutting, the whole scene (light, glass, glints, figures) recolours from one mood to the other in about half a second while the subject keeps moving.",
+    "Object carries the cut: an object enters at the end of one shot, is the hero of the next, and flies out of frame to start the shot after it.",
+    "Push-in or pull-back into the cut: a short fast scale move on the subject right before a hard cut.",
+    "Glint on the tip: every data line draws itself with a star-shaped glint riding its head.",
+    "Breath shots of pure type: the story's key sentences leave the subject and sit alone in the middle of a dark frame, words building one by one, key words bigger or in colour.",
+    "Simple glossy stand-ins: people and ideas are shown by simple glossy spheres and solids with a rim light, never by detailed illustration.",
+    "Things appear on the spoken word: pills, icons, markers and pointers pop in or move exactly when the voice names them."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its trading-psychology story, English copy, figures (the $47,275 to $157 balance), its character designs (the sad sphere bust, the cheering crowd, the meditating figure), the 'Euphoria / Fear / Buy Quality / Profit' chart, its audio, or its shot order one by one.",
+    "Red and green as mood colours: map them onto the brand's positive and warning colour roles; if the brand bans either colour or has no warning role, keep the mood flip with brand-approved colours (L1). Colours were read by eye, not sampled.",
+    "The single-word top caption is small (cap height about 2% of frame height): in our film it must meet the minimum text size and hold times (a Persian word on screen for at least its spoken length and never under the brand minimum) and sit inside the safe zone (safe-zones.md); very short words may need to be grouped with the next word.",
+    "Word fades, 3D swings and the tightening CTA must use whole Persian words in a shaped font, placed right to left; joined letters are never split, spaced apart or rotated one by one (rtl-grammar.md).",
+    "The film's direction is left to right (lines draw left to right, the orb flies left to right, words enter from the left): in our RTL film time and progress run right to left unless a chart's convention says otherwise (rtl-grammar.md, data-viz.md).",
+    "Dark frames score low in scene detect: cuts were found only at a 0.06 threshold; 4.7 s, 9.7-10.2 s, 16.4 s and 28.4 s were read by eye (±0.1 s).",
+    "Audio is third-party voice and bed; ignored, L2 and L6 build ours. The film ends on its own CTA: ours ends with the package CTA and the brand logo outro."
+  ],
+  "sha256": "d8628dc6fae9758d40dd15c31112f2e83364582c4fa0ec93d64c4a4e45644d1e"
+}

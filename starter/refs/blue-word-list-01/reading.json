@@ -1,0 +1,195 @@
+{
+  "slug": "blue-word-list-01",
+  "key": {
+    "sha256": "7bf649b928b9ff8439cfb4cb2390ae7bc8c259c0b1e99c370e6b0c948ba6c993"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 21.18,
+    "w": 736,
+    "h": 414,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 16:9 film, 736x414 (low resolution), 30 fps, 629 frames, 21.18 s. Audio: AAC HE-AACv2 stereo 44.1 kHz, continuous (no silence below -40 dB for 0.3 s or longer), loud (mean -14.2 dB, peak 0.0 dB, clipping); read as a music bed with no narration (the on-screen sentence is the only copy); not analysed for beats, third-party audio never reused. Our films default to 9:16, so the horizontal layout must be re-composed for a vertical frame."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «swiss design motion ·.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "جمله‌ی کوتاه و فهرست کلمات روی آبی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party studio promo of unknown origin: borrow the motion language and look only, never its shots one by one, its copy, its service list, its portfolio images or its logo (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        7.8
+      ],
+      "why": "the English copy ('Creativity is like a game, and yes, we like to play.') is third-party copy; never reused as text, translated or paraphrased as our line"
+    },
+    {
+      "span": [
+        7.8,
+        12.4
+      ],
+      "why": "the service list (Brand Identity, Brand Strategy, Brand Story, Graphic Design, Video Production, Video Editing, Content Strategy, Platform Branding, Growth Marketing) is the creator's offer; our list items come from the content package only"
+    },
+    {
+      "span": [
+        12.4,
+        16.6
+      ],
+      "why": "the portfolio cards (client logos and posters, a newspaper ad, a 'trusted since 1984' card, a red 'RO' card, a map of India, a government-scheme chip, a 'consistency' chart card, photos of real people) are third-party client work and photographs of real people; never reused, traced or imitated; only the card-carousel motion is borrowed, filled with owner assets or images the voice-over needs"
+    },
+    {
+      "span": [
+        16.6,
+        21.18
+      ],
+      "why": "the three-circle mark and the 'SDS / SANDYDESIGNSTUDIO' wordmark are the creator's brand; only the technique (simple shapes spin and settle into a mark, then the wordmark builds beside it) may inform our brand logo outro, using our own logo per the brand"
+    },
+    {
+      "span": [
+        0,
+        21.18
+      ],
+      "why": "the audio track (music bed) is third-party; L2 uses our voice-over and L6 builds our sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (4 sheets, 4x3, all viewed); scene detect gt(scene,0.2) found no cuts at all (the film is one continuous take of type and shapes on a fixed gradient); phases were found by eye on dense sheets at fps=10: 0.5-2.9 s, 6.0-8.4 s, 11.4-13.8 s and 16.4-20.0 s (4 dense sheets, all viewed). Spans accurate to about ±0.1 s. silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.4
+      ],
+      "shot": "type only: one sentence on a single line at mid height of a static blue gradient frame",
+      "camera": "static (locked frame for the whole film; all motion is in the elements)",
+      "moves": "0-1.3 s the sentence builds word by word on one line (a new word about every 0.2 s, appearing in place with a short fade, no slide); 0.8-1.8 s a light-blue highlight travels along the sentence one word at a time (each word turns light blue for about 0.15-0.2 s, then back to white), while design-tool UI marks play around the newest word: thin corner brackets of a selection box open to the right where the next word will land (0.8-1.2 s) and thin vertical guide lines flick up and down through the line (1.2-1.6 s); 1.8-2.4 s the finished sentence holds all white",
+      "text": "one sentence on one line, white neutral grotesk sans, regular weight, tight tracking, cap height about 5% of frame height, vertically centred at 50%, left edge anchored at about 21-24% of the width (the line grows to the right and ends right of centre)",
+      "transition_out": "no cut: at 2.4 s the words start turning into icons in place (continuous)",
+      "palette": "navy to deep blue gradient with two soft diagonal light-blue bands (upper middle and lower right), white type, a light sky-blue highlight on the active word, thin white UI marks",
+      "built": "code-native (type on a gradient)",
+      "reusable": "yes: a sentence that builds word by word while a colour highlight runs along it word by word, with selection-box corners and guide lines as accents; motion only, never the copy"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.4,
+        5.5
+      ],
+      "shot": "type and icons: one key word held at the centre, small icon rows above and below it",
+      "camera": "static",
+      "moves": "2.4-3.2 s each word except the key word lifts a few pixels and is replaced in place by a short row of small white tool icons (pen, move cross, cursor, eraser, crop, text T, search, home, pin, rotate), one word after another from the first (about 0.15 s apart, snappy pop); the key word moves to the frame centre and the icon rows sit just above-left and below-right of it; 3.2-5.5 s the icons keep swapping in place every 0.2-0.3 s like a slot machine, the groups shifting position, while the key word holds still",
+      "text": "the single key word at the centre, same sans and size as r1-s1",
+      "transition_out": "no cut: at 5.5 s the next sentence starts building around the held key word (the key word is reused as a word of the next sentence)",
+      "palette": "same gradient, white type and white monochrome icons",
+      "built": "code-native (type and SVG icons)",
+      "reusable": "yes: words turn into rows of small icons that stand for them, one word stays as the anchor, the icons shuffle like a slot machine; the shared word carries into the next sentence; motion only, our icons from the voice-over"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        5.5,
+        7.8
+      ],
+      "shot": "type only: a second sentence on one line at mid height, then a short phrase alone",
+      "camera": "static",
+      "moves": "5.5-6.0 s the new words appear to the left and right of the held key word and the icons fade, completing the sentence on one line (same left anchor as r1-s1); the full stop is a larger round dot; 6.0-6.4 s hold; 6.5-7.0 s the gaps between word groups open (tracking spreads, smooth ease-out), the opening words slide left and fade to grey, then the key word slides left and fades; the final phrase drifts to the frame centre (about 0.5 s, smooth); 7.2-7.5 s hold; 7.5-7.8 s the round full stop detaches and slides right away from the phrase while the phrase slides left to about 17% of the width",
+      "text": "one sentence on one line, then the final two-word phrase alone with its full stop; same sans, size and weight",
+      "transition_out": "no cut: the detached full stop becomes the bullet of the list in r1-s4",
+      "palette": "same gradient, white type, fading words go grey-blue",
+      "built": "code-native",
+      "reusable": "yes: a sentence that sheds its words (groups spread apart and fade out) until only the key phrase is left at the centre, and its full stop leaves to become the next element; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        7.8,
+        12.4
+      ],
+      "shot": "type: the short phrase at the left, a tall rolling list to its right",
+      "camera": "static; the list itself is in 3D perspective",
+      "moves": "7.8-8.3 s the full stop, now a bullet, sits right of the phrase and the list fades in from it: the active item sits on the bullet line in white, the other items above and below are pale blue-white at 30-50% opacity, and the whole list is laid on a 3D drum (items slant about 8 degrees, shear and shrink as they recede, fading at the top and bottom edges); 8.3-11.0 s the drum rolls up one item about every 0.5 s (snappy ease-in-out, a short hold on each) and each new active item brightens to white with the bullet; 11.0-12.1 s the roll accelerates to about 0.1 s per item, a slot-machine spin that blurs the list; 12.0-12.4 s the phrase fades out and the list keeps rolling up and off the top edge while fading, leaving the bare gradient",
+      "text": "the phrase small at the left (same sans as r1-s1); list items larger, cap height about 6-7% of frame height, light weight, white active item with a round bullet, inactive items pale and transparent",
+      "transition_out": "no cut: the list spins off the top edge onto the empty gradient (12.4 s), and the next element enters on the same empty frame",
+      "palette": "same gradient, white active item, pale blue-white transparent items",
+      "built": "code-native (CSS 3D or three.js text on a drum)",
+      "reusable": "yes: a list rolled on a tilted 3D drum through a fixed bullet, one item at a time, accelerating to a spin, then thrown off the frame; the full stop that becomes the bullet; motion only, items from our package"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        12.4,
+        16.6
+      ],
+      "shot": "medium: a 3D ring carousel of tall rounded cards in the middle of the frame",
+      "camera": "static; the carousel itself turns in 3D perspective",
+      "moves": "12.5-13.2 s the carousel slides in from the lower-left corner on a diagonal and rises to the centre (smooth ease-out, about 0.7 s), already turning; 13.2-16.3 s the ring turns right to left, one card to the front about every 0.4-0.5 s (smooth, near-constant speed with a slight settle), the front card face-on and largest, side cards angled about 60 degrees and smaller, back cards thin slivers at the ends; card contents (photos, posters, white cards) are flat images; 16.3-16.6 s the carousel lifts up and off the top edge (fast ease-in)",
+      "text": "none of our concern (only text inside the card images)",
+      "transition_out": "no cut: the carousel exits up onto the empty gradient (16.6 s)",
+      "palette": "same gradient; card contents are full colour and not part of the look",
+      "built": "code-native layout (cards as image planes in CSS 3D or three.js) holding third-party images",
+      "reusable": "yes: a portfolio-style ring carousel of tall rounded cards that slides in diagonally, turns one card at a time and flies off the top; only for owner assets or images the voice-over needs, never their images"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        16.6,
+        18.6
+      ],
+      "shot": "a few simple white shapes at the centre; the background dips to black",
+      "camera": "static",
+      "moves": "16.7-17.0 s three small circles fade in on one horizontal line at the centre (an outline ring, a ring with a dot, a filled disc), spaced wide; 17.0-17.9 s the row closes up and spins around its centre like a clock hand, accelerating (first a slow tilt, then about a half turn every 0.1-0.15 s); 17.8-18.1 s the gradient dims to black; 18.0-18.6 s on black the circles fall into a tight cluster and the cluster slides left from the centre to about 36% of the width (smooth ease-out)",
+      "text": "none",
+      "transition_out": "no cut: the gradient fades back in under the settled mark (18.6 s)",
+      "palette": "white shapes on the gradient, then on pure black",
+      "built": "code-native (SVG shapes)",
+      "reusable": "yes: simple shapes appear in a row, spin together faster and faster, the world dips to black, and they snap into a compact mark that makes room for a wordmark; technique only, for our own logo"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        18.6,
+        21.18
+      ],
+      "shot": "logo end card: mark at the left, wordmark to its right, centred as a group",
+      "camera": "static",
+      "moves": "18.6-18.9 s the gradient fades back in; 18.6-19.2 s the wordmark letters build from fragments (strokes draw and pieces fly into place, about 0.6 s); 19.2-19.6 s a small tracked-out tagline types on letter by letter under the wordmark; 19.6-21.18 s hold",
+      "text": "wordmark and tagline (creator's brand, ignored)",
+      "transition_out": "end of file",
+      "palette": "white logo on the gradient",
+      "built": "code-native look (vector logo build)",
+      "reusable": "yes as technique only: the wordmark builds beside the settled mark, then a small tagline types on; our ending is the brand logo outro"
+    }
+  ],
+  "visual_language": "A Swiss-style kinetic-typography studio promo: one continuous take, no cuts, on a single fixed backdrop. Medium: flat type, small monochrome UI icons and simple circles, plus two 3D-perspective set pieces (a list on a tilted drum and a ring carousel of cards), all in code. Typography is the whole film: a neutral white grotesk sans, regular and light weights, tight tracking, one sentence on one line at mid height (cap height about 5% of frame height), left-anchored, building word by word; a light sky-blue highlight runs along it word by word, with design-tool marks (selection-box corners, guide lines) as accents. Every phase grows out of the last: words turn into icons, one word survives into the next sentence, the sentence sheds its words down to one phrase, its full stop becomes a bullet, the list spins off the frame, a carousel slides in on the empty frame, three circles spin and settle into the logo. Rhythm: about 0.2 s per word, 0.5 s per list item, 0.4-0.5 s per card, holds of 0.3-0.6 s after each sentence, and two accelerations to a spin (the list and the circles) as the energy peaks. Easing is snappy for appearances (pops, short fades) and smooth for travel (slides, drifts). Palette: navy to deep electric blue gradient, white type and shapes, one light sky-blue highlight, pale transparent blue-white for inactive items. Signature moments: the colour highlight running along the sentence; words becoming icons; the full stop that becomes a list bullet; the accelerating list spin; the shapes that spin into a logo.",
+  "look": "Flat 2D type on a soft, out-of-focus gradient, with 2.5D perspective for the list drum and the card carousel (CSS-3D style perspective, no real lighting). Light and shadow: none on the type; the only light is in the backdrop, a deep navy field with two broad diagonal bands of brighter electric blue (upper middle and lower right) as if from a soft light behind a frosted screen; cards have rounded corners and at most a very faint shadow. Materials: none (flat white type, flat white icons and circles, flat image cards). Depth of field: the backdrop is fully blurred; inactive list items get more transparent and smaller with depth, no lens blur. Background: the same static blurred blue gradient for the whole film, dipping once to black before the logo.",
+  "code_translation": "Fully code-native (about 95% buildable; only the card images need assets). The backdrop is a fixed CSS or canvas gradient: a navy base with two large blurred diagonal light bands, mapped onto the brand's dark background and accent roles. The sentence is HTML type in the brand Persian font, whole words only and never split letters (rtl-grammar.md): placed right to left and anchored at the right side of the frame for Persian, each word appearing on its audio.json word time with a short fade, a highlight class in the brand accent stepping word by word, SVG corner brackets and hairline guide lines as accents. Words into icons: each word fades out as a row of 2-4 SVG icons pops in at its slot (stagger about 0.15 s), icons swap every 0.2-0.3 s. Word shedding: per-group translateX and opacity tweens; the full stop is an element that tweens into the list bullet. The drum list is CSS 3D (rotateX per item on a cylinder, the whole drum rotated about 8 degrees, perspective) or three.js text planes; the roll is a stepped ease-in-out per item then an accelerating linear spin. The carousel is CSS 3D or three.js image planes on a ring (rotateY per card, translateZ), entering on a diagonal and exiting up, filled only with owner assets or images the voice-over needs. The spinning circles become the brand logo outro: a dip to the background colour, then the brand logo per the brand's outro rules.",
+  "continuity": [
+    "One locked frame, one backdrop: the camera never moves and the blurred gradient never changes, so every change happens in the elements and the film reads as one take.",
+    "Word by word on the voice: each word appears in place as it is said, and a colour highlight steps along the line word by word.",
+    "Design-tool marks: selection-box corners and thin guide lines flick around the newest word as if it were being edited.",
+    "Words become icons: each word is replaced in its slot by a short row of small icons that stand for it, and the icons shuffle like a slot machine.",
+    "A shared word bridges two sentences: one word holds at the centre while the rest of the line changes around it, then becomes part of the next sentence.",
+    "Shedding a sentence: word groups spread apart and fade out until only the key phrase is left, which drifts to the centre.",
+    "Punctuation becomes an element: the full stop detaches and turns into the bullet of the next list.",
+    "Drum list through a fixed bullet: items roll one at a time on a tilted 3D drum through one bright slot, then accelerate into a spin as the energy peaks.",
+    "Exit through an edge onto the empty backdrop: each set piece leaves through a frame edge and the next enters on the bare gradient, instead of a cut.",
+    "Ring carousel: tall rounded cards turn on a 3D ring, one to the front at a time.",
+    "Spin to a mark: a few simple shapes spin together faster and faster, the world dips to black, and they settle into a compact mark."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its English copy, its service list, its portfolio cards and client logos, the photos of real people, the 'SDS / SANDYDESIGNSTUDIO' logo, its audio, or its phase order one by one.",
+    "The reference is 16:9 and low resolution (736x414): in our 9:16 film the one-line sentence must wrap into short lines inside the safe zone (safe-zones.md) and meet the minimum text size and hold times; sizes read here are relative to a horizontal frame.",
+    "Persian runs right to left: the left anchor, the left-to-right highlight run, the phrase sliding left and the full stop leaving to the right are mirrored for Persian (rtl-grammar.md); words appear and highlight whole, never letter by letter.",
+    "The word-to-icon swap and the 0.1 s list spin are too fast to read: icons are decoration, the voice-over meaning must stay readable as words, and each list item that is voiced holds long enough to read (hold times in safe-zones.md); the spin is used only for items not voiced.",
+    "The card carousel needs images: use it only for owner assets or images the voice-over needs; never source photos of real people or third-party work.",
+    "The palette is navy and electric blue with a sky-blue highlight: map it onto brand colour roles (dark background, brand accent for the highlight), never the literal blue if the brand differs; colours were read by eye, not sampled.",
+    "No cuts were detected (one continuous take): phase spans were read by eye on dense sheets (±0.1 s); our film's phase changes are placed on voice timing, not on these spans.",
+    "The film ends on the creator's logo: our film ends on the brand logo outro.",
+    "Audio is a loud third-party music bed (peak 0 dB); ignored, L2 and L6 build ours."
+  ],
+  "sha256": "7bf649b928b9ff8439cfb4cb2390ae7bc8c259c0b1e99c370e6b0c948ba6c993"
+}

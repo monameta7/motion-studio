@@ -1,0 +1,334 @@
+{
+  "slug": "desk-3d-toy-01",
+  "key": {
+    "sha256": "24d79adfa4f4cf4bc11ab1b0aefa5e30278e005a3b0407fb79e23c734ae716d1"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 30.08,
+    "w": 1920,
+    "h": 1080,
+    "fps": 60,
+    "audio": true,
+    "format_note": "Single 16:9 film, 1920x1080, 60 fps, 1800 frames, 30.08 s. Audio: AAC stereo 48 kHz, continuous for the whole film (no silence of 0.4 s or more below -45 dB), mean -14.9 dB, peak -0.4 dB; content not analysed for beats, third-party audio never reused. The last 3.5 s (26.5 s to the end) are letterboxed with black bars top and bottom."
+  },
+  "rights_note": "third-party video (file «3d6afef8-2dea-4347-94f7-f96a0cd3a424.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "میز کار سه‌بعدی اسباب‌بازی‌مانند",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "UI",
+    "why": "third-party product ad of unknown origin: borrow the motion language and look only, never its shots one by one, its object designs, its UI, its copy, its names or logos (owner note). The reference is a software/agent workflow demo (prompt → analysis → plan → build → result → CTA), so UI fits a tool or workflow film; for a plain voiceover package with no tool to show, L4 falls back to REEL and keeps this motion language."
+  },
+  "ignored": [
+    {
+      "span": [
+        0.5,
+        2.9
+      ],
+      "why": "third-party product and company names and logos (the logo lockup written on the mat, the extruded 3D title with a model name and version number); never reused as text, logos or designs; only the motion (lockup writing onto a surface in the scene, a textured 3D title rising out of the surface) is borrowed"
+    },
+    {
+      "span": [
+        5.3,
+        25
+      ],
+      "why": "the third-party chat app UI (sidebar, model picker, 'connected' badge, input box, send button, status lines, step cards, render viewport, Yes/No dialog, download card) and all its English copy are a third-party product design; only the treatment (a live UI on a 3D laptop screen, text typing in with blur-to-sharp, cards and objects leaving the screen into 3D space, check badges popping) is borrowed"
+    },
+    {
+      "span": [
+        2.9,
+        28
+      ],
+      "why": "the subjects (rusty pickup photo, toy monster truck, its parts, chassis, roll cage, wheels, the sketch card, the ramp jump) are the reference's story; our scenes take their subjects from the voice-over and are only drawn in this rendering style"
+    },
+    {
+      "span": [
+        26.5,
+        30.08
+      ],
+      "why": "the English CTA line, the partner logo lockup and the small availability disclaimer are third-party copy; the end card layout pattern only is borrowed, our outro follows the brand's logo outro"
+    },
+    {
+      "span": [
+        0,
+        30.08
+      ],
+      "why": "the audio track is third-party music/sound; L6 builds our own sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2, 480 px wide, tiled 4x3 (5 sheets covering 0-30 s, all viewed); scene detect gt(scene,0.3) found 3 hard cuts at 18.00, 23.00 and 26.50 s; dense sheets fps=10 (6x2, 1.2 s each, all viewed) over 10.9-12.1 s (lime wipe, not flagged as a cut), 17.4-18.6 s, 22.4-23.6 s and 25.9-27.1 s. Spans read from the 2 fps sheets, accurate to about ±0.25 s, and to about ±0.1 s inside the dense windows. silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        1.4
+      ],
+      "shot": "high overhead of a warm toy-like desk: a cream cutting mat with a fine orange grid in the middle, laptop, notebook, sticky note, pencil cup, phone and small props around it",
+      "camera": "slow crane down with a slight rotation, from near top-down toward a lower three-quarter angle (smooth, continuous ease-in-out)",
+      "moves": "a two-part logo lockup writes onto the mat surface as if printed on it (0.5-1.2 s, word by word, short fade/scale-in, smooth ease-out), lying in the mat's perspective; small props drift slightly by parallax",
+      "text": "logo lockup only, dark sans on the mat, lying in the scene's perspective (part of the 3D world, not an overlay)",
+      "transition_out": "no cut: the camera keeps descending to mat level into r1-s2",
+      "palette": "warm peach/apricot desk, cream mat with orange grid lines, coral and lime small props, charcoal laptop keys, soft white light spill",
+      "built": "generated (3D render)",
+      "reusable": "yes: a top-down establishing flat-lay of the subject's world that the camera cranes down into, with the opening line written onto a surface inside the scene; motion only, never the desk props or logos"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        1.4,
+        2.9
+      ],
+      "shot": "low angle almost at mat level, a big extruded 3D title standing on the mat, lockup small above it, desk and laptop strongly blurred behind",
+      "camera": "low dolly forward with a slight drift right; very shallow depth of field",
+      "moves": "the 3D title rises out of the mat surface letter group by letter group (1.4-1.9 s, ease-out with a small settle); light glints across its rough textured faces; 2.4-2.9 s fast lateral whip pan to the right with strong horizontal motion blur",
+      "text": "one big extruded 3D title (heavy rounded sans, textured stone/cork-like faces, coral-brown sides), height about 20% of frame; small logo lockup above",
+      "transition_out": "whip pan right (2.4-2.9 s, strong ease-in, motion blur) landing on r1-s3",
+      "palette": "peach blur, cream mat, coral-brown textured letters",
+      "built": "generated (3D render)",
+      "reusable": "yes: a textured 3D title rising out of the scene's surface at a low angle with heavy depth of field, exiting on a whip pan; motion only, never the name"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        2.9,
+        5.3
+      ],
+      "shot": "medium three-quarter view of one toy-like 3D object standing in a soft neutral studio, thin camera-viewfinder corner marks in the frame corners, tiny mono labels in the corners",
+      "camera": "very slow orbit/push; at the end a fast pull-back out through a screen bezel",
+      "moves": "a vertical lime scan line sweeps across the object (2.9-3.4 s, linear) and the object resolves as it passes (one part briefly highlighted in a different colour); the object holds with a slow orbit (3.4-4.8 s); 4.8-5.3 s the camera pulls back fast and the shot turns out to be the screen of a phone, which tilts away with motion blur",
+      "text": "tiny mono labels in the viewfinder corners (file name, mode word), below 1% of frame height",
+      "transition_out": "pull-out through the screen: the whole shot shrinks into a device screen that rotates away with motion blur (about 0.5 s, ease-in)",
+      "palette": "warm light grey studio, coral object with charcoal tyres, one lime scan line",
+      "built": "generated (3D render) with composited viewfinder marks",
+      "reusable": "yes: an input being 'read' by a scan line inside camera-viewfinder marks, then the shot revealed as a screen by pulling out of it; motion only, never the pickup"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        5.3,
+        7.4
+      ],
+      "shot": "laptop on the desk in three-quarter view with a live app UI on its screen, small toy 3D primitives (stars, torus rings, cubes, spheres) floating around it; then macro on the screen",
+      "camera": "push-in toward the screen (5.5-6.8 s, smooth ease-in-out with motion blur at the end), landing on a macro of the input field and send button",
+      "moves": "the floating primitives drift and spin slowly in depth; a prompt line is typed into the input; in macro (7.0-7.3 s) a glittering lime 3D cursor arrow moves in and clicks the send button (press: short scale-down and back, snappy)",
+      "text": "UI copy on the screen (small sans), one large mode word in macro (about 9% of frame height)",
+      "transition_out": "no cut: the click starts the next UI state in r1-s5",
+      "palette": "white UI with coral accents, charcoal laptop, peach desk, coral and lime floating primitives, glittering lime cursor",
+      "built": "generated (3D) with the UI as a screen texture",
+      "reusable": "yes: a push from the device into the input, a big 3D cursor as an actor that clicks to trigger the next state, floating toy primitives as ambient life; motion only, never the app UI"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        7.4,
+        9.6
+      ],
+      "shot": "screen-filling app UI, nearly flat to camera with a slight perspective and the bezel at the edges",
+      "camera": "near static with slow drift; at the end a pull-back toward the whole laptop",
+      "moves": "status lines appear word by word, each word fading in from blur to sharp (about 0.1 s per word); 8.4-9.1 s a large bold status headline types in the same way over two lines; an icon spins next to each line while working; at 9.3 s the headline shrinks as the camera pulls back and a small 3D object image appears under it",
+      "text": "one bold headline over two lines, heavy sans, cap height about 5% of frame height; smaller status lines above; icon at line start",
+      "transition_out": "no cut: camera pull-back into r1-s6",
+      "palette": "white UI, black type, coral accent words and icon",
+      "built": "code-native look (UI) on a 3D screen",
+      "reusable": "yes: the agent's 'thinking' shown as status lines whose words resolve from blur, then one bold headline that states the task; motion only, never the copy"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        9.6,
+        11.4
+      ],
+      "shot": "laptop at a dutch angle from above, keyboard large in the foreground, a mug and desk props around",
+      "camera": "pull-back and tilt to a canted angle (9.6-10.2 s), then a slow push",
+      "moves": "the object leaves the screen and pops out into 3D space above the keyboard (9.8-10.2 s, ease-out with overshoot) with a burst of small toy confetti (spheres, rings, cubes) that drift and fall; the object is lifted onto a frame that assembles under it; 10.4-11.3 s a lime pill label pops in over the keyboard and keeps scaling up slowly (snappy overshoot in, then linear growth)",
+      "text": "one short single-word action label in a lime pill, heavy caps sans, about 5-7% of frame height and growing",
+      "transition_out": "lime chevron wipe (11.4-11.7 s): a full-frame lime field with a white zigzag/chevron pattern sweeps across and clears to reveal r1-s7",
+      "palette": "peach desk, charcoal keyboard, white screen, coral object and mug, lime pill and confetti",
+      "built": "generated (3D)",
+      "reusable": "yes: objects leaving the screen into the real 3D space with confetti, an action-word pill that names the step, a brand-colour patterned wipe as the chapter break; motion only, never the truck"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        11.7,
+        14.4
+      ],
+      "shot": "top-down knolling flat-lay: every part of the object laid out in neat rows on the grid mat",
+      "camera": "top-down; slow lateral glides and push-ins from one group of parts to the next (smooth, ease-in-out, about 0.7 s each)",
+      "moves": "the parts first appear as flat solid magenta silhouettes (11.7-12.0 s), then fill with real material as a vertical wipe crosses left to right (12.0-12.4 s); a thin bounding box draws around one part with a small 'condition' label and a percentage that counts (12.5-14.2 s); low values in a red box, a high value in a green box; tiny labels type in",
+      "text": "one small label word above each box and a small percentage at its corner, about 2% of frame height",
+      "transition_out": "whip transition (14.4-15.0 s): a large blurred foreground object sweeps past the lens with heavy motion blur",
+      "palette": "cream mat with orange grid, magenta placeholder silhouettes, then coral, charcoal and chrome parts; red and green inspection boxes",
+      "built": "generated (3D, near top-down orthographic) with composited inspection boxes",
+      "reusable": "yes: exploded knolling of a whole into its parts, silhouettes filling with material by a wipe, inspection boxes with counting scores (red low, green high); motion only, never the truck parts"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        14.4,
+        15
+      ],
+      "shot": "transition only: extreme close blur of a desk object and a lime sticky note passing the lens",
+      "camera": "fast lateral whip with motion blur",
+      "moves": "foreground objects streak across the frame (about 0.5 s, ease-in-out)",
+      "text": "none",
+      "transition_out": "lands on the laptop screen in r1-s9",
+      "palette": "peach, charcoal, lime",
+      "built": "generated",
+      "reusable": "yes: a foreground-object wipe (blurred prop passing the lens) to change place without a cut"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        15,
+        18
+      ],
+      "shot": "laptop screen front-on, then laptop seen straight on at desk level with floating frosted-glass cards in front of the screen",
+      "camera": "near static front-on (15.0-15.9 s), then a pull-back to show the whole laptop (16.0 s); at the end a fast whip up with blur",
+      "moves": "a bold result line types in word by word with blur-to-sharp; 16.0 s a pill header with a step counter slides down at the top; four frosted-glass step cards slide out of the screen toward the camera in a row (stagger about 0.15 s, ease-out); round coral check badges pop onto the cards one by one (16.8-17.6 s, elastic scale with radiating burst lines and small confetti) while the counter steps 0 → 4; 17.6-18.0 s whip up with motion blur",
+      "text": "a pill header line with a step counter, card titles and one-line card captions (small sans, about 1.5-2% of frame height)",
+      "transition_out": "whip up with blur, then hard cut at 18.00 s",
+      "palette": "white UI and frosted glass cards, coral check badges, lime and coral card icons, peach desk with green books",
+      "built": "generated (3D) with UI textures on glass cards",
+      "reusable": "yes: a plan shown as glass step cards that slide out of the screen into 3D space, completed one by one by popping check badges with a live step counter; motion only, never the copy or card designs"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        18,
+        20
+      ],
+      "shot": "eye level on the desk surface, a bare chassis toy in the middle, a paper sketch card propped up behind it, laptop blurred at the right",
+      "camera": "slow push-in at desk height with gentle parallax",
+      "moves": "parts assemble onto the base step by step: springs pop in (snappy scale with overshoot), tubes of a cage draw on as lines extruding along their path (19.0 s, about 0.4 s), ghost translucent wheels appear then solidify (19.5 s); the sketch card behind self-draws the matching line drawing in sync (pen-stroke reveal); a status pill at the bottom centre types each step's text, with a thin progress bar under it that advances",
+      "text": "one short status line in a white pill at bottom centre, small sans with an icon, about 2% of frame height; small handwriting-style title on the sketch card",
+      "transition_out": "no cut: camera drops lower into r1-s11",
+      "palette": "peach desk, cream paper card with black line drawing, charcoal chassis, lime springs, coral cage tubes, translucent coral ghost wheels",
+      "built": "generated (3D) with the status pill composited",
+      "reusable": "yes: build-up in steps (pop-in parts, draw-on tubes, ghost parts that solidify) synced to a self-drawing sketch and a typing status pill with a progress bar; motion only, never the truck"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        20,
+        21
+      ],
+      "shot": "low angle close on the finished lower half (two big wheels), then between the wheels toward the laptop",
+      "camera": "low dolly forward that passes between two foreground objects, which blur heavily as the camera goes through (20.4-20.9 s)",
+      "moves": "the wheel hubs change colour to lime; the status pill fades out; the foreground pair slides past both sides of the lens",
+      "text": "status pill fading out",
+      "transition_out": "fly-through: the camera passes between the two foreground objects and lands on the laptop in r1-s12",
+      "palette": "charcoal tyres with lime hubs, peach desk, coral cage",
+      "built": "generated (3D)",
+      "reusable": "yes: a fly-through between two foreground objects as a scene change without a cut; motion only"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        21,
+        23
+      ],
+      "shot": "wide laptop on the desk with plant and mug, then the screen with a grid of result cards",
+      "camera": "push-in to the screen (21.0-21.8 s), then a final fast push into one card until it fills the screen (22.5-22.95 s, ease-in, blur)",
+      "moves": "result line types in; variant objects pop out of the screen cards and land on the keyboard and desk (21.8-22.2 s, ease-out with bounce); one card turns lime and a hand-drawn red circle stroke draws around it (22.0-22.5 s, pen-stroke reveal); push into the chosen card",
+      "text": "one bold result line plus one small status line on the screen",
+      "transition_out": "push into the chosen card, then hard cut at 23.00 s to the same card's detail",
+      "palette": "white UI, lime chosen card, red hand-drawn circle, coral and lime variant toys, peach desk",
+      "built": "generated (3D) with UI textures",
+      "reusable": "yes: options shown as cards whose objects step out of the screen, the choice marked by a hand-drawn circle, then a push into the chosen one; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        23,
+        25
+      ],
+      "shot": "screen-filling UI with a dark render viewport in the middle, then a dialog and a file card over it",
+      "camera": "near static, slow push",
+      "moves": "a glowing lime ring lies on the viewport floor and rises (23.2-23.7 s, smooth), building the object from the bottom up as it passes (scan-ring reveal); a coral check badge pops at the top right with a burst of small confetti (23.6 s); 24.0 s a pill dialog with two buttons slides up, the cursor clicks one, and the dialog morphs into a file card with a download button (24.3-24.6 s)",
+      "text": "one status line typing at the top; a short question in the dialog pill; a file title and button on the card (small sans)",
+      "transition_out": "cut-like jump back to the desk (25.0 s, very fast push-out, not flagged by scene detect)",
+      "palette": "white UI frame, near-black viewport with lime ground glow, lime and coral object, coral check badge",
+      "built": "generated (3D) with UI composited",
+      "reusable": "yes: the final result built bottom-up by a rising scan ring, sealed by a popping check badge; a choice dialog that morphs into the delivered file; motion only"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        25,
+        26.5
+      ],
+      "shot": "eye level on the desk, the finished toy on the desk surface, pencil cup and lamp behind",
+      "camera": "static, then a fast whip pan left following the toy (25.9-26.4 s, motion blur)",
+      "moves": "status pill types a test line with a progress bar; the toy bounces on its suspension, then drives off toward the camera-left with short speed lines behind it; a burst of radial manga speed lines flashes at the end of the whip (26.3-26.5 s)",
+      "text": "one status line in the bottom pill",
+      "transition_out": "whip pan with a radial speed-line burst, hard cut at 26.50 s",
+      "palette": "peach desk and wall, lime toy, coral pencil cup, white speed lines",
+      "built": "generated (3D) with 2D speed lines composited",
+      "reusable": "yes: the result 'tested' in the real world, leaving on a whip pan with a speed-line burst; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        26.5,
+        28
+      ],
+      "shot": "cinematic wide, letterboxed with black bars, the desk as a stage: a ramp made from desk objects, laptop and plant behind",
+      "camera": "static wide, slight push",
+      "moves": "the toy drives up the ramp and jumps, flipping in a high arc (26.6-27.8 s, near-real-time physics, slight slow-down at the top); speed lines trail it; a CTA line in wide-tracked caps types in letter by letter at mid-frame behind the toy (27.0-27.8 s)",
+      "text": "one CTA line, wide-tracked caps sans, small (about 2.5% of frame height), centred",
+      "transition_out": "no cut: background defocuses into the end card r1-s16",
+      "palette": "peach desk and wall, lime toy, coral blocks, lime base, black bars",
+      "built": "generated (3D) with text composited",
+      "reusable": "yes: letterbox switch for the payoff shot, the hero's stunt across the frame while the CTA types in behind it; motion only"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        28,
+        30.08
+      ],
+      "shot": "end card over the defocused desk scene, still letterboxed",
+      "camera": "static; rack out of focus with a light warm wash",
+      "moves": "the scene blurs and lightens behind (28.0-28.4 s); the logo lockup and a small disclaimer line fade in under the CTA line (28.0-28.5 s, smooth); hold to the end (about 1.6 s)",
+      "text": "CTA line (wide-tracked caps), logo lockup below it, one tiny disclaimer line",
+      "transition_out": "end of film",
+      "palette": "warm blurred peach and cream, dark type, coral logo mark, black bars",
+      "built": "generated background, composited type",
+      "reusable": "yes: defocus-and-wash of the last scene as the end card background, CTA above the logo lockup; the layout pattern only, our outro follows the brand logo outro"
+    }
+  ],
+  "visual_language": "A 30 s product-workflow film told as one tabletop toy world: a warm desk is the stage, the laptop screen is the 'mind', and the result leaves the screen and becomes a physical toy on the desk. Medium: stylised soft 3D render with UI screens composited onto 3D devices and floating glass cards, plus a few 2D overlays (status pill, inspection boxes, speed lines, hand-drawn circle). Only 3 hard cuts (18.0, 23.0, 26.5 s); every other change happens in camera: crane down, whip pans, pull-out of a screen, push into a screen or card, a fly-through between foreground objects, a foreground-object wipe, and one brand-colour chevron wipe as a chapter break. Rhythm: 16 beats in 30 s (about 1.9 s each), steady and busy, with frequent snappy pops (badges, pills, confetti) on top of smooth camera moves. Moves: smooth ease-in-out camera pushes and glides (0.5-1.3 s), fast ease-in whips (0.4-0.5 s), snappy overshoot pop-ins (about 0.2-0.3 s) for badges, pills and parts, staggered card slides (about 0.15 s apart), word-by-word blur-to-sharp typing (about 0.1 s per word), linear scan lines and scan rings (0.4-0.6 s). Typography: UI sans for status text, a heavy bold sans for the task headline, a textured extruded 3D title for the opening, a heavy caps action word in a pill, wide-tracked caps for the CTA. Palette: warm peach/apricot desk and wall, cream grid mat, coral/terracotta objects, charcoal darks, white UI, with lime/chartreuse as the energetic accent (cursor, pills, scan lines, wheels) and magenta only as placeholder silhouettes. Signature moments: the logo written on the mat in the overhead opening; the scan line inside viewfinder marks; the glitter cursor clicking send; objects popping out of the screen with confetti; the knolling flat-lay filling from silhouettes with scored inspection boxes; glass step cards with popping check badges; the step-by-step build synced to a self-drawing sketch; the scan ring building the final model; the letterboxed stunt with the CTA typing in behind it.",
+  "look": "Real 3D (not flat), stylised and toy-like. Materials: matte soft plastic and clay with fine surface speckle/noise (objects, mugs, pencil cup), rough textured stone/cork faces on the 3D title, satin aluminium laptop with charcoal keys, rubber tyres, frosted translucent glass cards with soft white edges, paper with ink line drawing, a sparkly glitter material on the cursor. Light: soft warm key light from a window at the upper right (visible light shafts on the back wall), large soft shadows and contact shadows, warm bounce, gentle bloom on whites and the lime accents. Depth: very shallow depth of field almost everywhere (macro-like toy scale), strong bokeh on desk props, heavy motion blur on whips and fly-throughs. Background: the desk surface and a warm peach wall, never a void; the screen UI is the only clean flat area. Post: fine film grain/halftone dot texture over the whole frame, a soft vignette, slight chromatic aberration (RGB fringing) toward the edges, and a letterbox for the final payoff.",
+  "code_translation": "Not code-native (3D render). Per D55 it is built as real 3D in code with three.js: a desk plane and wall with warm MeshStandardMaterial plus a subtle noise roughness/bump map for the clay-plastic speckle; rounded boxes and simple primitives for props and toys; a laptop with its screen as a CanvasTexture (UI drawn on a canvas in the brand Persian font, right-to-left, shaped text, Persian digits per data-viz.md), so pushes into and pull-outs of the screen are real camera moves; floating glass cards as rounded boxes with MeshPhysicalMaterial (transmission, roughness for frost) carrying UI canvas textures; warm directional key light with soft shadows (PCFSoft, large shadow radius), hemisphere fill and a window-shaft gobo on the wall; depth of field with a bokeh pass; motion blur by frame blending or directional blur on whips; draw-on tubes via TubeGeometry with an animated drawRange; bottom-up scan-ring builds via an animated clipping plane plus an emissive torus; ghost parts as transparent materials that animate to opaque; knolling silhouettes as flat emissive materials swapped to textured ones behind a wipe mask; film grain, vignette and chromatic aberration as a final shader pass, kept off the text layer so Persian text stays sharp. Status pills, inspection boxes, hand-drawn circle strokes and speed lines can be HTML/SVG overlays composited over the render. Never flattened into 2D shapes, never with joined Persian letters split.",
+  "continuity": [
+    "One tabletop world: every scene is a place on the same desk or on the laptop screen in it, so the camera travels between them instead of cutting.",
+    "Screen as a portal: the camera pushes into a device screen to enter the 'thinking', and pulls back out through the bezel to return to the physical world.",
+    "Objects leave the screen: results pop out of the screen into the real 3D space, so the digital step becomes a physical object on the desk.",
+    "Cursor as actor: an oversized 3D cursor clicks to trigger each new state.",
+    "Thinking typed out: status lines and one bold task headline resolve word by word from blur, so the process is always readable as a sentence.",
+    "Whole to parts and back: the subject is exploded into a knolling flat-lay, inspected, then rebuilt step by step.",
+    "Silhouette to material: placeholders appear as flat colour silhouettes and fill with real material as a wipe crosses them.",
+    "Scored inspection: thin boxes draw around a part with a counting score, red for low and green for high.",
+    "Plan as cards: steps appear as glass cards in a row, each sealed by a popping check badge while a step counter climbs.",
+    "Build in steps synced to a self-drawing sketch and a typing status pill with a progress bar.",
+    "Ghost then solid: a part appears translucent first and solidifies when it is placed.",
+    "Scan reveal: a scan line (across) or a scan ring (bottom-up) passes over an object and leaves it resolved or built.",
+    "Transitions without cuts: whip pans with motion blur, a blurred foreground object passing the lens, a fly-through between two foreground objects, and one full-frame brand-colour patterned wipe as the chapter break.",
+    "Accent colour as the 'action' colour: lime marks every active element (cursor, pill, scan line, chosen card), coral marks completion (check badges).",
+    "Letterbox for the payoff: black bars arrive for the final stunt and stay on the end card, which is the last scene defocused and washed out."
+  ],
+  "risks": [
+    "Third-party ad of unknown origin with third-party product names, logos and UI: ADAPT only. Never copy the brand names, logo lockup, model name and number, the chat app UI, the step cards' copy, the pickup/monster truck story, its parts, the sketch, the ramp stunt, its English copy, its audio or its shot order one by one.",
+    "The reference is 16:9 and our default format is 9:16: the wide desk compositions, the row of four step cards and the letterbox must be recomposed vertically (stack cards, crop the desk tighter, letterbox becomes a narrower frame or is dropped), recorded in L5.",
+    "Most on-screen text in the reference is tiny UI copy (1-2% of frame height) on a laptop screen: in our film every text that must be read needs the minimum size from safe-zones.md, so push in until the line is readable or lift it to a flat overlay; tiny UI filler stays unreadable on purpose and carries no meaning.",
+    "Text typed word by word with blur-to-sharp cannot be read until it lands: every line must finish and hold for the readability hold time; Persian lines type right to left by word, never by split letters.",
+    "Counting scores and step counters must show only figures from the approved package (claims accuracy ranks first); Persian digits per data-viz.md.",
+    "Grain, halftone dots and chromatic aberration lower the legibility of small text: keep Persian text on a clean layer above the post pass.",
+    "Colour mapping: the warm peach world, coral and lime are the reference's colours; L4 maps them onto brand colour roles (base, surface, accent, completion), never its literal hex; colours were read by eye, not sampled. Its materials and light stay (router conflict order, item 4).",
+    "Render cost: three.js with soft shadows, bokeh DOF and motion blur at many beats is heavy; build at 30 fps with a capped shadow map and a single DOF pass if render time is a problem.",
+    "Audio is third-party, continuous and loud (peak -0.4 dB); it is ignored, L6 builds the sound."
+  ],
+  "sha256": "24d79adfa4f4cf4bc11ab1b0aefa5e30278e005a3b0407fb79e23c734ae716d1"
+}

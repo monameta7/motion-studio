@@ -1,0 +1,18 @@
+{
+  "_note": "Owner decision (docs/14 D25): English terms stay in Latin script in the TTS text so Gemini pronounces them as English; everything else is Persian. The hook prompt asks for Latin terms; this list is the safety net that turns Persian-script transliterations back into Latin. Applied to TTS text only (never on-screen text). Whole-word, longest match first. The voice stage strips kasre/fathe marks and treats ZWNJ/space as equal before matching.",
+  "direction": "fa_to_latin",
+  "entries": [
+    {"match": "ای‌آی ایجنت", "say": "AI Agent"},
+    {"match": "ای‌آی", "say": "AI"},
+    {"match": "ایجنت", "say": "Agent"},
+    {"match": "سی‌آر‌ام", "say": "CRM"},
+    {"match": "ان‌هشت‌ان", "say": "n8n"},
+    {"match": "ان‌ایت‌ان", "say": "n8n"},
+    {"match": "ای‌پی‌آی", "say": "API"},
+    {"match": "چت‌جی‌پی‌تی", "say": "ChatGPT"},
+    {"match": "کی‌پی‌آی", "say": "KPI"},
+    {"match": "آر‌او‌آی", "say": "ROI"},
+    {"match": "مهدیار دات ای‌آی", "say": "mahdiyar.ai"}
+  ],
+  "keep_persian": ["سئو", "هوش مصنوعی", "اتوماسیون", "اینستاگرام", "واتساپ", "تلگرام"]
+}

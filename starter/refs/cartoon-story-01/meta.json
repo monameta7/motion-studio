@@ -1,0 +1,21 @@
+{
+  "slug": "cartoon-story-01",
+  "name_fa": "داستان کارتونی تصویرسازی‌شده",
+  "use_fa": "داستان با شخصیت، سند و نقشه، توضیح قدم‌به‌قدم",
+  "tags": [
+    "char",
+    "illustrated",
+    "story",
+    "map",
+    "document"
+  ],
+  "group": "char",
+  "duration": 30,
+  "format": "16x9",
+  "sha256": "cc8223f75ca1611b124241cf7c762e9e522f6cb8a871f91bdd1089f926054cb7",
+  "code_buildable_pct": 61.5,
+  "source": "library",
+  "rights_note": "third-party video (file «bf04eab3-200f-4fdf-9367-aa4fc904eb41.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "added_at": "2026-11-03T17:42:46.140Z",
+  "last_used_at": null
+}

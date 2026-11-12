@@ -1,0 +1,849 @@
+{
+  "slug": "dark-type-product-01",
+  "key": {
+    "sha256": "9f0c98c638e13fe0974a57368799c4a80cc463716579ae6d1585bd7a6823effd"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 80.11,
+    "w": 736,
+    "h": 414,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 16:9 film, 736x414 (low resolution, small labels are soft), 30 fps; video stream 2398 frames (79.93 s), container 80.11 s. Audio: AAC HE-AACv2 stereo 44.1 kHz, mean -16.4 dB, peak -1.2 dB; silent below -40 dB only at 8.34-8.68 s and from 79.48 s to the end. Measured on the waveform, not heard: a steady pulse near 117.5 BPM (beat 0.511 s, autocorrelation strength 0.585); level about -15 to -19 dB per 5 s, dropping to -27 dB in the 25-30 s and 60-65 s windows. Whether a voice is present was not determined."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «kinetic typography 2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "تایپوگرافی روی تاریکی با نور آبی و قرمز",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "reference of unknown origin (owner note): borrow its motion language and look only, never its shots one by one, its copy, its product or its interface; a voiceover package defaults to REEL, and L4 may choose UI when the package itself is a software or workflow launch"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        79.93
+      ],
+      "why": "all English copy (a pitch for an architecture design product) and its claims are third-party text; never reused as text, topic or argument"
+    },
+    {
+      "span": [
+        4.77,
+        7.3
+      ],
+      "why": "the product name and its star-like logo mark are the creator's brand; the same applies at 55.2-56.47 s and 75.33-79.93 s; our film carries only our own logo per the brand"
+    },
+    {
+      "span": [
+        10.93,
+        15.43
+      ],
+      "why": "the floor-plan editor (walls, rooms, furniture, dimension fields, panels) is the reference's product, here and at 21.17-29.87, 31.33-33.63, 38.97-40.97, 47.4-49.13 and 64.23-68.2 s; never copied as a design; only how an interface is framed, tilted and travelled through is borrowed"
+    },
+    {
+      "span": [
+        19.13,
+        21.17
+      ],
+      "why": "the three portraits of people, and the names on the cursor pills, are third-party content; no portrait is reused, traced or imitated; a row of images inside a sentence is used only for owner assets or images the voice-over needs"
+    },
+    {
+      "span": [
+        52.87,
+        59.03
+      ],
+      "why": "the landscape images with a reflective monolith, and the architecture images at 70.57-72.33 s, are the reference's content; never reused; our scenes take their subjects from the voice-over"
+    },
+    {
+      "span": [
+        0,
+        80.11
+      ],
+      "why": "the audio track is third-party; L2 uses our voice-over and L6 builds our sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (14 sheets, 4x3, all viewed; their frames can lag the nominal time by up to 0.25 s, so cut times come from detection, not from the sheets); scene detect gt(scene,0.3) found only 4 cuts (4.77, 54, 59.03, 75.33 s) because the film is dark, so it was rerun at gt(scene,0.07); 12 dense sheets viewed: 0-1.2 s, 4.6-7.0 s, 9-11 s, 13.2-15.6 s, 15.4-19.4 s, 20.2-22.6 s, 22.8-26.8 s, 39-41.4 s, 41.2-44.8 s, 45-48 s, 54.6-57 s, 70-73 s (fps 6 to 15). Cuts at 4.0, 16.2, 20.3, 23.63, 44.2, 55.2 and 72.8 s were read by eye (about ±0.1 s; 4.0 s about ±0.2 s). silencedetect and volumedetect on the audio; a spectral-flux onset script for tempo and cut alignment over 41 cuts. Audio not heard. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.63
+      ],
+      "shot": "type centred on black, an out-of-focus glossy dark form with thin blue-lit edges at the frame borders",
+      "camera": "the background form drifts slowly and steadily; the type plane holds",
+      "moves": "first word slams in: 0.07-0.35 s it starts huge and letter-spaced with strong horizontal motion blur, shrinks to rest while the blur clears (fast ease-out), then keeps a very slow scale-down; next words reveal left to right through a soft blur (about 0.3-0.5 s, smooth); the line re-centres as it grows; the phrase swaps in place at about 1.4 s",
+      "text": "two short phrases in turn on one line, centred, geometric sans in regular weight, cap height about 6% of frame height; the last word has a white-to-blue gradient",
+      "transition_out": "hard cut at 2.63 s; the light jumps to a new angle",
+      "palette": "pure black, electric blue edge light, white and pale grey type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: slam-and-settle first word plus blur-wipe following words is the film's main text motion; motion only"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.63,
+        4
+      ],
+      "shot": "type centred, the same dark form seen from another angle",
+      "camera": "background drift continues",
+      "moves": "first word slams in large with blur and shrinks; following words blur-wipe in with a wide gap that closes as the line tightens",
+      "text": "one short phrase, centred; one word has a blue gradient",
+      "transition_out": "hard cut to pure black",
+      "palette": "black, blue edge light, white type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: the same text motion on a new angle of one background object keeps a world while cuts stay fast"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        4,
+        4.77
+      ],
+      "shot": "one word alone, large, on pure black",
+      "camera": "static",
+      "moves": "the word enters very large with a vertical soft fade at its base and shrinks continuously until the cut",
+      "text": "one word, cap height about 15% of frame height shrinking to about 8%, metallic white-to-grey gradient",
+      "transition_out": "hard cut at 4.77 s, the mark starts at large scale in the next shot",
+      "palette": "pure black, metallic grey-white type",
+      "built": "code-native (type on black)",
+      "reusable": "yes: a one-word beat on black just before a reveal"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        4.77,
+        7.3
+      ],
+      "shot": "logo reveal over a close-up of a brushed metallic chevron form lit deep blue",
+      "camera": "the form holds with a slow drift; slight grain on the metal",
+      "moves": "4.8-5.1 s the mark shrinks from large and blurred to rest (fast ease-out), 5.1-5.5 s it holds and slides left to make room; 5.5-6.7 s the name's letters arrive from scattered positions around their slots, heavy in weight while moving and light on landing, one after another about 0.1-0.2 s apart, out of order; 6.7-7.3 s hold",
+      "text": "logo mark plus name, white, centred, cap height about 8%",
+      "transition_out": "hard cut to black at 7.3 s",
+      "palette": "black, deep and electric blue on brushed metal, white logo",
+      "built": "3D render of a metallic form with logo animated in code",
+      "reusable": "yes: scattered pieces landing into a lock-up, weight changing as they land; only with our logo and whole shapes, never split joined Persian letters"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        7.3,
+        9.42
+      ],
+      "shot": "type alone on pure black",
+      "camera": "static",
+      "moves": "two phrases in turn with the same slam and blur-wipe; the phrase softens with a light blur as it leaves (about 0.1 s)",
+      "text": "two one-line phrases, one key word in a blue-violet gradient",
+      "transition_out": "soft blur out, then the next object builds on black",
+      "palette": "pure black, white and blue-violet type",
+      "built": "code-native (type on black)",
+      "reusable": "yes: a colour-gradient key word in each sentence as the only emphasis"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        9.42,
+        10.93
+      ],
+      "shot": "a row of dark glossy icon buttons in the centre of a black frame",
+      "camera": "very slow push-in, then a very fast zoom through one button at 10.75-10.93 s (accelerating)",
+      "moves": "icons pop in one by one from left to right (about 0.1 s apart); at 10.0 s one brightens and an outlined white cursor rises from below; at 10.17 s the button gets a blue ring and soft glow (fast ease-out); hold; the press dips the icon to grey and the zoom enters it until its interior fills the frame",
+      "text": "none",
+      "transition_out": "zoom through the button into the next scene",
+      "palette": "black, charcoal buttons, one electric blue glow, white cursor",
+      "built": "code-native (interface elements with glow)",
+      "reusable": "yes: zoom through a pressed button as a cut; motion only, our button comes from the story"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        10.93,
+        11.8
+      ],
+      "shot": "black canvas, a crosshair cursor dragging out a blue-outlined rectangle",
+      "camera": "static",
+      "moves": "the rectangle grows with the cursor (quick, smooth); a small value chip beside the cursor counts up and grows; a dashed violet guide line marks alignment",
+      "text": "small numeric field only",
+      "transition_out": "jump cut to a tighter crop of the same action",
+      "palette": "black, electric blue line and fill, violet guide, white cursor",
+      "built": "code-native (line drawing)",
+      "reusable": "yes: a shape drawn live with a counting chip beside the pointer"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        11.8,
+        12.13
+      ],
+      "shot": "tight crop of the blue outline where it meets a guide, a glowing dot on the snap point",
+      "camera": "static",
+      "moves": "the cursor hits the crossing and the snap dot glows; a soft blue glow fills the shape",
+      "text": "none",
+      "transition_out": "jump cut",
+      "palette": "black, blue line and glow, violet guide with a dot",
+      "built": "code-native (line drawing with glow)",
+      "reusable": "yes: very short jump cuts (about 0.3 s) inside one action add energy without changing the subject"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        12.13,
+        13.27
+      ],
+      "shot": "tight crop of a blue L-shaped outline with a move cursor",
+      "camera": "the shape slides under a fixed frame (smooth, about 0.8 s)",
+      "moves": "the shape is dragged until an edge locks onto a guide; the move cursor rides on it",
+      "text": "none",
+      "transition_out": "hard cut to a wider view, the pull-back starts at once",
+      "palette": "black, blue line and glow, violet guide, white cursor",
+      "built": "code-native (line drawing with glow)",
+      "reusable": "yes: drag and snap as a small story beat"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        13.27,
+        15.43
+      ],
+      "shot": "starts on a technical drawing filling the frame, ends on the whole application window floating tilted in a dark world with blue-lit streaks",
+      "camera": "continuous pull-back and 3D tilt over about 1 s (13.3-14.3 s, smooth ease-in-out), then a very slow drift with the window turned about 10-15 degrees",
+      "moves": "side panels slide into frame as the window shrinks; the background lights up behind the window only when the window edge appears",
+      "text": "interface labels only",
+      "transition_out": "hard cut at 15.43 s on a big word",
+      "palette": "near-black window, blue selection, background black with electric blue streaks",
+      "built": "code-native interface on a 3D-tilted plane with a 3D render background",
+      "reusable": "yes: close-up to whole object pull-back ending in a floating 3D tilt"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        15.43,
+        16.2
+      ],
+      "shot": "one big word on black, a glossy form lit orange and sky blue at the upper right",
+      "camera": "static with slow background drift",
+      "moves": "the word reveals left to right through blur while large, then settles and shrinks slightly; the colour world changes from blue to orange at this cut",
+      "text": "one word, cap height about 17%, pale metallic gradient with a sky blue tint",
+      "transition_out": "hard cut to black",
+      "palette": "black, saturated orange and sky blue light on glossy edges, pale type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: changing the colour of the light marks a new chapter"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        16.2,
+        19.13
+      ],
+      "shot": "a word being built inside a selection box, name-tag pointers beside it",
+      "camera": "static with a very slow pull-back as the word shrinks",
+      "moves": "an orange name-tag pill with a pointer sweeps in large from lower left (about 0.3 s, shrinking); the word types letter by letter while the selection box grows with it and the pill rides its edge; 17.1 s a second, blue pill enters from the right with a small plus marker; 17.9-18.4 s the second word blur-wipes in, everything shrinks to fit, the pills drift apart and an orange glow rises from the bottom to fill the frame",
+      "text": "two words on one line, large at first, the first inside a thin blue selection box with corner dots",
+      "transition_out": "hard cut to a new angle of the orange form",
+      "palette": "black, orange and blue pills, orange and sky blue light rising, white type",
+      "built": "code-native type and pills over a 3D render of a glossy form",
+      "reusable": "yes: small pointer characters collaborate on the line itself; the selection box grows with the text; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        19.13,
+        20.3
+      ],
+      "shot": "sentence on one line with a row of small rounded images inside it, over the glossy orange form",
+      "camera": "static, background drift; the line grows slightly",
+      "moves": "words blur-wipe in with wide gaps; the rounded images pop into the gap one by one (about 0.1 s apart); the gaps close at the end",
+      "text": "one line, centred; the last words in a tan-orange gradient; inline images sized about 1.5 times the x-height",
+      "transition_out": "the words clear in one frame and the row of images stays, growing on black",
+      "palette": "black, orange and sky blue light, white and tan type, blue image backdrops",
+      "built": "mixed: type on a 3D form with an inline row of generated portrait photos",
+      "reusable": "yes: an image placed inside a sentence becomes the next shot's subject; only with owner assets or images the voice-over needs"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        20.3,
+        21.17
+      ],
+      "shot": "the row of images alone at the centre of a black frame",
+      "camera": "the group scales up from about 30% to 50% of frame width in about 0.5 s (smooth ease-out), holds, then begins to scale down",
+      "moves": "the rest of the sentence is gone; the images overlap slightly and keep their blue backdrops",
+      "text": "none",
+      "transition_out": "the row lands in the corner of an interface panel that appears around it; object match",
+      "palette": "pure black, the images' colours",
+      "built": "mixed: generated portrait photos on black with a code scale move",
+      "reusable": "yes: word to object to interface carry; the same object stays on screen across the change of scene"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        21.17,
+        23.63
+      ],
+      "shot": "starts close on a tilted interface panel, pulls out to the whole window floating over orange light",
+      "camera": "continuous pull-back with a roll from about 20 degrees to about 5 degrees (21.2-22.4 s, smooth), then a slow drift",
+      "moves": "panel controls come into focus as the camera moves; heavy depth of field at first, clearing as the window fits the frame; two pointer tags sit inside the window",
+      "text": "interface labels only",
+      "transition_out": "hard cut at 23.63 s to a tilted close-up",
+      "palette": "near-black window, orange and sky blue light behind, blue accents",
+      "built": "code-native interface on a 3D-tilted plane with a 3D render background",
+      "reusable": "yes: pull-back and roll from a detail to the whole with depth of field clearing"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        23.63,
+        25.3
+      ],
+      "shot": "extreme tilted close-up of a control panel, about 35 degrees off axis, shallow depth of field",
+      "camera": "slow push and diagonal slide (linear feel)",
+      "moves": "a blue glowing name-tag pill with a pointer drags a slider; a number counts up; a hatch preview fades in as the value rises",
+      "text": "small interface labels, soft",
+      "transition_out": "hard cut",
+      "palette": "black, charcoal panel, saturated blue glowing pill",
+      "built": "code-native interface on a 3D-tilted plane with depth blur",
+      "reusable": "yes: a strongly tilted macro view where a glowing pointer changes a value"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        25.3,
+        26.8
+      ],
+      "shot": "extreme tilted close-up of a drawing, a sky blue glowing name-tag pill in the lower left",
+      "camera": "slow push (linear feel)",
+      "moves": "the pill glides into place; a text label types itself next to the pointer",
+      "text": "a small label typed letter by letter",
+      "transition_out": "hard cut",
+      "palette": "black, charcoal drawing lines, sky blue glowing pill",
+      "built": "code-native interface on a 3D-tilted plane with depth blur",
+      "reusable": "yes: same framing with a new pointer colour to pass the action between characters"
+    },
+    {
+      "id": "r1-s18",
+      "span": [
+        26.8,
+        28.3
+      ],
+      "shot": "tilted close-up of a grid of icon tiles, an orange pointer pill entering",
+      "camera": "slow slide; shallow depth of field",
+      "moves": "the orange pill slides in from the right (about 0.6 s, ease-out); the tile under the pointer lights up blue",
+      "text": "none",
+      "transition_out": "hard cut to the whole window",
+      "palette": "black, charcoal tiles, blue selection, orange pill",
+      "built": "code-native interface on a 3D-tilted plane with depth blur",
+      "reusable": "yes: three quick macros, each with its own colour-coded pointer, then the wide result"
+    },
+    {
+      "id": "r1-s19",
+      "span": [
+        28.3,
+        29.87
+      ],
+      "shot": "whole window floating over orange and sky blue light",
+      "camera": "very slow rotation and drift in 3D",
+      "moves": "all three pointers visible at once, showing the three macros' changes together",
+      "text": "interface labels only",
+      "transition_out": "hard cut back to the blue world",
+      "palette": "near-black window, orange and sky blue light behind, blue and orange pills",
+      "built": "code-native interface on a 3D-tilted plane with a 3D render background",
+      "reusable": "yes: the wide shot that pays off several close-ups"
+    },
+    {
+      "id": "r1-s20",
+      "span": [
+        29.87,
+        31.33
+      ],
+      "shot": "type centred, a vertical stripe of bright blue-white light on the right",
+      "camera": "static, slow light drift",
+      "moves": "slam-and-settle plus blur-wipe; the key word has a blue gradient",
+      "text": "one line of about four words, cap height about 6%",
+      "transition_out": "hard cut",
+      "palette": "black, blue-white light, white and blue type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: a half sentence that the next shot completes"
+    },
+    {
+      "id": "r1-s21",
+      "span": [
+        31.33,
+        32.63
+      ],
+      "shot": "tight crop on a corner point with a large crosshair and two value fields",
+      "camera": "the canvas slides under a fixed crosshair (smooth)",
+      "moves": "the line extends; the top field counts up quickly; dashed guides follow the pointer",
+      "text": "large numeric fields, the active one with a blue outline",
+      "transition_out": "hard cut to a wider view",
+      "palette": "black, electric blue line, charcoal fields, white type",
+      "built": "code-native (line drawing with fields)",
+      "reusable": "yes: oversized interface details used as a big graphic"
+    },
+    {
+      "id": "r1-s22",
+      "span": [
+        32.63,
+        33.63
+      ],
+      "shot": "wider line drawing that has grown, thin blue-grey lines on near-black",
+      "camera": "steady pull-back (about 15% over the shot)",
+      "moves": "the result of the small action is shown at once, already complex; the pointer keeps moving",
+      "text": "small fields only",
+      "transition_out": "hard cut to type on black",
+      "palette": "near-black, thin blue-grey lines, white pointer",
+      "built": "code-native (line drawing)",
+      "reusable": "yes: small input to large result in one cut"
+    },
+    {
+      "id": "r1-s23",
+      "span": [
+        33.63,
+        35.33
+      ],
+      "shot": "type alone on pure black",
+      "camera": "static",
+      "moves": "first word large, shrinks fast, the rest blur-wipes in and the line settles",
+      "text": "one line completing the sentence of r1-s20; one word in a sky blue gradient",
+      "transition_out": "hard cut",
+      "palette": "pure black, white and sky blue type",
+      "built": "code-native (type on black)",
+      "reusable": "yes: split one sentence across two type shots with the proof between them"
+    },
+    {
+      "id": "r1-s24",
+      "span": [
+        35.33,
+        36.87
+      ],
+      "shot": "a dark rounded input card over blue streaks, large in the frame",
+      "camera": "pull-back and slide left as the text grows (about 0.5 s), then hold",
+      "moves": "text types word group by word group with a blue caret, faster than reading speed; the card keeps moving with the text",
+      "text": "a one-line request typed inside the card",
+      "transition_out": "hard cut to a big word",
+      "palette": "near-black card, blue streaks behind, grey text, blue accents",
+      "built": "code-native card on a 3D render background",
+      "reusable": "yes: a typing input as a live action on a dark card"
+    },
+    {
+      "id": "r1-s25",
+      "span": [
+        36.87,
+        37.83
+      ],
+      "shot": "one huge word filling about 75% of frame width",
+      "camera": "the word slowly grows and tilts slightly in 3D",
+      "moves": "the word appears at once at huge size, then a slow drift; the type's metal gradient shifts",
+      "text": "one word, cap height about 25%, metallic grey-white, tilted in perspective",
+      "transition_out": "hard cut",
+      "palette": "black, soft blue form, metallic grey-white type",
+      "built": "code-native type with 3D tilt over a 3D render background",
+      "reusable": "yes: scale contrast, a huge word after small lines marks the promise"
+    },
+    {
+      "id": "r1-s26",
+      "span": [
+        37.83,
+        38.97
+      ],
+      "shot": "macro of a dark control bar with a saturated blue send button and a cursor",
+      "camera": "static, with a slow pull-back",
+      "moves": "the cursor clicks; the button dips from large to small (about 0.3 s, springy) and glows",
+      "text": "none",
+      "transition_out": "hard cut on the release",
+      "palette": "charcoal bar, saturated blue button with glow, white cursor",
+      "built": "code-native (interface element with glow)",
+      "reusable": "yes: a press with a springy dip triggers the next reveal"
+    },
+    {
+      "id": "r1-s27",
+      "span": [
+        38.97,
+        40.97
+      ],
+      "shot": "the whole window at a strong tilt with a wireframe on its canvas, then filled in",
+      "camera": "very slow drift, about 25 degrees off axis, soft depth of field at the edges",
+      "moves": "39.2-39.5 s a blue neon line traces the outline; 39.4-40.7 s a field of blue and white square pixels sweeps across the shape from one end to the other, flickering; the finished detailed drawing is left behind the wave (about 1.3 s, linear wave)",
+      "text": "interface labels only",
+      "transition_out": "hard cut to black",
+      "palette": "near-black window, neon blue line, blue and white pixels, grey result",
+      "built": "code-native (pixel wave and line drawing on a 3D-tilted plane)",
+      "reusable": "yes: a pixel wave with a neon outline stands for making or generating"
+    },
+    {
+      "id": "r1-s28",
+      "span": [
+        40.97,
+        43.23
+      ],
+      "shot": "two-line type on pure black",
+      "camera": "static",
+      "moves": "the top line blur-wipes in and stays; the bottom word flies in from the right with a blue light streak trailing behind it, then swaps twice, each new word arriving through the streak about every 0.6 s; the streak keeps glowing at the word's left edge",
+      "text": "a fixed top line and a swapping bottom word that is offset to the right and overlaps a little",
+      "transition_out": "hard cut on a huge blurred word",
+      "palette": "pure black, electric blue streak, white type",
+      "built": "code-native (type with a blur streak)",
+      "reusable": "yes: a list told by one fixed line and a swapping last word, light carrying the swap"
+    },
+    {
+      "id": "r1-s29",
+      "span": [
+        43.23,
+        44.2
+      ],
+      "shot": "one word on black, shrinking steadily",
+      "camera": "static with a continuous pull-back on the word",
+      "moves": "the word starts huge and letter-spaced with blur, settles by about 43.6 s, then shrinks from about 50% to 20% of frame width in a smooth accelerating move into the next cut; the blue form fades up behind it",
+      "text": "one word, regular weight",
+      "transition_out": "the shrinking word cuts to a glitching word at the same centre",
+      "palette": "black, soft blue form, grey-white type",
+      "built": "code-native type over a 3D render background",
+      "reusable": "yes: a word falling away to a point sets up the next word"
+    },
+    {
+      "id": "r1-s30",
+      "span": [
+        44.2,
+        45.4
+      ],
+      "shot": "two words on black glitching into place",
+      "camera": "static",
+      "moves": "the letters start as bright blue horizontal slices with a glow, pieces offset sideways; 44.2-44.8 s they resolve left to right; 44.8-45.4 s the blue tint cools to metallic white",
+      "text": "two words, centred, cap height about 13%",
+      "transition_out": "hard cut to a small word on black",
+      "palette": "black, soft blue form, blue-white glitch, metallic white",
+      "built": "code-native type with a scanline slice filter over a 3D render background",
+      "reusable": "yes: a digital resolve for a technical name; for Persian only on whole shaped words"
+    },
+    {
+      "id": "r1-s31",
+      "span": [
+        45.4,
+        47.4
+      ],
+      "shot": "a sentence with a small glossy 3D icon inside it; then the icon alone large at the centre",
+      "camera": "static; the icon slowly turns and shrinks a little",
+      "moves": "45.4 s a small word pops; 45.9 s the rest of the line and the icon arrive with fast blur; hold; 46.6-46.8 s the icon scales up over the words, which blur away (fast ease-out); the icon then rotates slowly in 3D",
+      "text": "one line with an inline icon; the last word in a sky blue gradient",
+      "transition_out": "hard cut to the top-down interface",
+      "palette": "black, soft blue form, glossy blue translucent icon, white type",
+      "built": "3D render of a glossy icon with type composited in code",
+      "reusable": "yes: an icon inside a sentence grows to replace the sentence; a glossy 3D object drawn from our own subject"
+    },
+    {
+      "id": "r1-s32",
+      "span": [
+        47.4,
+        49.13
+      ],
+      "shot": "top-down drawing on a hatched dark field with a blue view cone from a small marker at the left",
+      "camera": "static frame; the drawing itself turns",
+      "moves": "the marker and cone stay fixed; the drawing rotates about 20 degrees in the plane and back while its layout changes (about 1.5 s, smooth); the cone keeps lighting what passes through it",
+      "text": "interface labels only",
+      "transition_out": "hard cut to type",
+      "palette": "black, dark grey hatching, blue gradient cone, grey lines",
+      "built": "code-native (line drawing with a gradient cone)",
+      "reusable": "yes: a fixed light cone with the subject turning through it to show a point of view"
+    },
+    {
+      "id": "r1-s33",
+      "span": [
+        49.13,
+        50.37
+      ],
+      "shot": "type centred, the blue form's lit edges visible at the frame borders",
+      "camera": "static, background drift",
+      "moves": "first word large and blurred, shrinks fast; the rest blur-wipes in with a closing gap",
+      "text": "one line; the last word in a sky blue gradient",
+      "transition_out": "hard cut to the card",
+      "palette": "black, blue light, white and sky blue type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: the type shot that names the next action"
+    },
+    {
+      "id": "r1-s34",
+      "span": [
+        50.37,
+        52.03
+      ],
+      "shot": "the same dark rounded input card over blue streaks",
+      "camera": "from very close, pull-back and slide left following the text (about 0.6 s, smooth), then a slide while typing",
+      "moves": "text types in bursts with a blue caret; the framing follows the end of the line",
+      "text": "a one-line request typed in the card",
+      "transition_out": "hard cut to a new crop further along the text",
+      "palette": "near-black card, blue streaks behind, grey text, blue accents",
+      "built": "code-native card on a 3D render background",
+      "reusable": "yes: returning to an earlier device (r1-s24) makes it a pattern"
+    },
+    {
+      "id": "r1-s35",
+      "span": [
+        52.03,
+        54
+      ],
+      "shot": "the end of the input line in near-darkness, the send button, then a result image beside it",
+      "camera": "static with a very slow drift",
+      "moves": "the last words type; the cursor presses send; at about 52.87 s the image appears pixelated and resolves to sharp through the pixel wave (about 0.5 s), then grows slowly",
+      "text": "the end of the typed line",
+      "transition_out": "hard cut at 54.0 s on black",
+      "palette": "near-black, one blue button, the image's natural colours",
+      "built": "code-native input with one generated image",
+      "reusable": "yes: result appears beside the request through a pixel resolve"
+    },
+    {
+      "id": "r1-s36",
+      "span": [
+        54,
+        55.2
+      ],
+      "shot": "type centred, faint blue form at the edges",
+      "camera": "static; the line rises slightly at the end",
+      "moves": "words blur-wipe in with gaps that close",
+      "text": "one line; one word in a blue gradient",
+      "transition_out": "the line clears and an object rises from below",
+      "palette": "black, faint blue light, white and blue type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: a line that sets up an object entering"
+    },
+    {
+      "id": "r1-s37",
+      "span": [
+        55.2,
+        56.47
+      ],
+      "shot": "a glossy stack of 3D plates with orange and sky blue reflections, rising from the lower left, a name beside it",
+      "camera": "the group rises and settles, depth blur clearing",
+      "moves": "the object rises from below the frame while fading up (about 0.4 s, ease-out); the first word blur-wipes over it, the second word slides in with a blue-to-red gradient; at the end all blur and exit with a fast sideways smear",
+      "text": "two words over the object; the second with a blue-to-red gradient",
+      "transition_out": "blur smear into the next shot (about 0.1 s)",
+      "palette": "black, orange and sky blue reflections on glossy black, grey and blue-red type",
+      "built": "3D render of glossy plates with type composited in code",
+      "reusable": "yes: a glossy object as a feature's emblem, entering from below; our object comes from the voice-over"
+    },
+    {
+      "id": "r1-s38",
+      "span": [
+        56.47,
+        59.03
+      ],
+      "shot": "tilted image cards on black joined by thin curved lines, a branching tree growing to the right",
+      "camera": "continuous slide to the right as new cards appear, slight perspective tilt, depth blur on the far cards",
+      "moves": "the first card holds; thin connector lines draw out from it; new cards appear pixelated and resolve to sharp (about 0.3-0.5 s each, staggered), first two, then more",
+      "text": "tiny card labels only",
+      "transition_out": "hard cut to type",
+      "palette": "black, natural image colours, thin grey lines",
+      "built": "mixed: generated photoreal images on code-built cards and connector lines",
+      "reusable": "yes: one card branching into several variations, lines drawing first; only with images the voice-over needs"
+    },
+    {
+      "id": "r1-s39",
+      "span": [
+        59.03,
+        60.03
+      ],
+      "shot": "one word, centred on black",
+      "camera": "static; the word shrinks slowly",
+      "moves": "the word appears soft, sharpens and shrinks",
+      "text": "one word",
+      "transition_out": "hard cut",
+      "palette": "black, faint blue light, white type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: repetition by cut, the same word again larger"
+    },
+    {
+      "id": "r1-s40",
+      "span": [
+        60.03,
+        61.2
+      ],
+      "shot": "the same word with one more before it, larger, centred",
+      "camera": "static, slight shrink",
+      "moves": "appears sharp at once; holds",
+      "text": "two words",
+      "transition_out": "hard cut into the orange world",
+      "palette": "black, faint blue light, white type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: the type gets bigger on each repeat to add emphasis"
+    },
+    {
+      "id": "r1-s41",
+      "span": [
+        61.2,
+        62.3
+      ],
+      "shot": "big type on black, a long orange and sky blue glowing edge across the bottom",
+      "camera": "static, light drift",
+      "moves": "the first word slams in with blur; the next word blur-wipes in; the line shrinks to fit",
+      "text": "two words, cap height about 12%, metallic gradient",
+      "transition_out": "hard cut, the same background holds",
+      "palette": "black, orange and sky blue light edge, metallic grey-white type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: same background across type cuts so only the word changes"
+    },
+    {
+      "id": "r1-s42",
+      "span": [
+        62.3,
+        63
+      ],
+      "shot": "one big word over the same glowing edge",
+      "camera": "static",
+      "moves": "the word appears at once and holds about 0.7 s",
+      "text": "one word, cap height about 13%",
+      "transition_out": "hard cut, same background",
+      "palette": "black, orange and sky blue light edge, metallic type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: a fast word beat"
+    },
+    {
+      "id": "r1-s43",
+      "span": [
+        63,
+        64.23
+      ],
+      "shot": "two or three big words over the same glowing edge",
+      "camera": "static",
+      "moves": "the words arrive one after another in a staggered rise from slightly below, then settle on one baseline",
+      "text": "one line, cap height about 12%",
+      "transition_out": "hard cut to the interface",
+      "palette": "black, orange and sky blue light edge, metallic type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: staggered rise as a variation of the entrance"
+    },
+    {
+      "id": "r1-s44",
+      "span": [
+        64.23,
+        66.7
+      ],
+      "shot": "top-down interface close-up, a name-tag pill and a comment box typing",
+      "camera": "from a tight crop, pull-back in about 0.4 s (smooth), then hold",
+      "moves": "an orange pill comes to rest; a dark comment box opens and text types into it at speed; the send dot glows",
+      "text": "one short question typed in a dark box",
+      "transition_out": "hard cut to the reply state",
+      "palette": "black, grey drawing lines, orange pill, charcoal box",
+      "built": "code-native (interface elements)",
+      "reusable": "yes: a dialogue told in small interface boxes"
+    },
+    {
+      "id": "r1-s45",
+      "span": [
+        66.7,
+        68.2
+      ],
+      "shot": "the same interface, a blue name-tag pill answering in a comment panel",
+      "camera": "static, with the panel growing",
+      "moves": "the bubble opens into a panel; the blue pill glides under it; a reply types into the field",
+      "text": "a question and a reply being typed",
+      "transition_out": "hard cut to a big word",
+      "palette": "black, grey lines, blue pill, charcoal panel",
+      "built": "code-native (interface elements)",
+      "reusable": "yes: the reply passes the action between the two pointer characters"
+    },
+    {
+      "id": "r1-s46",
+      "span": [
+        68.2,
+        70.57
+      ],
+      "shot": "type centred over the faint blue form; two phrases in turn",
+      "camera": "static; the line moves up at the end",
+      "moves": "first word slams in huge with blur, the second word blur-wipes in with a blue gradient; the phrase swaps at about 69.4 s; 70.2-70.57 s the line accelerates upward and smears out of the top of the frame",
+      "text": "two one-line phrases; one has a blue gradient on a word group",
+      "transition_out": "vertical move: the text leaves through the top while the next content enters from below",
+      "palette": "black, soft blue light, white and blue type",
+      "built": "3D render of a glossy abstract form with type composited in code",
+      "reusable": "yes: a vertical hand-over where text exits up and the proof enters from below"
+    },
+    {
+      "id": "r1-s47",
+      "span": [
+        70.57,
+        72.33
+      ],
+      "shot": "a tilted wall of portrait image cards scrolling upward, about 15 degrees of perspective",
+      "camera": "continuous upward travel at nearly constant speed (linear), motion blur at the start that clears within 0.3 s",
+      "moves": "rows of three cards pass through the frame in about 0.6 s each; the far edges are out of focus",
+      "text": "tiny card labels only",
+      "transition_out": "hard cut to a giant typed word",
+      "palette": "black gaps, warm and natural image colours",
+      "built": "mixed: generated photoreal image cards on a code-built tilted wall",
+      "reusable": "yes: a fast scrolling wall to show quantity; only with images the voice-over needs"
+    },
+    {
+      "id": "r1-s48",
+      "span": [
+        72.33,
+        72.8
+      ],
+      "shot": "giant word being typed, overflowing the frame",
+      "camera": "the frame slides right with the caret",
+      "moves": "letters appear one per about 0.1 s; a tall blue caret leads; the word has a white-to-blue gradient that deepens at the right",
+      "text": "one word, cap height about 45%",
+      "transition_out": "hard cut to the same sentence at small size",
+      "palette": "black, faint blue light, white to blue type and caret",
+      "built": "code-native type over a 3D render background",
+      "reusable": "yes: a giant typing word that cuts to a small full sentence"
+    },
+    {
+      "id": "r1-s49",
+      "span": [
+        72.8,
+        75.33
+      ],
+      "shot": "the closing question typed on one line",
+      "camera": "the type keeps shrinking in steps until the line fits, then slowly until the cut",
+      "moves": "letters type with a blue caret; the type size keeps falling as letters are added, so the line always fits the frame width; the caret blinks at the end",
+      "text": "one line; one word group in a blue gradient",
+      "transition_out": "hard cut to the logo",
+      "palette": "black, soft blue light, white and blue type",
+      "built": "code-native type over a 3D render background",
+      "reusable": "yes: a closing question with a blinking caret asks the viewer to act"
+    },
+    {
+      "id": "r1-s50",
+      "span": [
+        75.33,
+        79.93
+      ],
+      "shot": "logo reveal repeating r1-s4, over the opening's blue form; a one-line CTA appears below",
+      "camera": "the mark shrinks from large; the form drifts slowly and widens",
+      "moves": "75.4-76.0 s the mark shrinks from large; 76.0-77.2 s the letters scatter in, heavy to light; about 77.8 s a small line fades up below the logo; hold with slow drift to the end, no fade out",
+      "text": "logo lock-up, then one small CTA line with a blue-gradient word",
+      "transition_out": "end of file, audio silent from 79.48 s",
+      "palette": "black, deep blue form, white logo, white and blue CTA",
+      "built": "3D render of a metallic form with logo animated in code",
+      "reusable": "yes: the opening's light and logo move returning as a bookend; our film uses the brand's own logo outro"
+    }
+  ],
+  "visual_language": "A dark, cinematic software launch film built on kinetic type, about 92% buildable in code by shot time. Medium: pure type, a modern dark interface, and out-of-focus close-ups of a glossy abstract 3D form used as the world's only scenery. Typography is the backbone: nearly every second shot is words alone, centred on the frame in one geometric sans (regular weight, tight tracking), mostly one line, with extreme scale contrast from a small line (cap height about 6%) to a word overflowing the frame (about 45%). The main entrance is a slam: the first word starts huge, letter-spaced and motion-blurred, shrinks to rest in about 0.3 s (fast ease-out) and keeps a slow scale-down, while following words reveal left to right through a soft blur (0.3-0.5 s) with gaps that close as the line settles. Variations carry the meaning: a selection box growing with a typed word, a swapping last word carried by a blue light streak, a digital slice glitch, a large caret typing, an image or glossy icon sitting inside the sentence and growing to replace it. One word or word group in each line has a colour gradient as the only emphasis. Rhythm: 50 shots in 79.9 s, about 1.6 s on average (from 0.33 to about 4.6 s), alternating fast between a type shot and a demonstration; cuts follow the phrases, not the music (22% of 41 cuts fall within 50 ms of the 0.511 s pulse, against 20% by chance). Interface shots show one action only (draw, press, type, drag), first as a tight or strongly tilted macro with depth of field, then as a pull-back to the whole window floating in 3D. Palette: pure black, one electric blue world for making things and an orange and sky blue world for people working together; white and metallic grey type. Signature moments: zoom through a pressed button; the sentence that gives up its image to the next shot; the swapping word on a blue streak; the pixel wave with a neon outline; the giant typed word; the logo assembling from scattered pieces at both ends.",
+  "look": "Dimensionality is mixed: flat type and interface elements placed on real 3D-tilted planes, in front of real 3D glossy forms. Materials: smooth glossy black glass or lacquer with thin curved rim highlights; brushed metal with fine grain on the logo chevron; translucent glossy blue plastic-glass for the icon; dark charcoal interface surfaces with very soft inner shading and rounded corners; metallic grey-white gradients on the type. Light: narrow strip lights reflected along edges, saturated and blown out to white at the core (electric blue, or orange fading to sky blue); everything else falls to pure black; glows on active interface elements and name-tag pills. Depth: the background is always heavily out of focus; tilted macro shots have strong lens blur at top and bottom; the blur clears during pull-backs. Motion blur on type is strong, mostly horizontal. Background: pure black void, no floor, no horizon, with the form cropped by the frame edges.",
+  "code_translation": "Fully buildable in code apart from image content. Per D55 the background is built as real 3D in three.js, never flattened: one extruded rounded form with MeshPhysicalMaterial (low roughness, clearcoat, black base), narrow RectAreaLights or an emissive strip environment map producing the rim highlights, two light rigs (blue; orange to sky blue), a slow camera drift, depth of field as post blur; brushed metal variant with a roughness and noise map; the 3D icon as a rounded extruded shape with transmission and rim light. Tilted interfaces are HTML or SVG on a CSS 3D plane (or a three.js plane with an HTML texture), with mask-based blur at the top and bottom for depth of field. Word slam: per-word transform scale (about 3 to 1) with an SVG horizontal blur filter clearing over 0.3 s and letter-spacing closing; blur wipe: a moving soft mask plus directional blur, on the whole shaped word in the brand Persian font, right to left (rtl-grammar.md). Blue streak: a horizontal gradient bar and a stretched blurred copy of the word trailing behind it, with additive blending. Slice glitch: canvas or SVG slices offset on the whole word, blue to white. Pixel wave: a canvas grid of blue and white squares driven by a travelling threshold, with a neon stroke-dashoffset outline leading it. Name-tag pills: rounded HTML with a glow and a pointer arrow. Timing from audio.json word times.",
+  "continuity": [
+    "Light as chapter code: the same dark world holds through the film, and only the colour of its light changes with the topic (blue for making, orange and sky blue for working together).",
+    "One object, many angles: every type shot sits on another cropped, out-of-focus angle of one glossy form, so hard cuts still feel like one place.",
+    "Word to object to scene: an image or icon sitting inside a sentence grows until it replaces the sentence, then lands in its place in the next scene without a cut in its motion.",
+    "Zoom through a control: pressing a button accelerates the camera into it, and its interior becomes the next scene.",
+    "Detail to whole: a tight or tilted macro pulls back continuously to the full object floating in 3D, depth of field clearing on the way.",
+    "Sentence split by proof: a sentence starts in one type shot, a demonstration runs, and the next type shot finishes it.",
+    "Pointer characters: small colour-coded name-tag pointers stand for people and carry the action across close-ups, one colour per person.",
+    "Selection box on the type: the type itself is treated as an object being edited, so text and interface share one language.",
+    "Fixed line, swapped word: one line stays while its last word changes through a streak of light, listing items without a cut.",
+    "Pixel wave as making: anything that gets made arrives through a travelling field of squares that resolve to the finished thing.",
+    "Vertical hand-over: text accelerates out of the top as the next content rises from below.",
+    "Scale ramp by repetition: a repeated word returns larger on each cut.",
+    "Bookend: the opening's light and logo move return unchanged at the end."
+  ],
+  "risks": [
+    "Reference of unknown origin: ADAPT only. Never copy its product, name, logo, interface design, floor plans, copy, portraits, image content, audio or its shot order one by one.",
+    "The reference is 16:9 and the default film is 9:16: its long single lines and wide windows do not fit. L5 must re-compose: stack lines, keep the inline-image idea, frame macros vertically, follow safe-zones.md. Its scale contrast is kept, its literal widths are not.",
+    "Persian text: per-letter scatter, letter-by-letter blur wipe, slice glitch by letter and letter-by-letter typing can break joined letters. Run these on whole shaped words or on a correctly shaped text string as rtl-grammar.md allows, placed right to left; the mirror of the left-to-right wipe, slide and caret direction is needed; logo pieces only from the brand's own logo, within brand rules.",
+    "Readability: blur, slam and small-line hold times are very short and many words appear for under 1 s. Our voice-over and the minimum sizes and hold times come first (router item 2); keep the entrance motion and lengthen the hold.",
+    "Rhythm depends on density: 50 shots in 80 s need enough voice phrases and scenes. On a shorter film keep the alternation of type and demonstration rather than the literal shot count.",
+    "Palette: map the blue and orange worlds onto brand colour roles, keep the materials and light behaviour; banned brand colours are never used. Orange is the second chapter colour here; if the brand has no second accent, keep a single light colour and mark chapters by the light's angle or strength. Colours were read by eye, not sampled.",
+    "Low source resolution (736x414): small labels and fine detail were soft; move durations are accurate to about ±0.1 s, and cuts read by eye are listed in method. The 7 by-eye cuts were not part of the 41-cut alignment test.",
+    "Image-based shots (r1-s13, r1-s14, r1-s38, r1-s47, and the result image in r1-s35) need real image content: use them only with owner assets or images the voice-over needs; never source faces of real people. If there are none, use glossy 3D objects as in r1-s31 instead.",
+    "Audio was measured, not heard: tempo and level only, voice presence unknown; the reference's cut rhythm follows phrases, so our cuts follow voice timing from audio.json."
+  ],
+  "sha256": "9f0c98c638e13fe0974a57368799c4a80cc463716579ae6d1585bd7a6823effd"
+}

@@ -1,0 +1,387 @@
+{
+  "slug": "green-gradient-studio-01",
+  "key": {
+    "sha256": "e4bed7dd55cd8b3b237446d688406e67d86eb8f9ea1ca6c804923bc3d1f9666a"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 47.35,
+    "w": 736,
+    "h": 414,
+    "fps": 30,
+    "audio": true,
+    "format_note": "16:9 (736x414), 1420 frames, H.264; stereo AAC 44.1 kHz music bed (not analysed for tempo). Landscape reference: every composition must be re-laid for a 9:16 film (see risks)."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «swiss design motion · 2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "گرادیان سبز با کارت و تایپوگرافی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "UI when the package launches an app, a tool, a service or a workflow (the reference is a design-studio promo: kinetic type lines, then glass UI cards and dashboards, then a closing question)",
+    "why": "third-party film of unknown origin: borrow the motion language and look only (dark-green/lime glow gradients alternating with pale cream-green light beats, kinetic Swiss type with mixed light and extra-bold weights, a glowing accent object that leads every transition, design-tool selection boxes on key words, 3D gradient ribbon tubes, glass UI cards in perspective), never its shots one by one, its mark, copy, stock footage or UI contents (owner note); a voiceover package defaults to REEL, and the reference is a short voice-style line-by-line reel ending on a question"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        47.35
+      ],
+      "why": "all English copy ('Everything starts with a Spark', 'Idea', 'Sketch', 'Question', 'What if this could grow?', 'Turning Ideas into experiences', 'GROWTH', 'CLARITY', 'Not Clutter – Not Waiting', 'Just flow and simplicity', 'Design shapes the journey', 'Smart layouts', 'Clear actions', 'All crafted to move people forward', 'Because great design isn't just how it looks', 'It's how it works', 'Ready to grow?'); never reused as text, our words come only from the approved package"
+    },
+    {
+      "span": [
+        0,
+        47.35
+      ],
+      "why": "the eight-petal sparkle/flower mark that travels through the whole film is the reference's own signature mark; its shape is never copied — the role (one small glowing accent object that leads the eye and every transition) is reusable with an object taken from the voiceover or the brand's own mark"
+    },
+    {
+      "span": [
+        10.45,
+        14.2
+      ],
+      "why": "live stock footage of a person at a monitor (back of head, shallow depth of field); never reused; the beat may only use owner assets or a code-built scene"
+    },
+    {
+      "span": [
+        19.87,
+        23.8
+      ],
+      "why": "stock photo/footage of a smiling woman at a laptop inside the frame; never reused; the frame slot may hold only an owner asset or a code-drawn scene"
+    },
+    {
+      "span": [
+        23.8,
+        33.77
+      ],
+      "why": "third-party UI contents (dashboard 'Hi, Welcome back', charts with '100k', 'Hello, Lucy' weather card with '26 °C Rainy All', smart-home tiles with 45% / 60%, avatar, calendar 'July 2021'); never reused, our cards hold our own content and only sourced figures"
+    },
+    {
+      "span": [
+        17.4,
+        23.8
+      ],
+      "why": "the small line-drawn face doodles inside pale green bubbles are the reference's illustrations; never copied — only the idea of tiny hand-drawn accents popping around a hero element"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 of the full frame at 480 px, tile 4x3 (8 sheets, all viewed; frame time = (sheet-1)*6 + index*0.5 s); scene detect gt(scene,0.3) found hard cuts at 14.2, 19.87, 23.8, 33.77 and 42.1 s (the change at about 10.45 s is a slit-wipe, not flagged); dense sheets fps=10 at 360 px of 1.9-3.1, 9.3-10.5, 13.7-14.9, 19.3-20.5, 23.4-24.6, 33.3-34.5 and 41.6-42.8 s (7 sheets, all viewed). Spans between those points come from the 0.5 s sheets, accurate to about ±0.25 s. Colours read by eye, not sampled. Music not analysed.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.4
+      ],
+      "shot": "wide, dark green gradient, one line of small type left of centre, a big blurred lime glow ring drifting behind",
+      "camera": "static, then a slight drift down-left at about 2 s",
+      "moves": "words arrive one by one (about 0.25-0.3 s apart): each word first shows as a blocky stretched glyph-scramble (letters as solid bars) and resolves into the clean word in about 0.15 s; the first word is extra-bold lime, the rest light; at the end of the line a rounded pill slides out from behind the last word (about 0.3 s, ease-out) holding a small word and the glowing accent icon, which spins; a small cursor arrow glides in and clicks the pill; tiny glowing capsule particles float; 2.0-2.4 s the line collapses rightward into the icon (words squash and scramble back into bars and are swallowed, about 0.3 s, ease-in)",
+      "text": "one short line, small (about 4% of frame height), first word extra-bold lime, other words light pale lime; one word inside a pill",
+      "transition_out": "collapse into the accent icon, which becomes the centre of the next shot (no cut)",
+      "palette": "deep bottle green to teal gradient, lime-yellow glow ring, lime type, darker green pill with gradient",
+      "built": "code-native (kinetic type, CSS/SVG glow, DOM pill and cursor)",
+      "reusable": "yes: word-by-word build with a glyph-scramble resolve, a key word dropped into a pill with the accent icon, then the whole line swallowed by the icon; motion only"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.4,
+        3.6
+      ],
+      "shot": "centred close-up on the accent icon inside a thick neon lime ring, which opens into large thin circle outlines",
+      "camera": "push-in to the icon, then static",
+      "moves": "a thick glowing ring snaps around the icon (about 0.15 s); the ring splits into two arcs that grow and thin into four large thin circle outlines overlapping like a lens grid around the centre (about 0.6 s, smooth ease-out); a small dot travels along one circle; the icon lifts above; a short word types in at the centre letter by letter in light white",
+      "text": "one short word, light weight, white, centred in the lens",
+      "transition_out": "the word morphs into the next word (no cut)",
+      "palette": "dark green, neon lime ring with bloom, thin pale-green circle lines",
+      "built": "code-native (SVG circles with stroke animation, glow by blur layers)",
+      "reusable": "yes: a ring around the accent object opening into a geometric frame (overlapping circles) that holds one concept word; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        3.6,
+        5.6
+      ],
+      "shot": "same lens of circles, the word replaced by a bolder word that rides along a circle arc",
+      "camera": "rotation: the whole frame rotates about 30-40° as the word travels along the arc, then a fast whip along the arc",
+      "moves": "the word scrambles into a new word (letters flip as bars, about 0.3 s); the new word is extra-bold lime and slides along the curve of a circle like text on a path while the frame turns; light streaks race along the circle lines; at about 5.3 s a fast whip turns the circles into a large blurred dark ring",
+      "text": "one word, extra-bold lime, on a curved path",
+      "transition_out": "whip-rotate blur into a dark glowing ring background",
+      "palette": "dark green, lime word, pale-green lines, lime streaks",
+      "built": "code-native (SVG textPath or rotated DOM, motion blur on the whip)",
+      "reusable": "yes: word morph by glyph scramble, then the word rides a curve while the camera rotates; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        5.6,
+        7
+      ],
+      "shot": "medium, one word top-left over a large dark blurred ring on a green-teal glow",
+      "camera": "slow drift",
+      "moves": "one word appears with a single letter swapped to a different typeface/colour (lime) as a playful accent; the accent icon hops beside the word in a small arc with a glow trail (about 0.4 s, bouncy ease-out)",
+      "text": "one word, light white with one letter in lime",
+      "transition_out": "the icon jumps into the next scene's glass frame (no cut)",
+      "palette": "dark green, teal glow, white and lime type, orange-yellow glowing icon",
+      "built": "code-native",
+      "reusable": "yes: one letter or one word accented inside a calm word, the accent object hopping as the cue; motion only (for Persian, accent a whole word, never a single letter inside a joined word)"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        7,
+        9
+      ],
+      "shot": "medium, a tilted glass rounded square with a neon edge holding the glowing icon, a lime light beam behind it, a line of type bottom-left",
+      "camera": "static; the glass square rotates slowly (about 10-20°)",
+      "moves": "the glass square tilts in 3D with a rim-light sweep along its edge; a diagonal lime light beam fades through it; the line builds word by word with the glyph-scramble resolve; the key word lands extra-bold lime inside a design-tool selection box (thin frame with corner handles) that draws itself around the word (about 0.2 s); a question mark follows",
+      "text": "one line, light pale type, one extra-bold lime key word in a selection box",
+      "transition_out": "the glass square turns into a thin diamond outline and fades; the icon grows (no cut)",
+      "palette": "dark green to lime light beam, glass with lime rim, orange-yellow icon",
+      "built": "code-native 2.5D (CSS 3D tilt, backdrop blur, gradient beam)",
+      "reusable": "yes: the selection-box highlight on the key word (a 'design tool' accent) and a tilted glass frame holding the accent object; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        9,
+        10.45
+      ],
+      "shot": "medium, the accent icon swells into a big glowing blob and becomes a horizontal light streak",
+      "camera": "follows the icon left, then static",
+      "moves": "the icon swells (scale about 3x, squash and stretch) and flies off the left edge (about 0.4 s), returns as a short glowing capsule, stretches into a thin horizontal light line across the frame (about 0.3 s); the line opens like an eye/slit, a lens-shaped wipe that reveals the next shot inside it (about 0.3 s, ease-in-out)",
+      "text": "the previous line fades out early",
+      "transition_out": "slit wipe: the light line opens into the next shot",
+      "palette": "dark green, lime glow, orange-yellow blob",
+      "built": "code-native (SVG blob morph, mask wipe)",
+      "reusable": "yes: the accent object turns into a light line that opens a slit onto the next scene; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        10.45,
+        14.2
+      ],
+      "shot": "medium, live footage (person at a desk monitor, shallow depth of field) under a dot-grid overlay, three stacked lines of type left",
+      "camera": "slow push-in (footage)",
+      "moves": "a grid of small dots animates over the footage (dots light up in waves, about 1 s); three lines build in turn, the middle key word sits on a green-to-lime gradient highlight block that wipes in from the left (about 0.25 s); the accent icon bounces at the line end; 14.0-14.2 s the icon stretches into a vertical bar",
+      "text": "three short stacked lines, light pale lime with one bold white word on a gradient block and one bold lime word",
+      "transition_out": "hard cut (14.2 s) from dark to the light theme",
+      "palette": "desaturated warm footage, lime and green type and blocks",
+      "built": "live footage with code overlays (dot grid, type, highlight block)",
+      "reusable": "yes, motion only: a dot-grid overlay plus a highlight block that wipes behind a key word; the footage itself is not reusable (owner asset or a code-built scene only)"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        14.2,
+        17.4
+      ],
+      "shot": "wide, pale cream to soft green gradient, a frosted glass circle with a thin dark outline at the left, a small dark-green accent icon travelling right, a big word",
+      "camera": "slow pan right with the icon",
+      "moves": "the icon travels right with short speed lines behind it (smooth, about 1.2 s); the glass circle drifts and grows past the frame; a big extra-bold word appears letter by letter behind the icon, then a stack of faded echo copies of the word above and below (outlined, decreasing opacity) collapses into the single word (about 0.5 s, ease-out)",
+      "text": "one big word, extra-bold, lime-yellow, with faded echo copies stacked above and below",
+      "transition_out": "the echoes scatter and a new huge faint word fills the background (no cut)",
+      "palette": "cream white, pale mint, soft lime glow, dark green icon and outline, lime word",
+      "built": "code-native (glass circle with backdrop blur and inner glow, DOM echoes)",
+      "reusable": "yes: the echo stack (one word repeated in fading copies that collapse into one) as an emphasis beat on a light ground; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        17.4,
+        19.87
+      ],
+      "shot": "wide, a huge faint word repeated in rows as background, a 3D gradient ribbon tube looping across, a small word riding on the ribbon",
+      "camera": "slow drift",
+      "moves": "a thick round ribbon tube (dark green to lime gradient, soft drop shadow) draws itself in loops (about 1 s, smooth ease-in-out), carrying a small word along its surface; small hand-drawn accents pop in pale bubbles (scale pop, about 0.2 s); the background word rows slide sideways at different speeds; the ribbon then straightens into a single S-wave that slides down out of frame",
+      "text": "huge faint background word in repeated rows (very low contrast), one small bold word on the ribbon",
+      "transition_out": "hard cut (19.87 s) while the ribbon exits; the ribbon re-enters in the next shot",
+      "palette": "cream, pale mint, dark green to lime ribbon",
+      "built": "real 3D look (tube with gradient and soft shadow; three.js TubeGeometry or SVG stroke with shading)",
+      "reusable": "yes: the gradient ribbon as the film's connecting thread, drawing itself and carrying a word; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        19.87,
+        23.8
+      ],
+      "shot": "medium, a rounded-rect image frame centred on the light ground, the ribbon wrapping around it",
+      "camera": "very slow push-in",
+      "moves": "the ribbon enters from the top edge and wraps around the frame, passing behind it and then in front of it (over-under) into a loop (about 1.5 s, smooth); two short phrases run along the ribbon path as text-on-path, revealed as the ribbon draws; small hand-drawn accents pop around; 23.6-23.8 s a dark green panel slides in from the right edge",
+      "text": "two short phrases along the ribbon, small light white type",
+      "transition_out": "panel push from the right, then hard cut (23.8 s) to dark",
+      "palette": "cream and pale mint, dark green to lime ribbon, the image's own colours",
+      "built": "code-native with real-3D ribbon depth (over-under layering); the frame content is a photo slot",
+      "reusable": "yes: the ribbon wrapping a framed image over and under, with words written along it; motion only (the frame holds an owner asset or a code-drawn scene)"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        23.8,
+        27.4
+      ],
+      "shot": "wide, dark green with a blurred teal glow ring, glass UI cards assembling into a tilted dashboard",
+      "camera": "slow orbit: the card plane is tilted in perspective and turns about 15-20° while drifting",
+      "moves": "the previous frame collapses into a pale square that shrinks and spins into a tiny diamond particle (about 0.4 s) and drops; cards slide in from the top and bottom edges one after another (stagger about 0.15-0.2 s, ease-out), settling into a grid of dark-green glass cards with charts; a chart line draws, a callout pops, a pie fills; the accent icon pops on a card",
+      "text": "UI micro-labels only",
+      "transition_out": "cards slide out and thin while the next line of type starts (no cut)",
+      "palette": "deep green, teal glow, dark-green glass cards with lime and pale-green UI",
+      "built": "code-native 2.5D (CSS 3D plane with perspective, DOM cards, SVG charts)",
+      "reusable": "yes: cards assembling in stagger into a tilted dashboard while the camera orbits; motion only (our cards hold our own content and sourced figures)"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        27.4,
+        29.6
+      ],
+      "shot": "medium, three stacked lines of type with stepped indents on the dark glow ground",
+      "camera": "static",
+      "moves": "the line builds word by word with the glyph-scramble resolve; the middle word is extra-bold lime; the last phrase arrives letter-spaced wide inside a selection box and tightens to normal spacing (about 0.4 s, ease-out); the accent icon pops at the box corner; a glowing dot falls in",
+      "text": "three short stacked lines, stepped indents, light white with one extra-bold lime word",
+      "transition_out": "the icon leads into a glass panel (no cut)",
+      "palette": "dark green, teal glow, white and lime type",
+      "built": "code-native",
+      "reusable": "yes: stepped stacked lines, letter-spacing tighten-in inside a selection box; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        29.6,
+        32.4
+      ],
+      "shot": "medium, a tall glass rounded panel with a big glowing icon, then a wide glass tablet frame on a grid of dark tiles with UI building inside",
+      "camera": "pull back from the panel to reveal a tile grid",
+      "moves": "the glass panel widens into a tablet frame (about 0.4 s); UI blocks fill in left to right (stagger about 0.1 s); one card lifts out of the screen in 3D and floats above the frame edge (breaking the frame, about 0.4 s, ease-out with slight overshoot)",
+      "text": "UI micro-labels only",
+      "transition_out": "the popped-out card becomes the subject of the next shot (no cut)",
+      "palette": "dark green tiles, lime-bordered glass frame, lime and green UI",
+      "built": "code-native 2.5D (CSS 3D, DOM UI)",
+      "reusable": "yes: a card popping out of a screen into 3D space as the 'feature' moment; motion only"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        32.4,
+        33.77
+      ],
+      "shot": "medium, the popped card floating with a blurred lime halo ring, a short line of type to its left",
+      "camera": "slow drift, then the card slides off left",
+      "moves": "the line types letter by letter; the second word sits in a selection box; the card bobs gently; 33.3-33.7 s the card slides out to the left while glass tiles enter from the right on a curved surface",
+      "text": "one short line, first word extra-bold lime, second light white in a selection box",
+      "transition_out": "push left, hard cut (33.77 s)",
+      "palette": "dark green, lime halo, lime-green card",
+      "built": "code-native",
+      "reusable": "yes: feature card floating beside its label with a halo; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        33.77,
+        36
+      ],
+      "shot": "medium, glass tiles laid on a curved 3D surface (inside of a cylinder), a short line of type in the middle, a glowing line tracing a route between the tiles",
+      "camera": "slow rotation of the curved tile wall",
+      "moves": "a glowing lime capsule flies in from the left, lands on the first tile and becomes a light line that draws a route with rounded corners (down, across) through the tiles (about 1 s, smooth); the line of type is revealed letter by letter behind the light's head, wide letter-spaced then tightening; the second word extra-bold lime; tiles flicker on as the route passes",
+      "text": "one short line, light white + extra-bold lime",
+      "transition_out": "the tiles fade and the next line starts (no cut)",
+      "palette": "deep green, teal glow, glass tiles with lime and teal fills, lime light line",
+      "built": "code-native 2.5D or three.js (tiles on a cylinder, SVG path draw with glow)",
+      "reusable": "yes: a light line drawing a route through a grid of tiles, revealing the text as it passes — 'a clear path'; motion only"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        36,
+        38.6
+      ],
+      "shot": "medium, two lines of type left of centre on dark green with a teal glow arc, a small cluster of the accent icon and bubbles",
+      "camera": "slow drift left and down",
+      "moves": "words build one by one (bold words extra-bold lime, others light) with the glyph-scramble resolve; the icon cluster bobs at the line end; 38.4-38.6 s a pale cream rounded blob wipes in from the right edge",
+      "text": "two lines, mixed light and extra-bold weights",
+      "transition_out": "soft blob wipe from the right into the next dark beat",
+      "palette": "dark green, teal glow, pale lime type",
+      "built": "code-native",
+      "reusable": "yes: mixed-weight line built word by word with a blob wipe exit; motion only"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        38.6,
+        42.1
+      ],
+      "shot": "medium, one word per line stacked top-left (five lines), thin line-drawn petal outlines at the bottom right",
+      "camera": "static",
+      "moves": "each word is typed with a solid lime block cursor ahead of it (typewriter, letters wide-spaced then tightening, about 0.3 s per word); lines stack downward; the last line is extra-bold lime; a small white ball hops from word to word on the last line (bounce, about 0.3 s per hop); the petal outlines draw themselves slowly",
+      "text": "five short stacked lines, light pale lime, last line extra-bold lime",
+      "transition_out": "hard cut (42.1 s) from dark to light",
+      "palette": "dark green, green glow arc, pale lime and lime type, thin lime outlines",
+      "built": "code-native",
+      "reusable": "yes: the 'statement stack' — one word per line built with a block cursor, payoff line bold; the hop of a small ball across the payoff words; motion only"
+    },
+    {
+      "id": "r1-s18",
+      "span": [
+        42.1,
+        44
+      ],
+      "shot": "wide, cream to pale yellow and soft green gradient, the small accent icon centred, one line of type",
+      "camera": "static; soft gradient blobs drift",
+      "moves": "the icon floats up to the centre (about 0.5 s); the line builds letter by letter with a fade from pale to dark green; the last word sits on a dark-green-to-lime gradient highlight block (inverted, extra-bold)",
+      "text": "one line, regular dark green, last word extra-bold on a gradient block",
+      "transition_out": "the line clears and a small ribbon arc hops in (no cut)",
+      "palette": "cream, pale yellow, soft green, dark green type, lime-green block",
+      "built": "code-native",
+      "reusable": "yes: the answer line on the light ground with the key word on a gradient block, the inverse of the dark question beats; motion only"
+    },
+    {
+      "id": "r1-s19",
+      "span": [
+        44,
+        47.35
+      ],
+      "shot": "wide, the same light ground, the accent icon at the left of one centred closing question",
+      "camera": "static",
+      "moves": "a small ribbon arc hops across (about 0.4 s); the question builds letter by letter with a pale-to-dark fade; holds about 2.5 s to the end",
+      "text": "one closing question, regular dark green",
+      "transition_out": "end of film (no logo shown)",
+      "palette": "cream to pale mint, dark green type and icon",
+      "built": "code-native",
+      "reusable": "yes, motion only: quiet closing question on the light ground with a long hold; for our film the brand's own logo outro rules win (router conflict order, item 5)"
+    }
+  ],
+  "visual_language": "A Swiss-style kinetic-type studio promo: about two thirds of the time is type, broken by geometric glow shapes, a glass UI dashboard, a tablet with a pop-out card, a curved tile wall and two image beats (live footage, a framed photo). Medium: 2D kinetic type and SVG geometry in code with 2.5D glass cards and a 3D-looking gradient ribbon tube. Typography: one geometric grotesk sans, small to medium size, mixing light and extra-bold weights inside the same line; the key word is extra-bold lime, sits in a design-tool selection box, on a gradient highlight block or in a pill; words resolve from a blocky glyph-scramble; some phrases enter wide letter-spaced and tighten; stacked lines with stepped indents. Rhythm: about 19 beats in 47 s (average about 2.5 s), only five hard cuts; most changes are continuous handoffs led by one small glowing accent object (it swallows a line, hops to the next word, swells and becomes a light slit that opens the next shot, becomes a vertical bar before a cut); words land every 0.25-0.3 s. Palette: two worlds — deep bottle green with teal and lime glows for the questions, and pale cream / mint / soft yellow for the answers — tied together by lime-yellow and dark green. Signature moments: the line swallowed by the accent icon; the neon ring that opens into overlapping circles; a word riding a rotating circle; the glowing slit wipe; the echo-stack word; the gradient ribbon that writes words and wraps an image over and under; the tilted glass dashboard assembling; the card popping out of a tablet; the light route drawn through a curved tile wall; the block-cursor statement stack.",
+  "look": "Mostly 2.5D: flat type and thin geometric lines on soft blurred gradient grounds (large out-of-focus glow rings and blobs as the 'background feel'), with bloom/glow on every lime element (neon edges, light beams, glowing particles). Dimensional elements: frosted glass cards and panels with backdrop blur, thin bright rim and soft inner glow, tilted in perspective; a round gradient ribbon tube (dark green to lime) with soft drop shadow and over-under depth; glass tiles on a curved surface; a frosted glass circle with a thin dark outline on the light ground. No hard shadows; soft shadows only under the ribbon and floating cards. Motion blur on whips and the flying icon. Depth of field only in the footage beat. Two grounds: dark (deep green → teal glow) and light (cream → mint → pale yellow).",
+  "code_translation": "Code-native. Type beats: DOM text in the brand fonts (light and extra-bold weights of the same family), split into words; each word enters as a scramble of solid bars (a few frames of blocky placeholder glyphs or a short horizontal stretch + blur) and resolves in about 0.15 s; staggered on the voice word timings; key word: extra-bold in the accent colour with an SVG selection box (thin rect + four corner squares drawn in about 0.2 s), a gradient highlight block wiping in behind it, or a pill sliding out; letter-spacing tighten-in (from about 0.5em to normal, 0.4 s ease-out) for Latin only. Accent object: one small glowing SVG shape (brand mark or a voiceover-driven icon) with a blur-layer bloom, animated along paths with squash and stretch, used for every handoff (swallow, hop, swell, slit wipe via an SVG mask that opens from a line). Geometry: SVG circles and rings with stroke-dashoffset draws and glow filters; a rotating group for the 'word on a circle'. Ribbon: SVG thick stroke with a linear gradient and a soft shadow, drawn by stroke-dashoffset, with over-under done by splitting the path into front and back layers around the framed image; text-on-path via SVG textPath (for Persian use whole words and check joining in the renderer, or set the words on a straight segment of the ribbon). Glass cards and tiles: DOM with backdrop-filter blur, rim gradient border, CSS 3D perspective for the tilted dashboard, the pop-out card and the curved tile wall (or three.js planes on a cylinder). Grounds: large blurred radial gradients and rings drifting slowly. Echo stack: cloned word layers with decreasing opacity collapsing to one. Motion blur by frame blending or directional blur on whips.",
+  "code_buildable_pct": 92.1,
+  "code_buildable_note": "47.35 s total; only r1-s7 (10.45-14.2 s, 3.75 s) is live footage of a person and is not buildable as shown (owner asset or a code-built scene instead); r1-s10's frame holds a stock photo of a person — counted as buildable because it is an image slot for an owner asset or a code-drawn scene; everything else is type, SVG geometry, glass UI and a gradient ribbon built in code.",
+  "continuity": [
+    "One small glowing accent object travels through the whole film and leads every handoff: it swallows a finished line, hops to the next word, swells and stretches into a light line, and marks where the next scene begins.",
+    "A line of text collapses into the accent object (words squash and scramble back into bars), so the object carries the idea into the next shot.",
+    "A ring around the object opens into a larger geometric frame (overlapping thin circles), so the next scene grows out of the last element instead of cutting.",
+    "Slit wipe: the accent object stretches into a thin horizontal light line that opens like an eye onto the next scene.",
+    "Word morph: one word scrambles into the next in place (blocky glyph bars between the two), keeping the eye on the same spot.",
+    "Rotation carry: the camera rotates with a word riding a circle, and a fast whip along the curve becomes the next scene's blurred ring.",
+    "The ribbon thread: one gradient tube draws itself in one beat, exits, and re-enters the next beat to wrap the new subject over and under, carrying words along its path.",
+    "Collapse to a particle: a whole frame shrinks into a small square, spins into a tiny diamond and drops into the next dark scene, where cards then assemble around the space it left.",
+    "Pop-out: an element inside a screen lifts out into 3D space and becomes the subject of the next shot.",
+    "Light route: a glowing line draws a path through a grid and reveals the text behind its head, so motion and reading happen together.",
+    "Two grounds alternate as question and answer: dark green with glows for setups and questions, pale cream-mint for answers and payoffs; every switch is a hard cut on a phrase boundary.",
+    "Key-word marking is constant across scenes (extra-bold accent colour plus a selection box, gradient block or pill), so the viewer learns where the meaning sits."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its sparkle/flower mark, copy, stock footage and photos of people, UI contents (dashboard, weather card, smart-home tiles, figures), face doodles or the shot order one by one.",
+    "The reference is 16:9 (736x414) and the film defaults to 9:16: every composition (left-aligned lines, wide dashboards, curved tile walls, the image frame) must be re-laid vertically inside safe-zones.md; type is set larger than the reference's small lines (about 4% of a landscape frame height) to meet the minimum sizes.",
+    "Glyph-scramble, letter-by-letter typing, letter-spacing tighten-in, a single swapped letter and text-on-path all break or misjoin Persian letters: for Persian animate whole words only (blur/scale or a bar-mask reveal per word), accent whole words, keep tracking at 0, and put words on a straight ribbon segment or check joining before using textPath (rtl-grammar.md).",
+    "Directions read left → right (icon travelling right, pill sliding out to the right, slit opening from the left, card sliding off left, block cursor ahead of the word on the right, stepped indents to the right): for Persian they follow references/rtl-grammar.md.",
+    "Two beats depend on photos or footage of people (r1-s7, r1-s10): our film uses owner assets there or code-built scenes; never stock faces.",
+    "Lime-on-dark-green and dark-green-on-cream contrasts are fine for bold words but thin light-weight lime on the glow areas may fail contrast: readability ranks above the reference; check every line against the background under it.",
+    "Reference colours (deep bottle green, teal glow, lime-yellow accent, cream/mint light ground, orange-yellow icon) map onto brand colour roles (dark background, secondary glow, accent, light background, highlight); never used as literal hex values. Colours were read by eye, not sampled.",
+    "Heavy bloom, backdrop blur and CSS 3D on many cards are costly to render in headless Chromium; motion-build should cap the number of blurred layers per frame and pre-render glows where possible.",
+    "The reference has its own music bed; our cuts and reveals follow the voiceover first, and L6 sets sound. Tempo was not analysed.",
+    "The reference ends on a question with no logo: our outro follows the brand's own logo outro rules (router conflict order, item 5)."
+  ],
+  "sha256": "e4bed7dd55cd8b3b237446d688406e67d86eb8f9ea1ca6c804923bc3d1f9666a"
+}

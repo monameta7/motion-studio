@@ -1,0 +1,172 @@
+{
+  "slug": "mono-3d-objects-01",
+  "key": {
+    "sha256": "2cef53b255968ecdfbcbbbc76ae69f1c2c59b780d1a6f229dfedd68dae1bba8e"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 11.42,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1280, 30 fps; video stream 11.30 s (339 frames), container 11.42 s. Audio: AAC stereo 44.1 kHz, continuous and loud (mean -16.2 dB, peaks at 0 dB), silent from 11.04 s; content not analysed for beats, third-party audio never reused."
+  },
+  "rights_note": "third-party short from Pinterest (file «smartbizlearning_pindown.io_1792517751.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "اشیای سه‌بعدی خاکستری",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party short of unknown origin: borrow the motion language and look only, never its shots one by one, its object designs, its copy or its figures (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        2.4,
+        6.4
+      ],
+      "why": "the English counter copy ('Views', 'N million+') and every figure shown (100301 … 643609, 2 million+ … 47 million+) are third-party copy and claims; never reused as text or as numbers in our film"
+    },
+    {
+      "span": [
+        0,
+        3.7
+      ],
+      "why": "the in-phone app screens (video card, heart counter, $ button, tab bar) are a third-party UI design; only the frosted-glass card treatment and the click-to-change motion are borrowed"
+    },
+    {
+      "span": [
+        3.6,
+        10.4
+      ],
+      "why": "the subjects (calendar on a pedestal, coin stacks, prize wheel with X/check slots, light bulb, crowd of silhouettes) are the reference's story props; our scenes take their subjects from the voice-over and are only drawn in this rendering style"
+    },
+    {
+      "span": [
+        0,
+        11.42
+      ],
+      "why": "the audio track is third-party music/sound; L6 builds our own sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (2 sheets, 6x2, both viewed); scene detect gt(scene,0.25) found no cuts, gt(scene,0.08) only 6.27-6.40 s (max score 0.117, the light-flare white-out), so the film is one continuous take with in-camera transitions; dense sheets fps=5 over 0-2.8 s and 7.4-11.3 s, fps=10 over 2.8-4.6 s and 5.6-7.4 s (4 sheets, all viewed). Spans read from the dense sheets, accurate to about ±0.1 s. silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.3
+      ],
+      "shot": "medium, several frosted-glass phone cards floating in depth on black, above a huge dark sphere horizon",
+      "camera": "slow push-in with a slight drift; shallow depth of field, soft bokeh discs in the background",
+      "moves": "from black, one small glass card fades in at mid-right (0.2 s); a second and third card arrive behind it in a diagonal fanned stack (0.4-1.0 s, smooth ease-out), while a giant dim sphere rises from the bottom as a horizon (0.2-0.8 s); a bright specular streak sweeps diagonally across the glass (about 0.6-1.0 s); 1.2-2.2 s the stack turns to face the camera and the cards slide together into one centred card (smooth ease-in-out, about 1 s); a small cursor pointer drifts in from the lower left",
+      "text": "none (only tiny UI numbers inside the card)",
+      "transition_out": "no cut: the merged card becomes the hero of r1-s2",
+      "palette": "black background, dark grey sphere horizon, clear-grey glass with white edges and highlights",
+      "built": "generated (3D render)",
+      "reusable": "yes: several translucent cards fanned in depth that converge and merge into one hero card; a light streak across glass as the reveal accent; motion only, never the app design"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.3,
+        3.6
+      ],
+      "shot": "medium, one centred glass phone card, a big counter number at the top behind it, a soft halo disc behind the card",
+      "camera": "near static, very slow push-in",
+      "moves": "a large counter number fades/wipes in at the top-left (2.3-2.5 s) and sits behind the card in depth (the card's top edge covers its lower part at first); the number counts up continuously and fast (every frame a new value, roughly linear), with a small label line under it; inside the card the cursor clicks a button and the card's content swaps (clip, counter) on each click; the card drifts slightly down, uncovering the number",
+      "text": "one big counter number, grey heavy sans, left-aligned at the top, cap height about 7% of frame height; a small label line under it",
+      "transition_out": "vertical whip (3.55-3.75 s): the card shoots upward out of the top edge (strong ease-in, motion blur) while the next set rises from below; the counter stays pinned at the top and keeps counting through the move",
+      "palette": "black with a mid-grey halo disc, glass card, grey type",
+      "built": "generated (3D) with type composited in the depth order (number behind the card)",
+      "reusable": "yes: a live counter that sits in the same depth stack as the hero object and keeps running across the scene change; click-driven content swaps on the object; motion only, never their figures"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        3.6,
+        6.3
+      ],
+      "shot": "medium-low, a matte cylinder pedestal rising from the bottom with an object standing on it, metal coin stacks on the right, blurred coins in the foreground, the counter still at the top",
+      "camera": "reads as a tilt down / boom down onto the new set during the whip (about 0.3 s), then a slow push-in with gentle parallax between pedestal, side stacks and blurred foreground",
+      "moves": "pedestal, object and coin stacks rise into frame from the bottom (3.6-4.3 s, ease-out); a pen enters spinning, lands on the object and ticks items one after another (about every 0.4 s); coin stacks bob gently; the background brightens steadily from black to mid grey; a small bright light point (lens flare) sits at the upper right and grows slowly; the counter switches from raw digits to a short 'N + unit' form and keeps ticking (about 2 steps per 0.1 s)",
+      "text": "the pinned counter only: big number + unit word, one line, grey heavy sans, small label under it",
+      "transition_out": "light-flare bloom (6.25-6.5 s): the bright point at the upper right swells into a soft white disc that fills the whole frame (fast, ease-in), a white-out hiding the change of world; the counter is swallowed with it",
+      "palette": "black rising to mid grey, matte grey pedestal, chrome/silver coins, white paper object with a small green accent",
+      "built": "generated (3D render) plus composited counter",
+      "reusable": "yes: the next set rising from below while a pinned number keeps counting; background value climbing with the number; a growing light point that becomes the transition; motion only, never the calendar or coins"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        6.5,
+        7.9
+      ],
+      "shot": "medium, one flat round object (a dial) standing upright, centred in an all-white soft studio with a floor reflection",
+      "camera": "static frame; the object resolves from blur (rack focus plus scale up)",
+      "moves": "in the white, a small blurred grey disc appears (6.6 s) and grows to full size while coming into focus (6.6-6.8 s, ease-out); it spins with strong motion blur and decelerates to a stop (6.8-7.4 s, long ease-out); its slot icons resolve as it slows; the cursor moves to the winning slot and clicks (7.6 s), the slot icon turns green (7.6-7.8 s)",
+      "text": "none",
+      "transition_out": "no cut: the result grows out of the object in r1-s5",
+      "palette": "white to very light grey studio, mid-grey object with dark rim and hub, white icons, one green accent",
+      "built": "generated (3D, close to 2.5D) with a soft floor reflection",
+      "reusable": "yes: an object born from a white-out by rack focus, a decelerating spin that lands on one choice, a click that colours the chosen part; motion only, never the prize wheel"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        7.9,
+        10.1
+      ],
+      "shot": "medium-wide, the dial with a glowing object rising above it, a crowd of dark silhouettes filling the bottom in layered depth",
+      "camera": "slow pull-back (the dial shrinks about 10%) while the foreground fills",
+      "moves": "a light bulb rises out from behind the top of the dial (7.9-8.1 s, ease-out with small settle), grey and off; it switches on (8.1-8.4 s): yellow core, warm glow, and the white background warms into a large soft halo; 8.3-9.6 s silhouette figures rise from the bottom edge one after another (stagger about 0.15-0.2 s, ease-out), back rows fainter and fading in fog, front rows larger and darker; hold about 0.5 s",
+      "text": "none",
+      "transition_out": "whole-frame defocus (10.1-10.5 s): everything goes out of focus at once (blur ramps up, ease-in)",
+      "palette": "white with a warm yellow halo, grey dial, dark grey silhouettes fading to white fog at the bottom, one yellow accent and one green accent",
+      "built": "generated (3D objects; silhouettes as flat dark cutouts layered in depth with fog)",
+      "reusable": "yes: the result object rising out of the previous one and lighting up (idea/payoff beat), the audience rising in staggered depth layers from the bottom; motion only, never the bulb or figures as copied designs"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        10.1,
+        11.3
+      ],
+      "shot": "full-frame blur dissolving to plain white",
+      "camera": "static; rack out of focus",
+      "moves": "the defocused scene fades into pure white by about 10.6 s; white holds to the end (audio silent from 11.04 s)",
+      "text": "none",
+      "transition_out": "end of film on white",
+      "palette": "white",
+      "built": "generated",
+      "reusable": "yes: defocus-to-white as the hand-off into an end card or logo outro"
+    }
+  ],
+  "visual_language": "One continuous 3D take with no hard cuts (scene detect found none above 0.12): every change of world happens in camera, by a vertical whip, a light-flare white-out, a rack focus or a full defocus. Medium: monochrome 3D render with a few composited elements (the counter). Typography is minor: a single big counter in grey heavy sans pinned at the top, counting non-stop, with a small label under it; no headline copy. Rhythm: six beats in 11.3 s (about 1.9 s each), smooth and continuous, accelerating in the middle (counter ticking every frame) and calming at the end; audio is a continuous loud track, beats not analysed. Moves are smooth ease-out arrivals (0.2-0.7 s), fast ease-in exits (whip 0.2 s, flare 0.25 s), one long ease-out deceleration (spin about 0.6 s), staggered rises (0.15-0.2 s per item). A cursor pointer is an actor that clicks to trigger each state change. The background value climbs across the whole film: black (0-3.6 s) → mid grey (3.6-6.3 s) → white (6.5-11.3 s), so the film moves from dark to light as the story moves from problem to payoff. Palette: strict greyscale (black, greys, silver, white) with tiny colour accents saved for payoff moments (green tick, yellow light). Signature moments: glass cards fanning in depth and merging into one; the pinned counter that keeps running while the world changes beneath it; the light point that swells into a white-out; the dial that spins to a stop and the light that switches on above it; the crowd rising from the bottom.",
+  "look": "Real 3D (not flat), monochrome. Materials: frosted clear glass cards with bright white edges, inner glow and a diagonal specular streak; matte satin grey plastic (pedestal cylinder, dial); polished chrome/silver metal (coin stacks) with strong reflections; white paper. Light: soft studio light with a strong rim/edge light on glass, broad soft highlights, soft contact shadows and a floor reflection in the white studio; a single bright point light / lens flare used as a story element; glow halos behind hero objects. Depth: shallow depth of field throughout, large out-of-focus foreground objects (blurred coins) and soft bokeh discs and huge dim spheres in the background; motion blur on the whip and the spin. Background: no visible ground in the dark part, a soft gradient void with a giant sphere horizon; later a seamless white cyclorama with fog at the bottom. Silhouette figures are flat dark cutouts layered in depth and faded by fog.",
+  "code_translation": "Not code-native (3D render). Per D55 it is built as real 3D in code with three.js: rounded-box glass cards with MeshPhysicalMaterial (transmission, roughness for frost, clearcoat) plus an emissive edge and an animated specular streak texture; matte MeshStandardMaterial for pedestal and dial, metalness 1 / low roughness with an environment map for chrome; soft key light, rim light and hemisphere fill, soft shadows and a reflective floor (or reflector) in the white studio; depth of field as a blur pass with large blurred foreground meshes and bokeh sprites; motion blur by frame blending or directional blur on the whip and spin; the light-flare white-out as an additive sprite that scales to fill the frame, then fades to the next scene; the end defocus as a ramped blur pass to white. The counter is rendered from the shaped brand Persian font (Persian digits per data-viz.md) into a canvas texture on a plane inside the scene, so the hero object can sit in front of it; never flattened into 2D shapes and never with joined Persian letters split. Silhouettes, if a scene needs a crowd, are dark planes layered in depth with fog.",
+  "continuity": [
+    "One continuous take: worlds change only by in-camera moves (whip, flare white-out, rack focus, defocus), never by a plain cut.",
+    "Pinned live counter: one number stays fixed at the top across a scene change and keeps counting, its form growing (raw digits → number + unit), while the world under it changes.",
+    "Many become one: several translucent cards fanned in depth converge and merge into a single hero object.",
+    "Vertical whip hand-off: the hero shoots out of the top edge while the next set rises in from the bottom, so the camera seems to tilt down into the next idea.",
+    "Light point to white-out: a small bright flare grows slowly during a scene, then swells to fill the frame and hides the change of world.",
+    "Born from blur: the next hero object appears small and out of focus in the white and resolves by rack focus and scale-up.",
+    "Background value ramp across the film: black → mid grey → white, dark to light as the story moves to its payoff.",
+    "Cursor as actor: an on-screen pointer clicks to trigger each state change (content swap, choosing the winning part).",
+    "Colour saved for the payoff: the film stays greyscale and only the chosen element turns colour (green tick, yellow light).",
+    "Result grows out of the object: the payoff object rises out from behind the previous hero and lights up.",
+    "Rising audience: figures rise from the bottom edge in staggered depth layers, back rows faded by fog.",
+    "Defocus to white as the exit into the end card."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the app UI, the calendar, coins, prize wheel, bulb or crowd as designs, the English copy ('Views', 'million+'), any of its figures, its audio, or its shot order one by one.",
+    "The counter ticks every frame: a running number cannot be read until it stops; every number that matters must land and hold for the readability hold time, and its value must come from the approved package (claims accuracy ranks first). Persian digits and units per data-viz.md.",
+    "The counter is small (cap height about 7% of frame height) and grey on mid grey in r1-s3: in our film it must meet minimum size and contrast and sit inside the safe zone.",
+    "The reference is strict greyscale: brand colour roles map onto it (background ramp onto the brand's dark → light neutrals, accents onto the brand accent), never its literal greys, green or yellow; colours were read by eye, not sampled.",
+    "Silhouette crowd and cursor are generic devices but must be drawn new, not traced from the reference; a crowd scene is used only if the voice-over is about people.",
+    "No hard cuts in the reference: L5 plans scene changes as in-camera transitions; where the voice-over needs more beats than the reference shows, reuse its transition kit rather than inventing hard cuts.",
+    "Audio is third-party and peaks at 0 dB (clipping); it is ignored, L6 builds the sound."
+  ],
+  "sha256": "2cef53b255968ecdfbcbbbc76ae69f1c2c59b780d1a6f229dfedd68dae1bba8e"
+}

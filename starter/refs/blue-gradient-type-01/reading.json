@@ -1,0 +1,249 @@
+{
+  "slug": "blue-gradient-type-01",
+  "key": {
+    "sha256": "a9a32a8fc5678216ac9e0a985cfff0b58a620a62c498abfffdf0c35df680e5e2"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 32.75,
+    "w": 720,
+    "h": 1280,
+    "fps": 29.97,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1280, 29.97 fps, 32.75 s (matches our default vertical format, no re-composition needed). Audio: AAC HE-AACv2 stereo 44.1 kHz, continuous (no silence below -40 dB for 0.3 s or longer), mean -20.9 dB, peak -2.1 dB; the on-screen caption changes phrase by phrase like a narrated script, so read as narration over a music bed (not listened to, not analysed for beats); third-party audio, never reused."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «infographic motion design.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "تایپوگرافی روی گرادیان آبی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party motivational trading reel of unknown origin: borrow the motion language and the soft blue 3D look only, never its shots one by one, its copy, its numbers, its calendar years, its characters as designed or its CTA (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        32.75
+      ],
+      "why": "all English copy (the trading-discipline script: 'Extreme discipline' vs 'Casual Trying', 'Most traders spend years repeating the same mistakes', 'Same Habits / Same Emotions / same lack of structure', 'Everything Changes', 'A single focused year can rewrite your future') is third-party copy; never reused, translated or paraphrased as our line"
+    },
+    {
+      "span": [
+        0,
+        5.1
+      ],
+      "why": "the chart values and labels ('40.256', 'Exercitation Ullamco' placeholder text, '58 % Growth', '35 % incline', axis 10/20) are placeholder or third-party numbers; any number on our screen comes only from the content package (data-viz.md)"
+    },
+    {
+      "span": [
+        5.1,
+        8.3
+      ],
+      "why": "the desk calendar flipping 2018 to 2025 is the creator's prop for its own line; only the technique (a counter object flips its pages to show time passing) may be used, and only if our voice-over talks about time"
+    },
+    {
+      "span": [
+        17.65,
+        21
+      ],
+      "why": "'income stats', 'Invested', 'Withdrawn' and the rising curve are the creator's trading chart; our charts carry only package data"
+    },
+    {
+      "span": [
+        21,
+        32.75
+      ],
+      "why": "the glossy round-headed characters, the white desk with monitor, the 'Task 1-4' checklist and the 'Share this post' end card with a paper plane are the creator's scenes and CTA; we draw our own subjects from the voice-over in this rendering style, and our ending is the brand logo outro and our own CTA"
+    },
+    {
+      "span": [
+        0,
+        32.75
+      ],
+      "why": "the audio track (narration and music) is third-party; L2 uses our voice-over and L6 builds our sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 360 px wide (6 sheets, 4x3, all viewed); scene detect gt(scene,0.3) found 5 cuts: 5.11, 12.25, 17.65, 21.19, 22.56 s; two more scene changes (about 8.3 s calendar to cards, about 24.9 s checklist to '1 YEAR') and the whip at about 26.3 s were found by eye on the 2 fps sheets; dense sheets at fps=10 around 4.6-5.8, 11.7-12.9, 16.9-18.1, 25.6-26.8, 28.4-29.6 s and fps=5 around 20.6-23.0 s (6 dense sheets, all viewed). Spans accurate to about ±0.1 s at detected cuts and ±0.25 s at changes found by eye. silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        5.1
+      ],
+      "shot": "medium-close on a line chart standing in 3D space: a dark navy label above a thick rising line ending in a glossy dark ball, faint gridlines, big thin numbers in the foreground",
+      "camera": "slow continuous dolly and tilt along the chart in perspective (0-1.5 s drifting right and up with the line), 1.5-3.0 s the camera tracks the rising line up and to the right, 3.0-4.5 s pulls back and rotates so the first line shrinks to the upper left and a second, flatter line takes the centre; 4.6-5.1 s fast whip pan to the left with heavy horizontal motion blur",
+      "moves": "0-1.0 s a short line draws from the ball (smooth); 1.0-2.5 s the line extends steeply to the upper right while a wiggly white line draws below it; 2.5-3.2 s a second bold label slides in from the lower right edge with the camera; 3.5-4.5 s two stats (big thin percent and a tiny caption) fade up at the bottom out of focus; 4.6-5.1 s the whole chart smears left",
+      "text": "caption line (see visual_language) at about 19% of height; hero label in bold geometric sans, dark navy, cap height about 2.5% of frame height, sitting just above its line; second label in bold white; foreground numbers in a thin light sans, cap height about 5%, pale blue-white and out of focus",
+      "transition_out": "whip pan left with motion blur, hard cut on the blur to the next scene (5.1 s)",
+      "palette": "periwinkle to electric blue gradient, navy label and line, glossy navy-black ball, white secondary line and label, pale white numbers",
+      "built": "code-native (three.js or CSS 3D chart planes with depth-of-field blur)",
+      "reusable": "yes: two lines compared on a chart standing in 3D, the camera riding along the winning line, then pulling back to reveal the other, then a whip pan out; motion only, our data from the package"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        5.1,
+        8.3
+      ],
+      "shot": "wide: a small glossy desk-calendar object on a white floor at the horizon, centred low, under a bright white sky hotspot",
+      "camera": "locked, slight slow push-in",
+      "moves": "5.1-5.6 s hold; 5.6-8.0 s pages flip one after another (about 0.4-0.5 s each, snappy ease-in-out): each page tilts forward like glass, shows its mirrored back and flies off to the upper left, piling up as tumbling cards at the left edge; 8.0-8.3 s the last page holds",
+      "text": "caption line only; on the object a large heavy number in white (cap height about 3%) and a small label strip above it",
+      "transition_out": "soft change at about 8.3 s (not caught by scene detect): the floor and object are gone and the next element slides in on the bare gradient",
+      "palette": "white floor and sky hotspot, periwinkle gradient, glossy black object with a blue gradient top edge",
+      "built": "code-native (three.js box with page planes, glossy material, floor plane)",
+      "reusable": "yes: a counter object flips its pages one by one, each page tumbling off to the side, to show time passing; technique only, never the calendar or the years"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        8.3,
+        12.25
+      ],
+      "shot": "medium: glossy dark rounded cards with one short phrase each, stacked down the frame, floating in 3D",
+      "camera": "locked at first, then 10.5-12.25 s a slow orbit: the camera tilts and rolls so the card stack turns about 15 degrees and recedes, near cards sharp, far ones blurred",
+      "moves": "8.3-8.8 s the first card slides in from the right edge with a slight tilt (smooth ease-out, about 0.5 s) and settles centred; 9.3-9.8 s it rises and a second card slides in under it from the right; 10.3-10.8 s a third card slides in under them from the lower right; each card arrives slightly rotated in 3D and levels out as it settles",
+      "text": "white bold geometric sans centred on each card, cap height about 2%, one or two lines per card",
+      "transition_out": "hard cut (12.25 s) while the stack is still drifting",
+      "palette": "cards in a glossy gradient from near-black to deep violet-blue with a light sheen on the edge; periwinkle background with a soft white glow at the bottom",
+      "built": "code-native (three.js or CSS 3D rounded planes, gradient material, lens blur by depth)",
+      "reusable": "yes: a list built as glossy cards that slide in one per voiced item and stack, then the camera orbits the stack in depth; motion only, items from our package"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        12.25,
+        17.65
+      ],
+      "shot": "wide to medium: the curved top of a huge dark sphere fills the lower half like a planet horizon; a liquid blue drop hangs down from the top edge on a narrowing stem",
+      "camera": "locked 12.25-15.0 s, then 15.0-17.4 s a slow push down past the horizon into the dark body of the sphere; 17.4-17.65 s fast whip tilt with vertical motion blur",
+      "moves": "12.25-14.5 s the drop lowers and its stem stretches and widens like thick liquid (slow, smooth, elastic), the caption sits behind the stem; 14.5-15.0 s the tip touches the horizon, makes a small rim highlight and pierces in; 15.0-16.0 s the tip passes inside and turns into a glowing white pearl as the sphere darkens around it; 16.0-17.4 s a two-weight headline builds under the pearl: a light small word, then a huge ultra-condensed heavy word that fades from grey to white",
+      "text": "caption line (navy on light, then white on dark); headline: small light sans word over a huge ultra-condensed black-weight word, cap height about 9%, centred at about 70% of height",
+      "transition_out": "vertical whip with motion blur, hard cut (17.65 s)",
+      "palette": "white-to-electric-blue sky, deep navy sphere with a pale rim light fading to near-black, saturated blue glossy liquid, white glowing pearl, white headline",
+      "built": "code-native (three.js sphere with rim light, liquid stem as an animated tube or SVG path with gradients, bloom on the pearl)",
+      "reusable": "yes: one element descends slowly and pierces a surface, the light inverts from bright sky to dark depth, and the turning-point headline lands in that darkness; motion only, our subject from the voice-over"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        17.65,
+        21
+      ],
+      "shot": "medium: a thin white rising curve on a tilted chart plane, a huge blurred word sweeping across the top in perspective",
+      "camera": "continuous slow orbit and push along the curve (rotates about 15 degrees over the shot), the curve stays near centre",
+      "moves": "17.65-20.5 s the curve draws upward step by step in sync with the caption phrases (each phrase a new segment, smooth ease-out), small hairline callout labels with a hook line pop at the turning points; the big foreground word slides diagonally across the top, fully lens-blurred; 20.5-21.0 s the curve peaks and turns down",
+      "text": "caption line; tiny navy callout labels at the curve; huge foreground word in bold white, blurred, at the top edge (decoration only); faint big numbers out of focus at the bottom",
+      "transition_out": "cross-dissolve to dark (about 21.0-21.2 s); the caption turns white through the dissolve",
+      "palette": "periwinkle to blue gradient, white curve, navy labels, white blurred type",
+      "built": "code-native (SVG or three.js line drawn by stroke-dashoffset on a perspective plane, lens blur)",
+      "reusable": "yes: a curve that grows one segment per spoken phrase while the camera orbits it, with callouts at the turning points; motion only, our data"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        21,
+        22.55
+      ],
+      "shot": "medium: a simple 3D figure (sphere head, half-dome body) in near-black space, rim-lit in blue from above",
+      "camera": "locked",
+      "moves": "the figure fades up out of the dark with the dissolve, then the head turns slowly from profile to three-quarter (smooth, about 1 s); a tiny highlight in the eye",
+      "text": "caption line in white",
+      "transition_out": "iris reveal: a circle opens from the centre with a dark rim and a blue edge glow, showing the next scene inside (22.4-22.9 s)",
+      "palette": "near-black navy to deep blue at the top, blue rim light on glossy dark forms",
+      "built": "code-native (three.js primitives, one rim light, dark fog)",
+      "reusable": "yes: a quiet character beat in darkness, rim light only, a small head turn on the key word; motion only, our own character design"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        22.55,
+        24.9
+      ],
+      "shot": "close: a list of large bold items with checkboxes on a pale plane in steep perspective, seen through the opening iris",
+      "camera": "22.55-23.0 s the iris circle grows past the frame edges; 23.0-24.9 s slow tilt and drift down the list, strong depth of field (the near row sharp, lower rows heavily blurred)",
+      "moves": "each checkbox gets a quick blue tick drawn in (about 0.2 s, snappy) one row after another, on the caption beats; rows slide up slightly as the camera drifts",
+      "text": "caption line; list items in heavy rounded geometric sans, white, cap height about 4%",
+      "transition_out": "soft change at about 24.9 s (found by eye): a short fade to the next scene",
+      "palette": "pale lavender-white plane on a blue gradient, white items, electric blue ticks",
+      "built": "code-native (CSS 3D plane or three.js, SVG tick strokes, depth blur per row)",
+      "reusable": "yes: an iris opens onto a list in steep perspective and items are ticked one by one as the voice names them, depth of field guiding the eye; motion only, our items"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        24.9,
+        26.3
+      ],
+      "shot": "wide: a tiny 3D figure at a white desk with a monitor on a glossy reflective floor, a huge ultra-condensed headline standing behind it like a wall",
+      "camera": "locked with a slow push; 26.0-26.3 s fast whip pan left with motion blur",
+      "moves": "25.0-25.6 s the giant letters rise and wipe in behind the figure (smooth ease-out), the figure works at the desk; the floor reflects desk and letters",
+      "text": "caption line; giant headline in ultra-condensed black weight, deep navy with a lighter right half, cap height about 18% of frame height, set behind the 3D scene (the scene overlaps the letters)",
+      "transition_out": "whip pan left with motion blur into the next scene (26.3 s)",
+      "palette": "white floor and sky hotspot, blue gradient behind, navy giant type, white desk with blue accents",
+      "built": "code-native (three.js figure and desk, type plane behind, reflective floor or mirrored copy with fade)",
+      "reusable": "yes: a small 3D subject placed in front of giant type that rises behind it, on a reflective floor; motion only, our subject and our words"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        26.3,
+        29
+      ],
+      "shot": "type only: one bold word at a time at mid height on the bare gradient",
+      "camera": "locked",
+      "moves": "26.3-26.6 s the first word slides in from the right with the whip and settles at the centre (smooth ease-out); then each word replaces the last on its beat (about 0.5 s apart, short fade); 28.0-28.5 s a short phrase appears word by word, each new word starting grey-blue and darkening to navy; 28.6-29.0 s whip pan right with motion blur",
+      "text": "bold geometric sans, dark navy, cap height about 2%, centred at 50% height",
+      "transition_out": "whip pan right with motion blur, cut to the end card (29.0 s)",
+      "palette": "the bare gradient: white hotspot top left, periwinkle, a deep electric-blue glow on the right edge, a pale glow at the bottom",
+      "built": "code-native",
+      "reusable": "yes: the emotional peak line is given word by word, one word alone on the empty gradient, each word darkening into place; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        29,
+        32.75
+      ],
+      "shot": "end card: a glowing glass-sphere figure at the right, a condensed headline and an italic subline to its left",
+      "camera": "locked",
+      "moves": "29.0-29.6 s a small paper object flies in from the lower left in an arc toward the figure; 29.4-30.0 s the condensed headline builds letter by letter from left to right with a fade (pale to navy); 30.0-30.4 s the italic subline fades in; 30.4-32.0 s the flying object circles and lands in the figure's hand; 32.0-32.75 s hold",
+      "text": "condensed heavy headline, navy, cap height about 9%, left-aligned at about 20% of height; wide italic subline beneath",
+      "transition_out": "end of file",
+      "palette": "white top hotspot fading to periwinkle and electric blue at the bottom, glassy blue sphere with white rim, navy type",
+      "built": "code-native (three.js glass sphere with fresnel rim, type overlay)",
+      "reusable": "technique only: the CTA lands as the final beat with a small object flying to the character; our ending is our CTA and the brand logo outro"
+    }
+  ],
+  "visual_language": "A soft-3D infographic narrative reel: ten scenes, each a single bold visual metaphor for one line of narration, all on one airy blue world. Medium: code-built 3D (charts standing in space, a glossy prop object, glossy cards, a planet-like sphere with liquid, simple primitive characters, a desk scene) mixed with large typography. Typography runs on two layers: a constant small caption line (regular geometric sans, dark navy on light scenes and white on dark ones, cap height about 1.5% of frame height, centred at about 19% of height) that changes phrase by phrase with the narration, and one hero type element per scene (bold geometric sans labels, white text on glossy cards, ultra-condensed heavy headlines for turning points like the 'changes' word, '1 YEAR' wall and end card). Rhythm: average shot about 3.3 s, caption phrases change every 0.8-1.5 s, cuts land on phrase boundaries; whip pans with motion blur carry three transitions, one cross-dissolve, one iris, the rest hard or soft cuts. Easing is smooth and slow for camera and liquid, snappy for flips and ticks. Palette: a white hotspot in the upper left falling into periwinkle and electric blue, deep navy type, glossy navy-black and violet objects, and one dark scene pair (near-black with blue rim light) for the turning point. Signature moments: the camera riding a chart line; pages flipping off a time counter; cards sliding in and stacking; the liquid drop that pierces the dark sphere and becomes a glowing pearl over the 'changes' headline; the iris onto a ticking checklist; a small figure in front of a giant word wall; the word-by-word peak line.",
+  "look": "Real soft 3D (studio CG style), not flat: objects have volume, perspective and glossy materials. Light and shadow: a big soft key light from the upper left that blows out to a white hotspot, blue ambient fill, rim lights on dark objects, soft reflections on a glossy floor, no hard shadows. Materials: glossy black and navy plastic with blue gradient sheen (calendar, cards), thick glossy liquid (the drop), dark matte sphere with a pale rim highlight, glass spheres with fresnel rim and inner glow (end-card character), clean white matte desk. Depth of field: strong lens blur by depth on charts, card stacks, lists and foreground type. Background: a smooth blurred white-to-periwinkle-to-electric-blue gradient studio sky, sometimes with a white floor and horizon; twice it goes to near-black navy with blue rim light for the dark turning point.",
+  "code_translation": "Built as real 3D in code with three.js: a gradient sky shader (white hotspot upper left, periwinkle, electric-blue glow on the right) mapped onto the brand background and accent roles; MeshPhysicalMaterial with clearcoat for glossy objects, a soft key light from the upper left, blue hemisphere fill, rim lights for dark scenes; depth of field as a bokeh post-pass or per-layer CSS blur by depth; whip pans as a fast camera yaw plus a directional motion-blur pass, cut on the blur; iris as a growing circular mask with a glowing rim. Charts are lines drawn by stroke-dashoffset on perspective planes; cards are rounded planes with gradient clearcoat; the liquid stem is an animated tube or SVG path with gradient fill and a bloom on the pearl. Type: the caption line and all hero type are HTML or texture overlays in the brand Persian font, whole words only, never split letters (rtl-grammar.md); the caption is centred, so it mirrors cleanly for Persian; letter-by-letter builds become word-by-word builds. Ultra-condensed headlines use the brand's heaviest display weight, never a substitute font. Subjects and props come from our voice-over, never the reference's.",
+  "continuity": [
+    "One world: the same soft blue gradient studio sky and white hotspot light every scene, so cuts feel like moves inside one place.",
+    "Constant caption line: a small phrase line at the same height in every scene changes with the narration, while the hero element below carries the metaphor.",
+    "Camera rides the data: the camera travels along a growing line on a chart standing in space, then pulls back to reveal a comparison.",
+    "Whip pan with motion blur: the scene smears sideways or vertically and the cut is hidden inside the blur; the next scene can enter still moving in the same direction.",
+    "Pages flip off a counter: a time-counter object flips page by page and each page tumbles off to the side.",
+    "Stacking cards: one glossy card slides in per voiced item, the stack grows down the frame, then the camera orbits it in depth.",
+    "Pierce and invert: a slow element descends, pierces a surface, and the light flips from bright sky to dark depth, landing the turning-point headline in the dark.",
+    "Cross-dissolve to dark: a bright scene dissolves into a near-black rim-lit scene and the caption flips from navy to white.",
+    "Iris reveal: a glowing circle opens from the centre of a dark scene onto the next bright scene.",
+    "Tick on the word: list rows in steep perspective get a tick each as the voice names them, depth of field leading down the list.",
+    "Subject before a giant word: a small 3D subject stands in front of a giant word that rises behind it like a wall.",
+    "Word alone on the empty world: the peak line is given one word at a time on the bare gradient, each word darkening into place."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its English script, its numbers and placeholder text, the calendar years, the 'Task' list, its characters as designed, the 'Share this post' end card, its audio, or its scene order one by one.",
+    "The caption line is tiny (cap height about 1.5% of frame height, about 19 px at 1280): in our film it must meet the minimum text size and hold times (safe-zones.md), so it is set larger than the reference.",
+    "Persian runs right to left: the centred caption mirrors cleanly, but chart lines rising left to right, cards sliding in from the right, whip-pan directions and letter-by-letter builds are mirrored or made word by word for Persian (rtl-grammar.md).",
+    "Ultra-condensed heavy display type is central to the turning points: use the brand's heaviest Persian weight at large size; never fake condensing by scaling the font horizontally.",
+    "The look is real soft 3D with glossy materials, lens blur and motion blur: built in three.js (D55), never flattened into 2D shapes; render time is higher than a flat film.",
+    "Third-party charts show unsourced numbers: our charts use only numbers from the package with sources (data-viz.md); a decorative curve carries no values.",
+    "The palette is white, periwinkle and electric blue with navy type: mapped onto brand colour roles, never the literal blue if the brand differs; colours read by eye, not sampled.",
+    "Two scene changes (about 8.3 s and 24.9 s) and the whip at about 26.3 s were found by eye (±0.25 s); our film's scene changes are placed on voice timing, not on these spans.",
+    "The film ends on a 'share' CTA with the creator's characters: our film ends on our CTA and the brand logo outro.",
+    "Audio is third-party narration and music; ignored, L2 and L6 build ours."
+  ],
+  "sha256": "a9a32a8fc5678216ac9e0a985cfff0b58a620a62c498abfffdf0c35df680e5e2"
+}

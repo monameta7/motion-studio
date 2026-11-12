@@ -1,0 +1,209 @@
+{
+  "slug": "purple-ui-launch-01",
+  "key": {
+    "sha256": "cd3ae40b35daf8efd0e810ecf7ba8ef28bbcac4280c1fba47b2396e485f23dbb"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 15,
+    "w": 1920,
+    "h": 1080,
+    "fps": 30,
+    "audio": true,
+    "format_note": "16:9 landscape, single full-frame film (450 frames). Stereo AAC 48 kHz music track: near-silent intro with soft UI clicks 0-2.9 s, music drop at about 2.95 s exactly on the first hard cut, accents at about 4.9, 8.0, 11.1 and 13.0 s, fade-out from about 13.8 s to 15.0 s."
+  },
+  "rights_note": "third-party video (file «49fae3e4-0a7c-49c8-b05a-e3e0b5d76c54.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "معرفی اپ با تایپوگرافی و لایه‌های رابط",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "UI when the content package launches software, an app or a workflow",
+    "why": "third-party film of unknown origin: borrow the motion language and look only, never its shots one by one, its logo, its product name, its copy or its UI screens (owner note); a voiceover package defaults to REEL, and the reference's own grammar is a UI launch"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        15
+      ],
+      "why": "the 'strata' wordmark, its stacked-layers logo, the 'strata.design' URL and all English copy ('STRATA 2.0 IS LIVE', 'DESIGN TOGETHER', 'Describe a screen for Strata AI to design...', 'Design a fintech app — dark, bold, playful', 'DESIGN IN LAYERS.', 'ONE CANVAS. EVERY SCREEN.', 'Try Strata free') are third-party branding and copy; never reused as text or logo"
+    },
+    {
+      "span": [
+        6.3,
+        11.3
+      ],
+      "why": "the fintech phone screens and dashboards (balance '$24,180.52', user 'Mia Chen', Spotify/Airbnb/Blue Bottle rows, charts) are third-party UI content and brand names; never reused, never their figures"
+    },
+    {
+      "span": [
+        2.9,
+        6.2
+      ],
+      "why": "the collaborator cursor names (Mia, Ana, Leo, Kai) and avatar dots are third-party content; the multiplayer-cursor device may be reused only with names from our own package or none"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px (3 sheets, all viewed); scene detect gt(scene,0.3): cuts at 2.90, 7.80, 9.97, 13.30 s (other transitions are motion-blurred whips, zoom blurs and light blooms that the detector does not flag); dense sheets fps=10 at 320 px over the whole clip (5 sheets, all viewed; frame time = (sheet-1)*3 + index*0.1 s); audio waveform (showwavespic, 1 s grid) to place music accents. Spans and move durations read from the 0.1 s sheets, so they are accurate to about ±0.1 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        1.2
+      ],
+      "shot": "wide, design-editor canvas: one vector path being drawn with the pen tool",
+      "camera": "static, very slight drift",
+      "moves": "the pen cursor drags the last bezier handle and closes the path (0-0.9 s, smooth, hand-like); anchor points, handles, a dashed guide and small dark tooltips ('Close path', size readout) follow the cursor; 0.9-1.15 s the fill wipes across the shape from left to right (about 0.25 s, ease-in-out)",
+      "text": "tiny monospace editor labels and tooltips only (layer name top-left, size chips)",
+      "transition_out": "no cut: the filled shape itself shrinks into the next shot",
+      "palette": "near-white to pale lavender canvas, violet stroke and fill, dark tooltip chips, faint red guide line",
+      "built": "code-native (vector UI, SVG path drawing)",
+      "reusable": "yes: a brand shape is built on screen like in a design tool (path drawn, closed, filled) before it becomes the subject; motion only, never their shape"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        1.2,
+        2.7
+      ],
+      "shot": "medium, the filled shape becomes a logo mark and its wordmark types in beside it",
+      "camera": "static",
+      "moves": "1.2-1.45 s the big filled shape scales down to about 15% and moves to centre-left (strong ease-out, motion blur on the scale); 1.45 s it splits into three stacked offset copies (layer echo, about 0.1 s); 1.5-1.95 s the wordmark letters rise from a baseline mask one after another (stagger about 0.05 s per letter); 1.9-2.0 s a bounding box draws around the lockup and a small pill badge fades and rises in below; 2.0-2.3 s spec annotations pop in (colour swatches at left, red measurement tags, top labels, stagger about 0.05 s)",
+      "text": "the wordmark (heavy sans, dark), one small pill badge line in white on violet, tiny spec labels",
+      "transition_out": "zoom-through, about 0.25 s (2.7-2.9 s): the camera pushes hard into the lockup with radial zoom blur while a dark vignette closes in from the edges, hard cut at 2.90 s on the music drop",
+      "palette": "near-white canvas, violet mark in three tints, dark text, violet badge, red spec tags",
+      "built": "code-native",
+      "reusable": "yes: shape → mark → wordmark build with design-spec annotations around it (bounding box, swatches, measurement tags) as a 'made with care' signature; zoom-through into the next scene; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        2.9,
+        4.7
+      ],
+      "shot": "wide, two-line giant headline on a dark gradient, lines staggered (line 1 top-left, line 2 indented right)",
+      "camera": "near static, slow drift",
+      "moves": "2.9-3.05 s the lines settle from the zoom-through (oversized and blurred → final size, strong ease-out, about 0.15 s); 3.5-3.8 s collaborator cursors with coloured name tags glide in from the edges; one letter is selected with a bounding box and recoloured (orange), then a second letter (yellow), each change about 0.1 s; a small colour-picker panel pops in under line 2 and an avatar stack top-right; 3.8-4.6 s hold with cursors gently moving",
+      "text": "two words, white heavy sans caps, cap height about a quarter of frame height, plus small cursor name tags and tiny spec labels",
+      "transition_out": "whip pan left about 0.3 s (4.7-5.0 s): everything slides left with strong horizontal motion blur while the next element arrives from the right, landing on a music accent at about 4.9 s",
+      "palette": "deep navy to violet gradient with a magenta glow at bottom-left, white type, orange and yellow letter accents, pink/cyan/yellow cursor tags",
+      "built": "code-native",
+      "reusable": "yes: giant headline that is then 'edited live' by cursors (letters selected and recoloured inside the word), showing collaboration or editing; motion only, never their names"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        5,
+        6.3
+      ],
+      "shot": "medium, a single prompt bar (input field + glowing button) centred on the dark gradient",
+      "camera": "static",
+      "moves": "5.0-5.1 s the bar settles from the whip; placeholder text shows, a text caret appears; 5.3-5.95 s the prompt types in character by character (about 25 characters per second, linear); a small cursor moves to the button, 6.1 s press (button scales down about 4% and back, tooltip chip appears)",
+      "text": "one line of typed prompt in a light sans at small UI size, a tiny label above the bar, button label",
+      "transition_out": "light bloom, about 0.2 s (6.15-6.35 s): a soft white-violet glow blooms from the pressed button and floods the frame; the next shot's objects fly in through the bloom",
+      "palette": "deep navy-violet, dark glass input bar, violet-to-blue gradient button with glow",
+      "built": "code-native",
+      "reusable": "yes: type → press → bloom: an action (typing a request, pressing a button) whose result arrives through the light of the press; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        6.3,
+        7.8
+      ],
+      "shot": "wide, three phone screens side by side on a light canvas (three variants of one result)",
+      "camera": "static after the arrival; slight push",
+      "moves": "6.3-6.5 s the three phones fly in out of the bloom, from slightly larger and blurred to final size, staggered left → centre → right (strong ease-out); 6.6-7.0 s hold; 7.0-7.2 s variant labels and a selection box appear on the middle phone, a cursor clicks it, an inspector panel slides in at the right with swatches under each phone; 7.5-7.75 s the two side phones fly out sideways with motion blur, the chosen one stays",
+      "text": "tiny editor labels only (variant names, swatch codes)",
+      "transition_out": "iris to dark, about 0.1 s: a dark vignette closes around the remaining phone, hard cut at 7.80 s on a music accent",
+      "palette": "near-white lavender canvas, phones in dark navy / violet / orange-on-cream variants, violet selection",
+      "built": "code-native (flat UI cards)",
+      "reusable": "yes: several options appear at once, one is selected and the rest fly away — choice as motion; motion only, never their screens"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        7.8,
+        9.9
+      ],
+      "shot": "close-up into wide: the chosen phone tilts into an isometric view and explodes into its layers, headline at left",
+      "camera": "7.8-8.4 s camera dives close past the screen and the phone rotates from upright into an isometric tilt (about 0.6 s, smooth ease-in-out, slight motion blur); then static",
+      "moves": "8.5-8.8 s the screen separates into four or five floating translucent layers stacked in depth (each lifts about 0.05 s after the one below, ease-out); numbered layer labels with dot-and-line leaders write in at the right (stagger about 0.05 s); 8.6-8.9 s a two-line headline rises from a baseline mask at left, line 2 about 0.1 s after line 1; a small layers-panel card fades in under it; 8.9-9.6 s hold with gentle float; 9.6-9.9 s the layers collapse back into one phone and it rotates upright, the headline drops out through its mask",
+      "text": "two short lines, white heavy sans caps ending in a full stop, left-aligned at left third; small monospace numbered labels at right",
+      "transition_out": "light bloom behind the upright phone (9.85-9.95 s), hard cut at 9.97 s to light; the same phone flies into its place in the next shot",
+      "palette": "deep violet gradient, translucent lilac/violet glass layers, white type, small red markers",
+      "built": "code-native (2.5D: flat UI planes in CSS 3D or three.js perspective)",
+      "reusable": "yes: one object exploded into its layers in isometric depth with numbered labels, then reassembled — the strongest 'how it is built' device; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        9.97,
+        11.3
+      ],
+      "shot": "wide, a tilted infinite canvas of many screens and cards in perspective, headline at left",
+      "camera": "slow diagonal drift across the tilted canvas (perspective about 20-25°), edges of the canvas out of focus",
+      "moves": "9.97-10.3 s the carried phone flies in with motion blur and lands in its slot among the other screens (ease-out); 10.4-10.6 s two-line headline rises from a baseline mask, line 2 in the accent colour about 0.1 s later; 10.6-11.1 s a cursor moves between cards, selection boxes, pin badges and small chips appear on cards (stagger about 0.1 s)",
+      "text": "two short lines, heavy sans caps: line 1 dark, line 2 violet, both ending in a full stop, left-aligned over the canvas",
+      "transition_out": "whip blur about 0.3 s (11.1-11.4 s): the headline smears left, then the whole canvas whips away with rotational/zoom blur into the dark scene, on a music accent at about 11.1 s",
+      "palette": "light lavender canvas, mixed cards (dark navy, mint green chart, orange, pink gradients), dark and violet type",
+      "built": "code-native (2.5D: flat cards on a tilted plane in perspective, depth blur at the edges)",
+      "reusable": "yes: zoom out from one item to the whole system it belongs to, the item flying into its slot; motion only, never their screens"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        11.4,
+        13.3
+      ],
+      "shot": "medium, one glowing call-to-action button centred on the dark gradient",
+      "camera": "static",
+      "moves": "11.5-12.1 s the button emerges from the blur and scales in with slight overshoot; 12.2-12.5 s a cursor glides in from bottom-right and hovers: a bounding box and spec labels draw around the button; 12.6 s click (button dips about 4%); 12.7-13.1 s a burst of small square pixels expands from the button in a ring and drifts outwards (stagger, ease-out); 13.1-13.25 s the button blurs and glows to white",
+      "text": "button label in white medium sans, tiny spec labels",
+      "transition_out": "white flash: the glowing button blooms into a full white frame (about 0.1 s), hard cut at 13.30 s to the end card",
+      "palette": "deep violet-navy, violet button with soft glow, cyan/violet/blue pixel particles, white bloom",
+      "built": "code-native",
+      "reusable": "yes: CTA as a pressable object — hover specs, click, pixel burst, bloom to white; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        13.3,
+        15
+      ],
+      "shot": "wide, end card: logo lockup centred on a near-white canvas",
+      "camera": "static",
+      "moves": "13.35-13.5 s the mark pops in small; 13.5-13.9 s the wordmark letters rise from a baseline mask one by one; 14.1-14.3 s a monospace URL line fades up below; 14.3-14.6 s spec annotations (bounding box corners, swatches, measurement labels, tiny footer labels) draw in around the lockup and hold to the end",
+      "text": "wordmark, one monospace URL line, tiny spec and footer labels",
+      "transition_out": "end of film (music fades out from about 13.8 s)",
+      "palette": "near-white with faint lavender, violet mark, dark wordmark, grey URL, red spec tags",
+      "built": "code-native",
+      "reusable": "yes: the end card repeats the opening build (bookend), so the film closes on the shape it started from; motion only — the brand's own logo outro replaces it"
+    }
+  ],
+  "visual_language": "A software-launch film told inside a design tool. Medium: flat, crisp UI and kinetic type, built entirely in code, with 2.5D moments where flat UI planes are placed in real perspective (isometric layer stack, tilted infinite canvas). Typography: heavy, tightly spaced grotesque sans caps for headlines (two short lines, often ending in a full stop, line 2 sometimes in the accent colour), revealed by rising from a baseline mask with about 0.1 s between lines; tiny monospace editor labels everywhere as texture (spec tags, sizes, layer names). Rhythm: nine shots in 15 s, average about 1.7 s; quiet build-up for the first 2.9 s, then the music drops exactly on the first hard cut and every later transition (4.9, 7.8, 11.1, 13.3 s) lands on a music accent. Moves are snappy in, held, and fast out: arrivals 0.15-0.3 s with strong ease-out, holds 0.5-1 s with gentle drift, exits by motion-blurred whip, zoom-through or light bloom. Transition kit: zoom-through with radial blur and dark vignette, whip pan with horizontal motion blur, light bloom from a pressed button, iris to dark, object carried across a cut (the same phone flies into the next shot), white flash. Palette alternates light and dark scenes: near-white lavender canvas ↔ deep navy-violet gradient with a magenta/blue glow, one violet primary, small warm accents (orange, yellow) for edited letters and cards. Signature moments: the vector shape drawn and turned into a logo, cursors editing letters inside a giant headline, the phone exploding into isometric layers with numbered labels, the tilted canvas of many screens, the CTA button bursting into pixels and blooming to white, and the end card that repeats the opening build.",
+  "look": "2.5D, not real 3D: flat UI cards, flat type and flat vector shapes, placed on planes in true perspective for the layer stack and the tilted canvas; translucent frosted-glass layers with thin bright edges; no cast shadows beyond soft drop glows under cards and buttons; soft bloom and glow on buttons and on light transitions; depth of field only as edge blur on the tilted canvas; heavy motion blur on whips and zoom-throughs; backgrounds are either a near-white lavender canvas with faint editor rulers or a deep navy-to-violet radial gradient with a soft magenta/blue glow, no ground plane.",
+  "code_translation": "Code-native. Built in HTML/CSS/SVG in headless Chromium: SVG path drawing (stroke-dashoffset, anchor handles) for the pen-tool build; masked rising text (overflow-hidden line boxes, translateY from 100%) with the shaped brand Persian font, never splitting joined letters; CSS 3D transforms (perspective, rotateX/rotateZ, translateZ per layer) or three.js planes with UI textures for the isometric layer stack and the tilted canvas; edge blur via a masked backdrop blur; motion blur by frame blending or a directional blur filter during whips; radial zoom blur and bloom via scaled, blurred, screen-blended copies; pixel burst as a small particle layer of squares. Nothing here needs a real 3D render.",
+  "continuity": [
+    "Bookend build: the film opens and closes on the same build-up of a mark (shape drawn → filled → becomes the logo, wordmark rises letter by letter, spec annotations draw in), so the end card answers the opening.",
+    "The subject is carried across a hard cut: the chosen object leaves one scene and flies into its slot in the next, so the cut reads as one continuous move.",
+    "One object is decomposed into its stacked layers in isometric depth, labelled, then reassembled before the cut.",
+    "Choice as motion: several options appear together, one is selected with a box and a cursor click, the others fly out sideways with motion blur.",
+    "Action → result through light: a press or typed request blooms into light and the result arrives out of that bloom.",
+    "A cursor (or cursors) acts inside the scene — selecting, recolouring letters, pressing — so every change has a visible cause.",
+    "Design-spec annotations (bounding boxes, swatches, measurement tags, monospace labels) appear around the key object after it settles, as a texture that says 'built with care'.",
+    "Light ↔ dark alternation: scenes swap between a near-white canvas and a deep violet gradient at each hard cut, the cut hidden by a zoom-through, iris, bloom or white flash.",
+    "Zoom out from one item to the whole system it belongs to (single screen → tilted canvas of many screens).",
+    "Every hard cut and whip is placed on a music accent; the first hard cut is the music drop after a quiet build."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the 'strata' logo or wordmark, its URL, the English copy, the fintech screens, the balance figure, the brand names on the screens, the cursor names, or the shot order one by one.",
+    "Source is 16:9 landscape; a 9:16 film must rebuild each composition vertically (two-line headline above or below the object, layer stack and canvas rotated to fill the height, inside the 9:16 safe zone).",
+    "Arrivals are 0.15-0.3 s and holds are 0.5-1 s: Persian text hold times and minimum sizes win over the pace (readability ranks above the reference); the tiny monospace spec labels are texture only and never carry meaning the viewer must read.",
+    "Headlines rise from a baseline mask and the reference reads left to right (lines staggered left → right, whips to the left, typing from the left): direction for Persian follows references/rtl-grammar.md, and masked reveals must reveal whole joined words, never letter by letter in a way that breaks Persian joining.",
+    "The cursor-recolours-one-letter device does not transfer to joined Persian script letter by letter; apply it to whole words or to a separate Latin/number token.",
+    "Reference colours (near-white lavender, deep navy-violet, violet primary, orange/yellow accents, magenta glow) map onto brand colour roles (light background, dark background, primary, accent); never used as literal hex values. Colours were read by eye, not sampled.",
+    "The reference has a music track with cuts on its accents; our film's cuts follow the voiceover first, and L6 places accents on our cuts rather than reusing their music."
+  ],
+  "sha256": "cd3ae40b35daf8efd0e810ecf7ba8ef28bbcac4280c1fba47b2396e485f23dbb"
+}

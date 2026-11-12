@@ -1,0 +1,381 @@
+{
+  "slug": "kpi-cards-purple-01",
+  "key": {
+    "sha256": "2957dedc39b8dd8bf845f1e740d5cabebca1eee5206321eb2a3d364f850e3237"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 31.6,
+    "w": 720,
+    "h": 720,
+    "fps": 30,
+    "audio": true,
+    "format_note": "1:1 square, 948 frames. The film is one 15.83 s loop (19 shots of exactly 25 frames = 0.833 s each) played twice: 15.83-31.6 s repeats 0-15.83 s frame for frame (scene-detect frame means match pairwise), and the last shot cuts straight back into the first, so the piece is built to loop. Stereo HE-AAC 44.1 kHz: dense, percussive electronic music with hits about every 0.2 s and stronger accents roughly every 0.6-0.8 s; every cut sits on the 0.833 s grid (every two beats at about 144 BPM, tempo inferred from the cut grid and a by-eye waveform, not measured)."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «infographic motion design2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "کارت‌های عدد و نمودار بنفش",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "EXPLAINER when the package walks through numbers or results step by step (one card per claim)",
+    "why": "third-party film of unknown origin: borrow the motion language and look only (hard cuts on the beat, flat KPI cards, counters, drawing charts, background colour flips), never its shots one by one, its brands, names, photos, copy or figures (owner note); a voiceover package defaults to REEL, and the reference itself is a fast KPI/marketing-results montage"
+  },
+  "ignored": [
+    {
+      "span": [
+        15.83,
+        31.6
+      ],
+      "why": "exact repeat of 0-15.83 s (the loop played a second time); read once"
+    },
+    {
+      "span": [
+        0,
+        15.83
+      ],
+      "why": "all third-party brands, names and copy: Nike, 'AirForce 1', 'AirMax', 'Low Kicks', 'High Kicks', 'usedrop.io', 'DM \"AirForce Low\" to access our private drop', 'Early Access Sale', person names ('Andrew Smith', 'Bernard Owen', 'Luna', 'Los Angeles, CA', 'bern_owen@me.com'), Latin placeholder copy ('Felis Non Non Risus Egestas Posuere. Augue'), and all English labels ('TOTAL SALES', 'STORY REACTS', 'LEADS GENERATED', 'PREVIOUSLY PURCHASED', 'LOW TRAFFIC / NO TARGET / NOT QUALIFIED' …); never reused as text"
+    },
+    {
+      "span": [
+        0,
+        15.83
+      ],
+      "why": "every figure on screen ($132.8K, +434% CVR, 804, +45%, $125K, 15,642, +114%, 31.4K, $.40USD, $11USD, +29.40%, +34.1%, +400, +214%, $133.54, 99.8% …) is invented demo data of a third party; never reused, our numbers come only from the approved package"
+    },
+    {
+      "span": [
+        6.67,
+        7.5
+      ],
+      "why": "photo of a real person with fire stickers; never reused (no third-party faces); only the sticker-over-image motion may be reused, on an owner asset or a code-drawn subject"
+    },
+    {
+      "span": [
+        13.33,
+        14.17
+      ],
+      "why": "live-action footage of a real person walking; never reused; only the wireframe-UI-over-footage device may be reused, over an owner asset or a code-built scene"
+    },
+    {
+      "span": [
+        7.5,
+        15.83
+      ],
+      "why": "portraits, avatars and sneaker product photos inside cards (profile cards, avatar stacks, product rows, chat screens) are third-party photos; the image slots may be filled only with owner assets or code-drawn shapes"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px (6 sheets, all viewed; sheets 4-6 confirm the repeat); scene detect gt(scene,0.3): cuts at 0.833, 1.667, 2.5, 3.333, 4.167, 5.0, 5.833, 6.667, 7.5, 8.333, 9.167, 10.0, 10.833, 11.667, 12.5, 13.333, 14.167, 15.0, 15.833 s and the same grid again to 30.833 s, with matching frame means proving the loop; dense sheets fps=10 at 240 px over 0-15.84 s (4 sheets, all viewed; frame time = (sheet-1)*4 + index*0.1 s); audio waveform of 0-8 s (showwavespic) for the beat. Spans are frame-exact (25-frame grid); move durations read from the 0.1 s sheets, accurate to about ±0.1 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        0.83
+      ],
+      "shot": "wide, three portrait KPI cards in a row centred on flat light grey (yellow, lavender, mint)",
+      "camera": "static",
+      "moves": "no entrance (hard cut in); all three big percentages count up for the whole shot (about +41% → +56% on card 1, linear-ish with ease-out at the end); the bars in card 1 grow from the baseline and a vertical marker line rises in card 2 as the numbers count; small black pill buttons sit still at the card feet",
+      "text": "one big number per card (bold sans, % sign), a tiny caps label above, two lines of tiny body copy, a tiny pill button",
+      "transition_out": "hard cut on the beat at 0.83 s, background flips grey → lavender",
+      "palette": "light grey ground; cards in acid yellow, lavender and pale mint; black text and bars; olive tints in the bar chart",
+      "built": "code-native (flat UI cards, counters, SVG bars)",
+      "reusable": "yes: a row of three equal stat cards whose numbers all count at once — comparison of several values at a glance; motion only"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        0.83,
+        1.67
+      ],
+      "shot": "full-frame giant number on lavender: small caps label above, number fills about 80% of the width, a yellow pill badge pinned to its top-right",
+      "camera": "push-in on the arrival, then slow continuing push",
+      "moves": "0.83-1.0 s the number arrives small (about 40% size), skewed and smeared with horizontal motion blur, and snaps to full size (about 0.15-0.2 s, strong ease-out); the pill badge rides with it; 1.0-1.67 s the number keeps counting up in its last digits ($129.5K → $132.8K) while the whole block drifts slowly up and grows a few percent",
+      "text": "one huge heavy-sans number (cap height about a quarter of frame height), one small grey caps label, one pill badge in bold black on yellow",
+      "transition_out": "hard cut on the beat, lavender → yellow",
+      "palette": "lavender ground, near-black number, grey label, acid-yellow pill",
+      "built": "code-native (kinetic type, counter, motion blur by directional blur during the snap)",
+      "reusable": "yes: the 'hero number' beat — one figure alone, full width, slammed in with blur and still counting; the strongest emphasis device in the kit; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        1.67,
+        2.5
+      ],
+      "shot": "medium, three overlapping cards bleeding off both side edges on yellow: an orange stacked card, a lavender card with stacked block bars, a mint line-chart card",
+      "camera": "slow lateral drift",
+      "moves": "hard cut in; the row drifts slightly sideways; the line in the mint card wiggles/draws with a dot on it; block bars hold; no entrances",
+      "text": "small range labels in bold (e.g. a 'from–to' value), tiny captions, a heading of two short lines on the middle card with a black asterisk icon",
+      "transition_out": "hard cut on the beat, yellow → lavender",
+      "palette": "acid yellow ground; orange with peach bands; lavender and deep violet blocks; pale mint card with a black line",
+      "built": "code-native",
+      "reusable": "yes: cards cropped by the frame edges suggest a larger dashboard beyond the screen; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        2.5,
+        3.33
+      ],
+      "shot": "medium, one wide dark stat card centred on lavender: label with a dot, number, green delta, sparkline at right",
+      "camera": "static, very slight drift",
+      "moves": "hard cut in; the number counts up through the whole shot (743 → 804, linear); the green '+%' delta fades from dim to full in the first 0.2 s; the sparkline draws left → right in green",
+      "text": "one small caps label with a coloured dot, one bold number, one green delta",
+      "transition_out": "hard cut on the beat, lavender → black",
+      "palette": "lavender ground, near-black card, white number, green delta and sparkline, violet label dot",
+      "built": "code-native",
+      "reusable": "yes: single compact stat chip — number counting plus delta plus sparkline; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        3.33,
+        4.17
+      ],
+      "shot": "wide, full-frame line chart on black: one solid lavender curve and one dashed grey curve, a two-item legend top-left",
+      "camera": "slow pan following the scrubber",
+      "moves": "hard cut in; a scrubber dot with a thin vertical line glides along the solid curve left → right (about 15-20% of the frame width in 0.8 s, linear), the curves slide under it; legend holds",
+      "text": "two tiny legend lines with numbered dots",
+      "transition_out": "hard cut on the beat, black → yellow",
+      "palette": "near-black ground, lavender solid curve, grey dashed curve, white scrubber",
+      "built": "code-native (SVG paths, stroke-dasharray for the dashed line)",
+      "reusable": "yes: 'with vs without' comparison as two curves (solid vs dashed) with a moving scrubber; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        4.17,
+        5
+      ],
+      "shot": "medium cluster on yellow: a round avatar, a dark data card with five vertical gauge bars, and a black total card overlapping its lower-left corner",
+      "camera": "slow drift up-right",
+      "moves": "hard cut in; the five gauge bars fill from the bottom in yellow (stagger about 0.05 s, ease-out); the cluster drifts a few pixels; the total number holds",
+      "text": "big bold number in yellow on the black card with a small white label, small card title with an icon, tiny percentage labels on the gauges",
+      "transition_out": "hard cut on the beat, yellow → grey",
+      "palette": "acid yellow ground, near-black cards, yellow numbers and gauge fills, white labels",
+      "built": "code-native UI cards; the avatar is an image slot",
+      "reusable": "yes: overlapping card cluster (main card + total card + round badge) layered with small offsets; gauges filling in stagger; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        5,
+        5.83
+      ],
+      "shot": "medium, two cards offset diagonally on grey: a lavender revenue card with a mini bar chart (top-left) and a yellow followers card with a line chart (bottom-right)",
+      "camera": "static, slight drift",
+      "moves": "hard cut in; a black arrow cursor slides across the mini bar chart and each bar it touches turns black (the active bar steps right); in the yellow card the line's end point climbs with a black value tooltip counting up beside it",
+      "text": "small label and bold number with a tiny dark pill delta on the lavender card; two-line title in medium sans and a tiny tooltip value on the yellow card",
+      "transition_out": "hard cut on the beat, grey → lavender",
+      "palette": "light grey ground, lavender card, acid-yellow card, black active bar, cursor and tooltip",
+      "built": "code-native",
+      "reusable": "yes: a cursor acts on the chart (hover selects a bar) so the viewer's eye is guided to the value; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        5.83,
+        6.67
+      ],
+      "shot": "medium, dark chart card centred on lavender with two chips overlapping its corners (mint chip top-right, yellow chip bottom-left)",
+      "camera": "entrance tilt, then slow drift",
+      "moves": "5.83-6.0 s the card arrives tilted in perspective (about 20-30° rotateY/X) and swings flat (about 0.15 s, strong ease-out); then the headline number counts up (26.6K → 38.4K) while a dot moves along a glowing yellow curve, the part behind it dotted and the part ahead solid, with a vertical drop line to the axis; the corner chips hold",
+      "text": "small caps label and bold number top-left, tiny axis labels (month names, 10K-40K), chip labels in tiny caps with bold values",
+      "transition_out": "hard cut on the beat, lavender → photo",
+      "palette": "lavender ground, near-black card, acid-yellow curve with soft glow, mint and yellow chips",
+      "built": "code-native (CSS 3D tilt for the entrance, SVG chart)",
+      "reusable": "yes: card swings in from a 3D tilt to flat; a dot travels a growth curve while the number counts; corner chips pinned over the card edge; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        6.67,
+        7.5
+      ],
+      "shot": "full-frame photo of a seated person, a yellow pill label tilted across the chest, fire emoji stickers scattered around",
+      "camera": "slow push-in with a slight rotation",
+      "moves": "hard cut in; the stickers pop and wobble in place (small scale pulses, staggered); the pill label rotates slightly and floats; the photo creeps in",
+      "text": "one short label in a yellow pill with a small emoji",
+      "transition_out": "hard cut on the beat, photo → lavender",
+      "palette": "desaturated blue-grey photo, acid-yellow pill, orange fire stickers",
+      "built": "photo of a real person with code-drawn stickers and label on top",
+      "reusable": "yes, motion only: a tilted pill label plus popping stickers laid over an image — usable over an owner asset or a code-built subject, never over a third-party face"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        7.5,
+        8.33
+      ],
+      "shot": "medium cluster on lavender: emoji rating bar (top-left), circular progress card, profile card with portrait, product card with photo",
+      "camera": "static, slight drift",
+      "moves": "hard cut in; the progress ring draws clockwise while its percentage counts (about 40% → 82% in 0.8 s, ease-out); the green bar under the emoji row extends to the last face; other cards hold",
+      "text": "big pale percentage in the ring, a small card title, tiny checklist rows, a two-line name, tiny follower stats, small green status text",
+      "transition_out": "hard cut on the beat, lavender → yellow",
+      "palette": "lavender ground, near-black cards, white ring, green progress, grey and lime product photo",
+      "built": "code-native UI cards; the portrait and product photo are image slots",
+      "reusable": "yes: progress ring filling with its counter; a rating bar sliding to the best face; motion only"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        8.33,
+        9.17
+      ],
+      "shot": "medium, one tall cream card on yellow with two stacked folder-like tabs on top (mint and lavender pill tabs with asterisk icons), a big percentage and a floating step chart",
+      "camera": "slow drift up",
+      "moves": "hard cut in; the big percentage counts (about +25.9% → +29.4%) with ease-out; five short horizontal value markers in the chart slide up or down to their new heights while their small value labels count; dashed vertical guides hold",
+      "text": "one big medium-weight percentage, small pill tab labels in caps, tiny value labels",
+      "transition_out": "hard cut on the beat, yellow → grey",
+      "palette": "acid yellow ground, cream card, mint and lavender tabs, black markers and text",
+      "built": "code-native",
+      "reusable": "yes: stacked tabs as a card header (layers of a file) and floating step markers that re-settle as the value changes; motion only"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        9.17,
+        10
+      ],
+      "shot": "medium on grey: a chat/story screen card at top, three dark label bars stacked down the left with small lavender icon tiles, a thin connector line on the right with an alert node",
+      "camera": "slow drift",
+      "moves": "hard cut in; a small yellow chip with a warning icon slides up along the connector line from the bottom bar to the middle bar (about 0.6 s, smooth); tiny delta pills under each label update",
+      "text": "three short labels in bold condensed caps, tiny overlines, tiny chips; small chat bubbles in the screen card",
+      "transition_out": "hard cut on the beat, grey → black",
+      "palette": "light grey ground, near-black bars, lavender icon tiles, acid-yellow chip, red alert node, white chat card",
+      "built": "code-native UI; the screen card contains a photo slot",
+      "reusable": "yes: a list of three problems as stacked label bars, with a moving chip on a connector pointing at the one that matters; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        10,
+        10.83
+      ],
+      "shot": "wide, a long horizontal lavender bar across the top of a black frame, split near its right end by a hatched section; thin vertical leaders drop to two small tags at the bottom; two counters under the bar",
+      "camera": "slow pan to the left",
+      "moves": "hard cut in; both values count up (about +18% → +22% and +22% → +34%); the split point and hatched section creep right as the second value grows; leaders and tags hold",
+      "text": "two light-weight percentages with tiny overlines, two tiny tags with dots",
+      "transition_out": "hard cut on the beat, black → grey",
+      "palette": "near-black ground, lavender bar, grey hatching, white text",
+      "built": "code-native",
+      "reusable": "yes: one long proportion bar split into two shares with leader lines to labels — share of a whole; motion only"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        10.83,
+        11.67
+      ],
+      "shot": "medium on grey: a dark promo card with a product photo, a two-line highlighted label overlapping its top-left, chat bubbles stacking at its right with a small avatar",
+      "camera": "static, slight drift",
+      "moves": "hard cut in; the chat bubbles settle one under another (stagger about 0.1 s, small rise and fade); the highlight label holds; the card drifts a few pixels",
+      "text": "a two-line call-out on lavender and yellow highlight strips, short chat lines, card title and a black button",
+      "transition_out": "hard cut on the beat, grey → black",
+      "palette": "light grey ground, near-black card, lavender and yellow highlight strips, dark bubbles",
+      "built": "code-native UI card; the product photo and avatar are image slots",
+      "reusable": "yes: highlighted call-out strips (text on coloured bars) plus a stacking chat thread; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        11.67,
+        12.5
+      ],
+      "shot": "medium on black: an overlapping stack of three round avatars with a yellow counter pill, a white caps heading below, a white product row card with a yellow plus button",
+      "camera": "slow drift up",
+      "moves": "hard cut in; the counter pill on the avatar stack counts up (+393 → +400); the whole group drifts slowly upward; the product row holds",
+      "text": "one heading in white bold caps, a counter in a pill, a two-line product row",
+      "transition_out": "hard cut on the beat, black → grey",
+      "palette": "near-black ground, white card, acid-yellow pill and plus button",
+      "built": "code-native; the avatars and product thumbnail are image slots",
+      "reusable": "yes: social proof as an avatar stack with a running counter; motion only"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        12.5,
+        13.33
+      ],
+      "shot": "wide on grey: a cluster of four or five small screens and cards seen together (chat screen, story screen, promo card, avatar, gauge card) with small tag labels",
+      "camera": "zoomed out, slow drift",
+      "moves": "hard cut in; the cluster drifts slightly; small tag labels hold; nothing new enters",
+      "text": "tiny tag labels in bold on yellow and lavender strips",
+      "transition_out": "hard cut on the beat, grey → footage",
+      "palette": "light grey ground, near-black screens, yellow and lavender tags",
+      "built": "code-native UI; the screens contain photo slots",
+      "reusable": "yes: the 'whole system' overview — earlier cards shown small together, which says they are one workflow; motion only"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        13.33,
+        14.17
+      ],
+      "shot": "full-frame live-action footage of a person walking past a corrugated wall, with a thin white wireframe phone UI and three dark stat chips overlaid",
+      "camera": "handheld tracking (in the footage)",
+      "moves": "hard cut in; the person walks through; the wireframe UI stays locked on the frame; the three chips' counters count up (e.g. +211% → +214%, 824 → 834, 789 → 804)",
+      "text": "small dark stat chips with labels, numbers and tiny deltas; wireframe UI has no text",
+      "transition_out": "hard cut on the beat, footage → grey",
+      "palette": "saturated blue wall, orange clothing, white wireframe, near-black chips",
+      "built": "live-action footage with a code-drawn wireframe and chips on top",
+      "reusable": "yes, motion only: a thin wireframe UI and live counters laid over a scene, linking the real world to its data; usable over an owner asset or a code-built scene, never over third-party footage"
+    },
+    {
+      "id": "r1-s18",
+      "span": [
+        14.17,
+        15
+      ],
+      "shot": "medium on grey: a lavender KPI card with a three-line question-like statement and a big money figure bottom-right, beside a dark chart card with a solid and a dashed curve",
+      "camera": "slow pan to the left",
+      "moves": "hard cut in; the pair slides slowly left; the big figure counts up ($122.63 → $133.54) with a small mint chip above it echoing the value; the solid curve draws/extends",
+      "text": "tiny 'KPI' overline, a three-line statement in medium sans, one big bold figure, tiny legend in the chart",
+      "transition_out": "hard cut on the beat, grey → dark grey",
+      "palette": "light grey ground, lavender card, near-black chart card, mint chip, lavender and grey curves",
+      "built": "code-native",
+      "reusable": "yes: statement card + its proof chart side by side (claim on the left card, curve on the right); motion only"
+    },
+    {
+      "id": "r1-s19",
+      "span": [
+        15,
+        15.83
+      ],
+      "shot": "medium on dark grey: a tall profile column card with a ringed avatar and completion badge, the revenue card and the yellow followers card from r1-s7 at its right, and a list row below with two faded rows stacked behind it",
+      "camera": "static, slight drift",
+      "moves": "hard cut in; the completion badge counts up (about 90% → 99.8%); the followers tooltip counts again; the cursor sits on the active bar; the list row's faded copies behind it suggest a scrolling list",
+      "text": "small two-line caption with a green value pill, the same card texts as r1-s7, a list row with a name, an email and two small stats",
+      "transition_out": "hard cut on the beat straight back to r1-s1 (the loop point)",
+      "palette": "dark charcoal ground, near-black cards, lavender and acid-yellow cards, green check and pill",
+      "built": "code-native UI cards; the avatars are image slots",
+      "reusable": "yes: a card seen alone earlier comes back inside a larger dashboard (zoom out by recomposition, not by camera); a list row with ghost rows behind for depth; motion only"
+    }
+  ],
+  "visual_language": "A fast, beat-cut KPI montage made of flat dashboard cards. Medium: crisp 2D UI built entirely in code — rounded stat cards, chart cards, chips, pills, avatars — plus two image shots (a photo with stickers, a live-action clip with a wireframe UI overlay). Typography: one clean geometric grotesque sans; numbers are the heroes (bold or medium, very large, tight tracking), labels are tiny caps overlines, body copy tiny and decorative; numbers use the European decimal comma. Rhythm: 19 shots in 15.83 s, every shot exactly 0.833 s (25 frames), every cut a hard cut on the beat (every two beats at about 144 BPM), and the film loops seamlessly. There are almost no entrances or exits: each shot opens already composed and lives through continuous inner motion — counters always counting up, bars filling, curves drawing, scrubber dots travelling, rings closing, a cursor selecting a bar — plus a slow drift or push of the whole composition. Only two shots have an arrival: the hero number slammed in from small with motion blur (r1-s2) and a chart card swinging flat from a 3D tilt (r1-s8). The background colour flips at almost every cut between four flat grounds (light grey, lavender, acid yellow, near-black), and the cards reuse the same four colours plus mint, orange and a success green, so the palette rotation itself is the rhythm. Signature moments: the full-width hero number with its pill badge, the 'with vs without' solid/dashed curves with a scrubber, the cursor turning a bar black, the progress ring, the split proportion bar with leader lines, stickers and wireframe UI laid over images, and the recurring card that returns inside a larger cluster.",
+  "look": "Flat 2D, not 3D: solid flat backgrounds with no gradient, no texture and no ground plane; cards with rounded corners (about 2-3% of frame width), flat fills, no gradients except a soft glow on one yellow curve; shadows almost absent — at most a very soft, short drop shadow under stacked cards and faded ghost rows for depth; no depth of field; motion blur only on the hero-number slam; one brief CSS-3D tilt on a card entrance. Dense, editorial, slightly playful (emoji stickers, highlight strips), high contrast between near-black cards and pastel or acid grounds.",
+  "code_translation": "Code-native. HTML/CSS/SVG in headless Chromium: flat rounded cards as divs; counters as per-frame interpolated numbers in Persian digits with the brand font (eased, ending exactly on the true value); bars and gauges as scaled rects with transform-origin at the baseline; curves as SVG paths revealed with stroke-dashoffset, a dashed comparison path via stroke-dasharray, a scrubber dot positioned along the path with getPointAtLength; progress ring as an SVG circle stroke; hero-number slam with scale + skew + directional blur (filter or frame blending) for about 5 frames; card tilt entrance with CSS perspective + rotateY/X; hard cuts are simple scene swaps on the beat grid; ghost rows as lower-opacity copies offset in y. Image slots (photo shots, avatars, product thumbnails) take owner assets unedited or code-drawn shapes. Nothing needs three.js.",
+  "code_buildable_pct": 89.5,
+  "continuity": [
+    "Hard cut on every beat with no transition effects: continuity comes from rhythm, not from moves — the cut grid is fixed (two beats per shot) and every shot is the same length.",
+    "Background colour flip at every cut, rotating a small set of flat grounds (light, pastel, acid, near-black) so the cut itself reads as a beat and the film stays one system.",
+    "Never-still numbers: in every shot something is counting, filling or drawing from the first frame, so momentum carries across cuts even though nothing travels between them.",
+    "One card grammar everywhere (same corner radius, same type, same chip and pill shapes, same four colours), so very different data still reads as one dashboard.",
+    "A component seen alone returns later inside a larger cluster (recomposition instead of a camera zoom), and a whole-system overview shot gathers earlier screens small together.",
+    "Cards bleed off the frame edges and overlap each other with small offsets and chips pinned over their corners, implying a larger canvas beyond the frame.",
+    "Inner guides of attention: a cursor selecting a bar, a scrubber dot riding a curve, a chip sliding along a connector — each points the eye at the value that matters in that beat.",
+    "Seamless loop: the last shot cuts straight back to the first on the beat."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its brand names, product names, people, photos, footage, copy, placeholder text, figures or the shot order one by one.",
+    "Shots are 0.833 s each: far too short to read Persian. Readability ranks above the reference: keep hard cuts on a beat grid and the colour flips, but lengthen each card beat to the voice phrase it shows (and to the hold time in data-viz.md), e.g. two or three beats of our own track per card; use the 0.833 s pace only for purely visual punctuation.",
+    "Counters run in every shot: in our film every counter must end exactly on the package's sourced value (data-viz.md), use Persian digits and the Persian decimal separator, and never count a figure the package does not contain.",
+    "Source is 1:1 square: a 9:16 film rebuilds each composition vertically (cards stacked, hero number scaled to the width inside the safe zone); a 16:9 film widens the clusters.",
+    "Charts and bars in the reference read left → right (scrubber left → right, bars split from the left, cursor moving right): direction for Persian follows references/rtl-grammar.md; time axes and curves may keep a direction only where the rtl grammar allows it.",
+    "Two shots are a real photo and live footage (r1-s9, r1-s17) and several cards hold portraits and product photos: these are not code-buildable; use the overlay devices only over owner assets or code-drawn subjects, never third-party faces or stock people.",
+    "Reference colours (light grey, lavender, acid yellow, near-black, mint, orange, green) map onto brand colour roles (light background, primary/secondary, accent, dark background, success); never used as literal hex values. Colours were read by eye, not sampled.",
+    "The reference has its own music with cuts every two beats; our film's cuts follow the voiceover first, and L6 places accents on our cuts rather than reusing their music. Tempo was inferred, not measured.",
+    "Emoji stickers and the playful tone: use only where the package's tone and the brand allow; the brand's banned colours and owner decisions still win."
+  ],
+  "sha256": "2957dedc39b8dd8bf845f1e740d5cabebca1eee5206321eb2a3d364f850e3237"
+}

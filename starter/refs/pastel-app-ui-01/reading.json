@@ -1,0 +1,270 @@
+{
+  "slug": "pastel-app-ui-01",
+  "key": {
+    "sha256": "f32bfb2c005aee160f7fa3f4c8b02ed645c51f53329f93fd199a1a500da97346"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 48.58,
+    "w": 736,
+    "h": 414,
+    "fps": 30,
+    "audio": true,
+    "format_note": "16:9 landscape at low resolution (736x414, 1452 frames, about 320 kb/s, Pinterest re-encode: fine UI text is soft). Stereo HE-AACv2 44.1 kHz music bed: a steady soft electronic pulse (about 0.7 s between pulses, read by eye from the waveform) from 0 s, a quiet breakdown from about 16.8 s to 20.5 s, the beat back at about 20.6 s with a hit at about 22.0 s (the 'request sent' moment), full again from about 22.6 s to the end with a soft tail after 47.5 s."
+  },
+  "rights_note": "third-party video found by the owner on Pinterest with a style search (file «app ui animation.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "رابط اپ روشن با بنفش ملایم",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "UI when the content package launches software, an app or a workflow",
+    "why": "third-party film of unknown origin: borrow the motion language and look only, never its shots one by one, its logo, its product name, its copy, its UI screens or its people (owner note); a voiceover package defaults to REEL, and the reference's own grammar is an app UI walkthrough"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        48.58
+      ],
+      "why": "the 'Axiom' wordmark and its folded-ribbon mark and all English copy ('Bringing Data to Life', 'Get All The Banks in One Place', 'Get Information about upcoming Events', 'Connect with your Community flow the Conversation', UI labels such as 'All Transactions', 'Directory', 'Banking Industry', 'Request Sent', 'New message from …') are third-party branding and copy; never reused as text or logo"
+    },
+    {
+      "span": [
+        4.2,
+        27.6
+      ],
+      "why": "the banking dashboard content (balance '$5,756', card number and holder name, transaction rows with Spotify/Freepik, the bank list with Citibank, JPMorgan Chase, Bank of America, Barclays, Wells Fargo, Royal Bank of Canada, Lloyds, Banco Santander, Toronto-Dominion and their logos, employee names, figures and charts) is third-party UI content and brand names; never reused, never their figures"
+    },
+    {
+      "span": [
+        32,
+        43.4
+      ],
+      "why": "event names, contact names and the round avatar photos of real people (message list, notification, community bubbles, call screen) are third-party content and real faces; never reused — our avatars are drawn or abstract, never photos of real people"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px (9 sheets, all viewed; frame time = (sheet-1)*6 + index*0.5 s); scene detect gt(scene,0.3): hard cuts only at 15.10 and 27.80 s (every other change is a camera move, a colour burst, a slide or a soft cut the detector does not flag); dense sheets fps=10 at 320 px over 3.2-4.8, 14.4-16.0, 26.8-28.4 and 34.0-35.6 s (4 sheets, all viewed); audio waveform (showwavespic) for the music shape. Spans away from the dense windows are read from the 0.5 s sheets, so they are accurate to about ±0.25 s; inside the dense windows to about ±0.1 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.5
+      ],
+      "shot": "wide, empty near-white frame: one headline line typed in the centre",
+      "camera": "static",
+      "moves": "0.3-1.4 s the line types in character by character with a thin blinking caret (about 12-14 characters per second, linear); about 1.4-1.7 s the whole line scales down to about 45% while typing continues (smooth ease-in-out); 1.8-2.0 s the last word completes in a violet-to-blue gradient with a soft lavender glow halo behind it; 2.0-2.5 s the other words fade to grey and out from the start of the line, leaving only the keyword centred",
+      "text": "one line, light geometric sans in dark grey, large at first (cap height about 10% of frame height) then small; one keyword in gradient colour with glow",
+      "transition_out": "no cut: the keyword stays and becomes the target of the next action",
+      "palette": "white to faint lavender, dark grey type, violet-blue gradient keyword, lavender glow",
+      "built": "code-native (typed text, CSS gradient text, blurred glow)",
+      "reusable": "yes: type the question → shrink → keep only the one word that matters, glowing; motion only, never their words"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.5,
+        4.2
+      ],
+      "shot": "wide, the glowing keyword alone in the centre of the white frame",
+      "camera": "static",
+      "moves": "2.5-3.0 s a hand cursor glides in from below to the keyword (smooth ease-out); 3.0-3.8 s hover hold, the glow pulses softly; 3.9 s click (cursor dips, glow brightens); 3.95-4.2 s a soft violet four-point burst (blurred star/blob) expands from the click point and floods the whole frame with the violet gradient (about 0.25 s, strong ease-out)",
+      "text": "the keyword only",
+      "transition_out": "colour burst from the click: the click itself floods the frame with the next scene's gradient (about 0.25 s), no hard cut",
+      "palette": "white, violet-blue keyword, then lavender-violet-pink gradient burst",
+      "built": "code-native (cursor sprite, radial blurred shape scaled up)",
+      "reusable": "yes: a click on one word opens the next world — the burst grows from the cursor point; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        4.2,
+        7
+      ],
+      "shot": "close-up to wide: an app window flies in on a steep perspective tilt and settles as a whole dashboard in three-quarter view",
+      "camera": "4.2-4.4 s the window edge enters from bottom-right on a steep tilt (about 30-40°); 4.4-6.0 s the camera swoops in a curve past the window corner and pulls back, the window rotating from steep tilt to a gentle three-quarter tilt (smooth ease-in-out, about 1.8 s); 6.0-7.0 s slow drift; near edge slightly out of focus during the swoop",
+      "moves": "the window arrives already populated; UI parts inside are still; a coloured card on the window catches a soft highlight",
+      "text": "UI labels only (small, not meant to be read)",
+      "transition_out": "slide: 7.0 s the dashboard slides out to the left while a large cropped UI column slides in from the right on the same gradient (about 0.3 s, ease-in-out)",
+      "palette": "lavender-violet gradient background, near-white window with a pale lavender rim, one saturated blue card, small green/red figures",
+      "built": "code-native (2.5D: a flat UI plane in CSS 3D perspective or a three.js plane with a UI texture)",
+      "reusable": "yes: the product is revealed as one object in real perspective, the camera swooping round it before it settles; motion only, never their screens"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        7,
+        15.1
+      ],
+      "shot": "split layout, long take: two-line headline at left, a tall cropped close-up of one UI column at right; a cursor drills down a menu",
+      "camera": "static frame; the UI column itself scrolls slowly upward as the menu grows (camera tracking the cursor down)",
+      "moves": "7.3-7.8 s the headline words rise in one after another (baseline stagger about 0.08 s per word, slight blur to sharp, ease-out); 8.3-8.8 s the cursor clicks a sidebar icon, the content panel swaps (crossfade and small slide up, about 0.25 s); 9.5 s click on the first menu row: it highlights in a pale tint and its children slide down one by one (about 0.05 s stagger, ease-out); 11.5-12.5 s second level opens the same way; 13.5-14.6 s third level opens and the chosen row is clicked and tinted; the headline holds still the whole time",
+      "text": "two short lines, white semibold sans, left-aligned in the left 40% of the frame; small UI menu labels",
+      "transition_out": "hard cut at 15.10 s on the click of the chosen row: the result of the click arrives as the next shot",
+      "palette": "lavender-violet gradient, white headline, near-white UI column with pale blue selection tints, blue active icon",
+      "built": "code-native",
+      "reusable": "yes: a headline holds while the cursor drills down a menu level by level (click → children slide down → pick one); shows narrowing a choice; motion only, never their menu"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        15.1,
+        17.5
+      ],
+      "shot": "medium, a stack of list cards falling into place one by one on the gradient",
+      "camera": "static, slight push",
+      "moves": "15.1-17.0 s about ten wide white cards drop in from above one after another: each starts edge-on (rotateX about 80-90°) and flips down flat as it lands on top of the stack, pushing the earlier cards down (each flip about 0.15-0.2 s, stagger about 0.2 s, ease-out with a small settle); 17.0-17.5 s the finished stack shrinks to about 60% and a blurred app window fades up behind it, the cards becoming the list inside that window",
+      "text": "small one-line labels on each card (not meant to be read)",
+      "transition_out": "no cut: the stack is carried into the window that materialises around it (blur to sharp, about 0.4 s)",
+      "palette": "lavender-violet gradient, white cards with soft lavender drop glow, small coloured logo dots",
+      "built": "code-native (2.5D: flat cards with CSS 3D rotateX)",
+      "reusable": "yes: results arrive as cards that flip down one by one and stack, then the stack becomes part of the system; motion only, never their items"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        17.5,
+        19.5
+      ],
+      "shot": "medium, the whole app window centred small on the gradient",
+      "camera": "static",
+      "moves": "17.5-18.5 s the window settles; 18.5-19.0 s the cursor moves to one row, the row lifts with a hover tint and soft shadow; 19.2-19.5 s the row detaches and grows out of the window into its own card while the window fades away behind it (about 0.3 s, smooth ease-in-out)",
+      "text": "UI labels only",
+      "transition_out": "row-to-card morph: the chosen row becomes the next shot's card",
+      "palette": "lavender-violet gradient, near-white window, blue accents",
+      "built": "code-native",
+      "reusable": "yes: one item lifted out of a list grows into its own detail card (shared-element morph); motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        19.5,
+        23.4
+      ],
+      "shot": "medium to close-up: one detail card, then a push in to its action buttons",
+      "camera": "19.5-21.8 static; 21.9-22.1 fast push in to a close-up of the button column (strong ease-out, about 0.25 s); 22.1-23.4 static with slight drift",
+      "moves": "19.6-20.4 s the card scales up from the row and its content fills in from the top (heading, short text, then a list whose rows fade up one by one, stagger about 0.08 s); 20.8-21.6 s the cursor moves to a button; 22.3 s click: a confirmation chip with a green check pops out over the button (scale 0.8 → 1 with a small overshoot, about 0.15 s), on the music hit; holds to 23.4 s",
+      "text": "small UI text; one short confirmation chip label in dark sans, legible at the close-up",
+      "transition_out": "camera move: the view slides to the top-left corner of the app window (about 0.4 s), no cut",
+      "palette": "lavender-violet gradient, white card, blue outlined buttons, green check",
+      "built": "code-native",
+      "reusable": "yes: push in on the one button that matters, click, a confirmation chip pops with a check — the moment of success; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        23.4,
+        27.8
+      ],
+      "shot": "extreme close-up on the window's top-left corner, then a long pull back to the whole window small in the centre",
+      "camera": "23.4-25.9 close-up framing on the sidebar and first panel, slight drift; 26.0-27.6 smooth pull back (ease-in-out, about 1.6 s) until the whole window sits small in the centre with wide gradient margins",
+      "moves": "24.5-24.8 s the cursor clicks the first sidebar icon; 25.0-25.4 s the panel content swaps to another view (slide up and fade, about 0.3 s); during the pull back the full dashboard is revealed around it",
+      "text": "UI labels only",
+      "transition_out": "hard cut at 27.80 s to a white frame with a blinking caret (the light ↔ gradient swap)",
+      "palette": "lavender-violet gradient, near-white window, saturated blue card",
+      "built": "code-native",
+      "reusable": "yes: start in a detail, pull back to show the whole — the part inside the system; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        27.8,
+        32
+      ],
+      "shot": "wide, white frame: a second headline line is typed",
+      "camera": "static",
+      "moves": "27.8-28.4 s a caret blinks alone in the centre (2 blinks); 28.5-30.5 s the line types in (about 15 characters per second, linear) in a smaller, lighter grey than r1-s1; the last word types in the gradient colour with the glow halo; 30.5-32.0 s hold",
+      "text": "one line, light geometric sans in mid grey; last word in violet-blue gradient with glow",
+      "transition_out": "soft cut / crossfade to the next window on white (about 0.2 s)",
+      "palette": "white to faint lavender, mid-grey type, gradient keyword with lavender glow",
+      "built": "code-native",
+      "reusable": "yes: chapter marker — every new topic opens with a typed line on white ending in one glowing keyword (repeats r1-s1); motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        32,
+        34.8
+      ],
+      "shot": "wide to close-up: a small app window on white fills with rows, then a push to its top-right corner where a notification drops in",
+      "camera": "32.0-33.4 static; 33.4-33.8 push in to the top-right corner (ease-out, about 0.4 s); 33.8-34.8 slight upward drift",
+      "moves": "32.0-33.0 s list rows fill the window top to bottom (fade-up, stagger about 0.08 s); 33.9-34.1 s a notification pill with a round avatar slides down and fades in at the top right (ease-out with slight overshoot, about 0.2 s); holds",
+      "text": "UI labels; one notification line in dark sans with the sender name in bold",
+      "transition_out": "blur cut at about 34.8 s into the gradient scene (the next text arrives out of blur)",
+      "palette": "white, near-white window with a lavender rim, small blue link icons",
+      "built": "code-native",
+      "reusable": "yes: push in to where something new arrives (a notification pill drops in); motion only, never their names or photos"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        34.8,
+        38.4
+      ],
+      "shot": "wide, two-line centred headline on the gradient with round avatar bubbles floating in depth around it",
+      "camera": "slow push in and slight upward drift; bubbles at different depths, the nearest large and blurred (depth of field), the farthest small and sharp",
+      "moves": "34.9-35.6 s the words appear one after another from blur to sharp (blur about 10 px → 0 with opacity, about 0.2 s each, stagger about 0.1 s), two key words in the gradient colour; 35.0-38.4 s avatar bubbles rise in from the bottom and edges and float with gentle parallax, near ones faster",
+      "text": "two short centred lines, light geometric sans in grey, two key words in violet-blue gradient",
+      "transition_out": "the next app window rises in from the bottom over the bubbles (about 0.4 s, ease-out) as the headline and bubbles fade",
+      "palette": "white core fading to lavender, violet and pink at the corners, grey type, gradient key words",
+      "built": "code-native (2.5D: flat discs at different scales and blur levels for depth)",
+      "reusable": "yes: many small round tokens float in depth of field around one centred line — a community or many-people idea; motion only, never photos of people"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        38.4,
+        43.4
+      ],
+      "shot": "medium, app window centred on the gradient; a pop-up card opens in it and changes state",
+      "camera": "static, very slight drift",
+      "moves": "38.4-38.9 s the window rises in and settles; 39.5-40.0 s a pop-up card scales in at the window centre (0.9 → 1, ease-out, about 0.2 s) with two buttons; 40.8-41.2 s one button is pressed and the pop-up morphs into a wider state card (two round portraits with a pulsing ring between them, a round red button) (about 0.3 s, smooth); 41.5-43.3 s hold, the ring pulses",
+      "text": "small UI labels and names (not meant to be read)",
+      "transition_out": "dissolve: window and pop-up fade out on the gradient (about 0.2 s) leaving the empty gradient for the logo build",
+      "palette": "lavender-violet gradient, near-white window, red and green buttons, blue ring",
+      "built": "code-native",
+      "reusable": "yes: a pop-up card appears and morphs into its next state after a press — state change as one continuous shape; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        43.4,
+        48.58
+      ],
+      "shot": "wide, end card: logo built from one simple shape, centred on the gradient",
+      "camera": "static",
+      "moves": "43.5-43.8 s a single vertical blue bar grows in at the centre; 43.9-44.4 s the bar folds into the mark shape (one bend, smooth ease-in-out); 44.4-44.8 s the mark scales down and moves left; 44.9-45.5 s the wordmark letters reveal one after another to its right (stagger about 0.06 s, fade and slight rise); 45.5-48.58 s hold while the background blobs drift",
+      "text": "wordmark in dark navy bold sans",
+      "transition_out": "end of film (music tail fades after about 47.5 s)",
+      "palette": "white core with lavender, violet and pink gradient corners, blue-gradient mark, dark navy wordmark",
+      "built": "code-native",
+      "reusable": "yes: the logo builds from one line that bends into the mark, then the name reveals beside it — the brand's own logo outro replaces it; motion only"
+    }
+  ],
+  "visual_language": "A calm, airy app walkthrough told by a cursor. Medium: flat, clean UI windows and cards plus light kinetic type, built in code, with 2.5D moments where the flat window or cards are placed in real perspective (the swooping fly-in, the cards flipping down into a stack) and depth of field on floating round tokens. Typography: a light geometric sans for headlines, typed character by character with a caret on white scenes, or rising/unblurring word by word on gradient scenes; one keyword per line in a violet-to-blue gradient with a soft lavender glow halo; white semibold sans for the split-layout headline. Rhythm: 13 shots in 48.6 s, average about 3.7 s, with one long 8 s take (the menu drill-down); only two hard cuts (15.1 and 27.8 s); everything else is carried by camera moves, slides, morphs and a colour burst; moves are smooth and unhurried (camera moves 0.4-1.8 s, ease-in-out), UI reactions are quick (0.15-0.3 s ease-out, small overshoot on confirmation chips); cuts are not tightly locked to the steady music pulse, except the success chip on the music hit at about 22 s. Structure: chapters, each opened by a typed or revealed line with one glowing keyword, then the cursor shows that chapter inside the UI. Transition kit: colour burst from a click, perspective swoop, slide, shared-element morph (row → card, pop-up → state card), push in / pull back, white ↔ gradient hard cut, blur cut, dissolve. Palette: near-white scenes alternate with a soft lavender-violet-pink gradient-mesh background; one blue-violet accent; small green/red only as UI status. Signature moments: the typed line that shrinks to one glowing word, the click on that word bursting into the gradient world, the window swooping in on a tilt, the cascade of cards flipping into a stack, the push in to the success chip, and the logo built from a single bending bar.",
+  "look": "2.5D, not real 3D: flat UI windows, cards and type placed on planes in true perspective for the fly-in and the flipping cards; soft, low-contrast lavender drop glows under windows and cards instead of hard shadows; windows have a thin pale-lavender rim and rounded corners; glow halo behind keywords; depth of field only on the floating round tokens (near ones large and blurred) and lightly on the near edge during the swoop; background is either near-white with a faint lavender tint or a slowly drifting gradient mesh of large blurred blobs (white core, lavender, violet, pink corners), no ground plane, no texture, no grain.",
+  "code_translation": "Code-native. Built in HTML/CSS/SVG in headless Chromium: a gradient-mesh background from several large blurred radial blobs drifting slowly; typed text with a caret using the shaped brand Persian font, typing whole joined glyph runs (word by word or by grapheme on a shaped string), never breaking Persian joining; keyword in gradient-filled text with a blurred copy behind as glow; CSS 3D (perspective, rotateX/rotateY) on a UI-plane div for the swooping fly-in and for the cards flipping down (rotateX 90° → 0, transform-origin top); shared-element morphs by animating one element's box from the row to the card; colour burst as a scaled, blurred SVG shape from the cursor point; depth of field on tokens as per-token CSS blur by depth; cursor as an SVG hand sprite on a path with eased moves and a click dip. Nothing here needs a real 3D render.",
+  "continuity": [
+    "Chapter opener: each new topic starts on a clean white frame with one typed line ending in a single glowing keyword, then everything except that keyword falls away.",
+    "The click opens the world: the cursor clicks the kept keyword and a colour burst grows from the click point to fill the frame with the next scene.",
+    "A visible cause for every change: one cursor travels through the scenes and every UI change follows its click (menu opens, panel swaps, chip pops).",
+    "Shared-element morph: the chosen item leaves its list and grows into its own card, or a pop-up grows into its next state, so the cut is one continuous shape.",
+    "Results arrive as a cascade: items flip down one by one and stack, and the finished stack is then carried into the window that forms around it.",
+    "Detail ↔ whole: the camera pushes in to the one element that matters, then pulls back until the whole system sits small in the centre.",
+    "Drill-down: a long held shot where a menu opens level by level while the headline stays still, narrowing a choice step by step.",
+    "Light ↔ gradient alternation: near-white type scenes and lavender gradient UI scenes swap at the hard cuts, the gradient world always entered through a click, a burst or a blur.",
+    "Bookend by build: the film ends with the mark built from one simple line that bends into shape, then the name revealed beside it."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the 'Axiom' logo or wordmark, the English copy, the banking screens, the balance or card figures, the bank names and logos, the people's names, the real-face avatar photos, or the shot order one by one.",
+    "Low-resolution source (736x414): fine UI text was unreadable and spans away from the dense windows are ±0.25 s; motion timing is reliable, small detail is not.",
+    "Source is 16:9 landscape; a 9:16 film must rebuild each composition vertically (headline above the UI instead of a left/right split, the UI column already tall and suited to 9:16, the card stack and floating tokens filling the height, all inside the 9:16 safe zone).",
+    "The reference reads left to right (typing from the left, caret on the right, headline at left with UI at right, slides to the left): direction for Persian follows references/rtl-grammar.md — type from the right, headline on the right in split layouts, the cursor reading right to left.",
+    "Character-by-character typing must not break joined Persian letters; type by whole words or by graphemes on an already shaped string, and the glowing keyword must be a whole word.",
+    "Typed lines and word reveals are fast and the long take holds its headline for 8 s while small UI moves: Persian hold times and minimum text sizes win over the pace (readability ranks above the reference); small UI labels are texture only and never carry meaning the viewer must read.",
+    "Avatar bubbles and the call screen use photos of real people; any people in our film are drawn or abstract tokens, never real faces (buildable-share warning for real photos/faces).",
+    "Reference colours (near-white lavender, lavender-violet-pink gradient mesh, blue-violet keyword gradient, saturated blue card) map onto brand colour roles (light background, gradient background, primary, accent); never used as literal hex values. Colours were read by eye, not sampled.",
+    "The reference uses a steady music bed with few locked cuts; our cuts follow the voiceover first, and L6 places accents on our cuts rather than reusing their music."
+  ],
+  "sha256": "f32bfb2c005aee160f7fa3f4c8b02ed645c51f53329f93fd199a1a500da97346"
+}

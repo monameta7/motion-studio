@@ -1,0 +1,181 @@
+{
+  "slug": "particle-galaxy-01",
+  "key": {
+    "sha256": "c8fc5a5b154cf4e19f22ad5900717c0d64df62e677eb4f2a1520224a74501558"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 69.98,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1280, 30 fps, 2094 frames, 69.98 s. Audio: AAC HE-AACv2 stereo 44.1 kHz, continuous (mean -19.7 dB, peaks at 0 dB), no silence of 0.3 s or more below -45 dB. Sharp audio onsets measured only from 26.5 s on, soft before that; third-party audio never reused."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «abstract particles motion design.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "ذرات کهکشانی سفید",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "JOURNEY",
+    "why": "origin not stated, so only the motion language and look are borrowed, never the shots one by one or the galaxy as a subject (owner note). An abstract particle world that grows from one action is the JOURNEY definition; if a voiceover package needs the hook-problem-solution shape, L4 may run REEL in this same look."
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        69.98
+      ],
+      "why": "the spiral galaxy and the jet from its core are the reference's own subject and scenery; subjects and settings come from the voice-over, only the particle rendering and the motion techniques are borrowed"
+    },
+    {
+      "span": [
+        0,
+        69.98
+      ],
+      "why": "the order and length of the shots are not copied one by one (ADAPT); the film's timing comes from the voice"
+    },
+    {
+      "span": [
+        0,
+        69.98
+      ],
+      "why": "the audio track is third-party; L6 builds our own sound. Its pulse timing is recorded only as a measure of rhythm"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (12 sheets, 4x3, all viewed); scene detect gt(scene,0.3) found cuts at 6.50 and 18.93 s, and gt(scene,0.08) added 54.27 s and the flash cut at 63.70-63.80 s; dense sheets fps=15 around 18.93, 54.27 and 63.77 s (3 sheets, all viewed); no dense sheet at 6.50 s, a plain hard cut on the fps=2 sheet. Measured by script: mean luma per frame (pulse peaks at 3.90, 24.97, 27.03, 32.33, 37.60, 42.90, 46.07 s, then 53.20, 54.50, 55.87, 57.13, 58.50, 59.77, 61.13, 62.40, 63.77, 65.03, 66.40, 67.67, 69.03 s), audio onsets, envelope autocorrelation, silencedetect, volumedetect, and colours from one frame per second. Spans of events inside a shot are accurate to about ±0.5 s from the sheets; cut and pulse times to one frame. Positions, sizes and the blue and cream dot colours were read by eye; black share and the two grey-blue and indigo averages were sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        6.5
+      ],
+      "shot": "wide, tilted three-quarter view of a dense particle disc on black; the form runs on a diagonal from upper left to lower right and fills about three quarters of the frame height",
+      "camera": "almost locked: a very slow drift and roll, no visible cut or push",
+      "moves": "thousands of fine points slide along thin curling filaments, like smoke frozen into threads and slowly boiling (slow, close to linear, no easing visible). A bright soft-edged core at about x 0.5, y 0.53 breathes in size. Out-of-focus streams of large bright discs cross close to the lens: from the left edge at 0-1.5 s, and along the right side and upper part at 3.5-5 s. A brightness swell peaks at 3.90 s (attack about 0.15 s).",
+      "text": "none. Two tiny groups of about seven vertical tick marks stay fixed on the screen at about x 0.1, y 0.38 and x 0.87, y 0.62, in every shot",
+      "transition_out": "hard cut at 6.50 s, directly from wide to macro on the same form, with the core staying near the same screen point",
+      "palette": "near-black background; white and cool grey points; pure white core; a few out-of-focus discs in blue-violet and pale cream",
+      "built": "generated offline as a 3D particle simulation (by eye); rebuildable in code as GPU points",
+      "reusable": "yes: slow near-locked camera on one huge living form; near-lens streams of out-of-focus discs that add depth and event without a cut; motion and rendering only, never the galaxy"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        6.5,
+        18.93
+      ],
+      "shot": "macro inside the same form: filaments fill the upper half, a thick bright white band fills the middle and right, the core sits in a dark oval hole at about x 0.5, y 0.53, and the lower right corner stays black",
+      "camera": "almost locked, slow drift; the whole form turns and the dark hole slowly opens and closes around the core",
+      "moves": "a turbulent slow boil of points; a dense bright band sweeps diagonally across the frame and through the core at about 11-15 s (slow and smooth, about 4 s), then leaves the dark hole clear around the core; beaded dots fall from the lower edge in short vertical drips; a short dark splinter appears on the core near the end. Mean luma rises to its mid-film high here (5 s averages 57-79 against 21-29 in the wide shots).",
+      "text": "none, only the fixed tick marks",
+      "transition_out": "hard cut at 18.93 s from bright macro to dark wide, a strong jump in brightness and scale with no flash",
+      "palette": "white and light grey dominate; black gaps; small blue-violet and cream discs at the lower edge",
+      "built": "generated offline as a 3D particle simulation (by eye); rebuildable in code as GPU points with a closer camera",
+      "reusable": "yes: cut straight from wide to macro inside the same form; a slow bright band sweeping across as the event of a long shot; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        18.93,
+        28.5
+      ],
+      "shot": "low wide view: the disc seen almost edge-on as a flat ellipse in the upper-middle of the frame, the core below its centre at about x 0.5, y 0.55, a ribbon of larger bright discs flowing below it; about the top quarter and the bottom fifth are black. First part of one continuous shot that runs to 54.27 s",
+      "camera": "locked low angle with a slight drift and roll",
+      "moves": "the ribbon of discs flows slowly from upper left to lower right and hangs in soft waves; the thin outer arm slowly curls; the core dims and swells softly. Pulses at 24.97 and 27.03 s: the core blooms, the ribbon smears with motion blur and picks up colour fringes, then settles.",
+      "text": "none, only the fixed tick marks",
+      "transition_out": "no cut: the beam of r1-s4 grows out of the same shot",
+      "palette": "very dark overall (53% of sampled pixels are near-black across the film); white threads; bright discs with blue-violet and cream fringes",
+      "built": "generated offline as a 3D particle simulation (by eye); rebuildable in code as GPU points",
+      "reusable": "yes: huge empty black above and below the form, which leaves real room for text; a ribbon of large out-of-focus discs as the foreground layer; a pulse that smears the whole field for a moment; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        28.5,
+        40
+      ],
+      "shot": "same continuous shot; a single thin straight beam now leaves the core and crosses the empty black upward, about 16 degrees off vertical, to the top edge",
+      "camera": "same locked low angle with a slight drift",
+      "moves": "the beam grows from the core as a stub at about 28-28.5 s and reaches the frame edge at about 30.5 s (about 2 s, steady speed, close to linear); its moving tip is a tapered spindle with blue-violet and cream fringes. Pulses at 32.33 and 37.60 s. At about 35-36.5 s the beam breaks into dashes and fades; at about 37.5 s a bright spindle returns from the top while a new stub grows from the core; the two meet at about 39-40 s and the line is whole again.",
+      "text": "none, only the fixed tick marks",
+      "transition_out": "no cut: continues into r1-s5",
+      "palette": "white to cool grey beam on black; blue-violet and cream only at the tip and in the discs",
+      "built": "generated offline as a 3D particle simulation (by eye); the beam rebuilds in code as a line of tightly spaced instanced points",
+      "reusable": "yes, the signature move: one thin line grows out of the core and draws a straight strong diagonal across empty space, breaks into dashes, and rejoins from both ends; it can carry any connection, signal or cause from the voice-over; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        40,
+        54.27
+      ],
+      "shot": "same continuous shot with the beam held still; disc above, ribbon below",
+      "camera": "same locked low angle with a slight drift",
+      "moves": "the only clear events are the pulses and the slow change of form: a thin wave at the lower edge of the ribbon travels and curls; the disc threads re-form; the ribbon sharpens and softens as points pass through the focus plane. Pulses at 42.90 and 46.07 s by measure and at about 48 s by eye. At 53.20 s the first very strong pulse (luma 1.75 times its surroundings): the whole lower field blooms warm and blurs for one sheet frame, about 0.2-0.4 s. From 53.20 s the pulses come about every 1.32 s and the film gets steadily brighter.",
+      "text": "none, only the fixed tick marks",
+      "transition_out": "colour-split transition at about 54.2-54.27 s: for a frame or two the image separates into cream points and deep blue smoke, the new beam already shows faintly, then the cut; the old beam stays as a fading ghost for about 0.2 s over the new shot",
+      "palette": "the same restraint, then a warm cream bloom at 53.20 s and one blue and cream frame before the cut",
+      "built": "generated offline as a 3D particle simulation (by eye); the colour split rebuilds as a short RGB-channel offset plus a double exposure of two shots",
+      "reusable": "yes: long hold where only one light pulse happens; a colour-split frame with a short ghost of the old shot as the transition; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        54.27,
+        63.77
+      ],
+      "shot": "new angle with a stronger tilt: the form runs on a diagonal from upper left to lower right, fills most of the frame, the core at about x 0.5, y 0.53, the beam leaves it toward the right edge about 58 degrees off vertical; the lower left stays black",
+      "camera": "almost locked, slight drift; large parts of the form go in and out of focus",
+      "moves": "beaded streams pass close to the lens along the upper right (strongest at 54.5-56 s) and down the lower left; the threads are looser and more scattered, like fine dust. Regular pulses at 54.50, 55.87, 57.13, 58.50, 59.77, 61.13, 62.40 s: the core swells to about 30% of frame width, blue-violet and cream fringes spread, then it falls back (about 0.1-0.15 s up, 0.2-0.4 s down, by eye).",
+      "text": "none, only the fixed tick marks",
+      "transition_out": "flash cut at 63.70-63.80 s, the brightest frame of the film (luma 132 of 255): the frame fills with pale blue and rust-brown smoke around a core about 40% of frame width, then the next shot appears through a white-gold fade in about 0.15 s",
+      "palette": "white and grey threads; more visible blue-violet and cream discs; pale blue and rust only in the single flash",
+      "built": "generated offline as a 3D particle simulation (by eye); rebuildable in code as GPU points; the flash as a bloom spike with a short colour wash",
+      "reusable": "yes: steady pulses as the climb in energy; a full-frame colour flash hiding the cut at the peak; motion only, colours mapped to brand roles"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        63.77,
+        69.98
+      ],
+      "shot": "closest macro: the beam is now thick and bright and enters from the upper left to the core at about x 0.5, y 0.53, about 46 degrees off vertical; filaments radiate around it; a thick white swirl fills the right and bottom edges",
+      "camera": "almost locked with a slight drift; focus changes across the form",
+      "moves": "dense points churn around the core; near the bottom edge, beaded discs drip and bloom; the bright mass grows larger toward the end. Pulses at 65.03, 66.40, 67.67, 69.03 s, with bloom across the whole frame. Close up, the beam looks beaded, like a thread of tightly spaced dots. Mean luma is the highest of the film (5 s average 93).",
+      "text": "none, only the fixed tick marks",
+      "transition_out": "none: the film stops at full energy at 69.98 s with no fade and no end card",
+      "palette": "white dominates; black gaps; small blue-violet, cream and a few green and rose fringes on the discs",
+      "built": "generated offline as a 3D particle simulation (by eye); rebuildable in code as GPU points with a closer camera",
+      "reusable": "yes: the climax is the same form seen closer and brighter, not a new idea; motion only. The end needs our own logo outro"
+    }
+  ],
+  "visual_language": "One enormous living form made of fine light, on black, watched for 70 s by a nearly still camera: a single form, no text, no characters, no scene changes, and only four cuts, so the average shot is 14 s (6.5, 12.4, 35.3, 9.5 and 6.2 s). The event is never a camera move: it is a slow boil of threads, near-lens streams of out-of-focus discs, one thin beam that grows out of the core, and light pulses. Medium: a 3D particle simulation with a strong photographic lens. Typography: none. Rhythm: a slow build in three stages. Up to about 53 s, pulses are sparse (about every 5.3 s measured at 27.03, 32.33, 37.60 and 42.90 s). From 53.20 s they come every 1.32 s on average (gaps alternate 1.27 and 1.37 s) and much stronger, with the average brightness climbing from about 25 to 93. That spacing fits about 91 BPM counted in half notes, but the audio evidence is weak (autocorrelation 0.06 at 90 BPM). Pulses after 53 s do not line up cleanly with the sharp audio onsets: half fall within 0.04 s of one and half about 0.4 s away. Cuts: 63.77 s falls on a pulse, 54.27 s falls 0.23 s before one, 6.50 and 18.93 s have no pulse or sharp onset beside them, so cuts are not generally on the beat. Palette: black, white and cool grey, with blue-violet and cream used only as lens fringes on out-of-focus discs, and fuller colour for a single frame at the two big transitions. Signature moments: the thin beam growing out of the core and breaking and rejoining (28-40 s); the jump from wide to macro inside the same form (6.50 s); the colour-split cut with a ghost of the old beam (54.27 s); the full-frame colour flash (63.77 s).",
+  "look": "Real 3D. Unlit self-glowing points, with no surfaces, no shadows and no reflections; all light is additive, so dense areas burn out to pure white and the core is a soft white ball with heavy bloom. Strong depth of field is the main visual idea: points in focus are tiny and sharp, near and far points become large round discs with a clear edge, with blue-violet and cream fringes as if from lens chromatic aberration, plus motion blur during pulses. Materials: fine dust and threads, like smoke drawn in particles; the beam is a thread of tightly spaced dots. Background: black (about #000 to #050508 by eye) with very faint, tiny static star dust. Sampled averages: near-black 53% of pixels, white 9%, grey-blue #464A5B 6%, indigo #403D6D 2%; the bright blue-violet (about #2B2BBF) and cream (about #E8E2B0) discs are by eye.",
+  "code_translation": "Built as real 3D in code, never flattened into 2D shapes: three.js in headless Chromium with a GPU point cloud in the low hundreds of thousands (a target to test, not a measured count of the reference). Positions come from seeded functions of the frame number so the render repeats exactly: a base shape from the voice-over plus curl noise for the thread look, with points gathered along noise ridges. Additive blending on black with a linear float render target. Depth of field in the point shader: point size and alpha from the distance to the focus plane, a hard-edged disc sprite when large and a tiny sharp dot when in focus; channel-offset drawing for blue-violet and cream fringes on large discs only. Bloom as a post pass. Core as a bright sprite plus bloom, scaled by a pulse curve (about 0.1-0.15 s up, 0.2-0.4 s down). Beam as instanced dots along a line with a reveal value and a tapered tip, a dash mask for the break, and the reveal from both ends for the rejoin. Near-lens streams as a small second point set on spline paths. Colour-split cut: two rendered shots overlapped for about 0.2 s with a channel offset; flash cut: a bloom spike and a short colour wash in the brand roles. Tick marks as a small fixed overlay, optional. Text is not in the reference: it comes from the brand as flat shaped Persian type placed over the black space.",
+  "continuity": [
+    "One form, one world: a single particle body persists for the whole film, seen from different distances and angles; change comes from the form and the light, not from new locations.",
+    "Same core, same screen point: the bright core stays at about x 0.5, y 0.53 across every cut, so the eye never has to search; each hard cut only changes scale and angle around it.",
+    "Wide-to-macro jump inside the same body: a hard cut straight into a much closer view, then back out to wide, with no camera travel.",
+    "A line grows out of the centre: one thin beam leaves the core and draws across empty space, then persists through later shots at new angles, thicker when closer.",
+    "Break and rejoin: the line breaks into dashes, fades, and reconnects from both ends.",
+    "Ghost cut: the old shot's key line stays as a fading double exposure for about 0.2 s over the new shot, through a colour-split frame.",
+    "Flash cut at the peak: a pulse grows to fill the frame and the next shot appears as it falls away.",
+    "Pulse escalation: a light pulse recurs as the film's heartbeat, sparse at first, then faster and stronger until the end, while average brightness climbs.",
+    "Foreground streams: a sparse layer of out-of-focus discs crosses close to the lens, keeping depth and motion alive during long holds and hiding the stillness of the camera.",
+    "Focus travel: particles pass in and out of the focus plane, so the same points read as dust, then as large discs.",
+    "Fixed tick marks: tiny marks stay on the screen across all cuts as one quiet constant layer."
+  ],
+  "risks": [
+    "Origin not stated: ADAPT only. Never copy the spiral galaxy and jet as a subject, the shot order or lengths one by one, or the audio.",
+    "One subject for 70 s conflicts with varied scenes from the voice-over: L4 must have the particle body re-form into voice-over subjects, in this rendering style and with the same core and line as the thread, instead of showing a galaxy.",
+    "Shots of 12-35 s with no text do not by themselves carry a voice-over: voice meaning comes first in the conflict order, so scene changes follow the voice; keep the near-still camera and long-feeling holds through form changes rather than added camera moves.",
+    "The reference has no text, so it offers no type grammar. Bright macro shots (r1-s2, r1-s6, r1-s7) leave no clean room for text; put text on the black spaces of the wide layout (r1-s3 to r1-s5, about the top quarter and bottom fifth) or dim the points behind it, and check safe zones.",
+    "Palette mapping: black and white map to the brand's dark and light neutral roles, blue-violet and cream fringes and the single flash colours map to brand colour roles; banned colours stay banned. The dark world and depth of field stay, whatever the general brand guide says about background or flatness (D55).",
+    "Flashes: pulses run below 1 per second, under the 3 per second limit, but the 63.77 s flash and late pulses are large jumps in brightness; keep the full-frame colour flashes to one or two per film and never under a line that needs reading.",
+    "Render cost: hundreds of thousands of points, depth of field and bloom at 1080x1920 in headless WebGL may be slow or lose fine detail; this was not tested here. Motion-build should test a short clip and reduce point count before reducing depth of field. Fine dust also compresses badly: check the final encode (the reference itself shows blocky smearing in bright frames at 4.6 Mb/s).",
+    "Our film needs a closing: the reference stops abruptly at full energy, so the brand logo outro must be added after the last pulse.",
+    "Audio is third-party with peaks at 0 dB; it is ignored and L6 builds the sound. About 91 BPM is inferred from the brightness pulses and only weakly supported by the audio. The render method is judged by eye."
+  ],
+  "sha256": "c8fc5a5b154cf4e19f22ad5900717c0d64df62e677eb4f2a1520224a74501558"
+}

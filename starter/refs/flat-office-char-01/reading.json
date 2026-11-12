@@ -1,0 +1,256 @@
+{
+  "slug": "flat-office-char-01",
+  "key": {
+    "sha256": "973957f14f822ea6ae0253f496418ff8685229bf5ba47f627e25790a44dd1f7d"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 64.46,
+    "w": 736,
+    "h": 414,
+    "fps": 24,
+    "audio": true,
+    "format_note": "16:9 landscape (736x414, H.264, 24 fps, 1542 frames), 64.46 s. Audio: AAC HE-AACv2 stereo 44.1 kHz at full level (volumedetect mean -18.8 dB, max -0.9 dB), so a real soundtrack (music bed and probably narration; content was not listened to and cut-to-beat alignment was not measured). The clip ends on a held CTA card that fades to black from about 63.85 s to the end."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «flat character animation explainer 2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "شخصیت تخت در دفتر",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party clip of unknown origin: borrow the motion language (scenes that rise from the bottom, icons that pop in and stack up around one character, scatter-out clears with motion blur, kinetic text that wipes in with a blurred leading edge, a list of signs that builds and re-centres itself one item at a time, a small UI panel that becomes the hero by a zoom match, a pop-out framed payoff) and the clean flat off-white office look only, never its characters, story, English lines, UI or logo (owner note). The clip is a voiceover-style promo with the structure hook (overloaded person) → problem → list of signs → solution → logo → CTA, which is REEL; an educational package may still run as EXPLAINER with the same grammar."
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        64.46
+      ],
+      "why": "the story (an overloaded office worker, a list of business warning signs, a dashboard product as the fix, a handshake) and every drawn subject (the man in glasses at a laptop, the woman at a desk, paper stacks, mail and notification badges, the dashboard UI, the handshake couple) are the reference's content; never copied, setting and subjects come from the voice-over"
+    },
+    {
+      "span": [
+        0,
+        64.46
+      ],
+      "why": "all English on-screen lines («The Slow Burn», «They feel manageable...», «Until they're not», «7 Signs You Need Help», the six sign labels, «They're warning signs», «Switch from surviving to thriving», «Operate Smarter, Not Harder», «Don't wait for a crisis», «Connect With Us for a Free Consultation») are the reference's script; never used, on-screen text comes from the content package"
+    },
+    {
+      "span": [
+        0,
+        64.46
+      ],
+      "why": "the third-party brand: the small bird mark in the top-left corner of almost every frame, the wordmark lockup «FBSPL» (48.9-57.0 s) and the logo on the dashboard are another company's identity; never used. The film's own logo, any corner mark and the logo outro come from the brand (router conflict order, item 5)"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 over the whole clip (9 sheets of 4x4, all viewed); scene detect gt(scene,0.3) found no cut at all, gt(scene,0.12) found 8.63-8.71 (scatter-out), 42.0 (zoom match to the dashboard), 45.83 (cluster shrinks aside) and 63.88 (fade to black); dense sheets at fps=6-10 on 0-2.0, 8.0-10.0, 10.4-12.0, 37.0-39.0, 40.0-42.6, 44.0-46.6, 48.2-49.8 and 56.6-58.2 s, all viewed; audio level checked with volumedetect. Spans are accurate to about ±0.15 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        8.65
+      ],
+      "shot": "medium-wide: one character seated at a desk with a laptop, centred, on a flat off-white background; small app and document icons float at the left, a growing paper stack at the left of the desk",
+      "camera": "locked (no camera move); the whole scene arrives by rising from below the frame 0-0.6 s, fast ease-out",
+      "moves": "0-0.6 s character, desk and laptop slide up from the bottom edge (ease-out, no overshoot); 0.6-1.5 s side icons and a notification dot pop in staggered (scale 0 → 1 with a slight overshoot, about 0.2 s each); 1.0-3.0 s sheets drop onto the paper stack one by one so it grows tall; 1-7 s a red badge counter on the mail icon climbs from 1 to 50 (rolling number); 1.6 s the character raises a phone; 1.9 s a voice-message bubble pops in at right with an animated waveform; 2.0 s a thin progress bar appears under the desk; 4.0 s a caption wipes in under the desk; 5.0 s and 6.5 s two small rounded label pills pop in beside the head (one with spinning gear icons, one with a small icon); the character only blinks and shifts the frown, no gestures beyond the phone raise",
+      "text": "a short caption under the desk and two small label pills (English; ignored)",
+      "transition_out": "scatter-out clear (8.5-8.75 s): every element flies outward to its nearest frame edge with strong directional motion blur (left items to the left, right items to the right, the character drops down), fast ease-in about 0.25 s, leaving the empty background",
+      "palette": "flat off-white background, cobalt blue sweater and accents, black hair and outlines, white collar, dark navy laptop with a yellow sticker and mint corner, light grey paper stack and desk shadow, red notification badges, green and red app icons on white tiles",
+      "built": "code-native (flat SVG character in a few parts, icon tiles, counter, pills with stroked outlines)",
+      "reusable": "yes: one character as the anchor while problem symbols pile up around them (icons pop, a stack grows, a counter climbs, labels appear) to show overload building; scene rises from the bottom; scatter-out clear with motion blur; motion only, never the office worker"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        8.65,
+        12
+      ],
+      "shot": "kinetic text card: one short line of text centred on the empty off-white background",
+      "camera": "locked",
+      "moves": "8.8-9.2 s the first line wipes in left to right, its leading edge a soft horizontal motion-blur smear (ease-out); hold to 10.8 s; 10.8-11.0 s the line smears out sideways and 11.0-11.4 s the second line wipes in the same way in the same place; hold",
+      "text": "two short lines that answer each other (setup and twist; English; ignored)",
+      "transition_out": "the next character scene appears on the same empty background (11.9-12.3 s, rise/pop in) with no camera move",
+      "palette": "off-white background, near-black text in a medium-weight geometric sans",
+      "built": "code-native (text clip-path or mask wipe with a blurred leading edge, CSS filter blur on a moving copy)",
+      "reusable": "yes: a two-beat text card (setup, then twist) on an empty frame between character scenes, each line wiped in with a motion-blurred leading edge; for Persian the wipe runs right to left; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        12,
+        20
+      ],
+      "shot": "medium-wide: a second character at a desk in profile, centred, a title line under the desk; warning and question symbols around the head",
+      "camera": "locked",
+      "moves": "11.9-12.3 s the desk scene appears (rise / pop in); 12.4-12.9 s the title wipes in under the desk with the blurred leading edge; 13.5-14.5 s question marks and outlined warning triangles pop in around the head (scale pop, slight overshoot); 14.5-20.0 s they blink on and off irregularly (opacity flicker between full and about 30 %), a few at a time, like alarms going off; the paper stack on the desk grows; 17.5 s a small browser window with a red cross pops in at left and later fades; the character only shifts head and expression",
+      "text": "a title line under the desk (English; ignored)",
+      "transition_out": "quick clear to the empty background (about 19.8-20.0 s, same scatter-out family as r1-s1; not seen frame by frame)",
+      "palette": "off-white, cobalt blue jacket, white shirt, black hair, light grey paper stack, dark grey desk top, yellow, red and pale-red warning triangles, periwinkle question marks, small green plant accent",
+      "built": "code-native",
+      "reusable": "yes: alarm symbols that pop in around a character's head and then flicker irregularly to show rising stress; a title that names the section under the scene; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        20,
+        24.4
+      ],
+      "shot": "kinetic text card: one question line, left of centre, on the empty background",
+      "camera": "locked",
+      "moves": "20.0-20.4 s the line wipes in with the blurred leading edge; hold to 24.2 s; 24.2-24.4 s it clears",
+      "text": "one question line that introduces the list (English; ignored)",
+      "transition_out": "the first list item pops in at the top centre (24.5 s) on the same background",
+      "palette": "off-white, near-black text",
+      "built": "code-native",
+      "reusable": "yes: a question card that sets up a list; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        24.4,
+        38
+      ],
+      "shot": "a list of six signs building on the empty background: each sign is a solid single-colour glyph icon with a two-line bold label under it; the items form a loose zigzag grid of two columns",
+      "camera": "locked",
+      "moves": "a new item every 2-3 s (about 24.5, 26.2, 28.5, 30.5, 33.0 and 35.8 s): the icon pops in (scale up with a slight overshoot, about 0.25 s) and its label wipes in under it with the blurred leading edge (about 0.3 s); each time an item arrives the earlier items glide to new positions so the group stays balanced and centred (first item alone at top centre, then it slides left as the second arrives at right, and so on), smooth ease-in-out about 0.4 s; no idle motion once placed; hold with all six 36.5-37.7 s",
+      "text": "six short sign labels (English; ignored)",
+      "transition_out": "scatter-out clear (37.75-38.1 s): the items fly outward to the edges (top row up, side items sideways, bottom row down) with motion blur while the next symbol pops in at the centre",
+      "palette": "off-white, cobalt blue solid glyph icons, near-black bold labels",
+      "built": "code-native (glyph icons as SVG, a layout function that re-centres the group on every new item)",
+      "reusable": "yes: a list that builds one item per voice line, icon pop plus label wipe, with the whole group re-centring itself as it grows, then exploding outward to clear; motion only, the items and icons come from the voice-over"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        38,
+        40
+      ],
+      "shot": "a single outlined warning triangle above a short summary line, centred",
+      "camera": "locked",
+      "moves": "37.9-38.1 s the triangle pops in at the centre while the list scatters away; 38.1-38.5 s the line wipes in under it with the blurred leading edge; 38.5-39.9 s the triangle pulses (opacity full → about 40 % → full, slow)",
+      "text": "one summary line that names the list (English; ignored)",
+      "transition_out": "the r1-s1 scene rises back in from the bottom (39.9-40.3 s)",
+      "palette": "off-white, red-coral triangle outline, near-black text",
+      "built": "code-native",
+      "reusable": "yes: one symbol plus one line that sums up the list just shown; pulse as a warning beat; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        40,
+        42
+      ],
+      "shot": "callback: the first character's overloaded desk scene returns exactly as it was left, now with a headline line at the top of the frame",
+      "camera": "locked",
+      "moves": "39.9-40.3 s the scene rises from the bottom (ease-out); 40.0-40.5 s the headline wipes in at the top with the blurred leading edge; 40.5-41.2 s a small dashboard panel slides in from the left over the paper stack and the stack fades away under it (the problem object is replaced by the solution object), panel contents fill in (cards and bars appear in a quick stagger); 41.5-41.9 s the panel grows slightly forward",
+      "text": "one headline at the top (English; ignored)",
+      "transition_out": "zoom match (42.0 s, the only hard cut): cut to the same panel filling the frame, so the small solution object becomes the hero of the next shot",
+      "palette": "as r1-s1; the panel is white with cobalt blue blocks and pale grey lines",
+      "built": "code-native",
+      "reusable": "yes: callback to the opening scene where the problem object (the pile) is replaced in place by the solution object; then a zoom match into that object; motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        42,
+        44
+      ],
+      "shot": "close: a tablet-like interface panel filling most of the frame, seen in slight perspective, headline still at the top",
+      "camera": "the panel itself turns slowly in perspective (about 10-15 degrees, from left-leaning to right-leaning, linear-smooth over 1.5 s) — the only 3D-like move in the film",
+      "moves": "cards with small line charts and a big number idle (lines draw on, number ticks); 43.3-43.8 s small chat bubbles and an avatar chip pop in at the right edge",
+      "text": "interface labels and a currency number (another product's English UI; ignored)",
+      "transition_out": "pull-back (43.8-44.2 s, ease-out): the panel shrinks to centre and satellite panels are revealed around it",
+      "palette": "white panel with a thin grey bezel and soft grey drop shadow, cobalt blue blocks, pale lavender cards, small orange, teal and blue chart lines",
+      "built": "code-native (CSS 3D rotateY with perspective on a flat card, soft drop shadow)",
+      "reusable": "yes: a hero interface card that turns slowly in perspective while its numbers and lines animate; motion only, the content comes from the voice-over"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        44,
+        45.85
+      ],
+      "shot": "wide: the interface card at centre surrounded by satellite cards (a list card top left, chat bubbles top right, a spreadsheet card bottom left, a row of avatar chips with a slider bottom right)",
+      "camera": "locked after the pull-back",
+      "moves": "satellites settle with a small drift; idle details: a loading ring turns, list dots fill one by one, a spreadsheet cell highlights, the slider knob moves; all small and continuous",
+      "text": "tiny interface labels (ignored)",
+      "transition_out": "45.6-45.9 s the whole cluster shrinks and moves to the upper left (smooth ease-in-out about 0.4 s) to make room for the payoff frame",
+      "palette": "white cards with soft grey shadows, teal spreadsheet header, orange, teal and violet chat bubbles, orange, teal and red avatar chips",
+      "built": "code-native",
+      "reusable": "yes: pull back from one hero card to an ecosystem of cards around it (everything connected), then the cluster shrinks aside as a group; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        45.85,
+        48.7
+      ],
+      "shot": "payoff: a rounded-rectangle frame at the lower right with two people shaking hands inside it, their heads breaking out above the frame's top edge; the shrunken interface cluster at upper left",
+      "camera": "locked",
+      "moves": "45.9-46.1 s a small lavender rounded rectangle pops in; 46.1-46.4 s it grows to full size (ease-out with a slight overshoot) and the figures appear inside it; 46.4-48.5 s near-still hold (tiny handshake bob)",
+      "text": "the headline remains at the top (ignored)",
+      "transition_out": "48.5-48.9 s the headline smears out sideways and the whole frame fades to the empty background in about 0.3 s",
+      "palette": "pale lavender frame fill with a cobalt blue outline, characters in white shirts and dark trousers with soft gradient shading, red tie accent",
+      "built": "code-native for the frame; the two figures are more rendered (soft gradient shading) than the rest of the film — in code they are drawn in the same flat style as the other characters",
+      "reusable": "yes: a pop-out frame (subjects break out of a rounded card's top edge) as the result / payoff image beside the solution; motion only, never the handshake"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        48.7,
+        57
+      ],
+      "shot": "logo lockup centred on the empty background with a one-line tagline under it",
+      "camera": "locked",
+      "moves": "48.9-49.2 s the wordmark enters large and scales down to its rest size (fast ease-out, no overshoot); 49.2-49.6 s the tagline wipes in under it with the blurred leading edge; hold to 56.8 s; 56.8-57.0 s the mark fades and the tagline smears out",
+      "text": "another company's wordmark and tagline (ignored)",
+      "transition_out": "clear to the empty background, then the CTA wipes in",
+      "palette": "off-white, cobalt blue wordmark, near-black tagline",
+      "built": "code-native",
+      "reusable": "technique only, and only if the brand has no logo outro of its own: logo scales down from oversize to rest, tagline wipes in under it; the brand's logo outro always wins"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        57,
+        64.46
+      ],
+      "shot": "CTA card: a bold headline with a smaller action line under it, centred",
+      "camera": "locked",
+      "moves": "57.1-57.5 s the headline wipes in with a blue motion-blurred leading streak; 57.6-58.0 s the action line wipes in the same way in black; hold to 63.85 s; 63.85-64.46 s fade to black",
+      "text": "a CTA headline and an action line (English; ignored)",
+      "transition_out": "end of film (fade to black)",
+      "palette": "off-white, bold cobalt blue headline, black action line",
+      "built": "code-native",
+      "reusable": "yes: CTA as two wiped-in lines on an empty frame (headline in the brand accent, action line in text colour), then a long hold; motion only, the CTA comes from the package"
+    }
+  ],
+  "visual_language": "Clean flat vector business explainer on one constant off-white background. Medium: 2D illustration (solid fills, very few outlines, small soft grey drop shadows under cards and desks) built from characters at desks, solid glyph icons, rounded label pills and white interface cards. Characters are simple flat figures (big heads, cobalt blue clothing) that hardly gesture: life comes from what pops in around them, not from acting. Typography: a geometric sans in medium weight for narration lines and labels, bold for the CTA headline, small and centred; every line enters by a left-to-right wipe whose leading edge is a soft horizontal motion-blur smear, and leaves the same way. Rhythm: 12 shots in 64.5 s (average about 5.4 s, range 2-14 s); one hard cut (the zoom match at 42.0 s); everything else is clear-and-build on the same background: scenes rise from the bottom, elements pop in staggered, and a scene ends by a fast scatter-out where every element flies to its nearest edge with motion blur (about 0.25 s). Character scenes alternate with short text cards (setup and twist, question, summary), which gives a problem → list → solution → logo → CTA pace. Moves are snappy: pops about 0.2-0.3 s with a slight overshoot, wipes about 0.3-0.4 s ease-out, re-layout glides about 0.4 s ease-in-out, exits fast ease-in with blur. Palette: off-white world, cobalt blue as the one brand colour (clothing, icons, UI blocks, headings), near-black text, light greys for paper and shadows, small signal accents (red badges and warnings, yellow sticker and warning, mint, teal, orange in UI). Signature moments: the overload pile-up (icons, paper stack, a badge counter climbing to 50) around a still character; alarm symbols flickering; the self-re-centring icon list that explodes outward; the callback where the pile is replaced by the solution panel, then a zoom match into that panel.",
+  "look": "Flat 2D: solid fills on a flat off-white background with no gradient, no texture and no lighting direction on the characters; depth only from soft, low-contrast grey drop shadows under interface cards, a pale grey floor plate under each desk, and overlap. Interface cards are white with thin grey bezels and soft shadows (a light paper/card feel, not glass). The one 2.5D moment is the hero interface card turning in perspective (r1-s8). The payoff figures have soft gradient shading, more rendered than the rest; everything else is flat. Motion blur on fast exits and on the leading edge of text wipes is the only blur; no depth-of-field, no 3D scene, no glow.",
+  "code_translation": "Code-native, flat. One constant background colour for the whole film (the brand's light background role). Each scene is an HTML/SVG layer of flat parts: character (head, torso, arm with a phone or pointer as separate parts, blink as a shape swap), desk plate, prop stack, icon tiles, label pills; entrances are translateY rises (ease-out about 0.5 s) and staggered scale pops (0 → 1.08 → 1, about 0.25 s). Scatter-out: each element translates toward its nearest edge by 60-120 % of the frame with an ease-in about 0.25 s plus a directional blur (CSS filter blur, or two or three trailing copies at falling opacity). Text wipe: clip-path inset animated along the reading direction with a blurred, semi-transparent copy riding the leading edge; for Persian (RTL) the wipe and the smear run right to left. Counter: a rolling integer in a red badge. List build: a layout function returns positions for n items; on each new item every existing item tweens to its new slot (ease-in-out about 0.4 s) while the new one pops. Hero card: CSS perspective with rotateY drifting about 12 degrees, soft box-shadow. Pop-out frame: a rounded rect with the subject drawn above its clip on the top edge. Reference colours are mapped onto brand colour roles (background light, primary brand colour for clothing, icons and headings, text dark, neutral greys for props and shadows, alert accent for badges and warnings), never used as literal hex values; banned brand colours are never used even where the reference has them. No 3D scene, no glow, no lens blur — the reference is flat, so the film stays flat.",
+  "continuity": [
+    "One constant empty background: every scene builds on the same plain colour and clears back to it, so cuts are not needed; the frame empties and refills.",
+    "Scene rises from the bottom edge: a character's whole set slides up into frame at the start of a section.",
+    "Pile-up around an anchor: the character stays still while problem symbols keep arriving around them (pops, a growing stack, a climbing counter, label pills), so the problem visibly grows within one shot.",
+    "Scatter-out clear: every element flies to its nearest edge with motion blur, and the next element pops in at the centre in the same beat.",
+    "Text wipe with a blurred leading edge: every line enters and leaves by the same wipe, which ties text cards and scene titles into one system.",
+    "Setup / twist text pair: one line is replaced in place by its answer, same position, same wipe.",
+    "Self-re-centring list: each new item pops in and all earlier items glide to keep the group balanced, so a growing list stays one composition.",
+    "Callback with replacement: the opening scene returns as it was left, and the problem object is swapped in place for the solution object.",
+    "Zoom match: the small solution object cuts to itself filling the frame, then pulls back to show what connects to it.",
+    "Shrink aside: a finished group scales down into a corner as one block to make room for the payoff image, keeping the earlier idea on screen.",
+    "Pop-out frame: the result image sits in a rounded card with its subjects breaking out of the top edge."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its subjects (the man in glasses at a laptop, the woman at a desk, paper stacks, the mail counter, the six business signs, the dashboard UI, the handshake), its English lines, its problem → signs → dashboard story one to one, its characters or its logo; only the motion grammar, continuity devices, timing and the clean flat off-white look.",
+    "Source is 16:9 (736x414); the film is usually 9:16. Character-at-desk scenes recompose well (symbols stack above and around the figure, titles below), the two-column list becomes a single column or a 2x3 grid that re-centres vertically, and the shrink-aside move becomes shrink-to-top with the payoff frame below; scatter-out still sends each element to its nearest edge.",
+    "Text wipes run left to right in the source; Persian lines must wipe and smear right to left, and text must be bigger than the reference's very small labels to stay readable on a phone and inside the safe zone.",
+    "The reference keeps a small third-party mark in the top-left corner of every frame; it is never copied. If the brand wants a corner mark it comes from the brand's own logo rules, placed inside the safe zone.",
+    "The payoff figures (r1-s10) are more rendered (gradient shading) than the rest of the film; in code they are drawn in the same flat style as the other characters so the world stays consistent.",
+    "Characters barely act in the source; in code keep them to a rise-in, blinks, one or two pose swaps (raise a phone, turn the head) and let the surrounding symbols carry the story; no walk cycles.",
+    "The cobalt blue of the reference is mapped onto the brand's primary role; the red, yellow, mint, teal and orange accents are mapped onto brand-safe alert and accent roles or dropped; banned brand colours are never used.",
+    "The audio track is full-level and was not listened to; cut-to-beat alignment was not measured, so L6 builds sound from the storyboard and voice timing places every cut.",
+    "Colours and timings were read by eye from contact sheets (about ±0.15 s), not sampled or measured per frame; the exit of r1-s3 (about 19.8-20.0 s) fell between sampled frames."
+  ],
+  "sha256": "973957f14f822ea6ae0253f496418ff8685229bf5ba47f627e25790a44dd1f7d"
+}

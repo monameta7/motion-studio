@@ -1,0 +1,22 @@
+{
+  "slug": "mahdiyar-reel-01",
+  "name_fa": "ریلز خبری ماشین پرنده‌ی تسلا",
+  "use_fa": "خبر یا باور غلط، توضیح با داده و منبع، تایپوگرافی فارسی پرانرژی",
+  "tags": [
+    "type",
+    "news",
+    "data",
+    "vector",
+    "myth-bust",
+    "dark-light"
+  ],
+  "group": "type",
+  "duration": 49,
+  "format": "9x16",
+  "sha256": "396bf95ba2616b63308e9c76b289ac55edcca586074557b6d5aca6690658181b",
+  "code_buildable_pct": 100,
+  "source": "library",
+  "rights_note": "owner's own published Mahdiyar reel; last 3 s are the old logo outro (ignore when reading)",
+  "added_at": "2026-10-22T00:00:00+03:30",
+  "last_used_at": "2026-10-27T19:09:27.490Z"
+}

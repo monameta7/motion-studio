@@ -1,0 +1,162 @@
+{
+  "slug": "dark-news-type-01",
+  "key": {
+    "sha256": "7961d78a5ec7e1672e5cb227673836784985afe0ab7552a0b556b5e74a63da03"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 11.96,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true,
+    "format_note": "Single 9:16 film, 720x1280, 30 fps; video stream 11.87 s (356 frames), container 11.96 s. Audio: AAC HE-AACv2 stereo 44.1 kHz, continuous (no silence below -40 dB for 0.3 s or longer), mean -22.2 dB, peak -6.8 dB; the on-screen words follow a narration, so it is read as voice-over over a bed; not analysed for beats, third-party audio never reused. The film ends mid-sentence at 11.87 s (cut for a loop)."
+  },
+  "rights_note": "third-party short from Pinterest (file «apvuliaCryptoForex_pindown.io_1792419399.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "خبر مالی تیره با تایپوگرافی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party short of unknown origin: borrow the motion language and look only, never its shots one by one, its object designs, its copy, its figures or its photo (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        11.87
+      ],
+      "why": "the English copy (a market-news story about a stock drop and a central-bank bail-out) and every figure in it (9.5%, two days, the price chip on the chart card) are third-party copy and claims; never reused as text, numbers or topic"
+    },
+    {
+      "span": [
+        5.55,
+        7.65
+      ],
+      "why": "the greyscale press photo of a real public official at a podium with an institutional seal is a third-party photograph of a real person; never reused, traced or imitated; only the circular-mask photo treatment with thin ring outlines is borrowed, and only for owner assets or images the voice-over needs"
+    },
+    {
+      "span": [
+        0,
+        11.87
+      ],
+      "why": "the 'APVULIA©' watermark at the bottom centre is the creator's brand; our film carries only our own logo per the brand"
+    },
+    {
+      "span": [
+        7.65,
+        9.9
+      ],
+      "why": "the abstract figure (sphere head, sliced-disc body, blue glass panel) and the monitor with an audience of sphere heads are the reference's story props; our scenes take their subjects from the voice-over and are only drawn in this rendering style"
+    },
+    {
+      "span": [
+        0,
+        11.96
+      ],
+      "why": "the audio track (voice and bed) is third-party; L2 uses our voice-over and L6 builds our sound"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (2 sheets, 6x2, both viewed); scene detect gt(scene,0.2) found one cut at 5.57 s only (the film is dark, so the other cuts score low); the other cuts were found by eye on dense sheets: fps=10 over 0-1.2 s (top 360 px crop, to read the word animation), 0.9-2.1 s, 2.6-3.8 s, 7.0-8.2 s, 8.8-10.0 s, and fps=5 over 9.6-11.9 s (6 dense sheets, all viewed). Spans accurate to about ±0.1 s. silencedetect + volumedetect on the audio. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        3.65
+      ],
+      "shot": "starts as a close-up of a glass chart card on a black screen with light rays from the upper left; becomes a wide shot of that card shown on a monitor in front of an audience",
+      "camera": "0-0.9 s close and almost static, the card tilts gently in 3D; 0.9-2.0 s a continuous dolly out: the first view slides down and becomes the monitor's screen, a lighter blue-grey gradient room opens above it, the monitor frame and stand appear (smooth ease-in-out, about 1 s); 2.0-3.6 s the pull-back continues very slowly (the monitor shrinks about 10%) with the text re-centring",
+      "moves": "the chart line draws itself left to right with a glowing dot riding its tip and a small price chip counting up (0-1.4 s, smooth); the card has a blue edge glow and a white grid; on the monitor a diagonal glass reflection streak sits across the screen; 1.6-2.2 s glossy blue sphere 'heads' rise from the bottom edge one after another (stagger about 0.1 s, ease-out) and fill the lower third in depth rows; words of the caption arrive one at a time throughout (see text)",
+      "text": "the narration line as a two-line caption at the top: line 1 regular weight, line 2 bold, white neutral grotesk sans with tight tracking, centred; cap height about 2.5% of frame height; it sits at about 4% from the top in the close-up and settles at about 15% after the pull-back",
+      "transition_out": "hard cut at 3.65 s to an empty gradient frame that starts the next caption",
+      "palette": "near-black to deep navy, a mid blue-grey gradient at the top of the room, electric blue edge glows and sphere highlights, white line and text",
+      "built": "generated (3D render: glass card, monitor, glossy spheres) with type composited",
+      "reusable": "yes: screen-in-screen pull-back (the first close-up becomes a screen inside a wider world), a self-drawing line with a glowing tip, an audience of simple glossy spheres rising from the bottom; motion only, never the chart, monitor or story"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        3.65,
+        5.55
+      ],
+      "shot": "type only: an empty dark gradient frame, the caption alone at mid height",
+      "camera": "static",
+      "moves": "only the words: they arrive one at a time with the 3D flip-in (about every 0.15-0.2 s) and the two-line block stays centred as it grows; the background is a soft diagonal gradient, lighter blue-grey at the upper left to near-black navy at the lower right",
+      "text": "a question line as a two-line caption at mid height (about 52% from the top), line 1 regular, line 2 bold, same sans and size as r1-s1",
+      "transition_out": "hard cut at 5.55 s on the next phrase",
+      "palette": "blue-grey to near-black navy gradient, white text",
+      "built": "code-native (type on a gradient)",
+      "reusable": "yes: a breath shot of pure type for the question or turn in the story, the caption moved to the centre of the frame; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        5.55,
+        7.65
+      ],
+      "shot": "medium, a greyscale photo inside a circular mask in the centre, a thin ring outline around it, a large dark disc bleeding off the upper left and a thin ring arc bleeding off the lower right",
+      "camera": "static with a very slow push-in",
+      "moves": "the circle photo holds; the decorative discs and arcs drift very slowly; the caption builds word by word at the top",
+      "text": "the narration line as the two-line top caption (about 12% from the top), line 1 regular, line 2 bold",
+      "transition_out": "hard cut at 7.65 s to one empty gradient frame, then the next set pops in",
+      "palette": "navy gradient, greyscale photo, dark navy disc, thin light-grey ring lines",
+      "built": "photo composited in code (circle mask, rings, discs)",
+      "reusable": "yes: a photo shown in a circular mask with thin ring outlines and big off-frame circles as framing, the photo turned greyscale to sit in the dark world; only for owner assets or images the voice-over needs, never their photo"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        7.65,
+        9.9
+      ],
+      "shot": "medium, a small group of abstract 3D primitives (a sphere, a sliced disc, a tilted blue glass panel) standing on a dark reflective floor, lower centre",
+      "camera": "static, then 9.4-9.9 s a slight drift down and to the right (the set sinks a little, ease-in) just before the cut",
+      "moves": "the set appears at full size within 0.1 s after the empty frame (pop-in); the objects hold with tiny idle motion; a bright specular sweep crosses the blue glass panel (about 9.0-9.4 s); a soft light from the upper left makes a white gradient sheen on the panel's top edge",
+      "text": "the narration line as the two-line top caption (about 12% from the top), line 1 regular, line 2 bold",
+      "transition_out": "hard cut at 9.9 s to a dark grid with a single glowing point at the centre",
+      "palette": "near-black navy, matte and satin greys with soft radial gradients, one saturated electric blue glass panel, white highlights",
+      "built": "generated (3D render: primitives, glass, reflective floor)",
+      "reusable": "yes: a subject told with a few simple 3D primitives (spheres, discs, glass slabs) on a reflective floor, a light sweep across glass as the accent; motion and rendering only, never the figure design"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        9.9,
+        11.87
+      ],
+      "shot": "wide, a dark grid plane in slight perspective filling the frame, a thick blue zigzag line climbing from the lower left",
+      "camera": "static frame at first, the grid plane slightly tilted; reads as a gentle tilt up as the line climbs",
+      "moves": "9.9-10.0 s a single glowing point blinks at the centre; 10.0-10.9 s the line draws itself from the lower-left edge in a rising zigzag (fast, roughly linear, each segment about 0.1 s); 10.9-11.3 s the line shoots straight up past the top edge, a cross-shaped lens flare flashes where it turns, and wide soft light beams fan out from that point; 11.3-11.8 s the line comes back down and turns again (an 'M' at the top right) as the film cuts off",
+      "text": "the narration line as the two-line top caption (about 12% from the top), line 1 regular, line 2 bold",
+      "transition_out": "end of file mid-move (cut for a loop)",
+      "palette": "navy-black with a faint blue-grey grid, a saturated electric blue line, a white-blue flare",
+      "built": "code-native look (line chart on a grid) with a flare and light-beam overlay",
+      "reusable": "yes: a self-drawing data line on a perspective grid whose peak bursts out of the frame with a cross flare and light beams; motion only, our values come from the package"
+    }
+  ],
+  "visual_language": "A dark, cinematic finance-news short driven by a word-by-word caption. Medium: a mix of 3D renders (glass chart card, monitor, glossy spheres, abstract primitives on a reflective floor), a masked photo, pure type and a code-like line chart, all sitting in one navy-black world. Typography is the backbone: every word of the narration appears on screen in sync with the voice, one word at a time, as a two-line centred caption (line 1 regular, line 2 bold) in a neutral white grotesk sans with tight tracking, small (cap height about 2.5% of frame height), at the top of the frame, except one breath shot where the caption moves to the centre. Each word arrives with a 3D flip: it starts tilted away (about 60-80 degrees around the horizontal and vertical axes, grey and slightly above and right of its slot) and rotates flat into place while brightening to white in about 0.15-0.2 s (smooth ease-out); a new line starts by sliding in from the left, and the block re-centres as it grows. Rhythm: five shots in 11.9 s (about 2.4 s each), hard cuts on phrase boundaries, never on a beat; the caption carries across cuts and restarts with each new phrase. Moves are smooth: a long dolly-out (about 1 s), staggered rises (about 0.1 s apart), self-drawing lines, slow push-ins; accents are fast (light sweeps across glass, a cross flare at a peak). Palette: near-black to navy with a lighter blue-grey gradient from the upper left, one saturated electric blue as the only accent, white type and highlights, greyscale photos. Signature moments: the close-up that turns out to be a screen inside a wider world; the audience of glossy spheres rising; the pure-type question shot; the chart line that bursts out of the top of the frame with a flare.",
+  "look": "Mostly real 3D (not flat) in a dark studio void. Materials: frosted glass cards with a bright blue emissive edge and a white grid printed on the glass; a dark monitor with a diagonal glass reflection streak; glossy deep-blue spheres with a bright rim highlight; matte to satin grey primitives with soft radial gradients; a saturated blue glass slab with a white specular sweep; a dark reflective floor with soft reflections. Light: one soft key from the upper left (visible light rays in the opening), blue rim and edge glows, soft contact shadows, glows and a cross-shaped lens flare as accents. Depth: moderate depth of field, back rows of spheres softer and darker; no heavy blur. Background: a soft diagonal gradient void (blue-grey upper left to near-black navy lower right), later a faint perspective grid plane. Photos are greyscale inside circular masks with thin ring lines.",
+  "code_translation": "Not fully code-native (3D renders mixed with type and a chart). Per D55 the 3D parts are built as real 3D in code with three.js: glass cards and slabs as rounded boxes with MeshPhysicalMaterial (transmission, roughness for frost, clearcoat) plus an emissive blue edge and an animated specular sweep; glossy spheres with low roughness and a rim light; satin primitives with MeshStandardMaterial; a reflective floor (reflector or a mirrored plane with fade); one soft key from the upper left with god-ray sprites, a blue rim light and hemisphere fill; the screen-in-screen pull-back as a render-to-texture of the first scene mapped onto a screen mesh while the camera dollies out. The word-by-word caption is HTML/canvas type in the brand Persian font, whole words only and never split letters (rtl-grammar.md): each word flips in with a CSS 3D rotate (rotateX/rotateY about 70 degrees to 0, opacity and grey to white, about 0.18 s ease-out), words placed right to left, line 1 regular and line 2 bold; timing from audio.json word times. The circle photo is a CSS/canvas mask with SVG ring lines. The final chart is SVG or canvas on a perspective grid (CSS 3D or three.js plane) with a stroke-dashoffset draw, an additive cross-flare sprite and soft beam gradients; values and Persian digits per data-viz.md.",
+  "continuity": [
+    "Caption as the spine: the narration appears word by word in the same place, size and two-weight style across every shot, so the film reads as one sentence even across hard cuts.",
+    "Word flip-in: each word rotates in from a 3D tilt and brightens into place, timed to the voice.",
+    "Screen inside a world: the opening close-up is revealed by a dolly-out to be a screen inside a larger scene.",
+    "Rising audience: simple glossy spheres rise from the bottom edge in staggered depth rows to mean 'people watching'.",
+    "Breath shot: one shot of pure type with the caption moved to the centre marks the turn or question in the story.",
+    "Cut through an empty frame: a hard cut lands on the bare background for a moment and the next subject pops in, so the dark world feels continuous.",
+    "Self-drawing line with a glowing tip: data appears as a line that draws itself, a light riding its head.",
+    "Peak bursts the frame: at the climax the line shoots out of the top edge with a cross flare and fanning light beams.",
+    "One accent colour: a single saturated blue carries every highlight (edges, spheres, glass, the line) against greyscale and navy."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its finance-news story, English copy, figures (9.5%, two days, price chip), the press photo of a real official, the institutional seal, the monitor and audience scene or the abstract figure as designs, the 'APVULIA©' watermark, its audio, or its shot order one by one.",
+    "The caption is small (cap height about 2.5% of frame height) and the second line overlaps the first while it slides in: in our film the Persian caption must meet the minimum text size and hold times, never overlap, and sit inside the safe zone (safe-zones.md).",
+    "The word flip-in must use whole Persian words in a shaped font, placed right to left; joined letters are never split or rotated one by one (rtl-grammar.md).",
+    "The reference's palette is navy and electric blue: map it onto brand colour roles (dark neutral background, brand accent for every highlight), never its literal blue if the brand differs; colours were read by eye, not sampled.",
+    "Hard cuts land on dark frames and score low in scene detect: cut spans 3.65, 7.65 and 9.9 s were read by eye (±0.1 s); only 5.57 s was detected.",
+    "The masked-photo shot needs an image: use it only for an owner asset or an image the voice-over needs; never source photos of real people.",
+    "The film ends mid-sentence as a loop cut: our film needs its own ending (brand logo outro), not an abrupt stop.",
+    "Audio is third-party voice and bed; ignored, L2 and L6 build ours."
+  ],
+  "sha256": "7961d78a5ec7e1672e5cb227673836784985afe0ab7552a0b556b5e74a63da03"
+}

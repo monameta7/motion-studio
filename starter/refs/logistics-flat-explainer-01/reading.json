@@ -1,0 +1,525 @@
+{
+  "slug": "logistics-flat-explainer-01",
+  "key": {
+    "sha256": "d9c9ec30f6bbd5c6caead113ff1e90b6b62d7d88c5964a1a438ff98a85188da2"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 95.56,
+    "w": 1280,
+    "h": 720,
+    "fps": 25,
+    "audio": true,
+    "format_note": "16:9 landscape (1280x720, H.264, 25 fps), 95.56 s, 2389 frames. Audio: AAC HE-AACv2 stereo 44.1 kHz (volumedetect mean -19.2 dB, max -3.0 dB), so a real soundtrack is present; its content was not listened to and cut-to-beat alignment was not measured. The on-screen sentences suggest narration but this is not confirmed. The film ends on a held end card with no fade to black inside the clip."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «code animation motion design2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "توضیح تخت با کامیون و رابط",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "EXPLAINER",
+    "why": "third-party clip of unknown origin: borrow the motion language (camera orbits that join flat views, thumbnail-to-world push-ins, foreground wall wipes, an interface panel that stays while the world changes, a split frame that compares two worlds) and the mono-hue vector look only, never its trucks, cities, characters, labels, logo or story (owner note). It is a product explainer with characters and interface beats, which is EXPLAINER; a hook-problem-solution voiceover package may run as REEL and a pure software film as UI with the same grammar."
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        95.56
+      ],
+      "why": "the subject (road freight software) and every drawn subject (trucks, flatbeds with cranes, roads, map, warehouses, silos, paper-stack canyon, overpass city, office worker, counter clerk, driver, tablet and phone screens) are the reference's content; never copied, setting and subjects come from the voice-over"
+    },
+    {
+      "span": [
+        16,
+        25
+      ],
+      "why": "the third-party mark and wordmark «ALLOTRAC» and its logo in the sky are another company's identity; never used. The same applies wherever the mark returns (43-52, 53.4-59.4, 62.9-65.2, 88-95.56 s). The film's own logo outro comes from the brand (router conflict order, item 5)"
+    },
+    {
+      "span": [
+        4,
+        82.2
+      ],
+      "why": "all English on-screen wording is content, never copied: «A», «B», «PLANNING», «ALLOCATION», «DISPATCH», «Allotrac has an integrated solution for you.», «hello.», «GET STARTED», «SIGN IN», «Submit», «ERP», «GPS», «POS», «Port Logistics», «Accounting Software», «Customised Delivery Docs», «No expensive hardware required», and on the end card «Book a demo today», «allotrac.com.au»"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 over the whole clip (16 sheets of 4x3, all viewed); scene detect gt(scene,0.3) found exactly 6 frames, all hard cuts: 37.4, 40.2, 42.44, 59.4, 73.76, 79.0; every other shot change was found by eye and is continuous or too similar in colour for the detector; dense sheets at fps=4-8 on 2.0-4.0, 8.8-11.8, 18.5-20.5, 24.4-26.4, 29.2-30.2, 34.2-36.2, 45.4-47.4, 51.8-53.8, 63.8-65.8, 74.6-76.6, 84.2-85.2, 85.6-88.6 and 89.4-91.4 s, all viewed; the six hard cuts themselves got no dense sheet (a straight cut needs none); audio level checked with volumedetect. Spans inside dense sheets are accurate to about ±0.15 s, spans read only from the fps=2 sheets to about ±0.3 s. Easing is judged from frame spacing, not measured from curves. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.1
+      ],
+      "shot": "side-on medium-wide of the main vehicle filling most of the frame, on a road band under a bright sky",
+      "camera": "tracking with the subject, which holds its place in frame; very slow drift and slight pull-back",
+      "moves": "road dashes and the far horizon stream past while the subject stays locked and only bobs slightly; clouds barely move",
+      "easing": "linear world stream, gentle linear drift",
+      "composition": "subject centred and large (about 85% of frame width), three horizontal bands: sky, horizon stripe, ground",
+      "text": "none",
+      "transition_out": "continuous: the camera orbits up from side view to overhead, no cut (r1-s2)",
+      "palette": "white-to-cyan sky, ocean-blue body with a navy gradient cab, grey ground gradient, white cloud shapes",
+      "built": "code-native (flat vector shapes with linear gradients, three-band background, scrolling dashes)",
+      "reusable": "yes: open with the key object locked in frame while the world streams behind it; motion only, never the vehicle"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.1,
+        3.85
+      ],
+      "shot": "overhead view of the same object on a blue road, with a hard cast shadow",
+      "camera": "2.1-2.7 s orbit from side view to overhead, ease-in-out, the object staying near frame centre; the sky band becomes the top ground band; 2.7-3.85 s nearly locked, very slow pull-back",
+      "moves": "the object visibly turns in perspective during the orbit and its shadow swings under it; 2.7-3.85 s road dashes stream and pale shapes slide past at the frame edges",
+      "easing": "smooth ease-in-out on a fast 0.6 s orbit, then linear",
+      "composition": "wide horizontal road band across the frame, object upper left of centre, pale empty ground above and below",
+      "text": "none",
+      "transition_out": "continuous: fast pull-back to a map scale (r1-s3), no cut",
+      "palette": "ocean-blue road fading to dark navy on the left, white and pale-blue roof, near-white ground",
+      "built": "code-native real 3D (three.js camera orbit around a box-built object, a directional light for the hard shadow), or a 2.5D sprite swap for the object if the orbit stays under 0.6 s",
+      "reusable": "yes: an orbit from side view to overhead turns one flat shot into a map view without a cut; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        3.85,
+        9
+      ],
+      "shot": "top-down schematic map: one road between two blocks, branches growing out of it, over pale ground with faint shapes",
+      "camera": "3.85-4.2 s fast pull-back, ease-out; then a slow steady drift to the end of the shot",
+      "moves": "4.2-5.5 s the two end blocks settle from flat squares into isometric cubes with a side face and a cast shadow, letters fade on them; 6.25-8.5 s four branches grow out of the main road one after another at about 0.6-0.75 s stagger, each drawn along its own centre line (some straight, one curved) with its label appearing along the line; small vehicles appear on each branch; the main object drives along the road and turns onto a branch at about 8.0 s",
+      "easing": "branches grow smooth ease-out with no overshoot, labels fade in 0.3 s",
+      "composition": "the main road is a horizontal spine at mid height with two heavy anchors at its ends; branches radiate up and down into calm space, labels run along the branches",
+      "text": "single letters on the blocks and short uppercase labels set along the branches (English, content ignored)",
+      "transition_out": "continuous: push-in follows the object to a tighter view (r1-s4)",
+      "palette": "saturated ocean-blue roads, cyan blocks with navy side faces, near-white ground, pale grey and pale-cyan background shapes",
+      "built": "code-native (SVG paths with stroke-dashoffset for the growing branches, text on a path, CSS or three.js cubes)",
+      "reusable": "yes: a process map that draws itself branch by branch, a label on each branch; the strongest teaching beat of the film; motion only, never the roads"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        9,
+        11.2
+      ],
+      "shot": "tight overhead of the object travelling up the frame in a vertical road band",
+      "camera": "9.0-9.8 s push-in toward the object, smooth ease-in-out; 9.8-11.2 s follow move, object locked in frame",
+      "moves": "pale background shapes stream down past the road at a different speed from the road (parallax); cast shadow stays on one side",
+      "easing": "smooth ease-in-out on the push, then linear stream",
+      "composition": "vertical band a little left of centre, the rest of the frame near-empty pale ground; already a portrait-friendly layout",
+      "text": "none",
+      "transition_out": "continuous: the camera orbits down from overhead to behind the object (r1-s5), no cut",
+      "palette": "ocean-blue band, navy shadow, white roof, near-white ground",
+      "built": "code-native (top-down box object, CSS or three.js, scrolling plane)",
+      "reusable": "yes: follow the subject in a vertical band, which suits 9:16 directly; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        11.2,
+        14.4
+      ],
+      "shot": "low rear view of the object driving down a narrow canyon of tall stacked forms, with loose thin sheets falling and swirling",
+      "camera": "11.2-11.6 s orbit from overhead to rear view, ease-in-out, background darkening from white to deep navy as it turns; then a follow move with the object held centre",
+      "moves": "the tall stacks rush toward and past the camera on both sides in strong one-point perspective and sway slightly; small sheets flutter across the frame; the object keeps its place with its lights glowing",
+      "easing": "fast 0.4 s orbit, then steady linear rush",
+      "composition": "centred one-point perspective, object on the vanishing axis, walls of stacks on both sides, road wedge at the bottom",
+      "text": "none",
+      "transition_out": "continuous: the walls fall away and the object enters a dark arch (r1-s6)",
+      "palette": "deep navy, ocean-blue object and road, pale grey-white stacks with cool shading",
+      "built": "code-native real 3D (three.js box stacks with a paper-edge texture, instanced thin planes for the sheets, fog for distance)",
+      "reusable": "yes: drive through a corridor made of the problem itself, so the burden becomes a place; motion only, the stacks are the reference's subject"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        14.4,
+        16
+      ],
+      "shot": "dark arch closing around the object, which fades into black",
+      "camera": "locked rear view with a slow push toward the arch",
+      "moves": "14.4-15.0 s the arch surrounds the object, glow from behind it weakens; 15.0-15.5 s the object fades to near black; about 0.5 s of black at 15.5-16.0 s",
+      "easing": "slow fade, about 1 s, linear",
+      "composition": "centred, arch framing the object",
+      "text": "none",
+      "transition_out": "fade through black into r1-s7; the only black beat in the film",
+      "palette": "near-black navy with a soft blue radial glow",
+      "built": "code-native (radial gradient, arch shape, opacity fade)",
+      "reusable": "yes: a tunnel into black works as a silent reset before the answer; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        16,
+        19.7
+      ],
+      "shot": "a glowing line-art mark rises at the centre of a dark void with a wordmark under it, on a dim floor plane",
+      "camera": "16.0-18.5 s slow push with slight lateral drift; 18.8-19.7 s accelerating push until the mark flies past the lens",
+      "moves": "16.0-16.5 s the mark comes up small and rotated, then scales to full size; the wordmark types on letter by letter with a soft fade, 16.5-17.5 s; thin vertical light bars with bright square caps rise and fall in the background and small particles drift",
+      "easing": "scale-up ease-out; final push accelerates (ease-in), with a white flash of the mark's strokes as it leaves the frame",
+      "composition": "centred mark over wordmark, floor wedge at the bottom, empty dark space around",
+      "text": "third-party wordmark (ignored)",
+      "transition_out": "continuous: push through the mark, its strokes pass the lens and reveal the next scene behind (r1-s8)",
+      "palette": "near-black navy, cyan-white glowing strokes with bloom",
+      "built": "code-native (SVG strokes with a glow filter, staggered letter fade, scale transform)",
+      "reusable": "yes: fly through a glowing line symbol to enter the next scene; motion only, the mark itself is never used, and the brand's own logo rules decide whether the film's mark may be used this way"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        19.7,
+        25
+      ],
+      "shot": "low wide angle from a road looking up at a stylised skyline with a rising overpass, the object driving away down the centre",
+      "camera": "19.7-20.0 s the object rises into frame from the bottom while still in the dark; 20.0-20.5 s the arch opens outward like an iris and reveals the bright scene; then a slow lateral drift",
+      "moves": "the object shrinks steadily toward the vanishing point, from about 30% to about 8% of frame width; smaller vehicles cross on the overpass and at both road edges; soft lens-flare discs slide across; distant skyline layers parallax",
+      "easing": "iris ease-out about 0.5 s; object shrink linear",
+      "composition": "strong diagonal of the overpass across the upper half, tall buildings at the frame edges, object on the centre axis, mark floating in the empty sky",
+      "text": "none apart from the third-party mark in the sky (ignored)",
+      "transition_out": "foreground wipe: a dark ribbed wall enters from the right and crosses the frame (r1-s9), 25.0-26.0 s",
+      "palette": "pale cyan sky fading to white at the horizon, ocean-blue and navy gradient buildings, lens discs in soft white",
+      "built": "code-native (layered SVG planes with parallax or three.js boxes with gradients, lens-flare discs as translucent circles)",
+      "reusable": "yes: an arch opening like an iris from a dark scene to a bright one, and a subject receding to show scale; motion only, never the skyline"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        25,
+        29.9
+      ],
+      "shot": "side profile of a seated character at a desk facing a screen seen edge-on, in a dark interior with a window grid",
+      "camera": "25.0-26.0 s lateral truck to the right past a near wall, which acts as the wipe; 26.0-29.9 s slow leftward drift",
+      "moves": "thin horizontal light tracers with bright heads cross the frame and pass over the character; screen edge glows with a soft white bloom; a hand lifts from the keyboard at about 27.5 s and returns; blink and small head changes",
+      "easing": "wall wipe smooth ease-in-out, 1 s; tracers linear; arm pose tween about 0.4 s",
+      "composition": "character slightly left of centre, screen on the right, dark margins on both sides, foreground furniture at the edges for depth",
+      "text": "none",
+      "transition_out": "continuous: the whole set orbits around the character to a rear three-quarter view (r1-s10), no cut",
+      "palette": "near-black to ocean-blue interior, pale periwinkle shirt, warm peach skin as the single warm note, white screen glow",
+      "built": "code-native (cut-out SVG character in parts, a few pose tweens, blink; gradient planes; blurred white circle for the glow)",
+      "reusable": "yes: light tracers passing through a held character keep a calm frame alive; a foreground wall as a cut; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        29.9,
+        35
+      ],
+      "shot": "over-the-shoulder rear three-quarter of the character at a large bright screen, interface panels opening out of it",
+      "camera": "29.9-30.4 s orbit: the screen turns from a thin edge to a wide face and the room skews with it; 30.4-35.0 s slow drift and a slow pull-back",
+      "moves": "the screen shows a form; 31.5-32.5 s a translucent glass panel with a pie chart slides out past the right edge of the screen, the chart wipes on radially and dots pop; 32.5-33.0 s a small floating chart card fades in at top; 33.0 s a map thumbnail appears on the screen; the character types and then rests",
+      "easing": "orbit ease-in-out 0.5 s; panels ease-out with a soft settle, 0.3-0.5 s; dots pop with slight overshoot",
+      "composition": "character in the lower-left third, the bright screen as the focus right of centre, panels stacked out to the upper right",
+      "text": "illegible interface marks only",
+      "transition_out": "continuous: very fast push into the map thumbnail, which fills the frame (r1-s11), about 34.95-35.25 s, no cut",
+      "palette": "dark navy room, white screen, translucent cyan glass panels, ocean-blue pie segments, peach skin",
+      "built": "code-native (flat card rotated in perspective with CSS 3D or three.js, glass panels with backdrop blur, SVG pie wipe)",
+      "reusable": "yes: interface panels leave the screen and float in the room; motion only, never the office"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        35,
+        37.4
+      ],
+      "shot": "tilted top-down illustrated map held full frame, with small vehicles spread across it",
+      "camera": "enters by the thumbnail push (scale about 4x in 0.3 s); then almost locked with a very slow push and slight rotation",
+      "moves": "vehicles creep along very slowly; soft shadow shapes drift; the scene is close to a held picture",
+      "easing": "push ease-out with a hard start; then linear",
+      "composition": "objects scattered across a diagonal river-like band, tilted so that no edge is parallel to the frame",
+      "text": "none",
+      "transition_out": "hard cut at 37.4 s",
+      "palette": "pale periwinkle-white ground, ocean-blue band fading to grey, navy details, white vehicles",
+      "built": "code-native (SVG plane with organic paths, soft-shadow blur, small sprites)",
+      "reusable": "yes: a thumbnail inside a screen becomes the next full-frame world, with no cut; motion only"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        37.4,
+        40.2
+      ],
+      "shot": "a standing character in profile at a counter using a tablet, shelves and hanging lamps behind",
+      "camera": "locked with a slow lateral drift",
+      "moves": "arm raises and taps the tablet (37.5-38.5 s); a tall translucent form panel rises from the bottom edge at frame right, 38.5-39.0 s, its lines then fading in; hand returns to the tablet",
+      "easing": "panel rise ease-out about 0.5 s with a soft settle; arm tween about 0.4 s",
+      "composition": "character left of centre, counter as a dark horizontal mass, tall panel fills the right third",
+      "text": "illegible form lines and a small button label (English, ignored)",
+      "transition_out": "hard cut at 40.2 s",
+      "palette": "ocean-blue to navy wall, pale periwinkle top, peach skin, translucent cyan panel",
+      "built": "code-native (cut-out character, glass panel, staggered line fades)",
+      "reusable": "yes: a tap on a small device calls up a tall glass panel beside the character; a tall panel is a natural fit for 9:16; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        40.2,
+        42.44
+      ],
+      "shot": "two machines with articulated arms lifting loads, one small and far, one large and near",
+      "camera": "slow push and slight drift",
+      "moves": "articulated arms pivot joint by joint and lower their loads onto the beds; loads swing a little; a light speed streak at frame right",
+      "easing": "slow smooth arcs with a small settle",
+      "composition": "two subjects of different scale face each other, leaving a calm centre column; wide bright background",
+      "text": "none",
+      "transition_out": "hard cut at 42.44 s",
+      "palette": "white-to-pale-cyan sky, ocean-blue and navy gradient machines, grey and white loads",
+      "built": "code-native (jointed SVG or three.js parts with rotation hierarchies)",
+      "reusable": "partly: the idea of parts moving joint by joint in a held wide shot; the machines are never copied"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        42.44,
+        46
+      ],
+      "shot": "a dark application window opens at the centre of a deep blue field, with feature chips gathering around it",
+      "camera": "locked, slow pull-back and small upward drift; small squares and soft dots float in the background",
+      "moves": "42.5-43.0 s the window scales up from a small square with a single dot at its centre; the dot becomes a white circle holding a line mark; 43.0-45.0 s six chips enter one by one from the frame edges at about 0.3-0.4 s stagger, each in its own material (bright glass or dark tile); a two-line headline appears on top, each line fading on with a small rise; 45.4-45.6 s a cursor reaches a button, clicks; the window content dims",
+      "easing": "ease-out with slight overshoot on chips; 0.4-0.5 s line fades",
+      "composition": "window in the centre, chips overlapping its corners and edges to build depth, headline centred above",
+      "text": "two-line centred headline in light regular-weight sans, interface labels and short labels on the chips (English, ignored)",
+      "transition_out": "continuous: the chips scatter up and out, the window slides up-left and the next object is seen through its glass (r1-s15), 45.9-46.4 s",
+      "palette": "deep navy to ocean-blue radial field, cyan-white glass chips, dark navy tiles, white circle",
+      "built": "code-native (HTML or SVG panels, backdrop blur, stagger, particles)",
+      "reusable": "yes: a list of parts arrives as chips around one hub; with a headline above it this is the most direct way to show a feature set; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        46,
+        52
+      ],
+      "shot": "a glass window at upper left overlapping a large real-looking object at lower right; a grid of small squares moves between them",
+      "camera": "locked with a slow drift",
+      "moves": "46.4-47.0 s small squares assemble into a grid where the window overlaps the object; a cursor picks up single squares and drops them into columns in the window, 47.0-48.5 s; a check badge pops at 48.0 s; 49.0-49.5 s the first object moves down and two more slide in from the right, stacked by scale; 50.0-51.0 s squares float along curved trails from the window to the objects and the columns empty",
+      "easing": "cursor moves ease-in-out, drops settle with a tiny overshoot; objects slide with ease-out, 0.5 s; badge pop elastic",
+      "composition": "diagonal from upper left (interface) to lower right (real thing), with an intentional overlap where the glass tints the object",
+      "text": "small third-party wordmark in the window (ignored)",
+      "transition_out": "continuous: window and objects slide left out of frame as the camera pans right (r1-s16)",
+      "palette": "deep blue field with a pale radial glow, cyan-white glass, ocean-blue squares and objects",
+      "built": "code-native (HTML or SVG cursor and squares, Bezier motion paths, three.js or pre-rendered object sprite)",
+      "reusable": "yes: a cursor moves pieces from an abstract list onto a real object, so an interface action visibly changes the world; motion only"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        52,
+        53.4
+      ],
+      "shot": "pan across the empty blue field with one object travelling, arriving at a round glowing platform",
+      "camera": "lateral pan to the right, smooth ease-in-out, object shrinking slightly while it rises in the frame",
+      "moves": "other elements exit left, the object moves up and to the right, the disc-shaped platform and light column slide in from the right edge at 52.9-53.4 s, and other objects land on the disc",
+      "easing": "smooth ease-in-out, 1.2 s",
+      "composition": "object alone on a large empty field; disc enters low right",
+      "text": "none",
+      "transition_out": "continuous: the camera settles on the platform (r1-s17)",
+      "palette": "deep blue field, pale cyan glow, darker disc",
+      "built": "code-native (same 3D scene, camera pan, or a parallax plane)",
+      "reusable": "yes: a slow pan through an empty field acts as a breath between two ideas; motion only"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        53.4,
+        59.4
+      ],
+      "shot": "high three-quarter view of three objects circling a central column of light on a round dark platform, with a mark floating in the light",
+      "camera": "locked on the platform, very slow vertical drift; the objects do the rotating",
+      "moves": "the three objects orbit the centre at a constant slow speed, each turning in true 3D; thin rings and arcs with bright square ticks counter-rotate around the disc; from 54.5 s one floating icon card joins each object, entering edge-on then opening to full width, and they swap depth order as they circle",
+      "easing": "constant linear rotation; card entrance ease-out 0.4 s",
+      "composition": "centred, disc takes the lower two thirds, column and mark on the vertical axis",
+      "text": "none, icon cards only (third-party mark ignored)",
+      "transition_out": "hard cut at 59.4 s",
+      "palette": "deep navy and ocean blue, white-cyan column with strong bloom, cyan-white cards",
+      "built": "code-native real 3D (three.js: toon-shaded objects on a circle, additive column, ring geometry, billboarded cards)",
+      "reusable": "yes: several parts circling one glowing core is the clearest picture of a central system; motion only; a tall column and a disc also suit 9:16"
+    },
+    {
+      "id": "r1-s18",
+      "span": [
+        59.4,
+        64.8
+      ],
+      "shot": "medium shot of a standing character using a handheld device, against a large wall plane under a bright sky",
+      "camera": "slow lateral drift",
+      "moves": "the character lifts the device and swipes with the other hand, with head turns, blinks and a small smile (close to frame-by-frame acting); from 62.5 s light tracers cross the frame and pass over the character; 62.9-63.2 s a tall dark interface panel rises at right, its circle, word and button fading on",
+      "easing": "acting in soft arcs, panel ease-out about 0.4 s, tracers linear",
+      "composition": "character left of centre and waist-up, wall diagonal runs into a white sky on the right; panel fills the right third",
+      "text": "«hello.» and a button label on the panel (English, ignored)",
+      "transition_out": "continuous: the circle inside the panel swells to fill it while the wall and character slide left out of frame; the panel itself never moves (r1-s19), 64.8-65.3 s",
+      "palette": "ocean-blue wall gradient, white sky, pale periwinkle top, peach skin, dark translucent panel",
+      "built": "code-native with simplified acting (cut-out SVG character, a few pose tweens, blink); the source's finer hand acting is not reproduced",
+      "reusable": "yes: the panel as an anchor while the world leaves around it; the acting is reduced to pose tweens; motion only"
+    },
+    {
+      "id": "r1-s19",
+      "span": [
+        64.8,
+        73.76
+      ],
+      "shot": "a phone-shaped panel, centred, with satellite cards and rising light bars in a deep blue field",
+      "camera": "locked with a slow breathing drift",
+      "moves": "64.8-65.8 s the panel keeps its place while its colour shifts from dark to light to mid blue, form lines draw on, and the background darkens from the top edge down; 66.0-71.0 s four cards attach to the panel, each at about 1.2-1.5 s stagger: a card begins as a thin sliver seen edge-on and opens to full width like a door, then settles beside the panel; check badges pop on two cards at about 68 s; a stylus line draws in one card; vertical light bars with bright square caps rise and fall continuously, plus floating squares and dots",
+      "easing": "card opening ease-out with a soft settle, 0.4-0.5 s; badge pop with overshoot; bars linear",
+      "composition": "tall panel on the vertical axis, cards at its four corners and overlapping it for depth; already a portrait-friendly layout",
+      "text": "illegible interface marks only, icons on the cards",
+      "transition_out": "hard cut at 73.76 s",
+      "palette": "deep navy to ocean blue, saturated sky-blue panel, cyan-white and dark navy cards, cyan bars",
+      "built": "code-native (HTML or SVG, rotateY card opening with CSS 3D, stroke draw for the stylus line, bars as animated gradient rects)",
+      "reusable": "yes: one tall panel, cards opening edge-on around it one per spoken point; a ready pattern for lists in 9:16; motion only"
+    },
+    {
+      "id": "r1-s20",
+      "span": [
+        73.76,
+        76.4
+      ],
+      "shot": "side-on medium shot of the main object on a dark road band with a soft blue sky and distant skyline",
+      "camera": "tracking with the object locked in frame",
+      "moves": "skyline layers parallax at different speeds; light tracers stream across both the sky and the object's surface; soft lens discs drift",
+      "easing": "linear",
+      "composition": "object centred on the band line, sky above, bright glossy road gradient below",
+      "text": "none",
+      "transition_out": "continuous: a second copy of the shot rises from the bottom edge (r1-s21)",
+      "palette": "sky blue with a pale radial glow, ocean-blue object, navy-to-cyan road reflection, translucent lens discs",
+      "built": "code-native (parallax planes, tracers as gradient rects with bright heads)",
+      "reusable": "yes: a locked subject with a streaming world to hold a sentence; motion only"
+    },
+    {
+      "id": "r1-s21",
+      "span": [
+        76.4,
+        79
+      ],
+      "shot": "split frame: the same object at the same size in two worlds, a blue one on top and a white and grey one below",
+      "camera": "both panels track together; the split line stays fixed after it arrives",
+      "moves": "76.4-77.0 s the lower panel rises from the bottom edge to about half height, pushing the top shot up; same object, same pose and same scale as above but in desaturated grey on white; both worlds keep streaming and the tracers continue in both",
+      "easing": "panel rise ease-out, about 0.6 s",
+      "composition": "two equal horizontal halves split by a hard line, objects aligned on the same vertical axis; stacked layout that suits 9:16 directly",
+      "text": "none",
+      "transition_out": "hard cut at 79.0 s",
+      "palette": "blue half as r1-s20; lower half white, pale and mid grey",
+      "built": "code-native (two clipped copies of one scene, one with a colour-matched grey version of the drawn shapes)",
+      "reusable": "yes: the same subject in two colour worlds at once as a before-and-after or with-and-without comparison; motion only"
+    },
+    {
+      "id": "r1-s22",
+      "span": [
+        79,
+        82.2
+      ],
+      "shot": "a hand holds up a device from the bottom of the frame, a short sentence beside it, deep blue field",
+      "camera": "locked with slow drift",
+      "moves": "79.0-80.0 s hand and device rise from the bottom and rotate into place, ease-out; 80.0-81.0 s two lines of text fade on with a wide line gap that closes as they settle; about 81.2 s a second hand rises from the bottom and taps, a tick appears; 81.8-82.2 s exit: hand and device sink out of the bottom while the line gap opens again and the text fades",
+      "easing": "rise ease-out with soft settle, 0.8 s; line-gap close 0.5 s ease-out",
+      "composition": "object on the left, text on the right, both vertically centred; one short sentence only",
+      "text": "two-line sentence in light regular-weight sans, white, about 5% of frame height (English, ignored)",
+      "transition_out": "continuous: the world rises and the tiles of the next shot come up from the bottom (r1-s23)",
+      "palette": "deep navy to ocean blue, peach skin, white device screen, cyan bars",
+      "built": "code-native (SVG hands in a few parts, text with animated line spacing)",
+      "reusable": "yes: a line gap that closes on entry and opens on exit is a simple text move that also works in Persian without breaking letter joins (no per-letter animation); motion only"
+    },
+    {
+      "id": "r1-s23",
+      "span": [
+        82.2,
+        84.9
+      ],
+      "shot": "floating rounded tiles with icons in a deep blue field",
+      "camera": "slow upward drift, then at 84.6-84.9 s a faster tilt where everything leaves through the top",
+      "moves": "tiles rise from below with gentle speed differences (parallax by size), the gear icon turns, arrows draw a circle around it, a page icon gets a second page behind it; small empty tiles drift; light bars rise",
+      "easing": "constant drift, icon turn linear, arrow draw ease-out",
+      "composition": "two main tiles offset diagonally, smaller empty tiles around for depth",
+      "text": "none, icons only",
+      "transition_out": "continuous: tiles exit through the top, the next scene rises from the bottom while the light bars stay in place across the change (r1-s24)",
+      "palette": "deep navy to ocean blue with a pale glow at top, cyan-white tile and navy tile",
+      "built": "code-native (CSS or three.js rounded boxes with bevel, SVG icons)",
+      "reusable": "yes: a tilt that hands over from one scene to the next, with the same background bars holding the change together; motion only"
+    },
+    {
+      "id": "r1-s24",
+      "span": [
+        84.9,
+        87.9
+      ],
+      "shot": "night version of the road scene, three-quarter front view of the object, then it lights up",
+      "camera": "enters by a tilt; 85.2-87.9 s a slow arc around the object",
+      "moves": "85.6-85.9 s dark object with only its headlights on; 85.9-86.6 s it lights up from behind, a wave of cyan runs over the body from the back forward and the surface becomes bright and translucent with small grid dots; at the same moment road lines ignite from the vanishing point toward the camera; then bright streaks fly past",
+      "easing": "light-up ease-in-out, 0.7 s; streaks linear",
+      "composition": "object centre-right large in frame, overpass diagonal behind, lit road lines converging at the bottom",
+      "text": "none",
+      "transition_out": "continuous: fast orbit to the front (r1-s25), about 87.9-88.4 s",
+      "palette": "near-black navy, then bright cyan and electric-blue glow, white headlights",
+      "built": "code-native (three.js toon object with an emissive wave through a shader or a moving gradient mask, additive lines), or 2.5D with a masked bright copy of the sprite",
+      "reusable": "yes: the signature moment: a dark object is switched on by a passing wave of light and its world lights up with it; motion only"
+    },
+    {
+      "id": "r1-s25",
+      "span": [
+        87.9,
+        90
+      ],
+      "shot": "front view of the lit object on the road axis, mark above it in the night sky",
+      "camera": "87.9-88.4 s fast orbit to dead front; 88.4-90.0 s slow drift with buildings parallaxing past at the edges",
+      "moves": "the mark scales up and fades on above the object at 88.0-88.5 s; streaks and road lines keep running",
+      "easing": "orbit ease-in-out, 0.5 s; mark scale ease-out",
+      "composition": "object and mark stacked on the vertical centre axis, tall buildings at both edges; a stack that suits 9:16 directly",
+      "text": "third-party mark (ignored)",
+      "transition_out": "continuous: the whole world sinks out of the bottom while the mark holds its place (r1-s26), 90.0-90.6 s",
+      "palette": "as r1-s24, white mark",
+      "built": "code-native (three.js camera orbit, or layered SVG planes with a sprite swap)",
+      "reusable": "yes: a symmetric hero frame just before the ending; motion only"
+    },
+    {
+      "id": "r1-s26",
+      "span": [
+        90,
+        95.56
+      ],
+      "shot": "end card: mark over wordmark with a call to action and an address, on a deep blue field",
+      "camera": "90.0-90.6 s tilt: the world sinks out of the frame; then locked to the end",
+      "moves": "the mark stays still as the anchor through the tilt; 90.7-91.7 s the wordmark fades on letter by letter from left to right; 91.0-92.0 s the call-to-action line fades on; about 92.5 s the address fades on; light bars and floating squares continue to the end",
+      "easing": "letter fade staggered at about 0.1 s each, line fades 0.4-0.5 s",
+      "composition": "centred stack: mark, wordmark, two small lines, in the upper-middle of the frame; generous empty space",
+      "text": "third-party wordmark, call to action and web address (English, ignored)",
+      "transition_out": "ends on the held card, no fade",
+      "palette": "deep navy to ocean-blue radial field, white mark, soft white text, cyan bars",
+      "built": "code-native (only the background and the timing; the logo outro itself comes from the brand)",
+      "reusable": "partly: the world leaves while one element stays; the brand's own logo outro wins; per-letter fade must not be used on Persian text"
+    }
+  ],
+  "visual_language": "Mono-hue vector explainer on one blue. Medium: 2D vector illustration with linear and radial gradients, soft glows and glass panels, mixed with simple toon-shaded 3D for the moves that need a real turn (orbits, the circling platform). Characters are slim flat figures with peach skin, cut-out proportions and quite rich hand acting in the close shots. Typography: a light regular-weight geometric sans used rarely: short labels along paths, one headline, one two-line sentence, then the end card; most of the film has no readable text at all and carries meaning through picture and icons. Rhythm: 26 shots in 95.56 s (average about 3.7 s, range 1.4-9.0 s), and only 6 hard cuts (37.4, 40.2, 42.44, 59.4, 73.76, 79.0 s); of the other 19 joins, one is a fade through black (r1-s6 into r1-s7) and 18 are continuous: camera orbits, push-ins, foreground wipes, tilts, or an element that stays while the world changes. Whether the cuts fall on a beat was not measured. Moves are smooth and confident: orbits and wipes ease-in-out at 0.4-1.0 s, entrances ease-out at 0.3-0.5 s with a small settle, only badges and small dots overshoot, world streams and tracers linear. Holds stay alive through slow camera drift and background activity (tracers, rising bars, floating squares). Palette: deep navy, ocean blue, sky blue, cyan-white and white, with peach skin as the only warm colour. Signature moments: a map that draws itself branch by branch; a thumbnail on a screen that becomes the next full-frame world; a corridor made of stacks; several objects orbiting a light column; a phone panel gathering cards that open like doors; the split frame with the same object in a blue and a grey world; a dark object switched on by a wave of light.",
+  "look": "2.5D with real 3D moments: flat vector shapes with clean gradients for almost everything, staged in layered planes, plus true perspective on the main objects (the camera really orbits them, and they really turn on the platform), isometric cubes and rounded bevelled tiles. Light and shadow: hard, offset, darker-blue cast shadows on the map and overhead views; soft blurred shadow on the painted-feel map; strong additive bloom on light sources in the dark scenes (column, screen, headlights, mark). Materials: glass panels (translucent cyan-white, background blur, thin bright edge), matte gradient bodies, and dark glossy tiles. Depth of field and blur: no lens blur on subjects; only faint soft-focus lens discs and blurred light glows. Backgrounds alternate between near-white daylight (map, sky, split panel) and a deep navy radial field with floating squares, dots and rising light bars; the light-dark alternation is itself part of the rhythm.",
+  "code_translation": "Mixed build, never flattened where it turns. Real 3D in three.js for the moves that depend on it: orbits from side to overhead to rear view (r1-s2, r1-s5, r1-s25), the corridor (r1-s5), the platform with circling objects (r1-s17), the switched-on object (r1-s24); the material is a toon or gradient-ramp shader with no realistic reflections, a directional light for hard shadows, additive sprites for bloom. Everything else in SVG or HTML layers inside one camera group: gradient planes with parallax factors per plane, cut-out characters with pose tweens and blink, glass panels with backdrop-filter and a bright 1 px edge, cards that open with CSS rotateY from edge-on, process maps with stroke-dashoffset growth and text on a path, a thumbnail push with a 0.3 s scale of about 4x on a shared group, wipes by a large foreground plane moving across the frame, split frames as two clipped copies of one scene, an iris as an expanding clip-path arch. Ambient layer shared across scenes: vertical light bars with bright caps, floating squares, dots and horizontal tracers; keeping it mounted across a scene change is what makes tilts seamless. Reference colours are mapped onto brand colour roles (world dark, world mid, surface light, glowing accent, warm accent), never used as literal hex values; the one-hue idea stays, with the hue coming from the brand.",
+  "continuity": [
+    "Camera orbit as the join: one subject stays near frame centre while the view swings from side to overhead or from overhead to rear, and the background bands become a different kind of space.",
+    "Self-drawing map: one spine, branches growing out one by one with a label running along each; pull back to reveal it, push in to leave it.",
+    "Thumbnail becomes the world: a small picture on a screen is pushed into at speed until it fills the frame and is the next scene.",
+    "Foreground wall wipe: a large near plane crosses the lens while the camera trucks sideways; the next set is already standing behind it.",
+    "Fly through a line symbol: push through a glowing outline until its strokes pass the lens and the next scene is behind it.",
+    "Arch iris: a dark opening around the subject swells outward and reveals the bright next scene.",
+    "Anchor stays, world leaves: one element (an interface panel, a symbol) holds its exact place while everything around it slides or sinks away and a new background arrives.",
+    "Shared ambient layer: rising light bars and floating squares keep running across a tilt, so the eye treats two scenes as one space.",
+    "Rise-and-sink tilts: the outgoing scene leaves through the top or bottom while the next one rises from the opposite edge.",
+    "Glass overlap: an interface panel overlaps a real object and tints it, then pieces move across the overlap, joining the abstract and the physical in one frame.",
+    "Parts circling a core: several elements keep orbiting one light column, each one picks up its own card and they swap depth as they pass.",
+    "Split into two worlds: a second copy of the same shot rises from the bottom edge in a different colour world, aligned with the first.",
+    "Wave of light: a dark object lights up by a passing wave and the world's lines ignite with it, turning a state change into one moment.",
+    "Light tracers through a held shot: thin horizontal streaks pass over a character or object, tying people and things to the same data flow."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its subjects (trucks, road network, paper-stack canyon, overpass city, office worker, clerk, driver, cranes), its freight-software story, its logo, its interface labels or its sentences; only the camera grammar, continuity devices, timing and the mono-hue rendering style.",
+    "Source is 16:9 (1280x720); the film is usually 9:16. Already vertical or stacked: r1-s4, r1-s12 panel, r1-s17, r1-s19, r1-s21, r1-s25, r1-s26. Wide frames must be recomposed: the map spine r1-s3 turns vertical, side-on tracking r1-s1 and r1-s20 need a shorter subject or a tighter crop, r1-s15's diagonal goes top to bottom, and the lateral wall wipe r1-s9 still works but its truck covers less distance.",
+    "The source is left to right throughout (labels, list order, cursor, panels at right). Under the skill's RTL grammar, order and entry directions are mirrored where direction carries meaning; labels are Persian.",
+    "The reference has little text: Persian on-screen text must be added in calm areas (panel surfaces, empty field, sky), held long enough to read and kept in the safe zone. Text along a curved road or path (r1-s3) can break Persian joins or legibility; use straight horizontal labels beside the branch unless a test render proves the join is clean. The per-letter wordmark fade (r1-s7, r1-s26) must never be applied to Persian; animate whole lines or words.",
+    "Character acting in r1-s18 and the hands in r1-s22 are close to frame-by-frame in the source; in code keep characters to a few cut-out pose tweens, blinks and slides. Expect a visible drop against the source in these shots if they run long; avoid turnarounds and full walk cycles.",
+    "The 3D moments (r1-s2, r1-s5, r1-s17, r1-s24, r1-s25) need a toon-shaded 3D model of each main subject, and the subject comes from the voice-over; a subject too complex to model simply should use a shorter orbit with a 2.5D sprite swap, recorded in plan.md as a deviation.",
+    "The peach skin is the source's only warm colour; it and every source blue are mapped to brand-safe roles, and banned brand colours are never used even where the reference has an equivalent. Mono-hue blue applies only if the brand's roles allow it; otherwise the single-hue idea is kept in the brand's own main hue.",
+    "The logo moves (fly through the symbol, r1-s7; mark in the sky, r1-s8; end card, r1-s26) touch brand identity: the brand's own logo rules and logo outro win; these are offered only where the brand permits them.",
+    "95.56 s is long and has several self-contained sections; a short reel should choose a subset of the patterns rather than compress all 26 shots. The shot rhythm (average 3.7 s) is calm, so hook seconds may need tighter joins, and that choice is recorded in plan.md.",
+    "The audio track was not listened to and cut-to-beat alignment was not measured, so L6 builds sound from the storyboard and voice timing places every cut.",
+    "Colours and easing were read by eye from contact sheets, and spans outside the dense sheets are about ±0.3 s; shot boundaries other than the 6 detected hard cuts were placed by eye. Any move copied exactly should be checked against the clip first."
+  ],
+  "code_buildable_pct": 100,
+  "code_buildable_note": "95.56 of 95.56 s by the rule that 3D renders count as buildable and only live footage, real photos or faces and painted illustration do not: the clip has none of these (the map in r1-s11 has a painted feel but is plain vector shapes with soft shadows). This is a statement about the kind of material, not about parity: the finer hand acting in r1-s18 and r1-s22 is reduced to pose tweens in code, and the 3D shots need a modelled subject.",
+  "sha256": "d9c9ec30f6bbd5c6caead113ff1e90b6b62d7d88c5964a1a438ff98a85188da2"
+}

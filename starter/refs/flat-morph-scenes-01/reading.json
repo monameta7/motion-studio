@@ -1,0 +1,180 @@
+{
+  "slug": "flat-morph-scenes-01",
+  "key": {
+    "sha256": "a5db6135f8bcd25665fd8dd3fec061a6df9e8c728e1c86eab8d5bea49646ca98"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 29.38,
+    "w": 720,
+    "h": 1080,
+    "fps": 30,
+    "audio": false,
+    "format_note": "2:3 portrait, one full frame. An AAC audio stream exists but is digital silence (volumedetect mean and max -91 dB; silencedetect: silent 0-29.38 s), so it counts as no audio. The clip is one 7.5 s loop (scene A hold → morph → scene B hold → morph) repeated about four times; it stops mid-cycle at 29.38 s with no fade."
+  },
+  "rights_note": "third-party clip found by the owner on Pinterest with a style search (file «seamless transition.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "صحنه‌های تخت با گذار تبدیلی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party clip of unknown origin: borrow the motion language and the flat look only, never its illustrations (factory, chimneys, solar panel, wind turbines, mountains) or its before/after story one to one (owner note); a voiceover package defaults to REEL. The grammar also suits EXPLAINER films (one stage whose scene changes state)."
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        29.38
+      ],
+      "why": "the subject matter (polluting factory turning into solar and wind energy) and every drawn object (striped chimney, factory blocks, smoke, solar panel, turbines, orange mountains, bushes) are the reference's scenery; never copied — setting and subjects come from the voice-over"
+    },
+    {
+      "span": [
+        7.5,
+        29.38
+      ],
+      "why": "the rest of the clip repeats the 0-7.5 s cycle (clean scene peaks at about 3.0, 10.5, 18.0 and 25.5 s); repeats add no new motion"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 over the whole clip (2 sheets, both viewed); scene detect gt(scene,0.3) found no cuts at all (every change is an in-place morph); dense sheets at fps=10 cropped to the scene band on 0.8-3.2 s (morph A→B), 4.9-7.3 s (morph B→A) and 27.8-29.38 s (ending), all viewed; audio checked with volumedetect and silencedetect. Spans are from the first cycle and are accurate to about ±0.1 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        0.9
+      ],
+      "also_at": [
+        [
+          7.2,
+          8.4
+        ],
+        [
+          14.7,
+          15.9
+        ],
+        [
+          22.2,
+          23.4
+        ]
+      ],
+      "shot": "wide, one small self-contained illustrated vignette (a cluster of buildings with a sky above it) centred in the upper-middle of the frame, a large flat empty background around it",
+      "camera": "locked off; no zoom, pan or parallax for the whole clip",
+      "moves": "idle life only: smoke puffs rise and loop from every stack (small circles that grow and fade), the moon disc glows; nothing else moves",
+      "text": "none",
+      "transition_out": "in-place morph into r1-s3 (r1-s2); no cut",
+      "palette": "deep navy blue background, darker navy silhouettes behind, pale mint front buildings, one red-and-white striped element, light grey-blue smoke, pale cyan moon with a soft halo, slate-blue clouds",
+      "built": "code-native (flat vector illustration, After-Effects-style shape layers)",
+      "reusable": "yes: one compact vignette on a big empty colour field, alive through small looping idle motion, with a locked camera; motion and layout only, never the factory"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        0.9,
+        3.1
+      ],
+      "also_at": [
+        [
+          8.4,
+          10.6
+        ],
+        [
+          15.9,
+          18.1
+        ],
+        [
+          23.4,
+          25.6
+        ]
+      ],
+      "shot": "same frame; the vignette dismantles and a new one assembles on the same ground line",
+      "camera": "locked off",
+      "moves": "0.9-1.7 s: the front buildings sink straight down below the ground line, as if masked by it (the tall striped element first, then the main block, staggered about 0.1-0.2 s, smooth ease-in); 1.6-2.2 s: the back silhouettes sink the same way, their smoke puffs lingering a beat and then fading; 1.9-3.0 s: the whole background colour crossfades navy → slate → olive → warm yellow (about 1.1 s, linear-smooth), and the moon halo and clouds recolour with it without moving (pale cyan moon becomes a warm white sun); 2.1-2.5 s: the first new object rises out of the ground line (starts as a flat sliver and tilts up), a second grows up beside it; 2.4-3.1 s: the remaining new pieces grow from the ground in a stagger of about 0.1 s each (taller pieces scale up from their base, low mound shapes swell up behind and in front), each with a soft ease-out settle, no visible overshoot",
+      "text": "none",
+      "transition_out": "settles into the hold r1-s3",
+      "palette": "background ramps navy → slate (#~3c5a64) → olive (#~8a8458) → warm yellow; the object colours of the new scene arrive already in their final colours",
+      "built": "code-native (shape layers with a ground-line mask, staggered translate/scale from base, background colour tween)",
+      "reusable": "yes: the signature move — scene A sinks into its own ground line while the background colour crossfades and scene B grows up out of the same line, with persistent sky elements (light disc, clouds) staying put and only recolouring; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        3.1,
+        5
+      ],
+      "also_at": [
+        [
+          10.6,
+          12.5
+        ],
+        [
+          18.1,
+          20
+        ],
+        [
+          25.6,
+          27.5
+        ]
+      ],
+      "shot": "wide, the new vignette in exactly the same position and size as the old one, same sky elements",
+      "camera": "locked off",
+      "moves": "idle life only: turning rotor blades rotate continuously at a steady linear speed; sun halo breathes softly; nothing else moves",
+      "text": "none",
+      "transition_out": "in-place reverse morph (r1-s4)",
+      "palette": "warm saturated yellow background, deeper orange mound shapes, white rotating elements, cyan/teal panel with a navy frame, coral and pale-yellow round bushes, warm white sun, pale yellow clouds",
+      "built": "code-native (flat vector illustration)",
+      "reusable": "yes: the 'after' state held in the same footprint as the 'before' so the eye compares the two in one spot; continuous linear idle rotation as the only life; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        5,
+        7.2
+      ],
+      "also_at": [
+        [
+          12.5,
+          14.7
+        ],
+        [
+          20,
+          22.2
+        ],
+        [
+          27.5,
+          29.38
+        ]
+      ],
+      "shot": "same frame; reverse morph back to scene A",
+      "camera": "locked off",
+      "moves": "5.0-5.6 s: the front object tilts flat and sinks into the ground line; 5.5-5.9 s: the low round bushes sink; 6.0-6.4 s: the tall pieces and the mounds sink (rotors keep turning while they go down); 6.0-7.1 s: background crossfades yellow → olive → slate → navy and the sun turns back into the moon; 6.3 s: a smoke plume appears in the air a beat BEFORE its stack, then the stack rises under it (6.4-6.6 s); 6.6-7.2 s: the main block rises out of the ground line, its windows pop in last (about 7.1 s), back silhouettes rise behind it in a stagger; order out is front-to-back, order in is lead element → main block → background layer",
+      "text": "none",
+      "transition_out": "settles into r1-s1 (loop seam; the clip simply restarts the cycle)",
+      "palette": "yellow → olive → slate → navy ramp, scene A colours as in r1-s1",
+      "built": "code-native (same rig as r1-s2 played in the other order)",
+      "reusable": "yes: the reverse morph uses a different build order than the forward one (an effect such as smoke arriving before its source), so going back reads as a new event, not a rewind; details (windows) pop in last; motion only"
+    }
+  ],
+  "visual_language": "Flat vector illustration animated in place: one compact vignette (about two thirds of the frame width, sitting on a ground line in the upper-middle of a 2:3 frame) on a large, single-colour background field with lots of empty space above and below. Medium: 2D shape-layer motion graphics, no outlines, no gradients except a soft radial halo on the light disc, simple geometric shapes with small detail (window grids, stripes, panel grid lines). No typography at all. Rhythm is slow and cyclical: one 7.5 s cycle = hold A about 1.5-2 s, morph about 2.2 s, hold B about 1.9 s, morph about 2.2 s; no cuts anywhere (scene detect finds none), no beat (the audio is silent). Moves are smooth: sinking is ease-in (accelerates into the ground), rising is ease-out with a soft settle, the background colour crossfade is about 1.1 s and overlaps both the sink and the rise; staggers are about 0.1-0.2 s between pieces. Palette: two complementary moods — cold deep navy with mint, red-white and cyan for one state, warm yellow with orange, white, teal and coral for the other; the background passes through muddy olive/slate in between. Signature moment: the whole world sinks into its own ground line and a new one grows up from the same line while the sky (light disc and clouds) stays fixed and only changes colour.",
+  "look": "Flat 2D (not 2.5D, not 3D): solid fills, no shadows except slightly darker flat tones for back layers, no light direction, no materials or textures, no depth of field or blur, no camera depth. Depth is shown only by layering (darker silhouettes behind lighter front shapes) and by overlap. Background is one flat solid colour that tweens between states; a soft radial halo around the sun/moon disc is the only soft edge.",
+  "code_translation": "Code-native. Built as flat SVG (or canvas) shape groups in the web renderer: each vignette is a group of layers standing on one shared ground line; a clip-path rectangle whose bottom edge is the ground line hides everything below it, so 'sinking' is a translateY down under the clip and 'rising' is translateY up (tall thin pieces may instead scaleY from their base, panels rotate from flat to tilted). Stagger 0.1-0.2 s per layer, sink easing ease-in (cubic), rise easing ease-out (cubic or quart) with no overshoot. The background is a full-frame rect whose fill tweens through one intermediate muddy tone over about 1.1 s, overlapping the sink and the rise. Persistent sky elements (one light disc with a radial halo, two or three cloud shapes) are separate layers that never move and only tween fill colour. Idle life: looping smoke-like circles (grow, drift up, fade), linear continuous rotation, gentle halo pulse. Reference colours are mapped onto brand colour roles (state A background, state B background, front surface, back silhouette, accent), never used as literal hex values. No 3D, no blur, no shadows — the reference is flat, so the film stays flat.",
+  "continuity": [
+    "Shared ground line: every scene stands on the same horizontal line, and a scene leaves by sinking into it and the next arrives by growing up out of it — the line is the seam of every transition.",
+    "Locked camera and fixed footprint: the before and after states occupy exactly the same spot and size, so the change reads as one place transforming, not a cut to somewhere else.",
+    "Persistent anchors: a few sky elements (a light disc, clouds) never move across the change and only recolour, carrying the eye from one state to the next.",
+    "Background colour crossfade as the mood change: the whole field tweens from one state colour to the other through a muddy middle tone, overlapping the sink and the rise so there is never an empty frame for long.",
+    "Staggered dismantle and assemble: pieces leave front-to-back one after another and the new pieces arrive one after another, lead element first and small details (windows, grid lines) last.",
+    "Effect before cause: on the way back, a trailing element (like a plume) appears in the air a beat before the object that produces it rises under it.",
+    "Idle micro-motion during holds (looping puffs, continuous rotation, halo pulse) keeps a static frame alive without moving the composition.",
+    "Seamless two-state loop: A → B → A with mirrored but not identical build orders, so the cycle can repeat indefinitely."
+  ],
+  "risks": [
+    "Third-party clip of unknown origin: ADAPT only. Never copy the factory, chimney, solar panel, turbines, mountains or the pollution-to-clean-energy story; only the morph technique, the flat look, the locked camera and the timing.",
+    "The reference has no text at all: Persian on-screen text must be added in the empty background field above or below the vignette (there is plenty of space), held long enough to read and kept inside the 9:16 safe zone; text should not sink into the ground line mid-word.",
+    "Source is 2:3 (720x1080), not 9:16: in 9:16 the vignette keeps the same width share and ground-line position and the extra height becomes more empty field, which is where captions go.",
+    "The reference is slow (one change every 3.75 s, 2.2 s per morph) and has only two states: a voice-over reel needs more varied scenes, so the morph is reused across several different vignettes drawn from the voice-over, and morph length may be shortened to about 1.2-1.6 s to match voice timing (readability and voice meaning rank above the reference).",
+    "Flat 2D look is the reference's look and wins over any brand motion hint; brand colours replace the navy/yellow pair (two contrasting brand roles for the two states), and banned colours are never used even if the reference has them (red-white stripes, muddy olive mid-tone are mapped to brand-safe tones).",
+    "Audio stream is digital silence: cut rhythm is visual only; L6 builds sound from the storyboard.",
+    "Colours and timings were read by eye from contact sheets (±0.1 s), not sampled or measured per frame."
+  ],
+  "sha256": "a5db6135f8bcd25665fd8dd3fec061a6df9e8c728e1c86eab8d5bea49646ca98"
+}

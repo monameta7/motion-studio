@@ -1,0 +1,21 @@
+{
+  "slug": "dark-news-type-01",
+  "name_fa": "خبر مالی تیره با تایپوگرافی",
+  "use_fa": "خبر یا رویداد، جمله‌ای که کلمه‌به‌کلمه می‌آید، نمودار و عکس",
+  "tags": [
+    "type",
+    "finance",
+    "dark",
+    "blue",
+    "news"
+  ],
+  "group": "type",
+  "duration": 11.96,
+  "format": "9x16",
+  "sha256": "7961d78a5ec7e1672e5cb227673836784985afe0ab7552a0b556b5e74a63da03",
+  "code_buildable_pct": 82.3,
+  "source": "library",
+  "rights_note": "third-party short from Pinterest (file «apvuliaCryptoForex_pindown.io_1792419399.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "added_at": "2026-11-03T17:24:28.684Z",
+  "last_used_at": null
+}

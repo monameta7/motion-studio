@@ -1,0 +1,20 @@
+{
+  "slug": "screen-demo-live-01",
+  "name_fa": "دموی نرم‌افزار با فیلم واقعی",
+  "use_fa": "نمایش کار با نرم‌افزار، ضبط صفحه، کارت پیام و عدد",
+  "tags": [
+    "ui",
+    "screen-recording",
+    "live-action",
+    "demo"
+  ],
+  "group": "ui",
+  "duration": 75.5,
+  "format": "16x9",
+  "sha256": "641497eb79e63d9b4166dd763c9344617c5ab26cfe5bd6965a5c24abc8659e60",
+  "code_buildable_pct": 65.5,
+  "source": "library",
+  "rights_note": "third-party video (file «ae37400d-dfb8-4f6e-87e2-2500036124d1.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "added_at": "2026-11-03T18:31:49.025Z",
+  "last_used_at": null
+}

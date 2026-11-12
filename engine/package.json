@@ -1,0 +1,13 @@
+{
+  "name": "mahdiyar-motion-engine",
+  "private": true,
+  "type": "module",
+  "description": "Local render engine: frame capture (Playwright Chromium). Used by the motion-build skill and the app.",
+  "scripts": {
+    "postinstall": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "1.56.0",
+    "three": "0.170.0"
+  }
+}

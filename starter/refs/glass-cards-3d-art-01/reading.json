@@ -1,0 +1,240 @@
+{
+  "slug": "glass-cards-3d-art-01",
+  "key": {
+    "sha256": "9e6aa7250378a4f9703f37e0161cd2b299eae2078ad5df5871bab4cb2f9fa3de"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 25.17,
+    "w": 736,
+    "h": 414,
+    "fps": 60,
+    "audio": true,
+    "format_note": "16:9 landscape, low resolution (736x414, 1498 frames at 60 fps), single full-frame film, no letterbox. Stereo HE-AAC 44.1 kHz music track at about 120 BPM (bar about 2 s): quiet rising build 0-3.7 s (RMS about -38 dB rising to -14 dB), full beat from about 3.75 s, strong bar downbeats at about 3.75, 5.75, 7.75, 9.75, 11.75, 13.75, 15.75, 19.75, 23.5 s; short breakdowns (dips to about -28 dB) at 5.0-5.6, 9.0-9.7 and 17.0-17.9 s; ends on a sustained hold to 25.0 s, then cuts out."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «app ui animation 2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "کارت‌های شیشه‌ای روی هنر سه‌بعدی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "UI when the content package launches software, an app or a dashboard; EXPLAINER-style data beats (one number per scene) fit any package with figures",
+    "why": "third-party film of unknown origin (owner note): borrow its motion language and look only, never its shots one by one, its 3D art pieces, its English card copy or its figures; a voiceover package defaults to REEL, and the reference's own grammar is a sequence of single-number UI cards, which suits number-led reels"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        25.17
+      ],
+      "why": "all English card copy ('Pie Chart', 'Bar Chart', 'Line Graph', 'Spend', 'Subscribed in a week', 'Announcement', 'New update coming at 2pm.', 'Payment history', 'Essentials', 'Lifestyle', 'Savings & Investments', month and date tick labels) and every figure ('85%', '$105.500', '+25,536', '4.9 ★', '25.500$', '1.255$', '6.845$') are third-party content; never reused as text or numbers — our numbers come only from the content package"
+    },
+    {
+      "span": [
+        14.45,
+        17.2
+      ],
+      "why": "the Instagram and X logos on the announcement card are third-party brand marks; never reused (the brand's own handle or logo may take the slot only if the package asks)"
+    },
+    {
+      "span": [
+        0,
+        25.17
+      ],
+      "why": "the specific 3D art pieces (pink particle sea creature, 3D UI-block city, melting pink cube with blue drops, chrome-purple ribbon, macro petal blur, voxel-cluster grid, desk of geometric drafting tools, tweezer with sprouting green tubes, dark coral/torus/berry still life) are the reference's scenery and subjects; never copied — each of our scenes draws its own subject from the voiceover in this rendering style"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px (5 sheets, all viewed); scene detect gt(scene,0.3): cuts at 0.08, 0.33, 0.58, 1.08, 1.33, 1.58, 3.98, 5.48, 6.13, 8.37, 9.33, 12.13, 20.98 s; two further cuts the detector missed (similar grey/blue tones) read from the dense sheets at about 14.45 and 17.2 s, and one inside the teaser at about 0.83 s; dense sheets fps=8 at 240 px over the whole clip (7 sheets, all viewed; frame time = (sheet-1)*4 + index*0.125 s); audio RMS per 0.25 s (astats) to place the build, the downbeats and the breakdowns. Spans and move durations are accurate to about ±0.1 s. Colours read by eye, not sampled; the source is low resolution, so fine card text sizes are estimates.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        1.58
+      ],
+      "shot": "teaser montage: seven flashes of the finished cards from later in the film, each a different 3D world (bar chart, line graph, spend counter, subscribers counter, announcement, rating, payment history)",
+      "camera": "each flash holds the end frame of its scene with its slow drift",
+      "moves": "hard cuts every 0.25 s (first flash about 0.08 s); no motion inside a flash beyond the background drift; music is still the quiet build",
+      "text": "the finished cards' labels and big numbers, each visible only 0.25 s (texture, not meant to be read)",
+      "transition_out": "hard cut at 1.58 s into the first full scene, still on the rising build",
+      "palette": "every world's palette in quick succession: beige, grey, multicolour petals, blue-grey, sage, dark navy",
+      "built": "3D render (code-native glass cards over real 3D scenes; buildable in three.js as cuts of the film's own end frames)",
+      "reusable": "yes: a cold-open teaser that flashes the end state of every later scene in 0.25 s cuts before the film starts — a promise of 'everything you will see'; motion only, the flashes are our own scenes' end frames"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        1.58,
+        3.98
+      ],
+      "shot": "medium, one square glass card centred over a soft pink 3D world (a translucent creature dissolving into a sea of pink particles), ring gauge on the card",
+      "camera": "slow lateral drift and gentle push (about 3-5% over the shot); background object moves slowly on its own; strong depth of field",
+      "moves": "1.6-1.85 s background alone (particles drifting); 1.85-1.95 s the card fades in (opacity and backdrop blur rise together, about 0.1 s) already showing '0%'; 1.9-2.9 s the ring sweeps clockwise from 0 to its value with the number counting in step (slow start, fast middle, long ease-out: about 2, 6, 14, 50, 73, 81, 84, 85 per 0.125 s); 2.6-2.9 s the card label types on in two steps (first word, then the full label) and a small menu icon pops in top-right; 2.9-3.98 s hold while the card drifts slightly right with the camera",
+      "text": "one big percentage in white bold sans in the ring centre; a small white label top-left of the card; small menu icon top-right",
+      "transition_out": "hard cut at 3.98 s, on the first bars of the full beat",
+      "palette": "pastel pink to lilac haze, white-pink glass card, white ring and type, specks of teal and red in the particles",
+      "built": "3D render (code-native glass card and ring over a real 3D particle scene; buildable in three.js with points and a translucent volume)",
+      "reusable": "yes: a ring gauge that fills while its number counts up with a slow-fast-slow curve, then holds on a frosted glass card that blurs the 3D world behind it; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        3.98,
+        5.48
+      ],
+      "shot": "medium, a wide glass card over a dense 3D miniature world of stacked coloured slabs and towers (grey-lilac ground, yellow, green, pink, red accents), bar chart on the card",
+      "camera": "push-in and slight crane over the 3D world (about 10% over the shot, smooth); foreground pieces pass out of focus",
+      "moves": "4.0-4.25 s world alone; 4.25-4.5 s the card fades in with backdrop blur; 4.6-5.4 s seven white rounded bars rise one after another from the baseline, left to right, stagger about 0.1 s, each about 0.25 s with ease-out; 5.25 s the label types on top-left with tiny date ticks under the bars",
+      "text": "small white label top-left, tiny tick labels under the bars, no big number",
+      "transition_out": "background swap under a still card at 5.48 s: the 3D world cuts to a new one while the card keeps its place and content (on the breakdown dip)",
+      "palette": "cool grey-lilac 3D world with yellow, mint green, pink and red pieces, white bars",
+      "built": "3D render (code-native glass card and bars over a real 3D modelled scene; buildable in three.js with boxes, rounded slabs and depth blur)",
+      "reusable": "yes: bars growing one by one on glass while the camera pushes into a busy 3D world; motion only, never their slab city"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        5.48,
+        6.13
+      ],
+      "shot": "same card, same position, over a new world: a top-down flat-lay of coloured 3D blocks and shapes on a warm beige surface",
+      "camera": "near static top-down, very slow rotation",
+      "moves": "the card holds; two small line icons (plus, check circle) float in the background world; no new animation on the card",
+      "text": "the same card (label, bars, ticks)",
+      "transition_out": "hard cut at 6.13 s to an empty grey studio",
+      "palette": "warm beige surface, deep green, yellow, pink, navy blocks, white bars",
+      "built": "3D render (real 3D flat-lay, code-native card; buildable in three.js top-down)",
+      "reusable": "yes: the card is the constant and the world behind it changes — a background swap under a still card says 'same data, new context'; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        6.13,
+        8.37
+      ],
+      "shot": "medium, a glossy pink 3D block on a neutral grey studio with glossy blue drops floating around it; a glass card appears and the block's surface melts and bulges behind it",
+      "camera": "slow push-in, slight rotation around the block",
+      "moves": "6.13-6.35 s block and drops alone (drops drift); 6.35-6.6 s an empty card fades in; 6.5-8.0 s the block's top melts into liquid folds that swell up behind and through the card (soft-body, continuous); 6.75-7.9 s a white round-capped line draws left to right as a smooth curve (about 1.1 s, ease-in-out), with tiny month ticks under it; 7.25-7.5 s the label types on in two steps; 7.6 s menu icon",
+      "text": "small white label top-left, tiny tick labels, no big number",
+      "transition_out": "background swap under a still card at 8.37 s on the downbeat: the melting block cuts to a chrome ribbon scene, card unchanged",
+      "palette": "neutral mid-grey studio, magenta-pink glossy material with red depths, cobalt-blue glossy drops, white line",
+      "built": "3D render (real 3D liquid/soft-body material, code-native card; buildable in three.js as noise-displaced glossy geometry with physical material, no simulation)",
+      "reusable": "yes: the 3D subject transforms (melts, swells) while the chart draws on the glass in front — the object and the data change together; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        8.37,
+        9.33
+      ],
+      "shot": "same line-graph card, same position, over a chrome-purple ribbon that swirls around it on a darker grey studio",
+      "camera": "static, slight drift",
+      "moves": "the ribbon coils around the card, passing behind it (blurred through the glass) and in front of it (sharp), about one turn in 0.9 s, smooth; the card holds",
+      "text": "the same card",
+      "transition_out": "hard cut at 9.33 s on the breakdown dip into an empty macro shot",
+      "palette": "dark grey studio, iridescent chrome lilac/purple ribbon with orange reflections, deep red base",
+      "built": "3D render (real 3D chrome ribbon, code-native card; buildable in three.js as a tube along an animated curve with metal/iridescent material)",
+      "reusable": "yes: a 3D object wraps around the flat card, crossing in front of and behind it, so the card sits inside the depth of the scene rather than on top; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        9.33,
+        12.13
+      ],
+      "shot": "close macro: an out-of-focus abstract 3D form (petal-like folds in magenta, orange and green) on a pale grey background; wide glass card with one big currency number",
+      "camera": "very slow push and drift; extreme shallow depth of field, almost everything blurred",
+      "moves": "9.33-9.6 s blurred form alone; 9.6-9.75 s the card fades in; 9.75 s the currency sign appears, then the number builds digit by digit and counts up 0 → final in about 1.75 s (9.85-11.6 s: very slow start, fast middle, ease-out landing), digits rolling odometer-style (new digits slide up into place); 10.5 s small label types on top-left; 11.6-12.13 s hold",
+      "text": "one big number in white bold sans (cap height about a quarter of the card height), small label top-left, menu icon",
+      "transition_out": "hard cut at 12.13 s on the bar downbeat",
+      "palette": "pale grey haze, saturated magenta, orange, green blur through the glass, white number",
+      "built": "3D render (code-native card and counter over a defocused real 3D form; buildable in three.js with heavy depth blur)",
+      "reusable": "yes: a single big number rolls up odometer-style on glass while the world behind is reduced to colour by depth blur — all focus on one figure; motion only, never their figure"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        12.13,
+        14.45
+      ],
+      "shot": "medium: deconstructed 3D UI slabs (coloured stacked bars and panels) on a grey studio collapse into a wide card; then the card sits over a grid of clustered 3D primitives (spheres, cubes, cones) in coloured patches",
+      "camera": "static; slight push",
+      "moves": "12.13-12.6 s the floating coloured slabs slide together and flatten into one card shape (about 0.5 s, ease-in-out, with motion blur); 12.6-12.75 s the slabs dissolve into the glass and the card shows '+0'; 12.7-13.0 s the clusters of small 3D primitives assemble around the card from scattered bits; 13.0-14.4 s a big number with a plus sign counts up (slow start, fast middle, ease-out) while a mini bar chart of five rounded bars beside it grows in step; 13.2 s small label types on",
+      "text": "one big signed number in white bold sans, small label top-left, mini bar icon chart beside the number",
+      "transition_out": "hard cut at about 14.45 s",
+      "palette": "neutral grey studio, patches of coral orange, cobalt, mint, sage green, chocolate brown, olive",
+      "built": "3D render (code-native card, counter and mini bars over real 3D instanced primitives; buildable in three.js with instanced meshes)",
+      "reusable": "yes: pieces of the interface assemble into the card (the card is built from parts), then many small 3D units gather around it as the count rises — growth shown as accumulation; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        14.45,
+        17.2
+      ],
+      "shot": "medium, a blue-grey desk world of floating geometric drafting objects (clear protractor, compass, cube, cone, icosahedron, yellow torus) with a clear glass liquid form at centre; a wide notice card forms out of the liquid",
+      "camera": "slow push-in",
+      "moves": "14.45-14.9 s clear liquid stretches and flows across the centre; 14.9-15.1 s it spreads flat and becomes the card (liquid → glass, about 0.25 s); 15.1-15.3 s the title types on; 15.5-16.0 s a subline types on word by word under it; 16.0 s and 16.125 s two small icons pop in one after another at the card's right end (scale 0 → 1 with slight overshoot); small secondary UI tiles (a calendar grid, a tiny card) float in the background world; hold to 17.2 s",
+      "text": "a short title in white semibold, one small subline under it, two small icons at the right",
+      "transition_out": "hard cut at about 17.2 s into the breakdown dip",
+      "palette": "dusty blue-grey world, clear glass and frosted materials, pale lilac sphere, chartreuse-yellow torus, white type",
+      "built": "3D render (code-native card over real 3D glass and solid primitives; buildable in three.js with transmission material)",
+      "reusable": "yes: the card is poured — a clear liquid shape flows in and solidifies into the glass card, then its text types on; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        17.2,
+        20.98
+      ],
+      "shot": "medium close: a thin chrome tool tip on a sage-beige background squeezes out a glossy green liquid that grows into the card; the liquid keeps sprouting into a bush of glossy tubes",
+      "camera": "static, then a slow push as the tubes grow; shallow depth of field",
+      "moves": "17.2-17.4 s the tool tip alone; 17.4-17.9 s green liquid extrudes from the tip and spreads into the card shape (the card's glass fills with the liquid colour); 18.0 s the number appears as '0'; 18.0-19.6 s it counts up with one decimal and a star icon (very slow to about 0.5 for 0.6 s, then fast, then ease-out to its value); 18.6-21 s glossy tubes branch out of the liquid in all directions (growth, staggered, smooth), colour shifting green → teal → lilac; the card's tint follows the liquid behind it; hold from 19.6 s",
+      "text": "one big decimal number with a star icon, white bold sans, centred on a small square card; no label",
+      "transition_out": "hard cut at 20.98 s on the downbeat",
+      "palette": "sage-beige background, glossy lime and green tubes, teal and lilac tips, chrome tool, white number",
+      "built": "3D render (code-native card and counter over real 3D glossy tubes; buildable in three.js as growing tube geometry with clearcoat material)",
+      "reusable": "yes: a small action (a squeeze, a drop) gives birth to the card, then the 3D form keeps growing as the number climbs — growth tied to the figure; motion only"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        20.98,
+        25.17
+      ],
+      "shot": "medium, dark navy void with a colourful 3D still life (coral ribbon, ribbed blue torus, glossy berry cluster, pill shape, small spheres, a green plant sprig); a tall card with three number rows",
+      "camera": "near static, very slow drift; soft spotlight glow from above",
+      "moves": "21.0-21.3 s a coral ribbon snakes in and feeds into the centre; 21.3-21.6 s it flattens into the card (the ribbon's colour fills the glass); 21.6 s three rows of numbers appear as zeros with their row labels; 21.6-23.4 s the three numbers count up together, each to its own value (slow start, fast middle, ease-out; the top row lands last); 21.9 s the title types on top-left; 23.4-25.0 s hold; the film ends on the hold",
+      "text": "a title top-left, three rows of a number plus a small row label, white sans; menu icon",
+      "transition_out": "end of film (cut out at 25.17 s)",
+      "palette": "deep navy to black void with a teal-blue top glow, coral orange and red, cobalt and violet glossy pieces, iridescent spheres, white type",
+      "built": "3D render (code-native card and counters over real 3D glossy and iridescent objects; buildable in three.js)",
+      "reusable": "yes: several numbers count up together on one card to compare parts of a whole, finishing on a long hold; a dark finale after light scenes; motion only"
+    }
+  ],
+  "visual_language": "A data-card showcase: every scene is one frosted glass UI card holding one idea (a ring, bars, a line, one big number, a notice, a rating, three rows) floating in front of a high-end, colourful 3D art world. Medium: polished 3D renders (glossy, liquid, soft-body, particles, chrome, iridescent and clear glass materials, studio light, very shallow depth of field) with flat, crisp, code-style UI cards composited in real depth. Typography: one clean geometric sans in white — a big bold number as the hero, a small semibold label top-left that types on in one or two steps after the main animation, tiny tick labels; never more than one line of real text per card. Rhythm: a 1.6 s cold-open of 0.25 s flashes, then eleven shots in 25 s; full scenes last about 2.2-4 s (average about 2.6 s); every scene follows the same beat: world alone (about 0.2-0.3 s) → card fades in with backdrop blur (about 0.1-0.25 s) → the data animates (1-1.75 s, slow-fast-slow counting) → label types on → hold (0.5-1.5 s). Cuts land on bar downbeats or inside breakdown dips of a 120 BPM track; the first full scene starts during the quiet build and the beat drops on the second. Moves are smooth and liquid, never snappy: soft fades, slow pushes, organic growth; the only fast motion is the counting middle. Palette changes completely from world to world (pink haze, grey-lilac, beige, magenta on grey, pale grey macro, blue-grey, sage, navy), held together by the identical white-on-glass card. Signature moments: the teaser montage of end frames, the card that stays still while the world behind it swaps, the block that melts behind the chart, the ribbon coiling through the card's depth, liquid that pours and sets into the card, the tool tip that squeezes out the card and a bush of tubes, and the dark three-number finale.",
+  "look": "Real 3D, not flat: physically lit 3D objects with glossy clearcoat, liquid and soft-body surfaces, chrome and iridescent metals, clear and frosted glass with refraction, particles and volumetric haze; soft studio area light with gentle contact shadows and rim highlights; very shallow depth of field (foreground and background pieces heavily blurred, extreme macro blur in one scene); backgrounds are seamless studio sweeps or soft gradients (pink haze, neutral grey, beige, blue-grey, sage, deep navy with a top glow), no horizon. The UI card is frosted glass: strong backdrop blur and slight colour pickup from what is behind, rounded corners (radius about 6-8% of card width), a thin bright rim, a faint inner highlight, no hard drop shadow; content is pure white; 3D objects pass both behind (blurred through the glass) and in front of the card.",
+  "code_translation": "Built as real 3D in code, never flattened: three.js scene per world (MeshPhysicalMaterial with clearcoat, transmission, iridescence and roughness for glossy, glass and chrome pieces; tube geometry along animated curves for ribbons and sprouting tubes; noise/vertex displacement for melting and liquid surfaces instead of simulation; instanced meshes for clusters of primitives; points with soft sprites for particle seas; soft area/rect lights plus an environment map; depth of field as a bokeh/blur pass). The glass card is a flat plane inside the same 3D scene (transmission + roughness for frost, or a rendered-target blur sampled behind the card) so objects can pass in front of and behind it; card content (labels, numbers, ring, bars, line) is drawn crisp on top in HTML/SVG with the shaped brand Persian font. Counters roll digit by digit with a slow-fast-slow curve (e.g. easeInOutCubic with a long tail) and Persian digits; labels type on whole words. Low source resolution (736x414) means the target sharpness comes from our build, not from the reference.",
+  "continuity": [
+    "One constant object carries the film: the same frosted glass card style appears in every scene, so wildly different worlds read as one product.",
+    "Background swap under a still card: the world behind cuts to a new one while the card keeps its position and content, so the cut reads as a change of context, not a new scene.",
+    "The 3D world produces the card: liquid pours and sets into it, a ribbon feeds and flattens into it, UI slabs slide together into it, a tool tip squeezes it out — the card is born from the scene's material.",
+    "Depth interleaving: 3D objects pass behind the card (blurred through the glass) and in front of it (sharp), placing the flat card inside the 3D space.",
+    "The subject transforms while the data animates: the object melts, sprouts, or gathers in step with the chart or number, so the world reacts to the figure.",
+    "Same internal beat in every scene: world alone → card fades in → data animates with a slow-fast-slow count → label types on → hold; repetition makes each new number easy to read.",
+    "Cold-open teaser: the end frame of every later scene flashes for 0.25 s at the start, promising the whole sequence before it plays.",
+    "Colour world changes at every cut while the card's white-on-glass treatment stays fixed; the last scene turns dark after the light scenes as a finale.",
+    "Cuts are placed on bar downbeats or inside the music's breakdown dips; the count's fast middle sits on the full beat."
+  ],
+  "risks": [
+    "Third-party film of unknown origin (Pinterest, owner note): ADAPT only. Never copy its English card copy, its figures, the Instagram/X logos, its specific 3D art pieces (particle sea creature, slab city, melting pink block, chrome ribbon, petal macro, voxel grid, drafting-tool desk, tweezer and tubes, coral still life) or its shot order one by one.",
+    "Source is 16:9 landscape and low resolution (736x414): a 9:16 film rebuilds each composition vertically (card centred in the upper-middle safe zone, 3D world filling the height, depth blur kept); fine text sizes were estimated.",
+    "The 3D worlds are high-end renders (liquid, soft-body, particle volumes): in three.js they are approximated (displacement, tubes, instancing, points), not simulated; L5 should pick subjects whose motion stays convincing with these tools and keep render time in check.",
+    "Persian text on frosted glass over busy colour: contrast must be checked per scene (white text needs enough frost/dim behind it); readability ranks above the look.",
+    "Hold times: data scenes give the number about 0.5-1.5 s after it lands; Persian hold times and minimum sizes win over the pace, and the 0.25 s teaser flashes must carry no text the viewer is expected to read.",
+    "Numbers on screen follow references/data-viz.md: every figure comes from the content package with its source, Persian digits and separators, and the counting curve must land exactly on the true value; the reference's charts (ring, bars, line, rows) are motion patterns only.",
+    "Direction: the reference reads left to right (bars rise left → right, line draws left → right, labels top-left, icons at the right end): for Persian follow references/rtl-grammar.md (labels top-right, reveals and line draw from the right where meaning allows); type-on reveals whole joined words, never letters.",
+    "Reference colours (pink haze, grey-lilac, beige, magenta, blue-grey, sage, navy, coral) map onto brand colour roles and banned colours; the reference's materials, light and depth stay (D55).",
+    "The reference has its own music with cuts on its downbeats; our cuts follow the voiceover first, and L6 places accents on our cuts rather than reusing their music."
+  ],
+  "sha256": "9e6aa7250378a4f9703f37e0161cd2b299eae2078ad5df5871bab4cb2f9fa3de"
+}

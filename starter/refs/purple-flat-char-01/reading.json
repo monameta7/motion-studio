@@ -1,0 +1,353 @@
+{
+  "slug": "purple-flat-char-01",
+  "key": {
+    "sha256": "ac89d0312035b61df8a914090a23b686e9bd56f9cd0da226483472baf2b7f3a8"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 63.3,
+    "w": 736,
+    "h": 414,
+    "fps": 24,
+    "audio": true,
+    "format_note": "16:9 landscape (736x414, H.264, 24 fps), 63.3 s. Audio: AAC HE-AACv2 stereo 44.1 kHz at full level (volumedetect mean -17.4 dB, max 0.0 dB), so a real soundtrack (music bed assumed; content was not listened to and cut-to-beat alignment was not measured). The film ends on a held logo lockup from about 59.8 s to the end, with no fade to black inside the clip."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «seamless transition 2.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "شخصیت تخت بنفش با گذارهای پیوسته",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "EXPLAINER",
+    "why": "third-party clip of unknown origin: borrow the motion language (one travelling light object carried through continuous camera moves, wipes by light and by foreground objects, scale matches) and the flat purple-night look only, never its illustrations, characters, story or logo (owner note). The clip is a narrated-style story film with characters (the history of an idea passed from person to person), which is EXPLAINER; a hook-problem-solution voiceover package may still run as REEL with the same grammar."
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        63.3
+      ],
+      "why": "the story (a glowing idea passed through history from ancient builders, a philosopher, a scientist and a rocket launch to a modern recruiting office and a job-match app) and every drawn subject (hands, hills, stepped pyramid, caped figure, bearded thinker, lab, microscope, rocket, observatory, planets, auditorium, receptionist, gallery of framed pictures, trophies, profile UI) are the reference's content; never copied, setting and subjects come from the voice-over"
+    },
+    {
+      "span": [
+        38.3,
+        63.3
+      ],
+      "why": "the third-party brand mark «[id]entifiers», its bracket logo and the English UI labels («Jameson Block», «Key Skills», «Job search», «Compatibility») are another company's identity; never used. The film's own logo outro comes from the brand (router conflict order, item 5)"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 over the whole clip (8 sheets of 4x4, all viewed); scene detect gt(scene,0.3) found 10 frames at 13.75-14.0 (light-beam wipe), 40.08, 41.83, 49.21-49.25 (foreground-pillar wipe), 54.33 and 55.75; dense sheets at fps=5-8 on 1.5-4.5, 5.5-9.0, 9.0-12.0, 13.0-16.5, 17.5-20.5, 21.0-24.5, 25.0-28.0, 29.0-32.5, 34.5-37.5, 38.0-41.0, 44.0-47.0, 48.5-50.5 and 53.8-59.6 s, all viewed; audio level checked with volumedetect. Spans are accurate to about ±0.15 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2.7
+      ],
+      "shot": "extreme close-up that opens on a glowing sphere filling the frame, pulling back to a medium shot of two outlined hands cupping it with glowing orbit rings around it",
+      "camera": "continuous pull-back (zoom out) from 0 to about 2.4 s, smooth ease-out; no cut",
+      "moves": "the sphere's surface swirls slowly (marbled pattern); 0-1.5 s the pull-back reveals luminous orbit ellipses and the two hands; 1.5-2.4 s the sphere shrinks with the pull-back and rises slightly; 2.3-2.7 s the hands slide down and out of the bottom edge and the orbit rings fade, leaving the light as a small glowing dot",
+      "text": "none",
+      "transition_out": "continuous: the dot stays in place as the anchor while the background lightens navy → violet gradient (about 2.7-3.2 s) and the next scene rises up from the bottom edge (r1-s2); no cut",
+      "palette": "deep navy background, pale lime-white glowing sphere with a strong soft bloom, white glowing line rings, hands as navy fills with thin pale outlines",
+      "built": "code-native (radial glow, animated noise texture on the sphere, stroked ellipses with glow, flat hand shapes)",
+      "reusable": "yes: open inside the key object (frame filled by it) and pull back until it becomes a small dot that carries over into the next scene; motion only, never the orb-in-hands image"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2.7,
+        6.3
+      ],
+      "shot": "medium-wide: one character standing on low dark hills under a violet gradient sky, the glowing dot above his raised hand, rounded lime bushes at both frame edges",
+      "camera": "2.8-3.5 s the scene enters by rising from below the frame (feels like a tilt down onto the ground), smooth ease-out; then locked with a very slow drift",
+      "moves": "hills, bushes and the character rise in from the bottom edge with slight parallax (front faster than back), 2.9-3.5 s; 3.5-6.3 s the character plays with the light: the dot floats down in an arc, bounces between his hands, he lifts it again; small arm and torso pose changes, no walking",
+      "text": "none",
+      "transition_out": "continuous camera push and reveal into r1-s3; no cut",
+      "palette": "violet-to-indigo vertical sky gradient with faint star specks, dark navy hills with thin lime rim lines, pale lime bushes with stippled texture patches, navy-clad character with white skin",
+      "built": "code-native shapes; the character's arm poses are hand-animated cut-out style (a few pose tweens are enough in code)",
+      "reusable": "yes: a new scene arrives by rising from the bottom edge while the travelling light stays put; idle interaction between a character and the light keeps a held frame alive; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        6.3,
+        9.9
+      ],
+      "shot": "depth reveal: the character in the foreground at frame right, a second figure far away on a ridge, two heads seen from behind at frame left; three planes of depth",
+      "camera": "6.3-6.7 s push in on the character as he turns; 7.0 s the frame opens into a deep multi-plane view; 7.0-9.9 s a steady forward dolly through the planes (foreground layers slide out to the sides faster than the back), smooth linear-to-ease-in",
+      "moves": "the character tosses the light forward (6.7-7.0 s); 7.0-7.5 s it flies toward the camera and grows; 7.5-8.8 s it arcs away and shrinks toward the distant figure; foreground heads and the near character slide out of frame as the camera advances; 9.0-9.8 s the distant figure grows into a large foreground figure on the right",
+      "text": "none",
+      "transition_out": "the camera passes the figure (he slides out of frame right) and continues into the open horizon of r1-s4; no cut",
+      "palette": "violet sky gradient, dark navy terrain with lime ridge highlights, glowing lime light ball, navy silhouettes",
+      "built": "code-native (layered 2D planes with parallax scale and translate; light ball with bloom)",
+      "reusable": "yes: the travelling light is passed from one person to the next and the camera follows it forward through layered depth planes (2.5D parallax), linking subjects in one continuous space; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        9.9,
+        13.65
+      ],
+      "shot": "wide horizon whose central peak becomes a stepped monument; ends on a symmetrical low-angle view of the steps with a small caped figure on top silhouetted against a large glowing disc",
+      "camera": "10.0-10.85 s fast push in toward the horizon peak (ease-in-out), the small peak scales up and resolves into the stepped structure; 10.85-13.65 s locked",
+      "moves": "the lime ridge line at the horizon (10.0 s) becomes a tiny triangle (10.2 s) that grows into the stepped form as the camera pushes; the light ball rises behind it and becomes the big glowing disc behind the figure; 11.0-12.5 s hold with a soft glow pulse; 12.5-13.65 s the light ball detaches and drifts left to right across the steps, rising",
+      "text": "none",
+      "transition_out": "light wipe: a bright diagonal beam sweeps in from the right (r1-s5)",
+      "palette": "violet sky darkening to navy, periwinkle steps with lighter tread edges, navy side silhouettes, lime-white glowing disc",
+      "built": "code-native (flat polygons, a stacked-step shape, radial glow)",
+      "reusable": "yes: a scale match — a small shape on the horizon grows under a push-in into the next scene's main object; the travelling light becomes the backlight of the new scene, then leaves it; motion only, never the monument"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        13.65,
+        16.1
+      ],
+      "shot": "medium shot of a seated thinking character in a large chair with a writing desk, lit from behind by a wide diagonal shaft of light",
+      "camera": "locked, a very slight push",
+      "moves": "13.67-14.0 s a wide bright lime diagonal wedge sweeps in from the right edge (fast, ease-out) and the new scene is revealed inside it; the wedge stays as the scene's light shaft; 14.0-15.8 s idle acting: hand to chin, blink, small head tilt; 15.8-16.1 s a dark diagonal wedge sweeps the light shaft away to the left and reveals the next scene",
+      "text": "none",
+      "transition_out": "diagonal light-wedge wipe out to the left into r1-s6",
+      "palette": "navy background, pale lime light shaft with a soft edge glow, white figure, deep violet chair and drapery, small orange accents (quill)",
+      "built": "code-native (diagonal polygon masks with a blurred edge glow); the character's idle acting is hand-animated, simplified to a few pose tweens in code",
+      "reusable": "yes: the diagonal light-beam wipe (in from the right, the beam then lives in the scene as its light, out by a dark wedge to the left), about 0.3 s each way; motion only"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        16.1,
+        18.4
+      ],
+      "shot": "wide interior: a long work bench across the lower third, a character at a window working at an instrument, thin line-art equipment on the back wall",
+      "camera": "locked, then a slow drift to the right starting about 17.8 s",
+      "moves": "idle work motion (leaning to the instrument), small steam wisps; papers and objects static",
+      "text": "none",
+      "transition_out": "continuous truck right through one connected set into r1-s7; no cut",
+      "palette": "navy wall, periwinkle window frame with a lime hill outside, bright violet bench band, pale lime papers, orange accents (bottles, box), thin pale line art for background props",
+      "built": "code-native (flat shapes plus thin stroked line-art props)",
+      "reusable": "yes: back-wall props drawn as thin outlines while the foreground is solid fills, so the frame reads in two tiers; one continuous floor band that carries across the next camera move; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        18.4,
+        21.3
+      ],
+      "shot": "wide exterior: a tall launch vehicle between lattice towers, a dark crowd silhouette in the foreground, a domed building entering at frame right",
+      "camera": "18.4-18.8 s fast truck right (ease-in-out) from the interior to the exterior on the same floor band; then locked",
+      "moves": "the outline props of the interior turn into the outline towers of the new set as the camera trucks; 19.2-19.5 s the dome slides in from the right; 19.8-21.3 s white exhaust clouds bloom from the base and spread sideways (puffy shapes scaling out, ease-out)",
+      "text": "none",
+      "transition_out": "continuous tilt up following the vehicle (r1-s8)",
+      "palette": "navy sky with faint stars, violet ground band with thin crack lines, white vehicle with orange fins, white clouds, navy crowd silhouettes",
+      "built": "code-native",
+      "reusable": "yes: a lateral truck through one continuous set joins two places in one move (no cut), with a shared ground band as the seam; growing puffy cloud clusters as a build-up beat; motion only, never the rocket"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        21.3,
+        25.7
+      ],
+      "shot": "the vehicle held at frame centre while the world streams past: ground, then empty sky, then planets of different sizes",
+      "camera": "21.5-22.5 s tilt up (the ground and crowd slide out of the bottom), then a steady locked-on follow; 25.0-25.7 s the camera stops and the vehicle exits the top edge",
+      "moves": "thin vertical speed streaks fall through the frame; planets and moons (stippled grain discs, one with a ring) scroll top to bottom at different speeds by size (parallax); the vehicle's flame trail flickers; linear constant speed during the follow",
+      "text": "none",
+      "transition_out": "continuous: the camera settles in empty space and the next element appears in place (r1-s9); no cut",
+      "palette": "navy space with fine noise and star specks, grey-violet stippled planets, faint violet ring lines, white and orange vehicle",
+      "built": "code-native (translate loops, grain texture as a noise fill)",
+      "reusable": "yes: subject locked at centre while background layers stream past at size-based speeds to show travel; ends by letting the subject leave the frame while the camera stays; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        25.7,
+        29.2
+      ],
+      "shot": "space with a single twinkling star, a large rim-lit profile head entering at frame right, a hand rising from the bottom",
+      "camera": "locked",
+      "moves": "25.8 s a four-point star twinkles on (scale pop with glow); 25.9-26.5 s the profile head slides in from the right edge (ease-out); 26.8-27.8 s an open hand rises from the bottom-left and reaches up; 27.8-28.2 s the hand closes around the star (catch); 28.2-29.2 s the hand lifts upward holding it",
+      "text": "none",
+      "transition_out": "continuous tilt up following the star (r1-s10)",
+      "palette": "navy space, dark navy silhouettes with a thin lime rim line on face and hand edges, lime-white star with glow, grey-violet planet",
+      "built": "code-native (silhouette shapes with stroked rim edges, star sprite with glow)",
+      "reusable": "yes: a character catches the travelling light (the idea arrives); silhouettes defined only by a thin rim-light line; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        29.2,
+        32.6
+      ],
+      "shot": "empty starfield where scattered points gather and connect into a glowing line icon",
+      "camera": "29.2-29.7 s tilt up (hand, head and planet slide out of the bottom), then locked",
+      "moves": "the single star drifts down to the centre (29.8-30.4 s); 30.5-31.3 s it multiplies into a dozen small stars that spread to positions on an outline; 31.3-32.6 s the points connect: glowing lines draw on between them and the icon shape completes (draw-on stroke, ease-in-out), its glow building as it closes",
+      "text": "none",
+      "transition_out": "continuous: the icon stays and gains orbit rings (r1-s11)",
+      "palette": "navy space, pale white-lime stars and line glow, grey-violet planet edges at the frame sides",
+      "built": "code-native (point sprites, SVG path draw-on with stroke-dashoffset, glow filter)",
+      "reusable": "yes: scattered points converge and connect into a line-art symbol (constellation build): one light becomes many, many become one idea; motion only, the symbol comes from the voice-over"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        32.6,
+        35.4
+      ],
+      "shot": "centred glowing line icon with thin elliptical orbit rings and orbiting dots",
+      "camera": "locked",
+      "moves": "32.8-33.5 s three orbit ellipses draw on around the icon; small white dots travel along them continuously (linear); 35.0-35.4 s a soft violet glow swells inside the icon and its outline fades, leaving the rings and the glow",
+      "text": "none",
+      "transition_out": "scale match: the inner glow expands into a projection screen as the camera pulls back (r1-s12)",
+      "palette": "navy, white-lime line glow, white orbit dots, violet inner glow",
+      "built": "code-native",
+      "reusable": "yes: callback — the orbit rings from the opening return on the new symbol, so the end of the story rhymes with its start; motion only"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        35.4,
+        40.08
+      ],
+      "shot": "wide hall: a large violet screen between dark pillars and lime side walls, a presenter at a lectern, rows of audience silhouettes in the foreground",
+      "camera": "35.5-37.0 s pull-back (ease-out) from the glow to the full hall; then locked",
+      "moves": "the glow grows into the flat screen rectangle; the frame, walls and stage open around it; 35.9-37.0 s audience heads rise in from the bottom in a stagger (ease-out); the orbit motif idles on the screen; 38.3-38.5 s it shrinks away; 38.5-39.0 s a mark builds on the screen (letters fade and scale in one by one, then a frame around them); hold to 40.08",
+      "text": "a short logo mark on the screen (another company's brand; ignored)",
+      "transition_out": "hard cut (40.08 s)",
+      "palette": "periwinkle screen, dark navy pillars and silhouettes, pale lime walls with thin line patterns, white stage with perspective lines",
+      "built": "code-native",
+      "reusable": "yes: scale match from a small symbol to a big screen in a room (pull back to reveal where the idea now lives); staggered crowd rise; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        40.08,
+        41.83
+      ],
+      "shot": "medium front shot of a young character in a violet interior, foreground objects cropped at the frame edges",
+      "camera": "locked with a very slight push",
+      "moves": "blink and tiny head move only",
+      "text": "none",
+      "transition_out": "hard cut to the reverse angle (41.83 s)",
+      "palette": "periwinkle walls with darker violet panels, navy shirt, white skin, violet hair, orange and white foreground props",
+      "built": "code-native shapes; facial blink is a simple shape swap",
+      "reusable": "yes: shot / reverse-shot pair with hard cuts used only for dialogue-like beats between two characters; motion only"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        41.83,
+        45
+      ],
+      "shot": "over-the-shoulder: the first character's shoulder and jaw large in the left foreground, a second character at a desk across the room greeting him",
+      "camera": "slow push",
+      "moves": "the second character waves (arm tween, 43.0-44.5 s), holds a folder; plant and wall decor static",
+      "text": "a small logo mark on the wall (another brand; ignored)",
+      "transition_out": "foreground wipe: the near shoulder slides across the frame and out, revealing the next scene behind it (r1-s15)",
+      "palette": "periwinkle room, navy door and floor, lime desk edge, orange folder and pot",
+      "built": "code-native",
+      "reusable": "yes: over-the-shoulder framing with a big foreground silhouette that later becomes the wipe; motion only"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        45,
+        49.21
+      ],
+      "shot": "wide side view of a long hall with framed pictures on the wall, small objects on white pedestals, two small figures walking",
+      "camera": "45.0-45.6 s the foreground shoulder sweeps out to the right (foreground wipe, ease-in-out); 45.6-49.0 s slow steady truck right (linear); 48.6-49.2 s a white pedestal in the near foreground passes the lens and fills the frame",
+      "moves": "pedestals in the foreground plane move faster than the wall (parallax); the two figures walk slowly; spotlight cones over the frames; picture frames show small illustrated vignettes (ignored)",
+      "text": "none",
+      "transition_out": "foreground wipe: the near pedestal fills the frame and the next shot is revealed behind it (scene detect 49.21 s)",
+      "palette": "periwinkle wall, navy floor with a violet stripe, white pedestals, lime and orange picture fills",
+      "built": "code-native",
+      "reusable": "yes: a slow lateral truck along a wall of framed vignettes (a timeline or gallery of past moments) with a foreground-object wipe at each end; motion only, never the gallery"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        49.21,
+        54.33
+      ],
+      "shot": "medium two-shot: the first character standing at left, the second at right pointing at translucent interface panels that float between them",
+      "camera": "locked",
+      "moves": "49.3-49.8 s three glassy panels pop in (fade plus scale up, staggered about 0.15 s): a profile card behind the character, a list of sliders, a progress bar at his waist; 49.9-53.5 s the second character points and the slider knobs move one by one while the progress bar fills from about half to full, its colour shifting orange → yellow → green with the value; the first character's expression changes from neutral to pleased; hold to 54.33",
+      "text": "small interface labels and a percentage (another product's English UI; ignored)",
+      "transition_out": "hard cut (54.33 s)",
+      "palette": "periwinkle background with thin line drawings of picture frames, translucent white-violet panels, orange → yellow → green bar fill",
+      "built": "code-native (glass panels as semi-transparent rects, animated bar width and fill colour)",
+      "reusable": "yes: a floating translucent interface appears in a character scene and a progress value fills while its colour shifts with the value (a result being reached); motion only, the numbers and labels come from the voice-over"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        54.33,
+        55.75
+      ],
+      "shot": "close-up of a face on a light violet blueprint-grid background, then wider to the bust",
+      "camera": "54.33-55.0 s locked; 55.0-55.7 s smooth pull-back from face to bust (ease-in-out)",
+      "moves": "smile, a wink and a blink",
+      "text": "none",
+      "transition_out": "hard cut (55.75 s)",
+      "palette": "light periwinkle with a thin lighter grid, white face, violet hair, navy shirt",
+      "built": "code-native (expression by shape swaps)",
+      "reusable": "yes: a short emotional close-up as a payoff beat before the finale; motion only"
+    },
+    {
+      "id": "r1-s18",
+      "span": [
+        55.75,
+        57.8
+      ],
+      "shot": "wide: two small characters standing on a rock peak above a sea of clouds, night gradient sky with thin outlined cloud shapes",
+      "camera": "slow pull-back and slight rise",
+      "moves": "56.5-57.8 s cloud layers (violet, then orange, then white) rise from the bottom in parallax, the nearest and brightest last, covering the lower third",
+      "text": "none",
+      "transition_out": "frame-to-mark: white frame pieces close in and the whole frame shrinks into a mark (r1-s19)",
+      "palette": "navy-to-near-black sky gradient, navy rock, violet and indigo clouds, orange and white foreground clouds",
+      "built": "code-native",
+      "reusable": "yes: layered clouds rising from the bottom as the finale build-up; motion only"
+    },
+    {
+      "id": "r1-s19",
+      "span": [
+        57.8,
+        63.3
+      ],
+      "shot": "logo outro: the last scene is framed and shrunk into a small mark, then a wordmark writes out beside it on a dark gradient",
+      "camera": "locked",
+      "moves": "57.8-58.0 s white bracket-like frame pieces enter at the frame edges; 58.0-58.4 s the whole image scales down inside them (the frame becomes the mark), the picture crossfades to the mark's content; 58.4-58.6 s the mark settles small at centre; 58.6-59.0 s glow pulse; 59.0-59.8 s the wordmark letters appear one by one to the right with wide tracking that tightens while the mark slides left so the lockup ends centred; glow fades; hold 59.8-63.3 s",
+      "text": "another company's logo and wordmark (ignored)",
+      "transition_out": "end of film (held lockup)",
+      "palette": "navy-to-near-black vertical gradient, white frame pieces, lime glow on the mark, white wordmark",
+      "built": "code-native",
+      "reusable": "technique only, and only if the brand has no logo outro of its own: the final scene shrinks into the brand mark's shape so the story literally becomes the logo; the brand's logo outro always wins"
+    }
+  ],
+  "visual_language": "Flat vector story animation in a purple night world. Medium: 2D illustration (solid fills, a few thin line-art strokes, light grain), staged in layered planes and animated with continuous camera moves. Characters are simple flat figures (white skin, navy clothing, violet hair) with small cut-out style pose changes and blinks, never walking cycles in close shots. Typography: none apart from a brand mark at the end (ignored). Rhythm: 19 shots in 63.3 s (average about 3.3 s, range 1.4-4.7 s); only four hard cuts (40.08, 41.83, 54.33, 55.75 s), all in the second half; everything else joins by continuous camera moves (pull-backs, push-ins, trucks, tilts), scale matches, a diagonal light-beam wipe and foreground-object wipes. Moves are smooth: entrances ease-out, pushes and trucks ease-in-out about 0.4-0.9 s, follow moves linear, small wipes about 0.3-0.6 s; very little overshoot. Palette: deep navy and violet-indigo as the world, periwinkle for interiors, pale lime as the one glowing accent (the travelling light, light shafts, rim lines, stars), white for skin and bright surfaces, small orange accents. Signature moments: a single glowing light travels through the whole film (orb → sun disc → star → constellation → screen) and is passed from character to character; the light-beam wipe; points gathering into a line-art symbol; the final frame shrinking into the logo.",
+  "look": "Flat 2D with 2.5D staging: solid fills, no cast shadows and no light direction on objects, depth shown by layered planes with parallax, darker navy silhouettes in front of lighter backgrounds, and atmospheric colour (sky gradients). The only soft effects are bloom glows on light sources (orb, star, beam, line icon, logo) and a fine grain or stipple texture on planets, bushes and the sky. Thin pale or lime rim lines outline silhouettes against dark areas. No depth-of-field blur, no 3D, no materials. Backgrounds are vertical colour gradients (violet sky, navy space, night to near-black) or flat periwinkle interiors.",
+  "code_translation": "Code-native, flat. Build each scene as stacked SVG or canvas planes (sky gradient, far, mid, near, foreground) inside one camera group; camera moves are transforms on the planes with per-plane factors for parallax (pull-back = scale down, push = scale up toward a focus point, truck = translateX with near planes faster, tilt = translateY). The travelling light is one persistent element above all scenes (circle with radial gradient and a blur-filter bloom) that is handed from scene to scene. Wipes: a diagonal polygon mask with a feathered glowing edge for the light beam (about 0.3 s in, 0.3 s out); a large foreground silhouette or object that crosses the frame and acts as the mask edge for foreground wipes. Constellation: point sprites tween to path vertices, then SVG paths draw on with stroke-dashoffset plus a glow filter. Interface panels: semi-transparent rounded rects with staggered scale/fade entrances, bar width and fill colour tied to one value. Characters: flat cut-out parts with a few pose tweens (arm raise, point, wave), blink and mouth swaps; no full turnarounds. Grain: a subtle noise overlay or feTurbulence fill on planets and sky. Reference colours are mapped onto brand colour roles (world dark, world mid, interior light, glowing accent, warm accent), never used as literal hex values. No 3D, no shadows, no lens blur — the reference is flat, so the film stays flat.",
+  "continuity": [
+    "One travelling light: a single glowing object persists across scenes and changes role (held object, sun disc behind a figure, a star, the dots of a symbol, a screen glow); the camera follows it, so the film reads as one journey.",
+    "Hand-off between characters: the light is tossed, caught or passed from one figure to the next, linking people across places and times without cuts.",
+    "Scene rises from the bottom edge: a new ground, its props and its character slide up into frame while the anchor object stays fixed.",
+    "Camera travels through depth: forward dollies pass foreground figures out of frame and reach the next subject in the same layered space.",
+    "Scale match: a tiny shape on the horizon (or a glow inside an icon) grows under a push-in or pull-back into the next scene's main object or screen.",
+    "Light-beam wipe: a bright diagonal wedge sweeps in, the new scene is revealed inside it and keeps it as its light; a dark wedge sweeps it away.",
+    "Lateral truck through one continuous set: two places share a ground band so a single sideways move joins them.",
+    "Tilt to travel: the subject stays centred while ground, sky and planets stream past at different speeds, then the subject leaves the frame and the camera settles on the next idea.",
+    "Gather into a symbol: one light multiplies into scattered points that connect into a line-art icon, which then gains orbit rings that echo the opening.",
+    "Foreground-object wipes: a near shoulder or a near pillar crosses the lens and acts as the cut.",
+    "Frame becomes the mark: the final scene shrinks inside the brand mark's shape at the end."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its subjects (orb in hands, stepped monument, philosopher, lab, rocket, planets, auditorium, receptionist, gallery, job-match UI), its history-of-an-idea story one to one, its characters, its logo or its UI labels; only the camera grammar, continuity devices, timing and the flat purple-night look.",
+    "Source is 16:9 (736x414); the film is usually 9:16. Vertical moves (rise from bottom, tilt up with streaming planets, stacked steps, constellation) translate directly; lateral trucks and wide multi-figure frames must be recomposed (tighter crops, trucks turned into tilts or pushes), keeping the parallax-plane idea.",
+    "The reference has almost no text: Persian on-screen text must be added in calm areas (sky, empty space, screen or panel surfaces), held long enough to read and kept inside the safe zone; text must not ride on fast parallax planes.",
+    "Character acting (turning, gesturing, hand-to-chin) is hand-animated in the source; in code keep characters to a few cut-out pose tweens, blinks and slides, and avoid turnarounds and walk cycles in close shots.",
+    "Glow is the signature light: brand colours replace the purple/lime pair (dark world role plus one bright accent role for the travelling light); banned brand colours are never used even where the reference has them (orange accents, lime glow are mapped to brand-safe roles).",
+    "The logo-outro technique (frame shrinks into the mark) touches brand identity: the brand's own logo outro wins; the technique is only offered if the brand has none.",
+    "The audio track is full-level and was not listened to; cut-to-beat alignment was not measured, so L6 builds sound from the storyboard and voice timing places every cut.",
+    "Colours and timings were read by eye from contact sheets (about ±0.15 s), not sampled or measured per frame."
+  ],
+  "sha256": "ac89d0312035b61df8a914090a23b686e9bd56f9cd0da226483472baf2b7f3a8"
+}

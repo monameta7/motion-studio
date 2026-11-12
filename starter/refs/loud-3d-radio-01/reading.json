@@ -1,0 +1,210 @@
+{
+  "slug": "loud-3d-radio-01",
+  "key": {
+    "sha256": "4af8b237f098a52f66bb0ca1f602e36b9dbd0b7fcd22eccf11070d44d4c9a7b4"
+  },
+  "read_at": "2026-10-27",
+  "probe": {
+    "duration": 24,
+    "w": 1920,
+    "h": 1080,
+    "fps": 30,
+    "audio": true
+  },
+  "rights_note": "given by the owner on 2026-10-27 for Phase 3 (second reference); third-party 'LOUD ONE' animation, origin not stated → plan mode ADAPT, never RECREATE",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party film of unknown origin: borrow the motion language and patterns only, never its shots one by one, its objects' designs, its copy or its logo (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        20,
+        24
+      ],
+      "why": "'LOUD ONE' logo and 'PRE-ORDER NOW' product end card are third-party branding; never borrowed. Our ending is the brand's own logo outro"
+    },
+    {
+      "span": [
+        0,
+        24
+      ],
+      "why": "all English on-screen copy ('hum me somethi…', 'EVERY HIT STARTS AS A HUM.', 'SHAPE IT.', 'DROP IT.', 'IDEAS, OUT LOUD.') is third-party copy; never reused as text"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (4 sheets, all viewed); scene detect gt(scene,0.3) found 0 hard cuts: the film is one continuous camera flight joined by whip pans, so shot changes were placed from the sheets; dense fps=15 sheets at 2.0–3.6 s (first whip) and 19.6–21.2 s (logo flash and pull-back). Audio present but not analysed: whether whips land on music beats is unverified",
+  "shots": [
+    {
+      "id": "r2-s1",
+      "span": [
+        0,
+        2.6
+      ],
+      "shot": "extreme close-up, hero object (blue retro radio)",
+      "camera": "slow push-in with a slight arc to the right along the body, shallow depth of field",
+      "moves": "black LED display on the radio types dot-matrix text letter by letter with a cursor (0.3–1.2 s); a REC pill lights and an orange bar waveform fills the display (1.5 s); camera travels along the body to the big orange button (2.0–2.4 s)",
+      "text": "hum me somethi|",
+      "transition_out": "whip pan up-left: radio body slides past as a foreground wipe with heavy motion blur, about 0.45 s (2.5–2.95 s), ease-in-out, then about 0.5 s settle with a small overshoot",
+      "palette": "cobalt blue body, orange button, chrome ring, black LED screen with white dots, white-to-blue sky haze",
+      "built": "generated (3D render, depth of field, motion blur)",
+      "reusable": "yes: extreme close-up on one hero object whose own screen types the first line, then a whip that uses the object itself as the wipe; in code as 2.5D layers plus blur"
+    },
+    {
+      "id": "r2-s2",
+      "span": [
+        2.6,
+        5.6
+      ],
+      "shot": "low-angle medium, speech-bubble LED sign on a pole (mascot with megaphones below)",
+      "camera": "rises and settles on the sign (settled by about 3.4 s), then a slow push with a slight tilt",
+      "moves": "sign screen is empty, then types a two-line centred statement in white dot-matrix letters (3.9–4.6 s) and holds about 1 s; floating squiggles and props drift in parallax",
+      "text": "EVERY HIT / STARTS AS A HUM.",
+      "transition_out": "whip down the pole with vertical motion blur, about 0.4 s",
+      "palette": "blue sky gradient, cream plastic bubble frame, black screen, white dots, purple and green squiggles",
+      "built": "generated (3D)",
+      "reusable": "yes: the speech-bubble screen is the film's 'home' where the main statements are typed; becomes the brand's statement card"
+    },
+    {
+      "id": "r2-s3",
+      "span": [
+        5.6,
+        8.2
+      ],
+      "shot": "close-up, detail of the pole (ON AIR sign, coiled cables, VU meter)",
+      "camera": "orbits down and around the pole, Dutch tilt, strong depth of field",
+      "moves": "red ON AIR box swings past; a vertical LED meter lights bottom to top green → yellow → red (7.0–7.6 s); coiled cables in the foreground",
+      "text": "ON AIR",
+      "transition_out": "whip right; a flat black object fills the frame as a foreground wipe (8.2–8.6 s)",
+      "palette": "chrome and black pole, red ON AIR, green-yellow-red LEDs, blue sky",
+      "built": "generated (3D)",
+      "reusable": "yes: LED meter filling bottom to top as a level/number bar; foreground-object wipe"
+    },
+    {
+      "id": "r2-s4",
+      "span": [
+        8.6,
+        10.4
+      ],
+      "shot": "medium, floating cassette",
+      "camera": "slow drift and slight roll; cassette floats and tilts toward camera",
+      "moves": "cassette with a printed label word and an orange tab floats in, rotates gently, then tilts away",
+      "text": "SHAPE IT.",
+      "transition_out": "whip past the cassette edge (it passes as a foreground wipe) to the ticker",
+      "palette": "grey-cream cassette, orange tab, black label text, blue sky",
+      "built": "generated (3D)",
+      "reusable": "partly: one word printed on a floating object; object design not borrowed"
+    },
+    {
+      "id": "r2-s5",
+      "span": [
+        10.4,
+        12
+      ],
+      "shot": "medium, LED ticker bar above a stacked speaker totem",
+      "camera": "slow tilt up then hold",
+      "moves": "yellow dot-matrix text scrolls in on a black ticker with arrow glyphs and resolves into a short command",
+      "text": "▶OP ▶ → DROP IT.",
+      "transition_out": "tilt down along the totem",
+      "palette": "black ticker, amber dots, purple and gold totem, blue sky",
+      "built": "generated (3D)",
+      "reusable": "yes: scrolling LED ticker for a short label or step word"
+    },
+    {
+      "id": "r2-s6",
+      "span": [
+        12,
+        13.2
+      ],
+      "shot": "close-up, speaker totem (speaker, red exclamation mark, purple bar)",
+      "camera": "fast pan down, near-macro",
+      "moves": "short accent beat; exclamation mark bobs",
+      "text": "",
+      "transition_out": "whip out to a wide flight, about 0.4 s",
+      "palette": "cream speaker, orange cone, red exclamation, cobalt base",
+      "built": "generated (3D)",
+      "reusable": "partly: one-beat accent insert between statements"
+    },
+    {
+      "id": "r2-s7",
+      "span": [
+        13.2,
+        16
+      ],
+      "shot": "wide, flight around the pole",
+      "camera": "continuous fly-around with parallax, slight roll",
+      "moves": "square letter tiles flip in one at a time from their back side and light up in amber dot-matrix (about 0.4 s per tile, staggered diagonally): L, O, U, D",
+      "text": "L O U D",
+      "transition_out": "whip with motion blur (16.0 s)",
+      "palette": "black tiles with amber dots, cream tile backs, blue sky, floating props",
+      "built": "generated (3D)",
+      "reusable": "yes: key word built from flipping tiles; for Persian, tile per word or per non-joining letter group, never split joined letters"
+    },
+    {
+      "id": "r2-s8",
+      "span": [
+        16,
+        20
+      ],
+      "shot": "low-angle medium, back on the speech-bubble sign",
+      "camera": "settles after the whip, then near-static drift (longest hold of the film)",
+      "moves": "screen shows a white waveform (16.5 s), then types the closing two-line line with the key word in orange (17.0–17.6 s); holds about 2.4 s while small capsules bob around it",
+      "text": "IDEAS, / OUT LOUD.",
+      "transition_out": "white flash on the screen (about 0.13 s) that reveals the logo",
+      "palette": "cream bubble, black screen, white dots with one orange key word, blue sky",
+      "built": "generated (3D)",
+      "reusable": "yes: signature: return to the home screen for the payoff line, one key word in the accent colour, long hold"
+    },
+    {
+      "id": "r2-s9",
+      "span": [
+        20,
+        20.5
+      ],
+      "shot": "medium, logo on the sign",
+      "camera": "begins pulling back with a tilt",
+      "moves": "screen washes white, the third-party logo appears in outline and the sign swings away as the camera retreats",
+      "text": "LOUD ONE",
+      "transition_out": "carry: continuous pull-back into the end card",
+      "palette": "white flash, grey screen",
+      "built": "generated (3D)",
+      "reusable": "no: third-party logo; only the 'screen flash → reveal' idea may be reused"
+    },
+    {
+      "id": "r2-s10",
+      "span": [
+        20.5,
+        24
+      ],
+      "shot": "wide end card, hero radio hanging on cables with letter tiles and pole",
+      "camera": "pull-back settles, slow drift hold about 3 s",
+      "moves": "radio returns (bookend of r2-s1) hanging from coiled cables, its display reads a call to action; letter tiles drop into a staggered diagonal and flip to their lit side",
+      "text": "PRE-ORDER NOW / L O U D",
+      "transition_out": "none (end)",
+      "palette": "cobalt radio, orange button, amber tiles, white-blue haze",
+      "built": "generated (3D)",
+      "reusable": "partly: pull back to a wide end card where the opening hero and the tiles meet; product card and copy not borrowed"
+    }
+  ],
+  "visual_language": "3D-rendered toy-like world (glossy plastic, chrome, coiled cables) floating in a saturated cobalt-to-white sky, shot with shallow depth of field and heavy motion blur. There are no hard cuts: one continuous camera flies between objects that hang around a central pole, joined by whip pans of about 0.4–0.45 s (ease-in-out, blur peak mid-move, small overshoot settle of about 0.5 s), often with a nearby object passing as a foreground wipe. All text lives on in-world LED screens in dot-matrix letters (white for statements, amber for labels and tiles, one orange key word), typed letter by letter with a cursor or scrolled like a ticker; never as flat overlay type. Rhythm is fast: 10 shots in 24 s (about 2.4 s each), with a whip roughly every 2.5–3 s, and a longer 4 s hold for the payoff line. Palette: cobalt blue, orange accent, cream plastic, black screens, small purple, green and red props. Signature moments: the hero object's own screen typing the opening line, the speech-bubble sign as the home for statements, tiles flipping in to spell the key word, the white screen flash, and the pull-back end card that brings the opening hero back. Format is 16:9; the vertical pole composition reframes naturally to 9:16.",
+  "continuity": [
+    "The speech-bubble LED sign on the pole is home: visited three times (r2-s2, r2-s8, r2-s9) and always where the main statement is typed.",
+    "The hero radio bookends the film: extreme close-up at the start (r2-s1), whole and hanging in the end card (r2-s10).",
+    "One text medium throughout: dot-matrix LED letters on the radio display, the sign, the ticker and the tiles.",
+    "The letter tiles that spell the key word (r2-s7) return in the end card (r2-s10).",
+    "Cables and the central pole physically connect every object, so the camera travels along them from one shot to the next.",
+    "Whips use a nearby object (radio body, black panel, cassette) as the wipe, so the world never cuts.",
+    "Small floating props (squiggles, capsules) persist as parallax layers in every shot and keep the space continuous."
+  ],
+  "look": "Real 3D (not flat, not 2.5D): toy-like objects with rounded bevelled edges; glossy plastic bodies with soft specular highlights, chrome rings and poles, matte black emissive LED screens; soft studio key light from upper left plus a bright sky fill, soft contact shadows and ambient occlusion where objects meet; shallow depth of field (background props blurred), heavy directional motion blur on whips; background is an open sky gradient with soft haze, no ground plane.",
+  "code_translation": "Not code-native (3D render). Per D55 (2026-11-02) it is built as real 3D in code with three.js: bevelled/rounded geometry, MeshPhysicalMaterial for glossy plastic (clearcoat) and chrome (metalness), emissive canvas textures for LED screens, one soft key light with soft shadows plus hemisphere sky fill, depth of field as a blur pass (or layered blur), whips as a fast camera rotation with directional motion blur, sky as a large gradient backdrop with haze. Never flattened into 2D shapes. Persian LED text must be rendered from the shaped brand font onto a canvas and then dotted, never with a Latin pixel font, so letters stay joined.",
+  "updated_at": "2026-11-02 (look + code_translation per D55; cache key unchanged)",
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the object designs, the copy, the 'LOUD ONE' logo or the shot order one by one.",
+    "16:9 source, 9:16 films: compositions must be reframed vertically, with the pole/sign stack centred inside the safe zone.",
+    "Heavy motion blur and fast whips (about every 2.5 s) must still respect minimum hold times for Persian text; readability wins over pace.",
+    "Dot-matrix effect on Persian text can hurt legibility at small sizes; keep dots fine and text large.",
+    "Reference colours (cobalt, orange) map onto brand colour roles: sky = background role, hero body = primary role, key word = accent role; never used as literal hex values."
+  ],
+  "sha256": "4af8b237f098a52f66bb0ca1f602e36b9dbd0b7fcd22eccf11070d44d4c9a7b4"
+}

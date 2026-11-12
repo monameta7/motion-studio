@@ -1,0 +1,178 @@
+{
+  "name": "hook",
+  "version": "2.9",
+  "description": "v2.8 + explainer carrier example, two-layer proof (live calculation + sourced stats), process skeleton, visual handoff note; light router SKILL.md.",
+  "files_excluding_manifest": 34,
+  "files": [
+    {
+      "path": "CHANGELOG-v2.1.md",
+      "size_bytes": 3076,
+      "sha256": "e77c5cda56f5e20ee2913ec8c2fba04759eecf214681779f58f0fb12ce25188f"
+    },
+    {
+      "path": "CHANGELOG-v2.2.md",
+      "size_bytes": 3765,
+      "sha256": "be23a6a6f7396d0da0b9a461e5ee040f17478c4248f6b320effd6e92787cf7dd"
+    },
+    {
+      "path": "CHANGELOG-v2.3.md",
+      "size_bytes": 3779,
+      "sha256": "8c9dbfd4a2a364739e06b1dbda7bedfc37ffea70ce873e49174de9d946602672"
+    },
+    {
+      "path": "CHANGELOG-v2.4.md",
+      "size_bytes": 2954,
+      "sha256": "0ed59d269c6ff94999573edaa9d8e8ae047381650fb36579d53558f9747ce7a7"
+    },
+    {
+      "path": "CHANGELOG-v2.5.md",
+      "size_bytes": 3148,
+      "sha256": "d4fb3a96085ea2b497b9d8a098149cd9e52e508e9fe409c702dfbcd44b6f374b"
+    },
+    {
+      "path": "CHANGELOG-v2.6.1.md",
+      "size_bytes": 3257,
+      "sha256": "f8bf23053748d05e6df3c79daa796fe0560f29360a2ee6b0b12ea4a30cbe1b47"
+    },
+    {
+      "path": "CHANGELOG-v2.6.md",
+      "size_bytes": 3332,
+      "sha256": "88072ef567efcb6af071e21b1d353fe16bdccbaa42be247c770048ccf31ced84"
+    },
+    {
+      "path": "CHANGELOG-v2.7.md",
+      "size_bytes": 3800,
+      "sha256": "6aaeb16afef1a5239c371c275a213a5b00360a4eeddb6ad25f6368bfd5666b5c"
+    },
+    {
+      "path": "CHANGELOG-v2.8.md",
+      "size_bytes": 4235,
+      "sha256": "7ab6c7da5f4ec03531014da9fc6c5399c35f3c0778e3957f215ab220ed0dc978"
+    },
+    {
+      "path": "CHANGELOG-v2.9.md",
+      "size_bytes": 1356,
+      "sha256": "eb9c8bfef493342bdd80d52073538f739014a5ffa1f5aee440b52121fc1c9f89"
+    },
+    {
+      "path": "SKILL.md",
+      "size_bytes": 63861,
+      "sha256": "95a4e87b9c4ee54f6570ba1cb55b2afb5ccd5f6718f745bb6152f72a109a5d55"
+    },
+    {
+      "path": "TRUTH-LOOP-AUDIT-v2.6.md",
+      "size_bytes": 19795,
+      "sha256": "73f949211ce79e872fa14ec010efb81340c213b2e11f8a1ab30b564991af801b"
+    },
+    {
+      "path": "layers/L0-parameters.md",
+      "size_bytes": 11273,
+      "sha256": "070d5456c155312173363f3066df33df63ba8557bf3f5c5427eb76d507432409"
+    },
+    {
+      "path": "layers/L0.5-audience.md",
+      "size_bytes": 3986,
+      "sha256": "1ddf94377d713c7c8d1e0307f5b5d27ca1fdf3e0f5e0108f8b3ebc77e995447f"
+    },
+    {
+      "path": "layers/L1-style.md",
+      "size_bytes": 9171,
+      "sha256": "cb766aa3677bb28a30a20d80aecbda612c765739c4994beb37247946b2c79506"
+    },
+    {
+      "path": "layers/L1.5-angle.md",
+      "size_bytes": 6213,
+      "sha256": "826854843da88d54c444935ab5a623abe6282d529c5233f424a7b99c01e5c4d2"
+    },
+    {
+      "path": "layers/L2-hooks-qc.md",
+      "size_bytes": 5618,
+      "sha256": "9716ccd8b3ae4681ab4f3033f36a7405a1f9e4da5612d6afb75ac363648e80ba"
+    },
+    {
+      "path": "layers/L4-checklist-narrative.md",
+      "size_bytes": 23305,
+      "sha256": "8d59f4c43feb26a28001988639b46f4bfea1021d98093a23fb51dc2303362046"
+    },
+    {
+      "path": "layers/L4.7-retention.md",
+      "size_bytes": 6893,
+      "sha256": "76cd976222c710139ec4352913baffaaaefe252f288593f30e7a26038d9d1102"
+    },
+    {
+      "path": "layers/L5-filters-cta.md",
+      "size_bytes": 15772,
+      "sha256": "31262d4e0e12cace1545a5c9ebc0cb04c72d4ce495e81c6ea90b81a48755bc99"
+    },
+    {
+      "path": "layers/L6-output.md",
+      "size_bytes": 19219,
+      "sha256": "ebc0afe1534bcc3c12aa3697a4f37d56ef69b7d3d50b12498b4e2881ab0dfd86"
+    },
+    {
+      "path": "layers/L7-scoring.md",
+      "size_bytes": 9211,
+      "sha256": "6039955759560447827c91ad91d94beb62ded2ba222d45d2ac1e2b7c64095899"
+    },
+    {
+      "path": "layers/L8-L9-test-gate.md",
+      "size_bytes": 8034,
+      "sha256": "f0b5e42e1118af18cdadfee4450f62528c22a5029e10e8acacfde904a2735272"
+    },
+    {
+      "path": "layers/common-errors.md",
+      "size_bytes": 7140,
+      "sha256": "409bd42435935d888d79ba8fda6cd22386528c2844ef096a0ab837043ee858cb"
+    },
+    {
+      "path": "references/cta-bridge.md",
+      "size_bytes": 9847,
+      "sha256": "099c2b178897965ff9178f64355919c819f53584e0e638fc70d93b9707850559"
+    },
+    {
+      "path": "references/diagnose.md",
+      "size_bytes": 18315,
+      "sha256": "b8c710cdc42cb8731b82ffc5a2d65a77d9ccebbed58540715e7929770133573f"
+    },
+    {
+      "path": "references/explainer-examples.md",
+      "size_bytes": 6967,
+      "sha256": "39241eeea2b49801899db621df16ed456639afba2595952e133ff67d855e5896"
+    },
+    {
+      "path": "references/explainer.md",
+      "size_bytes": 12035,
+      "sha256": "edad11f380ff12855b8f9171680ce46a53ed246f54a298319dc5f0e361c4dbe7"
+    },
+    {
+      "path": "references/hook-bank.md",
+      "size_bytes": 21819,
+      "sha256": "3f63920f9441d42c63573f307bc2f69d3ce70d83426a0456e5877a072d329318"
+    },
+    {
+      "path": "references/hook-qc.md",
+      "size_bytes": 18625,
+      "sha256": "47a054c84ed52ab099ecd16932bed649aa223b3d74f7ec8fed256e59452036f8"
+    },
+    {
+      "path": "references/narrative.md",
+      "size_bytes": 26110,
+      "sha256": "8306edab19cef05e8e5597f867e7130e49e66d0c2a0bb88c1b0b982be6a0598f"
+    },
+    {
+      "path": "references/publish-rules.md",
+      "size_bytes": 26590,
+      "sha256": "9f8ce06c6cf8bc208a823449e35d6f0234a18647bf744b7e04e3ef8d9707e50e"
+    },
+    {
+      "path": "references/v2-core-standard.md",
+      "size_bytes": 22492,
+      "sha256": "fa4ee6ca9e17e905383d6a9fd00056ac16b28ebfff00e89903059d3c37bca83c"
+    },
+    {
+      "path": "references/voice.md",
+      "size_bytes": 5196,
+      "sha256": "46553817d38d7da00aa1c63cb61a6eb8598010040ac1a179f33458c50a926cb3"
+    }
+  ]
+}

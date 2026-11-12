@@ -1,0 +1,266 @@
+{
+  "slug": "purple-3d-type-01",
+  "key": {
+    "sha256": "ae7577ee9e80d6be90261e316d6447f45ed111c071be939be46aab6f5677b61d"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 8.82,
+    "w": 720,
+    "h": 960,
+    "fps": 50,
+    "audio": false,
+    "format_note": "3:4 frame made of three stacked landscape panels, each 720x320 (9:4): top y 0-320, middle y 320-640, bottom y 640-960. Each panel plays its own sequence at the same time. No audio stream."
+  },
+  "rights_note": "third-party short from Pinterest (file «Pinterest (2).mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "تایپوگرافی درشت بنفش با اشیای سه‌بعدی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party short of unknown origin: borrow the motion language and look only, never its shots one by one, its objects' designs, its copy, its stat or its service name (owner note); a voiceover package defaults to REEL"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        8.82
+      ],
+      "why": "all Russian on-screen copy ('ЭКСТРАНЕТ', 'ДЛЯ ЛЮБОГО ТИПА ОБЪЕКТОВ', 'НА САМОЛЕТ / ПОЕЗД / АВТОБУС', '28 МЛН ЧЕЛОВЕК', 'ПОЛЬЗУЮТСЯ СЕРВИСОМ ЕЖЕМЕСЯЧНО') is third-party copy; never reused as text, and the '28 million' figure is their claim, never a number in our film"
+    },
+    {
+      "span": [
+        0,
+        8.82
+      ],
+      "why": "the in-phone app (yellow globe logo, booking screens) and the avatar photos of people around the globe are third-party branding and faces; never reused"
+    },
+    {
+      "span": [
+        0,
+        8.82
+      ],
+      "why": "the triptych frame itself is a showcase/preview layout of a landscape film; our 9:16 film takes each panel's motion language, not the 3:4 collage format by default"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheet fps=2 (1 sheet, viewed) showed the frame is three stacked panels; scene detect gt(scene,0.25) run separately on each 720x320 crop: top cut 7.62; middle cuts 3.22, 7.62; bottom cuts 1.82, 3.20, 4.22, 6.22, 7.62, 8.64 (other transitions are motion-blurred pushes with no detectable cut). Dense sheets fps=10 per panel over the whole clip (3 sheets, all viewed) and fine sheets at 25 fps on top 1.0-1.78 and 4.6-5.18 s, middle 4.4-4.98, 5.9-6.38 and 7.5-7.98 s, bottom 6.0-6.58, 7.4-7.98 and 8.2-8.78 s. The middle and bottom panels repeat on a 4.4 s cycle; the top panel runs one 7.62 s cycle; 7.62 s is a hard cut on all three panels (loop seam). Spans are taken from the clearest instance; 'also_at' lists repeats. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r3-s1",
+      "panel": "top",
+      "span": [
+        0,
+        1.02
+      ],
+      "also_at": [
+        [
+          7.62,
+          8.82
+        ]
+      ],
+      "shot": "close-up, hero 3D smartphone tilted back, small 3D props around it",
+      "camera": "slow push-in with a slight orbit to the left; shallow depth of field",
+      "moves": "phone drifts and turns slowly; small glossy props (percent sign, key, check mark, sphere) float with gentle parallax; around 0.9-1.0 s the phone starts to spin",
+      "text": "none",
+      "transition_out": "spin wipe: the phone spins about its vertical axis (front → edge → back → front, about 360° in about 0.55 s, 1.02-1.6 s, fast start, strong ease-out); the background hard-cuts from light lavender to black at the first edge-on frame, hidden by the spin and motion blur",
+      "palette": "light lavender to white gradient, lilac/periwinkle phone, white highlights",
+      "built": "generated (3D render)",
+      "reusable": "yes: the hero object's own fast spin used as the wipe that hides a background change; motion only, not the phone design"
+    },
+    {
+      "id": "r3-s2",
+      "panel": "top",
+      "span": [
+        1.02,
+        4.8
+      ],
+      "also_at": [],
+      "shot": "medium, one giant headline word across the top, hero phone rising in front of it",
+      "camera": "near static; slow upward drift of the phone (or slow tilt down) over about 3 s",
+      "moves": "the word slides in from the right during the spin and settles in about 0.3 s (ease-out, slight motion blur); the phone finishes its spin and rises slowly in front of the word, covering part of its letters; a notification card pops out beside the screen (about 2.2 s, scale pop with small overshoot); the screen content swaps to a UI list (about 3.7 s); small props (check mark, key, percent sign) drift up from the bottom",
+      "text": "one word, white heavy condensed caps, cap height about a third of the panel, spanning the full width edge to edge",
+      "transition_out": "carry into r3-s3: the word shrinks into a headline block (no cut)",
+      "palette": "black top fading into a deep violet glow at the bottom, white type, lilac phone and props",
+      "built": "generated (3D) with type composited inside the depth order (type behind the phone)",
+      "reusable": "yes: one huge word that fills the width with the 3D hero object rising in front of it, so type and object share one depth stack; motion only"
+    },
+    {
+      "id": "r3-s3",
+      "panel": "top",
+      "span": [
+        4.8,
+        7.62
+      ],
+      "also_at": [],
+      "shot": "medium, three-line headline block at left, phone at right with soft 3D blob shapes",
+      "camera": "slow drift; 7.2-7.6 s the whole layout pans to the left, accelerating (ease-in), type cropped by the left edge",
+      "moves": "4.8-5.1 s: the giant word scales down to about 45% and moves to the top-left as line 1, while lines 2 and 3 slide in from the left edge (staggered about 0.04 s); the phone shifts right and soft glossy blob shapes rise in from the bottom with an elastic settle; then hold about 2.1 s with gentle floating",
+      "text": "three short lines of white heavy condensed caps, left-aligned block, first line is the former giant word",
+      "transition_out": "accelerating pan left, then hard cut at 7.62 s back to the light close-up (loop seam)",
+      "palette": "black to deep violet, white type, lilac blobs, white phone screen",
+      "built": "generated (3D) plus composited type",
+      "reusable": "yes: hero word collapses into the first line of a headline block when its supporting lines arrive; motion only"
+    },
+    {
+      "id": "r3-s4",
+      "panel": "middle",
+      "span": [
+        3.22,
+        4.6
+      ],
+      "also_at": [
+        [
+          7.62,
+          8.82
+        ],
+        [
+          0,
+          0.1
+        ]
+      ],
+      "shot": "medium, two-line phrase (short fixed word over the changing noun) with a 3D vehicle passing between the lines, translucent 3D card panels behind",
+      "camera": "static frame; the panels behind sit at an angle in perspective",
+      "moves": "enters on a hard cut to black: a translucent violet card panel swings in, the text slides in from the right with motion blur and settles in about 0.25 s (ease-out); the vehicle crosses the frame left to right between and over the two lines in about 1.1 s (near linear), tucked behind one line and in front of the other",
+      "text": "two lines, white heavy condensed caps: a short fixed word on line 1, the changing noun on line 2, large",
+      "transition_out": "revolving-panel whip about 0.3 s: the text slides out left (ease-in, motion blur), the translucent card panels turn about their vertical axes like a revolving door, the background changes tone behind them, the next text slides in from the right",
+      "palette": "black with a deep violet glow, mid-violet translucent panels, white type, lilac vehicle with one yellow accent",
+      "built": "generated (3D) with type in the depth order",
+      "reusable": "yes: a repeating sentence frame where only the last word and its 3D object change, the object passing between the lines; motion only"
+    },
+    {
+      "id": "r3-s5",
+      "panel": "middle",
+      "span": [
+        4.6,
+        6.05
+      ],
+      "also_at": [
+        [
+          0.1,
+          1.6
+        ]
+      ],
+      "shot": "medium, same two-line frame, next noun and next 3D vehicle",
+      "camera": "static frame",
+      "moves": "after the revolving-panel whip the text settles; the vehicle travels left to right through the lines over about 1.2 s and leaves at the right",
+      "text": "same fixed word on line 1, new noun on line 2",
+      "transition_out": "horizontal push about 0.2 s: old text slides left and out while the new text slides in from the right at the same time; no black, the background lightens one step",
+      "palette": "mid violet background, lighter violet panels, white type, lilac vehicle with yellow accent",
+      "built": "generated (3D) with type in the depth order",
+      "reusable": "yes: same frame, next item; a simple push used between two items of the same list"
+    },
+    {
+      "id": "r3-s6",
+      "panel": "middle",
+      "span": [
+        6.05,
+        7.62
+      ],
+      "also_at": [
+        [
+          1.6,
+          3.22
+        ]
+      ],
+      "shot": "medium, same two-line frame, third noun and third 3D vehicle",
+      "camera": "static frame",
+      "moves": "the vehicle drives in from the right and settles beside line 1 with a small bounce (about 0.3 s), holds about 1 s, then drives out to the left with motion blur while the text starts to slide left",
+      "text": "same fixed word on line 1, third noun on line 2",
+      "transition_out": "hard cut to black (3.22 s and 7.62 s), into the first item again with the panel swing",
+      "palette": "light lavender background, pale violet panels, white type, yellow-and-grey vehicle (the warmest frame of the cycle)",
+      "built": "generated (3D) with type in the depth order",
+      "reusable": "yes: background value steps dark → mid → light across the three items of one list, then a hard cut back to dark restarts it"
+    },
+    {
+      "id": "r3-s7",
+      "panel": "bottom",
+      "span": [
+        3.2,
+        4.22
+      ],
+      "also_at": [
+        [
+          7.62,
+          8.64
+        ]
+      ],
+      "shot": "extreme close-up, a giant number and unit far larger than the frame, set in violet",
+      "camera": "lateral tracking: the number travels from the right edge to the left over about 1 s, slow first then accelerating hard in the last 0.2 s (ease-in)",
+      "moves": "the digits enter from the right one after another; a soft, out-of-focus white sphere in the foreground covers the bottom of the digits (depth of field), so the number sits inside the 3D space, not on top of it",
+      "text": "a number and its unit, violet heavy condensed caps, cap height larger than the panel",
+      "transition_out": "hard cut (4.22 s / 8.64 s) on the fastest frame of the track to the globe shot, where the same number appears small",
+      "palette": "white to pale lavender fog, violet type, white blurred foreground sphere",
+      "built": "generated (3D) with type in the depth order",
+      "reusable": "yes: the key number shown first giant and moving, then cut to the same number as a small label on its object (scale contrast); motion only, never their figure"
+    },
+    {
+      "id": "r3-s8",
+      "panel": "bottom",
+      "span": [
+        4.22,
+        6.22
+      ],
+      "also_at": [
+        [
+          0,
+          1.82
+        ]
+      ],
+      "shot": "medium, glossy 3D globe with the stat label across it and small round avatar bubbles orbiting",
+      "camera": "holds about 1.2 s, then a smooth pull-back (dolly out) about 0.6 s that leaves the globe small in white space",
+      "moves": "the label wipes in from the right across the globe (about 0.3 s, ease-out); avatar bubbles and tiny tags pop in one after another (stagger about 0.08 s, scale with overshoot); on the pull-back the bubbles drift outwards and fade",
+      "text": "one short line (number + noun) in violet heavy condensed caps across the globe",
+      "transition_out": "hard cut (6.22 s / 1.82 s) from the pull-back into giant converging words (r3-s9)",
+      "palette": "pale lavender and white, lilac glossy globe, violet type, small warm avatar dots with a yellow accent",
+      "built": "generated (3D) plus composited type",
+      "reusable": "yes: one object carries the number as its label, small items pop around it, then the camera pulls back to clear the space; motion only, never the avatars"
+    },
+    {
+      "id": "r3-s9",
+      "panel": "bottom",
+      "span": [
+        6.22,
+        7.62
+      ],
+      "also_at": [
+        [
+          1.82,
+          3.2
+        ]
+      ],
+      "shot": "wide, three-line statement centred, glossy torus rings and spheres floating around it",
+      "camera": "slow push-out over about 1.1 s",
+      "moves": "the three lines arrive giant and scattered (each about 3x, line 1 from top-left, line 2 from right, line 3 from bottom-right, cropped by the frame) and converge and shrink to their final size in about 0.25 s (strong ease-out, expo-like); two small inline icons pop into a gap in line 2 (about 6.32 s); torus rings drift around the text with parallax",
+      "text": "three short lines, white heavy condensed caps, centred, with small icons inline",
+      "transition_out": "dip: a black vignette sweeps up from the bottom-right in about 0.12 s, then hard cut to white for the giant number (r3-s7)",
+      "palette": "deep violet gradient, glossy lilac rings, white type, one yellow inline icon",
+      "built": "generated (3D) plus composited type",
+      "reusable": "yes: oversized scattered lines that slam together into a calm centred statement; inline icons that sit inside the sentence"
+    }
+  ],
+  "visual_language": "Bold kinetic type composited into a soft, glossy 3D world. Type is the hero: white (or violet on light) heavy condensed sans caps, set huge, often wider than the frame, then reduced into tidy headline blocks. The 3D objects (phone, vehicles, globe, rings, blobs) live in the same depth stack as the type: they pass between lines, rise in front of words, and blurred foreground spheres veil the bottom of giant numbers. Medium: 3D render with type placed in depth, no hand-drawn or flat-icon style. Rhythm is fast and looping: per panel shots last about 1.0-2.0 s (vehicles about 1.3-1.5 s each, average about 1.5 s); no audio, so cuts are not beat-synced; every sequence loops seamlessly (top on 7.62 s, middle and bottom on a 4.4 s cycle). Moves are snappy in and smooth out: text slides and type collapses take 0.2-0.3 s with strong ease-out, whips about 0.3 s with motion blur, exits accelerate (ease-in); holds float gently. Transition kit: hero-object spin wipe, revolving translucent panel whip, simple horizontal push, hard cut to black, dip by dark vignette, scale-contrast cut (giant number → small label). Palette is monochrome violet in many values (black, deep violet, mid violet, lavender, near-white) with white type and a single warm yellow accent. Signature moments: the giant word with the hero object rising in front of it, the repeating two-line sentence frame whose last word and object change, the giant number tracking past a blurred foreground sphere, and the scattered oversized lines that slam together. Source format is a 3:4 triptych of three 9:4 landscape panels (a showcase layout); in 9:16 each panel's grammar is used full-frame, with stacked type above or below the object.",
+  "look": "Real 3D (not flat, not 2.5D): soft rounded objects with generous bevels; glossy plastic and soft-touch materials with broad soft specular highlights and gentle subsurface-like falloff, in lilac/periwinkle; translucent frosted-glass card panels with rounded corners; soft diffuse studio light, no hard shadows, light ambient occlusion only; shallow depth of field with large out-of-focus foreground spheres and rings; motion blur on spins, pushes and whips; backgrounds are smooth gradients and soft fog (black-to-violet glow, mid violet, lavender-to-white) with no ground plane. Type is flat (not extruded) but sorted in depth with the 3D objects and veiled by foreground blur.",
+  "code_translation": "Not code-native (3D render). Per D55 it is built as real 3D in code with three.js: rounded/bevelled geometry, MeshPhysicalMaterial with clearcoat and soft roughness for the glossy plastic, transmission/frosted MeshPhysicalMaterial (or semi-transparent planes with a blur behind) for the card panels, a soft key light plus hemisphere fill with no hard shadows, depth of field as a blur pass with large foreground blur spheres, motion blur on fast moves (directional blur or frame blending). Type is rendered from the shaped brand Persian font into canvas textures on planes placed inside the 3D scene, so objects can pass between lines and foreground blur can veil it; never flattened into a 2D overlay above everything and never with joined Persian letters split. Backgrounds are large gradient/fog backdrops. Never flattened into 2D shapes.",
+  "continuity": [
+    "Repeating sentence frame: one fixed short line stays in place while only the last word and its 3D object change, item after item (list grammar).",
+    "Type and 3D objects share one depth stack: an object passes between two lines, rises in front of a word, or is veiled by a foreground blur sphere, so every shot reads as one space.",
+    "A hero object's own fast spin is the wipe that hides a hard background change.",
+    "Translucent 3D card panels stay behind the type across a whole sequence and revolve like a revolving door to carry one item into the next.",
+    "Background value ramp: consecutive items step dark → mid → light, then a hard cut to dark restarts the cycle.",
+    "Scale contrast match: the key number is shown giant and moving, then the cut lands on the same number as a small label on its object.",
+    "Hero word → headline block: the giant word shrinks into line 1 when its supporting lines slide in, with no cut.",
+    "Pull back into empty space, then cut into oversized scattered lines that converge into a calm statement.",
+    "Dip by a dark vignette sweeping across the frame just before a hard cut.",
+    "Inline icons sit inside a sentence gap, so small objects and words share one line.",
+    "Seamless loop: each sequence ends on a move that cuts back to its own first frame."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the object designs (phone, plane, train, bus, globe), the Russian copy, the '28 million' figure, the avatars, the in-phone app logo, or the shot order one by one.",
+    "Source is a 3:4 triptych of 9:4 landscape panels, not a single 9:16 film: compositions must be rebuilt vertically (type stacked above or below the object, inside the 9:16 safe zone). Using the triptych as a layout would make text too small.",
+    "Reference shots are short (about 1.0-1.5 s per item) and type slides are 0.2-0.3 s: Persian text hold times and minimum sizes win over pace (readability ranks above the reference).",
+    "Giant words and numbers bleed off the frame in the reference: a Persian word that bleeds must still be readable inside the safe zone for its hold time, and joined letters are never split across the edge mid-word in a way that breaks reading.",
+    "Text in the reference enters from the right and exits left (LTR reading flow); direction for Persian follows references/rtl-grammar.md.",
+    "No audio in the reference: cut rhythm is visual only; L6 builds sound from the storyboard.",
+    "Reference colours (black, violet values, lavender, white type, yellow accent) map onto brand colour roles (background ramp, primary surface, text, accent); never used as literal hex values. Colours were read by eye, not sampled."
+  ],
+  "sha256": "ae7577ee9e80d6be90261e316d6447f45ed111c071be939be46aab6f5677b61d"
+}

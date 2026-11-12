@@ -1,0 +1,6 @@
+{
+  "summary": "Implementation plan for AvaFarsi (آوا فارسی), a modern high-fidelity Persian Text-to-Speech Studio powered by Gemini 3.8 Flash Lite TTS, featuring RTL layout, audio waveform visualizer, pitch/speed controls, audio downloads, sample texts, diacritics tools, and speech history.",
+  "updatedAt": "2026-10-17T05:54:04.261725198Z",
+  "requestFeedback": true,
+  "userFacing": true
+}

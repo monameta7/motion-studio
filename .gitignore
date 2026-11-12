@@ -1,0 +1,13 @@
+# The user's own folders: never in git, never touched by an update.
+/brand/
+/jobs/
+/data/
+/refs/
+/.motion/
+/config/app.config.json
+/.install-state.json
+
+node_modules/
+__pycache__/
+*.log
+.env

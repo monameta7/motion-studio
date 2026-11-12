@@ -1,0 +1,248 @@
+{
+  "slug": "paper-plane-poster-01",
+  "key": {
+    "sha256": "04494af9bb4b6be62f1138cb87f538cb176a3e03a93fe64c8afff3646098363a"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 11.656,
+    "w": 720,
+    "h": 1280,
+    "fps": 24,
+    "audio": true
+  },
+  "rights_note": "third-party short from Pinterest (file «Pinterest.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "why": "third-party film of unknown origin: borrow the motion language, the travelling-object continuity and the poster look only, never its shots one by one, its objects, its story or its copy (owner note); a voiceover package defaults to REEL (EXPLAINER also fits if the package is a narrated story)"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        11.66
+      ],
+      "why": "the English chat copy ('Are we still friends?', 'Seen') is third-party text; never reused as text or voice"
+    },
+    {
+      "span": [
+        0,
+        11.66
+      ],
+      "why": "the story (a message to a friend that ends in a crumpled note and a sad face) and its props (phone in hand, city, sun tower, satellite, tram, house, crumpled paper with heart, sad face) are the reference's subject and scenery; never copied. Setting and subjects come from the voice-over"
+    },
+    {
+      "span": [
+        11.5,
+        11.66
+      ],
+      "why": "about 4 frames of black after the loop frame; not part of the motion language"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 (2 sheets, both viewed) and dense fps=8 sheets over the whole film (4 sheets, all viewed, because shots average about 1 s); scene detect gt(scene,0.3) found cuts or cut-like changes at 2.58, 3.63–3.88, 4.17, 7.29, 8.46–8.67 and 10.33–10.58 s; the other shot changes (0.5, 1.5, 5.3–5.4, 6.35, 9.85, 11.1 s) are carry-throughs, morphs or pixel dissolves placed from the dense sheets. Audio present but not analysed: whether cuts land on music beats is unverified",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        0.5
+      ],
+      "shot": "medium close-up, a hand-held phone at a slight tilt, chat bubble in the middle of the screen",
+      "camera": "near-static, very slight drift",
+      "moves": "nothing but a tiny drift; the bubble is the object that will travel",
+      "text": "Are we still friends? / Seen",
+      "transition_out": "carry: the bubble lifts off the screen and flies toward camera, its edge passing as a foreground wipe into the next space (about 0.12 s, 0.45–0.6 s)",
+      "palette": "charcoal background, cream phone outline and bubble, thin cream line-drawn hand, tiny pink status word",
+      "built": "code (flat vector with a soft gradient sheen on the phone edge)",
+      "reusable": "yes: open on a small object that leaves its frame and becomes the traveller; the object itself makes the first transition"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        0.5,
+        1.5
+      ],
+      "shot": "wide, low-poly street canyon between tall blocks, one-point perspective",
+      "camera": "fast forward fly-through with a slight roll, then tilts up (1.3–1.5 s)",
+      "moves": "the traveller flies away into depth and refolds into a paper plane mid-flight (about 1.0–1.15 s, snappy); thin pink laser lines streak toward the vanishing point; blocks slide past in parallax",
+      "text": "",
+      "transition_out": "tilt-up reveal: the camera rises past the block tops into a flat poster frame (about 0.2 s, ease-out)",
+      "palette": "near-black blocks, hot pink glow on block tops and sky, thin pink lines, cream traveller",
+      "built": "generated (3D low-poly, flat shading plus gradient glow); buildable in code as real 3D boxes",
+      "reusable": "yes: fly-through of a deep corridor of simple blocks while the traveller changes form mid-flight; motion only, never the city"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        1.5,
+        2.58
+      ],
+      "shot": "wide flat poster: big cream half-disc on the horizon, black foreground silhouettes with thin pink edge lines",
+      "camera": "static frame, then a fast push into the disc (2.45–2.58 s, ease-in)",
+      "moves": "the central tall shape bursts upward into hundreds of small pink particles (1.6–2.4 s, smooth, particles drift and fade); sharp black and pink shards snap in from both sides (0.15 s, snappy); the traveller rises small through the middle",
+      "text": "",
+      "transition_out": "push into the bright disc until it fills the frame, hard cut on the brightest frame to a dark frame where a circle answers it (circle match cut, 2.58 s)",
+      "palette": "hot pink sky, cream disc, black silhouettes, pink edge lines and particles",
+      "built": "code (flat vector, particle burst, grain)",
+      "reusable": "yes: one solid shape that dissolves into a particle burst; push into a circle for a circle-to-circle match cut"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        2.58,
+        3.6
+      ],
+      "shot": "medium, symmetric centred subject inside a pink ring on a dark starfield with soft blurred spheres at the edges",
+      "camera": "slow push-in (about 1 s, linear)",
+      "moves": "the traveller flies up from the bottom edge toward the centre; panels on both sides light pink one by one (3.0–3.2 s, stepped); the pink ring shrinks and closes around the centre like an iris (3.2–3.55 s, ease-in)",
+      "text": "",
+      "transition_out": "shape wipe: a wavy ribbon snakes up from the bottom to the centre and floods the frame (3.6–3.7 s)",
+      "palette": "near-black starfield, pink ring and panel fills, cream-to-grey gradient metal, cream traveller",
+      "built": "code (flat vector with radial gradients, star noise, blurred spheres as depth)",
+      "reusable": "yes: symmetric hero centred in a ring; parts light up in sequence as a count; ring closing as an iris"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        3.6,
+        4.1
+      ],
+      "shot": "full-frame graphic morph bridge",
+      "camera": "static",
+      "moves": "the wavy ribbon flips colour cream → black → pink in alternate frames, flattens into a zigzag pyramid and then into a clean pink triangle (about 0.5 s, stepped then smooth)",
+      "text": "",
+      "transition_out": "morph: the triangle becomes the road of the next shot in one-point perspective (4.1–4.17 s)",
+      "palette": "cream, black and pink swapped as solid fills",
+      "built": "code (SVG path morph with colour swaps)",
+      "reusable": "yes: shape morph that carries the eye from one shot's form to the next shot's layout; colour flips as a beat"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        4.1,
+        5.35
+      ],
+      "shot": "wide, pink tunnel in one-point perspective with streaked vertical pillars and pixel-stepped edges",
+      "camera": "forward dolly at speed, slight shake",
+      "moves": "vertical speed streaks with heavy blur on both sides; the traveller dives in from the top, then flies beside a vehicle front that grows from the vanishing point (4.4–5.3 s, linear growth); small dark sphere drifts past",
+      "text": "",
+      "transition_out": "pixel dissolve: the frame breaks into coarse mosaic blocks for about 2 frames (5.3–5.4 s)",
+      "palette": "hot pink, black, cream traveller, pink glow at the vanishing point",
+      "built": "code (layered gradients, blur streaks, mosaic filter)",
+      "reusable": "yes: speed tunnel toward a growing subject; pixel/mosaic dissolve as a cut"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        5.4,
+        6.35
+      ],
+      "shot": "flat pink field with black pillar pairs hanging from the top and rising from the bottom, gaps between them",
+      "camera": "lateral track with vertical motion blur on the pillars",
+      "moves": "the tiny traveller threads through the gaps (about 0.25 s per gap, smooth); pillars slide past with chromatic edge smear",
+      "text": "",
+      "transition_out": "hard cut (6.35 s)",
+      "palette": "hot pink, black pillars with cream edge highlights, cream traveller",
+      "built": "code (flat vector, motion blur)",
+      "reusable": "yes: traveller threading through repeated gates; scale contrast (tiny object, huge frame)"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        6.35,
+        7.29
+      ],
+      "shot": "wide flat poster: one small cream house on a dark curved hill under a flat pink sky, a darker roof shape in the foreground",
+      "camera": "slow push-in with a slight rise (about 0.9 s, ease-out)",
+      "moves": "the traveller crosses the sky right to left and exits the top-left edge (about 0.6 s); foreground roof lit by a pink gradient",
+      "text": "",
+      "transition_out": "hard cut to an interior where the traveller re-enters through a lit opening (match on direction, 7.29 s)",
+      "palette": "flat pink sky, cream house, charcoal hill with pink gradient rim",
+      "built": "code (flat vector, gradients, grain)",
+      "reusable": "yes: calm wide poster frame with large negative space as a breath between fast shots; exit-frame / enter-frame match on direction"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        7.29,
+        8.46
+      ],
+      "shot": "medium, dark interior with a pink-lit window on the left, a device lying flat on a surface",
+      "camera": "slight push and tilt down, then a sideways slide (8.0–8.4 s)",
+      "moves": "the traveller enters through the window, falls as a crumpled ball and bounces on the device (7.5–8.1 s, elastic bounce); a pink glow arc lights behind the device; a dark foreground object slides across",
+      "text": "",
+      "transition_out": "foreground wipe: a dark object passes across the whole frame (8.25–8.46 s), cut on black to a macro",
+      "palette": "near-black, pink window light and glow arc, cream ball, metallic grey device edge",
+      "built": "generated (2.5D/3D: metallic device edge, low-poly ball); buildable in code with three.js or layered 2.5D",
+      "reusable": "yes: the traveller changes form on impact (folded → crumpled); dark foreground wipe into a macro"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        8.46,
+        9.85
+      ],
+      "shot": "extreme close-up then medium, low-poly crumpled cream shape with a small pink mark on it",
+      "camera": "pull-back from macro to medium (8.5–9.5 s, ease-out)",
+      "moves": "the pink mark lifts off the surface, glows and floats up out of frame (9.3–9.8 s, smooth); pink jagged silhouettes rise in the soft-focus foreground",
+      "text": "",
+      "transition_out": "the glowing element exits top, frame falls to near-black and the next subject fades in (about 0.15 s)",
+      "palette": "charcoal, cream with soft grey gradient facets, glowing pink",
+      "built": "generated (low-poly 3D with soft gradient shading, shallow depth of field); buildable as real 3D in code",
+      "reusable": "yes: macro-to-medium pull-back reveal; a small element leaves the traveller and becomes the next actor (emotional beat)"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        9.85,
+        11.1
+      ],
+      "shot": "close-up, minimal face (two dots, brow lines, mouth line) above a small device, centred",
+      "camera": "static",
+      "moves": "eyes fade in on black (9.9 s); the device's light opens a pink V-shaped cone up to the face (10.1–10.3 s, snappy); expression shifts in steps; a one-frame background colour flash to cream (about 10.5 s) then pink; a tear forms (10.6–11.0 s)",
+      "text": "",
+      "transition_out": "hard cut back to the opening frame (11.1 s)",
+      "palette": "black, hot pink cone, cream features, one cream flash frame",
+      "built": "code (flat vector, line work)",
+      "reusable": "yes: light cone that opens from a small object to reveal a face; background colour flash as an accent beat; minimal line expressions"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        11.1,
+        11.5
+      ],
+      "shot": "medium close-up, bookend of r1-s1",
+      "camera": "near-static",
+      "moves": "typing dots → pink bubble → cream bubble with status word (about 0.13 s each, stepped)",
+      "text": "Are we still friends? / Seen",
+      "transition_out": "loop: the last frame equals frame 0, so the film plays as a seamless loop",
+      "palette": "charcoal, cream, pink bubble",
+      "built": "code",
+      "reusable": "yes: end on the opening frame for a seamless loop; three-step stepped build of a small UI element"
+    }
+  ],
+  "visual_language": "Flat graphic-poster illustration in a strict three-colour palette (hot pink, near-black charcoal, bone cream) with fine film grain, soft radial gradients and glows, and almost no outlines except thin pink or cream accent lines. Most frames are flat, symmetric, centred posters with big negative space; three shots (r1-s2, r1-s9, r1-s10) switch to low-poly 3D with flat or soft gradient shading. Typography is almost absent: only a tiny chat bubble at the start and end; the story is told by images and one travelling object. Rhythm is very fast: 12 shots in 11.5 s (about 1 s each), never longer than 1.4 s; cuts, morphs, a circle match cut, a pixel dissolve and foreground wipes alternate, so the eye is always handed from one form to the next. Signature moments: the message leaving its screen and folding into a paper plane, the tower bursting into pink particles, the ring closing like an iris, the ribbon-to-triangle-to-road morph, the plane crumpling on impact, the glowing mark lifting off, the light cone that reveals a face, and the loop back to frame 0. Format is 9:16 and uses the full height (vertical pillars, towers, cones).",
+  "look": "Mostly flat 2D vector poster (no perspective, solid fills, radial gradients, glow halos, film grain), with selected 2.5D and real low-poly 3D shots: a block-city fly-through in one-point perspective, a metallic device edge, a crumpled paper ball with soft gradient facets. Light is graphic, not physical: pink glows behind key objects, gradient rims on silhouettes, no cast shadows on flat frames. Materials: matte paper, matte vector fills, one brushed-metal edge. Depth comes from blurred foreground and background shapes (soft-focus spheres, foreground shards, speed streaks with motion blur). Backgrounds are flat colour fields, starfields or dark rooms, never photographic.",
+  "code_translation": "Mostly code-native. Flat poster frames as SVG/canvas with radial gradients, a grain overlay and blur filters; particle bursts on canvas; shape morphs as SVG path interpolation; pixel dissolve as a mosaic (pixelate) filter for 2 frames; speed streaks as stretched blurred bars. Per D55 the 3D shots stay 3D: the corridor fly-through and the crumpled object are built in three.js with low-poly geometry, flat or soft-gradient shading, an emissive pink glow and depth of field as blur, never faked as flat shapes. Estimated buildable in code: about 85% (everything except the exact soft facet shading of r1-s10, which three.js approximates well).",
+  "continuity": [
+    "One traveller carries the whole film: a small object leaves the first frame and passes through every shot, changing form at key beats (message → folded plane → crumpled ball → glowing mark).",
+    "The traveller changes form by refolding mid-flight or on impact, never by a cut.",
+    "Shape-to-shape match cut: push into a circle, cut on the brightest frame to a new shot built around another circle.",
+    "Shape morph bridge: one solid form flows into the next shot's layout (ribbon → zigzag → triangle → perspective road), with solid colour flips as the beat.",
+    "Exit-frame and enter-frame on the same direction: the traveller leaves one shot by an edge and enters the next from the matching side or through an opening.",
+    "Dark foreground wipe and pixel dissolve as the only non-object transitions.",
+    "The three colours swap roles between shots (pink sky / black ground, then black sky / pink road), which keeps one world while every frame looks new.",
+    "Bookend loop: the last frame repeats the first, so the film can loop seamlessly."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy its story, its objects (phone, city, satellite, tram, house, crumpled note, sad face), its shot order one by one or its copy.",
+    "Shots average about 1 s with no text holds; Persian on-screen text needs its minimum hold time, so text shots must be longer than the reference rhythm; readability wins over pace.",
+    "The one-frame colour flash and 2-frame pixel dissolve are very fast; keep them short but check they do not read as render glitches, and avoid repeated full-frame flashes.",
+    "Reference colours map onto brand colour roles (pink = accent/primary role, charcoal = background role, cream = surface/ink role); never used as literal hex values.",
+    "The film is built for a silent-style loop; a voiceover film needs a logo outro, so the loop bookend becomes an echo of the opening before the outro, not a true loop.",
+    "Audio was not analysed; whether cuts sit on music beats is unverified."
+  ],
+  "sha256": "04494af9bb4b6be62f1138cb87f538cb176a3e03a93fe64c8afff3646098363a"
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "loud-3d-radio-01",
+  "name_fa": "رادیوی سه‌بعدی پرانرژی",
+  "use_fa": "حرکت دوربین سریع و پرواز بین اشیا، متن نمایشگر LED، حروف تکی روی کارت، ریتم تند",
+  "tags": [
+    "3d",
+    "energetic",
+    "fly-through",
+    "led-text",
+    "floating-objects",
+    "whip"
+  ],
+  "group": "other",
+  "duration": 24,
+  "format": "16x9",
+  "sha256": "4af8b237f098a52f66bb0ca1f602e36b9dbd0b7fcd22eccf11070d44d4c9a7b4",
+  "code_buildable_pct": 100,
+  "source": "library",
+  "rights_note": "given by the owner on 2026-10-27 for Phase 3 (second reference); third-party 'LOUD ONE' animation, origin not stated → plan mode ADAPT, never RECREATE",
+  "added_at": "2026-10-27T00:00:00+03:30",
+  "last_used_at": "2026-11-01T20:23:57.743Z"
+}

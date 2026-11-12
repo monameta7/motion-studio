@@ -1,0 +1,1169 @@
+{
+  "slug": "laptop-type-live-01",
+  "key": {
+    "sha256": "7bd378934a3522e8f136a66865a7e318a3514ae6d51d0307866cd09710b39113"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 91.5,
+    "w": 720,
+    "h": 1280,
+    "fps": 30,
+    "audio": true,
+    "format_note": "9:16 vertical, 2742 frames, 15.3 MB. Stereo HE-AAC 44.1 kHz at 59 kb/s. Two-second mean RMS measured, not listened to: quiet start at 0-2 s (-24.8 dB), then a loud, dense mix between about -14.6 and -22.5 dB with no real rest; loudest at 12 s (-14.7), 32 s (-14.7) and 44 s (-14.6); the windows at -20 dB or lower start at 4 s (-20.6), 34 and 36 s (-21.4, -20.7), 52 s (-20.0), 62 s (-20.4) and 70 s (-22.5, during the closing lockup)."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «kinetic typography.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "تایپوگرافی پرانرژی روی صفحه‌ی لپ‌تاپ",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "REEL",
+    "alt_film_mode": "UI when the content package shows software, an app or a workflow",
+    "why": "third-party film of unknown origin: borrow the motion language and look only, never its shots one by one, its logos, its product names, its copy, its UI screens or its person (owner note); a voiceover package defaults to REEL, and the reference's strongest material is word-by-word kinetic type"
+  },
+  "ignored": [
+    {
+      "span": [
+        0,
+        72.6
+      ],
+      "why": "the fixed caption 'New Claude opus 5.5' with its emoji is third-party copy and a product name; only the idea of one small line that stays still above the moving screen is reusable"
+    },
+    {
+      "span": [
+        0,
+        72.6
+      ],
+      "why": "the laptop itself, its keyboard, menu bar and app dock with real app icons, the room wall and the hand in the first half second are the reference's own props; they are never copied as they are (see risks for the screen-in-a-dim-room device)"
+    },
+    {
+      "span": [
+        1,
+        72.6
+      ],
+      "why": "all the English copy is third-party and is never reused: the swear-word lines ('NO FUCKING WAY', 'ARE YOU FUCKING KIDDING ME?!', 'FUUUU'), 'OKAY', 'CAN YOU BELIEVE', 'I DID NOT TOUCH AFTER EFFECTS', 'THIS ISN'T AN MCP', 'MADE WITH ONE PROMPT' and the rest; the brand voice never takes the swearing, only its rhythm"
+    },
+    {
+      "span": [
+        17.5,
+        72.6
+      ],
+      "why": "the 'Higgsfield' name and squiggle logo, the 'KATANA' wordmark with its flame ornaments, the 'Claude' and 'Claude Motion' marks, the 'After Effects' name and the 'MCP' diagram labels are third-party branding"
+    },
+    {
+      "span": [
+        72.6,
+        84.23
+      ],
+      "why": "third-party UI and data: the chat app screens, the connector steps, the account 'creator@higgsfield.ai', the address 'https://mcp.higgsfield.ai/mcp', the permission page and the catalog images with faces and figures are never reused; a how-to for another company's product is not our content"
+    },
+    {
+      "span": [
+        84.23,
+        91.5
+      ],
+      "why": "the real person, their mask, jacket, hands and room are never copied, nor the offer lines ('Comment KATANA', '3 Day free trial', 'new users') and the lime UI plate above them"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2 at 480 px (16 sheets, all viewed); scene detect gt(scene,0.3) found only 72.60, 84.23, 85.70, 85.80, 88.40 and 89.03 s, because 0-72.6 s is one continuous filmed shot of a screen and the screen fills only about a third of the frame; so nearly every row boundary before 72.6 s is placed by eye from the 2 fps sheets, accurate to about 0.25 s. Sheet frames were read as nominal time plus 0.25 s, the offset of the fps filter, checked against the cuts at 72.6 and 84.23 s. Dense 15 fps sheets over 1.3-2.9, 9.2-10.8, 47.2-48.8, 71.9-73.5 and 83.8-85.4 s; boundaries inside those windows are accurate to about 0.07 s. Two-second mean RMS of the audio with astats. Colours were read by eye, not sampled. The audio was measured, not heard, so voice versus music is not separated and beat sync was not tested.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        1
+      ],
+      "shot": "dark screen wakes up, seen on the filmed laptop",
+      "camera": "filmed handheld, near static; a hand slides off the keyboard at the start",
+      "moves": "one tiny red point grows into a glowing dot; thin curved streaks fly out from it radially; smooth acceleration",
+      "text": "none on the screen",
+      "transition_out": "the word bursts out of the dot at full size, with a white flash",
+      "palette": "navy-black screen, red dot, warm tan wall",
+      "built": "code-native screen content (radial streak particles, glow) inside a filmed laptop shot",
+      "reusable": "yes: a film that starts from one point of light and a burst; motion only"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        1,
+        1.37
+      ],
+      "shot": "one giant word, full screen width",
+      "camera": "screen content scales up slightly",
+      "moves": "hard hit in about 2 frames, heavy white bloom, thin ring and streaks behind; holds about 0.3 s",
+      "text": "one huge heavy extended word, white",
+      "transition_out": "horizontal smear whip, about 2 frames, into a red field",
+      "palette": "white type with red bloom on black",
+      "built": "code-native screen content",
+      "reusable": "yes: first-word punch, with the glow as the impact"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        1.37,
+        1.77
+      ],
+      "shot": "one word on a full red field",
+      "camera": "none",
+      "moves": "the word settles from a side blur in 2 frames, ghost outlines of the same word above it; a thin white streak crosses it just before the exit",
+      "text": "one condensed heavy word, black",
+      "transition_out": "the streak becomes a smear whip into white",
+      "palette": "pure red field, black type",
+      "built": "code-native screen content",
+      "reusable": "yes: full field colour swap on each word"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        1.77,
+        2.3
+      ],
+      "shot": "one word on off-white, accent dot as the full stop",
+      "camera": "a slow creep-in",
+      "moves": "word lands from blur; tiny dark sparks radiate outward and a pale ring fades; the red dot stays as the punctuation",
+      "text": "one heavy extended word with a red round full stop",
+      "transition_out": "the word slides down and the earlier word drops in from the top, with a red smear of the middle word sliding in",
+      "palette": "off-white, black, red dot",
+      "built": "code-native screen content",
+      "reusable": "yes: the round accent dot as a recurring full stop"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        2.3,
+        3
+      ],
+      "shot": "the three words so far stack as one poster",
+      "camera": "none",
+      "moves": "stack settles in about 0.3 s, the middle word in red with a torn horizontal cut across it",
+      "text": "three stacked lines, the middle one red and condensed",
+      "transition_out": "zoom-blur with concentric echo rings, the red dot swells into a full-frame red wipe",
+      "palette": "off-white, black, red",
+      "built": "code-native screen content",
+      "reusable": "yes: words first alone then together as the payoff of a sentence; dot grows into the next field"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        3,
+        4
+      ],
+      "shot": "one word on a red field, moving through blur",
+      "camera": "tracks along with the letters",
+      "moves": "letters enter with wide tracking and defocus, the comma falls to its place",
+      "text": "one wide-tracked word, black, with a comma",
+      "transition_out": "field flips to black with a glow in the same position",
+      "palette": "red, black",
+      "built": "code-native screen content",
+      "reusable": "yes: same word carried over a colour flip"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        4,
+        5.9
+      ],
+      "shot": "the same word held on black, glow behind, small laughs flying in",
+      "camera": "slow push-in, then a sideways whip",
+      "moves": "red bloom behind the white letters, drifting red bokeh dots, a dotted grid on the back wall; small echo words pop at the corners with motion blur",
+      "text": "one big word with the red dot full stop, tiny red reaction words",
+      "transition_out": "whip smear to the side into black",
+      "palette": "black, white, red bloom and bokeh",
+      "built": "code-native screen content",
+      "reusable": "yes: the base dark world (dot grid, bokeh, red bloom) and small reaction words around a held word"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        5.9,
+        7
+      ],
+      "shot": "line of words rises up stacked",
+      "camera": "none",
+      "moves": "each line rises out of a hidden mask at its baseline, bottom line still arriving while the top ones stand, slight blur on arrival",
+      "text": "three stacked lines, white",
+      "transition_out": "the top line is pushed out upward and turns to outline",
+      "palette": "black, white",
+      "built": "code-native screen content",
+      "reusable": "yes: masked rise, one line at a time, in step with the voice"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        7,
+        8
+      ],
+      "shot": "lines scroll vertically with a state change",
+      "camera": "vertical scroll of the whole stack",
+      "moves": "the leaving line becomes a 3D extruded outline while the new lines arrive solid; the last line is red with a laser line and a flare crossing its middle",
+      "text": "two lines, the second big and red",
+      "transition_out": "the next word arrives in blur over a red haze",
+      "palette": "black, white outline, red",
+      "built": "code-native screen content",
+      "reusable": "yes: fill to outline as a line leaves"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        8,
+        8.5
+      ],
+      "shot": "one word in heavy motion blur",
+      "camera": "shake",
+      "moves": "word never fully settles, directional blur and red haze, about 0.5 s",
+      "text": "one big white word",
+      "transition_out": "smear out to the top",
+      "palette": "dark red haze, white",
+      "built": "code-native screen content",
+      "reusable": "yes: a word kept in blur as an emphasis"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        8.5,
+        9.45
+      ],
+      "shot": "headline on top, small floating timeline window under it, pointer at the side",
+      "camera": "slow creep-in",
+      "moves": "headline types itself in blocks; window rises in; a playhead runs along its tracks; pointer sits still to the right",
+      "text": "a heavy condensed headline line, tiny window labels as texture",
+      "transition_out": "headline scrambles by blocks into the next line, the window stays",
+      "palette": "black, white window, orange and red track bars",
+      "built": "code-native screen content (window as DOM)",
+      "reusable": "yes: headline plus a small proof object below it; the text changes while the object stays"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        9.45,
+        10.4
+      ],
+      "shot": "the window is cut by red strokes and falls apart",
+      "camera": "shake on impact, then a diagonal whip",
+      "moves": "two thin red laser lines cross the window as an X over about 0.25 s, sparks at the crossing, the pieces separate along the cuts, leaving black gaps with glowing edges; a second diagonal stroke sweeps the whole frame out",
+      "text": "headline with the last word in red",
+      "transition_out": "diagonal slash wipe with a white flash edge, the next white field is under it",
+      "palette": "black, white, red laser, sparks",
+      "built": "code-native screen content (clip-path pieces, SVG strokes, particles)",
+      "reusable": "yes: the signature cross-out: an object slashed to say no; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        10.4,
+        13
+      ],
+      "shot": "white poster assembled over several beats",
+      "camera": "small tilt and creep",
+      "moves": "small line then bigger lines rise and resolve out of a blur; a giant red question mark drops at the right, cropped by the frame; a black one lands in front; an outline one pops in as the third",
+      "text": "three stacked lines with one word red, three question marks of different sizes",
+      "transition_out": "colour flip to the red field",
+      "palette": "off-white, black, red",
+      "built": "code-native screen content",
+      "reusable": "yes: the poster that grows by adding parts, and one symbol repeated at three scales and fills"
+    },
+    {
+      "id": "r1-s14",
+      "span": [
+        13,
+        13.5
+      ],
+      "shot": "one wide-tracked word on red",
+      "camera": "none",
+      "moves": "landing in blur with the round dot as the full stop",
+      "text": "one word, black",
+      "transition_out": "flip to black, a laser line appears at the baseline of the next word",
+      "palette": "red, black",
+      "built": "code-native screen content",
+      "reusable": "yes: a short colour hit as a punctuation between dark scenes"
+    },
+    {
+      "id": "r1-s15",
+      "span": [
+        13.5,
+        14.5
+      ],
+      "shot": "words revealed from a glowing horizontal line",
+      "camera": "slight tilt",
+      "moves": "a laser line with a flare in its middle sits across the frame; the first word grows up out of it and the second grows down out of it, both blurred until they settle",
+      "text": "two stacked words, white above and red below",
+      "transition_out": "the words scale down and move to the top as a headline",
+      "palette": "black, white, red",
+      "built": "code-native screen content (mask at the line)",
+      "reusable": "yes: the laser line as a horizon where text is born; a strong recurring device"
+    },
+    {
+      "id": "r1-s16",
+      "span": [
+        14.5,
+        16
+      ],
+      "shot": "headline over a small node diagram with glowing links",
+      "camera": "creep-in",
+      "moves": "cards pop one by one, a curved red link draws from card to card, a red glow pulses from the middle card; the last words of the headline sit in a red box",
+      "text": "a one-line headline with red highlight and a boxed word; small card labels",
+      "transition_out": "a stamped word in the next row cuts through it",
+      "palette": "black, navy-grey glass cards, red card, red glow",
+      "built": "code-native screen content (DOM cards, SVG links)",
+      "reusable": "yes: explaining a relation with three cards and a drawing link, while the headline stays"
+    },
+    {
+      "id": "r1-s17",
+      "span": [
+        16,
+        16.5
+      ],
+      "shot": "a word stamps diagonally over the diagram",
+      "camera": "shake, slight rotation",
+      "moves": "the word hits at an angle, the cards and the headline ghost in glitch copies, a diagonal cut splits the red card",
+      "text": "one big word over the older layout",
+      "transition_out": "everything collapses onto a thin line",
+      "palette": "black, white, red",
+      "built": "code-native screen content",
+      "reusable": "yes: a stamp that cancels the previous diagram"
+    },
+    {
+      "id": "r1-s18",
+      "span": [
+        16.5,
+        17
+      ],
+      "shot": "only a horizontal laser line with a glow",
+      "camera": "none",
+      "moves": "line with a soft red sphere at its centre holds for a breath",
+      "text": "none",
+      "transition_out": "colour flip, the word fills the frame",
+      "palette": "black, red",
+      "built": "code-native screen content",
+      "reusable": "yes: a half second empty beat before the answer"
+    },
+    {
+      "id": "r1-s19",
+      "span": [
+        17,
+        17.5
+      ],
+      "shot": "one giant word fills the red field",
+      "camera": "none",
+      "moves": "the word is very large and cropped close to the edges; instant",
+      "text": "one word, black",
+      "transition_out": "flip to black, the name resolves on the line",
+      "palette": "red, black",
+      "built": "code-native screen content",
+      "reusable": "yes: the shortest possible hit before a reveal"
+    },
+    {
+      "id": "r1-s20",
+      "span": [
+        17.5,
+        18.5
+      ],
+      "shot": "a name resolves out of vertical glitch bars above a line",
+      "camera": "slow tilt",
+      "moves": "letters resolve left to right from a row of vertical bars; the small name goes up, then a wide smear with a diagonal laser stroke passes across the middle",
+      "text": "a small logo and name",
+      "transition_out": "the smear sharpens into the wordmark",
+      "palette": "black, white, red",
+      "built": "code-native screen content",
+      "reusable": "yes: a slash that resolves into the name; motion only, never the logo"
+    },
+    {
+      "id": "r1-s21",
+      "span": [
+        18.5,
+        20
+      ],
+      "shot": "central logo lockup on a red halo",
+      "camera": "very slow creep-in",
+      "moves": "sparks burst outward at the hit and fade; laser line runs behind the wordmark; the third line rises from a mask; the bloom breathes",
+      "text": "small brand line, big wordmark, small sub-line",
+      "transition_out": "punch forward into a tunnel of echoes",
+      "palette": "black, deep red halo, white, red sparks",
+      "built": "code-native screen content",
+      "reusable": "yes: logo reveal grammar; the brand's own logo only"
+    },
+    {
+      "id": "r1-s22",
+      "span": [
+        20,
+        20.5
+      ],
+      "shot": "zoom tunnel made from repeats of the frame",
+      "camera": "very fast zoom through",
+      "moves": "radial repeats of the pale frame and the old text rush past, with a light streak",
+      "text": "text as unreadable texture",
+      "transition_out": "out of the white tunnel onto the white field",
+      "palette": "pale pink, red, white",
+      "built": "code-native screen content (scaled copies)",
+      "reusable": "yes: zoom through repeats of the previous frame"
+    },
+    {
+      "id": "r1-s23",
+      "span": [
+        20.5,
+        21
+      ],
+      "shot": "words on a white field",
+      "camera": "none",
+      "moves": "word by word appear, the last letters sliding in with a blur tail",
+      "text": "two heavy words, black",
+      "transition_out": "the white field shrinks to a card with stacked echoes moving to the right, on black",
+      "palette": "off-white, black",
+      "built": "code-native screen content",
+      "reusable": "yes: full field shrinks into the next object"
+    },
+    {
+      "id": "r1-s24",
+      "span": [
+        21,
+        22
+      ],
+      "shot": "split: stack of lines at the left, app card at the right",
+      "camera": "none",
+      "moves": "lines type in with block reveal; the card settles from echoes with typing in it",
+      "text": "three stacked words, then a red fourth; small app text",
+      "transition_out": "whole layout whips to the side",
+      "palette": "black, white, a red glow",
+      "built": "code-native screen content",
+      "reusable": "yes: text and object side by side; the card comes from the old frame"
+    },
+    {
+      "id": "r1-s25",
+      "span": [
+        22,
+        22.5
+      ],
+      "shot": "sideways whip of the layout",
+      "camera": "fast pan",
+      "moves": "heavy horizontal blur, the red glow travels and becomes the next object",
+      "text": "unreadable",
+      "transition_out": "the glow locks into a pill",
+      "palette": "black, white, red",
+      "built": "code-native screen content",
+      "reusable": "yes: a glow survives the whip and becomes the next object"
+    },
+    {
+      "id": "r1-s26",
+      "span": [
+        22.5,
+        23.5
+      ],
+      "shot": "wordmark in a glowing pill",
+      "camera": "small push",
+      "moves": "white pill with a strong red halo, then the fill flips to red and it moves up as the next word comes up under it",
+      "text": "a wordmark and one word",
+      "transition_out": "the pill breaks up sideways and becomes a film strip",
+      "palette": "white, red halo, black",
+      "built": "code-native screen content",
+      "reusable": "yes: pill fill flip; a name in a pill as a persistent actor"
+    },
+    {
+      "id": "r1-s27",
+      "span": [
+        23.5,
+        25.5
+      ],
+      "shot": "strip of frames, small player and a stacked sentence",
+      "camera": "none",
+      "moves": "strip runs sideways; inside the player one red shape morphs triangle → diamond → rounded square with echo outlines, in about 0.5 s each, and the timecode and bar advance; last word grows to full width",
+      "text": "stacked lines with one red word and one word at full width",
+      "transition_out": "all drop out at once, a vertical smear at the top edge",
+      "palette": "black, white player, red shape",
+      "built": "code-native screen content",
+      "reusable": "yes: a small shape morph in a player to prove a result"
+    },
+    {
+      "id": "r1-s28",
+      "span": [
+        25.5,
+        26
+      ],
+      "shot": "empty black with a fading trail at the top edge",
+      "camera": "none",
+      "moves": "only vertical streaks of the exited text remain",
+      "text": "none",
+      "transition_out": "a line of text sweeps in by smear",
+      "palette": "black, grey streaks",
+      "built": "code-native screen content",
+      "reusable": "yes: exit leaves a short trail, one breath of black"
+    },
+    {
+      "id": "r1-s29",
+      "span": [
+        26,
+        27.5
+      ],
+      "shot": "stacked sentence, last word big and turning red",
+      "camera": "creep-in",
+      "moves": "small line by smear; a thin spaced line; the big word writes itself behind a cursor bar, each new letter smearing behind the cursor, then the word flips white to red",
+      "text": "three lines of varied scale and tracking, one with a colon and cursor",
+      "transition_out": "a push into the next box",
+      "palette": "dark red haze with dot grid, white, red",
+      "built": "code-native screen content",
+      "reusable": "yes: a leading cursor with a smear tail; needs a shaped-word mask in Persian"
+    },
+    {
+      "id": "r1-s30",
+      "span": [
+        27.5,
+        30
+      ],
+      "shot": "glass prompt box, typed in big mono letters",
+      "camera": "scale jumps: close crop, then wide, then wider with red lines top and bottom; slight tilt",
+      "moves": "text types live; key words get a red highlight box as they land; cursor blinks; bokeh drifts behind; the box has a button at the right",
+      "text": "one typed sentence, key words highlighted",
+      "transition_out": "a horizontal smear of the box with stacked echoes",
+      "palette": "navy-grey glass, white mono text, red highlights, red bokeh",
+      "built": "code-native screen content",
+      "reusable": "yes: typing with live highlight and scale jumps within one object"
+    },
+    {
+      "id": "r1-s31",
+      "span": [
+        30,
+        31
+      ],
+      "shot": "box echoes, then a zoom into its button",
+      "camera": "fast push through the button icon",
+      "moves": "stacked copies whip past; the button grows to the frame with radial lines, red glow around its edges",
+      "text": "only an icon",
+      "transition_out": "through the button into the red field",
+      "palette": "navy, red, white lines",
+      "built": "code-native screen content",
+      "reusable": "yes: enter through the object the user just pressed"
+    },
+    {
+      "id": "r1-s32",
+      "span": [
+        31,
+        32
+      ],
+      "shot": "word with loose letters on red, the second word under it",
+      "camera": "drifts",
+      "moves": "letters land at different angles and heights with blur, a dot stands in for one letter, they line up and the second line comes in",
+      "text": "two wide-tracked words, black",
+      "transition_out": "cut to black with the shape already there",
+      "palette": "red, black",
+      "built": "code-native screen content",
+      "reusable": "partly: per-letter loose landing is Latin only; in Persian move whole words"
+    },
+    {
+      "id": "r1-s33",
+      "span": [
+        32,
+        33
+      ],
+      "shot": "white words crossed by a big red shape",
+      "camera": "none",
+      "moves": "a large triangle morphs to a square behind and over the letters, with a line and a flare; the second word comes up below",
+      "text": "two words, white",
+      "transition_out": "colour flip to white",
+      "palette": "black, red shape, white",
+      "built": "code-native screen content (SVG morph)",
+      "reusable": "yes: one big flat shape morphing behind the type"
+    },
+    {
+      "id": "r1-s34",
+      "span": [
+        33,
+        34.5
+      ],
+      "shot": "big word and a real 3D cube on white",
+      "camera": "tilts as a whole plane at the end, so the page leans",
+      "moves": "the cube rotates with a soft contact shadow; next word rises in blocks of pixels; the whole page rocks in perspective",
+      "text": "a big word, a second word under it",
+      "transition_out": "flip to black",
+      "palette": "off-white, black, red and orange cube",
+      "built": "code-native screen content (real 3D cube, CSS perspective on the page)",
+      "reusable": "yes: one small real 3D object within flat type; page tilt"
+    },
+    {
+      "id": "r1-s35",
+      "span": [
+        34.5,
+        36
+      ],
+      "shot": "word on a perspective dot floor, camera whips away",
+      "camera": "strong tilt and roll; ends in a fast roll with blur",
+      "moves": "the dot grid curves as a floor under the word; camera turns; next word slides on diagonally with a red ribbon",
+      "text": "two words, white",
+      "transition_out": "roll whip into the next hit",
+      "palette": "black, red glow, white",
+      "built": "code-native screen content (CSS 3D or three.js plane)",
+      "reusable": "yes: type on a tilted plane in depth, whip roll out"
+    },
+    {
+      "id": "r1-s36",
+      "span": [
+        36,
+        37
+      ],
+      "shot": "word with a red camera-lens in its letter",
+      "camera": "none",
+      "moves": "a laser line through it, the round letter holds a pulsing red dot like an eye; next word smears in from below in perspective",
+      "text": "two big words, white",
+      "transition_out": "pixel-block wipe to white",
+      "palette": "black, white, red",
+      "built": "code-native screen content",
+      "reusable": "yes: a round form inside a word becomes an icon"
+    },
+    {
+      "id": "r1-s37",
+      "span": [
+        37,
+        38
+      ],
+      "shot": "words revealed through pixel blocks on white",
+      "camera": "none",
+      "moves": "dark mosaic columns resolve down into a small and a big line; red line at the baseline",
+      "text": "small word, big condensed word, black",
+      "transition_out": "the word gets vertically stretched into the next one",
+      "palette": "off-white, black, red line",
+      "built": "code-native screen content",
+      "reusable": "yes: pixel mosaic reveal"
+    },
+    {
+      "id": "r1-s38",
+      "span": [
+        38,
+        40
+      ],
+      "shot": "one word stretching, from tall and narrow to low and wide",
+      "camera": "none",
+      "moves": "the word changes its proportions over about 1 s, smooth, with a stacked echo; the field flips white to red mid-way; thin horizontal lines trail at the sides",
+      "text": "one word, black",
+      "transition_out": "radial lines burst from the middle on black",
+      "palette": "white then red, black",
+      "built": "code-native screen content (variable font or scale)",
+      "reusable": "yes: word physically doing what it says; in Persian use a kashida stretch that keeps the letters joined"
+    },
+    {
+      "id": "r1-s39",
+      "span": [
+        40,
+        40.5
+      ],
+      "shot": "radial speed lines, two words pulled along",
+      "camera": "fast push",
+      "moves": "white lines shoot out from centre, the words pass with blur",
+      "text": "two words, white",
+      "transition_out": "the push stops inside a viewfinder",
+      "palette": "black, white, a little red",
+      "built": "code-native screen content",
+      "reusable": "yes: speed lines as a very short bridge"
+    },
+    {
+      "id": "r1-s40",
+      "span": [
+        40.5,
+        42
+      ],
+      "shot": "word inside viewfinder brackets",
+      "camera": "the brackets zoom and drift as if a camera refocuses; a record dot at the corner",
+      "moves": "inner brackets around the word, outer brackets in red closing in; a line sweeps past; a red curved stroke with a flare at the tip then wipes the word away letter group by letter group",
+      "text": "one word, white",
+      "transition_out": "the curved stroke leads into the next circle",
+      "palette": "black, white, red",
+      "built": "code-native screen content",
+      "reusable": "yes: framing marks that follow the word; a stroke tip that erases"
+    },
+    {
+      "id": "r1-s41",
+      "span": [
+        42,
+        43.5
+      ],
+      "shot": "dial with a slow small sentence at its side",
+      "camera": "slow creep-in",
+      "moves": "ring with tick marks and a travelling spark around a red core, halo slowly grows; a small sentence types behind a red cursor, deliberately slow; this is the film's slowest stretch",
+      "text": "three small lines, regular weight, typed",
+      "transition_out": "the sentence promises it and the next thing happens: a white stroke slashes diagonally, the frame splits in two parts",
+      "palette": "navy-black, deep red halo, white",
+      "built": "code-native screen content",
+      "reusable": "yes: a slow small beat to make the next hit stronger"
+    },
+    {
+      "id": "r1-s42",
+      "span": [
+        43.5,
+        44
+      ],
+      "shot": "diagonal slash opens the next scene",
+      "camera": "shake",
+      "moves": "bright white stroke with sparks across the ring; text doubles in glitch; a white band runs along the top; the next field shows at the corner",
+      "text": "the small text in doubled glitch",
+      "transition_out": "diagonal split, about 0.2 s, onto white",
+      "palette": "white stroke over red",
+      "built": "code-native screen content",
+      "reusable": "yes: a slash promised on screen, then delivered"
+    },
+    {
+      "id": "r1-s43",
+      "span": [
+        44,
+        46
+      ],
+      "shot": "poster on white with a spiky red burst",
+      "camera": "radial zoom hit once in the middle",
+      "moves": "lines stack one by one in very heavy type; a big red starburst rotates and grows behind and over the type; where the burst covers letters they invert in colour; one line causes a radial zoom-blur with an inverted frame",
+      "text": "four stacked lines, all caps, the last much bigger",
+      "transition_out": "weights begin to thin in place",
+      "palette": "off-white, black, red, an inverted flash",
+      "built": "code-native screen content (blend mode for the inversion)",
+      "reusable": "yes: burst shape with colour inversion over type"
+    },
+    {
+      "id": "r1-s44",
+      "span": [
+        46,
+        47.5
+      ],
+      "shot": "the same poster deflates",
+      "camera": "none",
+      "moves": "type goes from black weight to hair thin weight, the star morphs into a plain circle that drips at the bottom, letters start to lean and slide down",
+      "text": "the same lines, thin",
+      "transition_out": "letters collapse downward with the page",
+      "palette": "off-white, thin black, red circle",
+      "built": "code-native screen content (variable weight, SVG morph)",
+      "reusable": "yes: all energy dying through weight loss as a comic drop; needs a variable Persian font or a cross-fade"
+    },
+    {
+      "id": "r1-s45",
+      "span": [
+        47.5,
+        48
+      ],
+      "shot": "white page drops off the screen, black beat",
+      "camera": "none",
+      "moves": "the white plate slides down with soft edges in about 0.35 s, leaving about 0.15 s of pure black",
+      "text": "fragments only",
+      "transition_out": "black, the next stage fades up",
+      "palette": "white into black",
+      "built": "code-native screen content",
+      "reusable": "yes: a page fall and a black breath as a chapter change"
+    },
+    {
+      "id": "r1-s46",
+      "span": [
+        48,
+        50.5
+      ],
+      "shot": "calm grey chapter with a grid stage",
+      "camera": "drifts, then blur defocus",
+      "moves": "stage fades up with a grid and soft grey bokeh; a line draws; big word rises by a mask, a smaller line under it; a selection box and pointer select one word; a serif italic line types in; everything goes into a shake blur",
+      "text": "one big word, one line with a boxed word, one italic serif line",
+      "transition_out": "double-exposure blur",
+      "palette": "greys, white; colour removed",
+      "built": "code-native screen content",
+      "reusable": "yes: desaturating the film for a chapter; a serif italic as a contrasting voice"
+    },
+    {
+      "id": "r1-s47",
+      "span": [
+        50.5,
+        51.5
+      ],
+      "shot": "layer rows falling above a word",
+      "camera": "small tilt in depth",
+      "moves": "rows of an interface drop onto each other like cards and stack in perspective, the word below holds",
+      "text": "one big word with a full stop, tiny row labels",
+      "transition_out": "flip to white",
+      "palette": "greys, white",
+      "built": "code-native screen content",
+      "reusable": "yes: rows stacking to show 'many things'"
+    },
+    {
+      "id": "r1-s48",
+      "span": [
+        51.5,
+        52.5
+      ],
+      "shot": "headline over a keyframe grid on white",
+      "camera": "none",
+      "moves": "headline types in by blocks; diamond marks appear row by row; a vertical bar slides",
+      "text": "one wide word, black",
+      "transition_out": "flip to black",
+      "palette": "off-white, black",
+      "built": "code-native screen content",
+      "reusable": "yes: small marks fill a table to show labour"
+    },
+    {
+      "id": "r1-s49",
+      "span": [
+        52.5,
+        53.5
+      ],
+      "shot": "headline with a curve being drawn",
+      "camera": "small tilt",
+      "moves": "a white curve draws between two handles with a glow, the second word rises at the lower right",
+      "text": "two words, white",
+      "transition_out": "the words collect in a pile",
+      "palette": "dark grey, white",
+      "built": "code-native screen content",
+      "reusable": "yes: a line that draws from point to point"
+    },
+    {
+      "id": "r1-s50",
+      "span": [
+        53.5,
+        54.5
+      ],
+      "shot": "earlier words pile up and recede in depth",
+      "camera": "stack rocks back",
+      "moves": "the last three headlines repeat as a tower that goes into the distance, getting smaller, in perspective, with a blur",
+      "text": "three repeated lines",
+      "transition_out": "the tower stays ghosted behind the new white field",
+      "palette": "black, white",
+      "built": "code-native screen content (CSS 3D or scaled copies)",
+      "reusable": "yes: recap by piling earlier words"
+    },
+    {
+      "id": "r1-s51",
+      "span": [
+        54.5,
+        55.5
+      ],
+      "shot": "new heavy words over the ghost of the pile",
+      "camera": "none",
+      "moves": "words reveal by a block; the tower fades to grey; ellipsis dots tick in one by one",
+      "text": "two heavy lines with ellipsis",
+      "transition_out": "dim to black and the next word overlaps",
+      "palette": "off-white, black",
+      "built": "code-native screen content",
+      "reusable": "yes: the ticking dots as suspense"
+    },
+    {
+      "id": "r1-s52",
+      "span": [
+        55.5,
+        56.5
+      ],
+      "shot": "word filled with a checker pattern, a progress line and a clock",
+      "camera": "none",
+      "moves": "the word's fill loads like an empty image, a bar starts, the big timer digits run fast, an hourglass turns",
+      "text": "one word, small status words, a large timer",
+      "transition_out": "the timer blurs as the whole thing tilts away",
+      "palette": "greys, white",
+      "built": "code-native screen content",
+      "reusable": "yes: the pain of waiting as a counter; any number in our film must come from the package"
+    },
+    {
+      "id": "r1-s53",
+      "span": [
+        56.5,
+        57.5
+      ],
+      "shot": "tilted word on a red band",
+      "camera": "rolled about 10 degrees",
+      "moves": "word lands with sparks on a diagonal laser and a red ribbon; the old timer whips away at the bottom",
+      "text": "one word with a question mark, white",
+      "transition_out": "vertical slide: the word exits at the top, the name comes from under",
+      "palette": "black, red, white",
+      "built": "code-native screen content",
+      "reusable": "yes: rolled frame for a sudden change of tone"
+    },
+    {
+      "id": "r1-s54",
+      "span": [
+        57.5,
+        58.5
+      ],
+      "shot": "wordmark on a red halo",
+      "camera": "rolled, then straight",
+      "moves": "the previous word rolls off above and below in a reel; the wordmark holds with sparks",
+      "text": "the wordmark",
+      "transition_out": "the halo slides aside and a vertical line comes in",
+      "palette": "black, deep red, white",
+      "built": "code-native screen content",
+      "reusable": "yes: a slot-reel vertical swap between a word and an answer"
+    },
+    {
+      "id": "r1-s55",
+      "span": [
+        58.5,
+        61
+      ],
+      "shot": "three-step list, each word lit in turn",
+      "camera": "small slide up as rows are added",
+      "moves": "a vertical line drops, an icon pops in a ring, the word types with a cursor; when the next row comes the older row turns into an outline only; the third row fills and lights red",
+      "text": "three stacked words with icons, only the current one filled",
+      "transition_out": "all fall away and a player frame comes through a tunnel",
+      "palette": "black, red haze, white, one acid yellow word",
+      "built": "code-native screen content",
+      "reusable": "yes: a list where only the current step is filled and the rest are outlines"
+    },
+    {
+      "id": "r1-s56",
+      "span": [
+        61,
+        63
+      ],
+      "shot": "video frame grows from tunnel echoes",
+      "camera": "zoom out through nested frames",
+      "moves": "nested rectangles expand to one frame with a play triangle; a progress bar runs at the bottom; the big word passes in front of the triangle; bokeh drifts",
+      "text": "small line and one big word",
+      "transition_out": "frame slides right and leaves echoes",
+      "palette": "navy-black, red triangle, white, pink frame",
+      "built": "code-native screen content",
+      "reusable": "yes: echo tunnel into a frame; object hands over to the type"
+    },
+    {
+      "id": "r1-s57",
+      "span": [
+        63,
+        66
+      ],
+      "shot": "one sentence built on a long horizontal line",
+      "camera": "pans sideways then pulls back to show all",
+      "moves": "a glowing point runs along a line (from start to end); a bulb icon with rays at the start, a player with a play icon at the end; words appear at each stop; a final pull-back shows the whole sentence as one layout",
+      "text": "small line, a big word, small line, a big two-word line; a tiny card",
+      "transition_out": "a frame echo fills the screen",
+      "palette": "black, red, white",
+      "built": "code-native screen content",
+      "reusable": "yes: a journey on one line from a start icon to an end icon; pull back at the end for the payoff"
+    },
+    {
+      "id": "r1-s58",
+      "span": [
+        66,
+        67.5
+      ],
+      "shot": "red poster with nested frame echoes",
+      "camera": "a small push",
+      "moves": "the red frame echoes in; small spaced line and a rule line draw; big word comes with heavy zoom blur and the second word with a pixel block; the full stop lands last",
+      "text": "small spaced line, a very big word, a heavy line with a full stop, black",
+      "transition_out": "a block mosaic wipes across the red, the dot swells",
+      "palette": "red, black",
+      "built": "code-native screen content",
+      "reusable": "yes: the main thesis poster on the red field"
+    },
+    {
+      "id": "r1-s59",
+      "span": [
+        67.5,
+        70
+      ],
+      "shot": "a sound word extends, pushing the frame",
+      "camera": "shake and slow zoom",
+      "moves": "letter one lands, the repeated letters spread to the right with heavy blur, zoom rings, a slash of lens flare; outline copies above and below; the field fades from red to pale",
+      "text": "one long repeated-letter word, black",
+      "transition_out": "fades to dark, line and the name come",
+      "palette": "red into salmon, black",
+      "built": "code-native screen content",
+      "reusable": "partly: extending a shout; in Persian use a kashida or a repeated whole form, and no swearing"
+    },
+    {
+      "id": "r1-s60",
+      "span": [
+        70,
+        72.6
+      ],
+      "shot": "closing lockup on the line with particles",
+      "camera": "very slow creep-in, then still; the wall light comes back up",
+      "moves": "wordmark resolves from a laser line by glitch; the small lines above and below rise; red dots slowly rise around it; a long held rest of over 2 s",
+      "text": "small brand line, big wordmark, small sub-line",
+      "transition_out": "hard cut to black",
+      "palette": "black, deep red, white",
+      "built": "code-native screen content",
+      "reusable": "yes: the only long hold in the film, kept for the logo; the brand's logo outro rules apply"
+    },
+    {
+      "id": "r1-s61",
+      "span": [
+        72.6,
+        75.65
+      ],
+      "shot": "full-frame black: phone screen panel rises, with captions over it",
+      "camera": "panel rises from the bottom with ease-out in about 0.5 s, later still",
+      "moves": "app panel rises while a word caption stays fixed in the centre, overlapping the UI text; a grey touch dot marks each press; pages swap instantly",
+      "text": "one to three white word captions at the centre, one at a time",
+      "transition_out": "keyboard slides up with blur",
+      "palette": "black, dark grey UI, one orange mark, white",
+      "built": "code-native (DOM phone UI), though this reference is a screen capture",
+      "reusable": "yes: a how-to walkthrough with one-phrase captions and a touch dot; never its screens"
+    },
+    {
+      "id": "r1-s62",
+      "span": [
+        75.65,
+        78
+      ],
+      "shot": "form with keyboard, caption above the keys",
+      "camera": "static",
+      "moves": "the keyboard slides in with vertical blur; text types into fields; the touch dot presses; a checking list runs",
+      "text": "word captions in the same place",
+      "transition_out": "page swap on a press",
+      "palette": "black, dark grey, white",
+      "built": "code-native (DOM phone UI), though this reference is a screen capture",
+      "reusable": "yes: touch dot and live typing; third-party screens stay out"
+    },
+    {
+      "id": "r1-s63",
+      "span": [
+        78,
+        79.5
+      ],
+      "shot": "permission page and page blur",
+      "camera": "static, then a vertical motion-blur page change",
+      "moves": "button press; page arrives; a blur across the page while the caption stays sharp",
+      "text": "word captions",
+      "transition_out": "vertical blur to the next page",
+      "palette": "dark, lime and purple accents of the third-party page",
+      "built": "code-native (DOM phone UI), though this reference is a screen capture",
+      "reusable": "yes: blur on the page, a sharp caption above it"
+    },
+    {
+      "id": "r1-s64",
+      "span": [
+        79.5,
+        82.4
+      ],
+      "shot": "typing in a chat box",
+      "camera": "static",
+      "moves": "the keyboard rises; letters appear in a live typing rhythm; send button pulses at the press",
+      "text": "typed line, no caption",
+      "transition_out": "press, reply page",
+      "palette": "black, dark grey, orange mark",
+      "built": "code-native (DOM phone UI), though this reference is a screen capture",
+      "reusable": "yes: live typing as proof"
+    },
+    {
+      "id": "r1-s65",
+      "span": [
+        82.4,
+        84.23
+      ],
+      "shot": "reply with a card catalog scrolling",
+      "camera": "static",
+      "moves": "reply text types; cards arrive; a scroll with vertical blur about 0.4 s and a soft stop",
+      "text": "third-party reply, small",
+      "transition_out": "cut on the end of the scroll",
+      "palette": "black, dark grey, lime tags",
+      "built": "code-native (DOM UI) except the third-party pictures in the cards",
+      "reusable": "yes: a scroll with blur and a soft stop; pictures replaced by owner assets or code-drawn images"
+    },
+    {
+      "id": "r1-s66",
+      "span": [
+        84.23,
+        85.7
+      ],
+      "shot": "split: small UI plate above, person in an arch mask below",
+      "camera": "plate tilted; person near static",
+      "moves": "lime glow point writes a line in the plate; the plate changes every about 0.5 s (timeline, line, prompt bar); a word caption sits at the seam; the person's picture is cut as an arch",
+      "text": "word caption and tiny UI labels",
+      "transition_out": "hard cut to a white word on the top half",
+      "palette": "near-black, lime accent, warm person shot",
+      "built": "top plate code-native, bottom live footage",
+      "reusable": "partly: the split with an arch-shaped mask and a glow point that writes; the person is replaced by a voice-over scene in the film's rendering"
+    },
+    {
+      "id": "r1-s67",
+      "span": [
+        85.7,
+        86.1
+      ],
+      "shot": "white word hit in the top half",
+      "camera": "none",
+      "moves": "flash of a white plate with one heavy word, the same word blurred and huge behind the person",
+      "text": "one big word, black",
+      "transition_out": "cut back to dark",
+      "palette": "off-white, black, warm person shot",
+      "built": "top plate code-native, bottom live footage",
+      "reusable": "yes: one bright hit inside a dark passage"
+    },
+    {
+      "id": "r1-s68",
+      "span": [
+        86.1,
+        87
+      ],
+      "shot": "tilted prompt plate above the person",
+      "camera": "plate in perspective with a slow drift",
+      "moves": "a glow point sweeps along the text, key words get a lime highlight",
+      "text": "a typed line, a caption",
+      "transition_out": "the plate blurs behind the call to action",
+      "palette": "near-black, lime, warm person shot",
+      "built": "top plate code-native, bottom live footage",
+      "reusable": "yes: glow point sweep with word highlight"
+    },
+    {
+      "id": "r1-s69",
+      "span": [
+        87,
+        88.4
+      ],
+      "shot": "big call-to-action words above the person",
+      "camera": "words rise a little in perspective",
+      "moves": "lime lines landing one after the other, UI behind in blur, a lime glow by the person",
+      "text": "two lime lines, big",
+      "transition_out": "the plate turns to a large blurred word",
+      "palette": "lime, near-black",
+      "built": "top plate code-native, bottom live footage",
+      "reusable": "yes: a call to action as the one moment of an accent colour; the words themselves come from our package"
+    },
+    {
+      "id": "r1-s70",
+      "span": [
+        88.4,
+        89.03
+      ],
+      "shot": "huge out-of-focus letters behind the person",
+      "camera": "static",
+      "moves": "grey plate and black letters in very heavy blur; a word caption on top",
+      "text": "word caption, one at a time",
+      "transition_out": "cut to the full-frame person",
+      "palette": "grey, black, warm person shot",
+      "built": "background code-native, person live footage",
+      "reusable": "yes: letters as a blurred backdrop; the person is not"
+    },
+    {
+      "id": "r1-s71",
+      "span": [
+        89.03,
+        91.5
+      ],
+      "shot": "full-frame person in a warm room",
+      "camera": "near static, small drift",
+      "moves": "hands move, captions change word by word over the chest",
+      "text": "one or two word captions, white",
+      "transition_out": "ends without an outro",
+      "palette": "warm amber room, black jacket, orange ring",
+      "built": "live footage",
+      "reusable": "no: a real person and a real room; only the job is kept (a short personal close), rebuilt from the voice-over in the film's rendering"
+    }
+  ],
+  "visual_language": "Word-by-word kinetic typography, in which almost every spoken word is its own hit, played on a screen that is itself being filmed in a dim room. The film has three parts: 0-72.6 s the type film on the filmed laptop, 72.6-84.23 s a plain full-frame phone walkthrough with word captions, and 84.23-91.5 s a personal close with a call to action. Type: very heavy extended and condensed all-caps grotesques in big sizes, usually filling the width of the screen, with occasional contrast from a hair-thin weight, a mono face in the prompt box, outline letters, and one serif italic line; words stack into posters across several beats. Rhythm: 60 screen beats in 72.6 s, an average of about 1.2 s, while a new word arrives about every 0.3-0.7 s inside a beat; the main holds are the logo lockups (about 1.5 and 2.6 s) and the poster moments; there is one deliberately slow beat before a slash (42-43.5 s) and one black breath (47.9-48.0 s). Moves come in very fast from heavy directional blur and settle in 2-4 frames with a sharp ease-out, then keep creeping slowly. Sound-sync was not tested. Palette: three alternating fields, black with red bloom, pure red, off-white, flipping on almost every word, with black and white type and one red dot as a recurring full stop; a chapter turns fully grey as a contrast; one acid yellow word appears once; the third part is near-black with lime. Signature moments: a word that bursts from a point of light; the red X that cuts a window apart; a word that grows up and down from a laser line; the burst shape that inverts letters; the big stretch of one word; a whole poster losing weight and falling off the screen; a dial with a sentence that announces the slash, then delivers it.",
+  "look": "Two layers. Inner layer, the screen content: flat type planes with 2.5D moves, occasional extruded letters, tilted perspective planes, a dot-grid floor, one real 3D cube; light comes only from glows: strong red bloom and halation around the type, laser lines with flares, drifting bokeh dots, sparks. Depth of field is an effect: blurred word states, a giant out-of-focus word as a backdrop, heavy motion blur and echo copies on every whip. Materials: matte black, glass cards with a thin bright border, plain paper white, pure flat red. Outer layer, 0-72.6 s: real photographic depth: one phone camera shot of a laptop lid, its dark keyboard falling away to black at the bottom, and a warm tan wall lit from behind the lid. The physical light reacts: the exposure pumps against the screen, so on white or red frames the wall goes dark brown and the keyboard nearly disappears, and on dark frames the wall lifts to pale cream and the backlit keys appear. The screen occupies the full width and about a third of the height, and shows halation and slight softness. The part after 72.6 s has no outer layer. The final part is warm, realistic live footage.",
+  "code_translation": "Everything inside the screen is code-native and fits HTML/CSS/SVG in headless Chromium: word stacks as DOM, directional and zoom blur by frame blending or scaled copies, echo trails as stacked copies, slashes by clip-path and SVG strokes, masks at a laser line, shape morphs in SVG, inversion with mix-blend-mode, bloom with blurred copies, dot grid and bokeh on canvas. The cube and any object that is 3D in the reference stay real 3D in three.js, with perspective planes for the tilted type, never flattened. The outer layer, if L4 keeps it, is also built in code as real depth: render the screen film first, then map it onto a laptop or other device lid in three.js with a dim room, or as a perspective plane, and drive the wall and keyboard brightness from the mean luminance of the screen on each frame, inverted, to reproduce the exposure pump; add a little handheld drift. A real filmed look cannot be matched fully, but no footage is needed. About 92% of the running time can be built without footage, counting that wrapper; the 7.3 s with the real person (84.23-91.5 s, about 8%) cannot and L4 replaces them with a scene from our voice-over in this film's rendering, never a fake real person.",
+  "continuity": [
+    "One filmed frame holds the whole type film together: the device, the wall and one fixed caption line stay still while everything inside the screen changes.",
+    "The world around the screen reacts: wall and keys pump against the brightness of each frame, so the outer shot feels alive with no cut.",
+    "A full stop as an actor: the round accent dot stays with the words, then swells into a full-frame wipe.",
+    "The laser line as a horizon: words are born from it, it runs under a name, it shrinks to a single beat, and comes back as the closing lockup, so the same mark opens many scenes.",
+    "Words carry across colour flips: the same word stays in place while its field jumps from red to black, so the change reads as a hit, not a cut.",
+    "An exit leaves a trail: stacked echo copies of the old frame are the road into the new one; whips and zooms pass through repeats of what was just on screen.",
+    "A glow survives a whip: a red glow leaves one layout and locks into the next object.",
+    "A slash is the universal scene-changer: a thin stroke cuts on a diagonal, the frame splits along it and the next field shows under it.",
+    "A big field shrinks into the next object (a white page becomes a card), and an object is entered by zooming through its button.",
+    "The poster builds up: words appear alone first, then stand together, so the viewer reads the sentence twice.",
+    "Text stays, object changes, and the other way round: a headline scrambles while its window stays still, or a window is destroyed under a headline that stays.",
+    "Recap by pile: earlier words return as a tower that recedes in depth, and the next word lands over its ghost.",
+    "Tension through contrast: a slow small sentence announces the next hit; then all energy dies by weight loss and a page falling off the screen, then one black breath before a new chapter in a new colour.",
+    "A slot-reel vertical roll swaps a question with the answer; the two share one centre line.",
+    "A list where only the current step is filled and the rest stay in outline shows progress without any arrow."
+  ],
+  "risks": [
+    "Third-party film of unknown origin: ADAPT only. Never copy the logos, product names, English copy, UI screens, account, address, catalog images, laptop, dock icons, room or person, or the shot order one by one.",
+    "The laptop in a dim room belongs to the reference's footage, and the router says props and setting come from the voice-over. Its presentation idea (the film played on a lit screen in a dark room, with the room reacting) is a real part of the look and may be kept as a framing device only if it suits the voice-over; L4 decides and records it. The film must still work if the type fills the whole 9:16 frame.",
+    "On the filmed laptop the screen is only about a third of the frame height, with the middle band for type and large dead areas in the wall and keyboard. Persian lines at the reference's size may fall below readable sizes on a phone: readability ranks above the reference, so enlarge the device or crop into it, and keep text within the safe zone (the caption at about 17% of the height and the keyboard area carry no meaning).",
+    "The pace is extreme: a new word about every 0.3-0.7 s and a new screen about every 1.2 s, for more than a minute. Persian hold times and minimum sizes win over this pace; our cuts follow the voice timing, and the fast pace is kept by moves, not by shorter holds on words the viewer must read.",
+    "Most of the type tricks are built on separate Latin capitals: letters that land loose, per-letter resolve, tracking and stretching, one repeated letter, a letter holding an eye. Persian letters must stay correctly joined: apply them to whole words or to masks over shaped text, use a kashida for stretching, and follow references/rtl-grammar.md, which also reverses sweeps, typing, pans and the line journey to run right to left. Persian has no capitals, so heavy weights do that work.",
+    "The look relies on very heavy display weights and on hair-thin to black weight changes. These depend on the brand's fonts: if the brand font has no such range or no variable axis, use the heaviest and lightest cuts available with a cross-fade, and never swap to a non-brand font.",
+    "Colours were read by eye. Red, black, off-white, the single yellow word and the lime in the last part map onto brand colour roles (main field, dark surface, light surface, accent); never used as literal values, and a brand's banned colours win. If the brand has no strong hot colour, the whole energy of the film shifts, and L4 must pick the strongest allowed accent for the field and bloom.",
+    "Fast full-field colour flips between white, red and black on nearly every word are a flicker risk for sensitive viewers, and they compress poorly; keep them in brand roles and do not go faster than the voice requires.",
+    "The swearing and the angry tone are part of the source's voice. They never enter the film; the shout-like moves must come from our voice-over's own emphasis, or be softened to fit the owner's tone.",
+    "The middle section (72.6-84.23 s) is a plain how-to with a different look from the rest; it is reusable only if the content package has real steps, and then as DOM UI of our own.",
+    "The reference has its own loud audio, which was measured, not heard, and beat sync was not tested. Our film's cuts follow the voiceover first, and L6 places accents on our cuts rather than reusing its sound."
+  ],
+  "sha256": "7bd378934a3522e8f136a66865a7e318a3514ae6d51d0307866cd09710b39113"
+}

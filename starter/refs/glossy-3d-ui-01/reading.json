@@ -1,0 +1,279 @@
+{
+  "slug": "glossy-3d-ui-01",
+  "key": {
+    "sha256": "dabc6a89fca4c26d0dc22ba110c9e1044175b951c934e1e2b660e198cba65c2b"
+  },
+  "read_at": "2026-11-03",
+  "probe": {
+    "duration": 36.61,
+    "w": 736,
+    "h": 414,
+    "fps": 25,
+    "audio": true,
+    "format_note": "16:9 landscape, low resolution (736x414). Stereo AAC music bed runs to 35.72 s, then 0.89 s of silence over the end card (mean -18.6 dB, peaks at 0 dB). Beat sync of cuts not measured."
+  },
+  "rights_note": "found by the owner on Pinterest with a style search (file «code animation motion design.mp4»), given by the owner via Downloads/refrencee on 2026-11-03; origin not stated → plan mode ADAPT, never RECREATE",
+  "reference_name": "رابط سه‌بعدی براق و رنگی",
+  "mode": {
+    "plan_mode": "ADAPT",
+    "film_mode": "UI",
+    "why": "third-party product promo of unknown origin: borrow the motion language and look only, never its shots one by one, its object or UI designs, its copy, its logo or its music (owner note). The reference is a software/app workflow launch (UI); a voiceover package whose topic is not software falls back to REEL with this reading as its motion language."
+  },
+  "ignored": [
+    {
+      "span": [
+        32,
+        36.61
+      ],
+      "why": "the closing logo build and end card (paper-plane mark, 'LARK' wordmark, 'www.larksuite.com') are a third-party brand; never reused. Our film ends on the brand's own logo outro."
+    },
+    {
+      "span": [
+        0,
+        36.61
+      ],
+      "why": "all English UI copy on the screens ('Project', 'Project Overview', 'Time Table', 'news', 'View on your own', 'Overview', 'Results') and the paper-plane app icon are third-party product content; never reused as text or icons"
+    },
+    {
+      "span": [
+        0,
+        36.61
+      ],
+      "why": "the avatar portrait tiles on the UI screens are third-party illustrated people; never reused"
+    },
+    {
+      "span": [
+        0,
+        36.61
+      ],
+      "why": "the music track is third-party audio; never reused (L6 builds sound from the storyboard)"
+    }
+  ],
+  "method": "ffprobe; ffmpeg contact sheets fps=2, 4x3 (7 sheets, all viewed); scene detect gt(scene,0.3) found one cut (14.16 s); gt(scene,0.12) added soft changes at 12.40, 13.24, 14.20, 15.96, 33.88, 33.96 s (most transitions are continuous camera moves, whips and pushes with motion blur that scene detect does not catch). Dense sheets: fps=10 on 3.4-5.0, 6.0-7.6, 8.4-10.0 s; fps=5 on 12.0-15.2, 23.6-26.8, 29.6-32.8 s (all viewed). silencedetect + volumedetect on the audio. Spans between dense windows are read from the 0.5 s sheets and are accurate to about ±0.25 s. Colours read by eye, not sampled.",
+  "shots": [
+    {
+      "id": "r1-s1",
+      "span": [
+        0,
+        2
+      ],
+      "shot": "medium, hero desktop monitor on a round pedestal, small glossy props around it",
+      "camera": "slow push-in with a slight orbit to the right; shallow depth of field, out-of-focus foreground torus and glass bubble",
+      "moves": "UI windows pop out of the screen one after another and stack in depth in front of it (each slides forward and scales up with a soft overshoot, stagger about 0.3 s); a column of small avatar tiles pops in at the screen edge; props float gently",
+      "text": "none readable (tiny placeholder UI labels only)",
+      "transition_out": "fast change into the next device world between 1.5 and 2.0 s (not caught by scene detect; read from the 2 fps sheet as a quick colour-wash/whip, about 0.2 s, not verified frame by frame)",
+      "palette": "sky blue to pale blue gradient, white and light-blue UI, glossy blue pedestal",
+      "built": "generated (3D render)",
+      "reusable": "yes: interface panels peel off the screen and stack in depth in front of their device; motion only, never the UI design"
+    },
+    {
+      "id": "r1-s2",
+      "span": [
+        2,
+        4.1
+      ],
+      "shot": "medium, a tablet floating front-on in the centre, one colour world",
+      "camera": "near static, slow downward drift",
+      "moves": "large out-of-focus glossy spheres, tori and ribbons drift across the foreground and background at different speeds (strong parallax); UI cards on the tablet shift slightly",
+      "text": "none readable",
+      "transition_out": "vertical push about 0.25 s (4.1-4.35 s): the next colour world slides down from the top edge over this one with heavy vertical motion blur and a soft seam; the next device lands in the same screen position",
+      "palette": "monochrome pink: pale pink to hot pink, white highlights",
+      "built": "generated (3D render)",
+      "reusable": "yes: one device per monochrome colour world, swapped by a vertical push while the device keeps its place in frame; motion only"
+    },
+    {
+      "id": "r1-s3",
+      "span": [
+        4.2,
+        6.2
+      ],
+      "shot": "medium, a phone floating front-on in the centre, next colour world",
+      "camera": "near static, slow drift",
+      "moves": "settles from the push with a small ease-out; soft blurred shapes float; at about 6.0 s part of the screen turns dark as the next world shows through it",
+      "text": "none readable",
+      "transition_out": "push through the screen about 0.4 s (6.2-6.6 s): the camera accelerates (ease-in) into the phone's display, its UI panels fly past the lens with motion blur, and the dark world behind the screen fills the frame",
+      "palette": "monochrome yellow-orange: butter yellow to tangerine, cream UI",
+      "built": "generated (3D render)",
+      "reusable": "yes: camera flies through a device screen into the next scene; the screen is the doorway; motion only"
+    },
+    {
+      "id": "r1-s4",
+      "span": [
+        6.6,
+        8.9
+      ],
+      "shot": "wide, a dark space full of dim 3D objects tumbling slowly",
+      "camera": "slow drift with a tilted (dutch) horizon; from about 8.3 s pans right, following the beam",
+      "moves": "objects are almost black until a small 3D flashlight switches on (about 7.2 s) and its cone of light reveals one glowing icon (a speech bubble), then swings (about 8.4 s) to reveal the next (a magnifier); revealed icons light up from dark to saturated",
+      "text": "none",
+      "transition_out": "light wipe about 0.2 s (8.8-9.0 s): the beam swings toward the lens, the cone fills the frame with cool white-blue light and the bright world appears out of it",
+      "palette": "near-black navy and deep indigo, a cool blue-white beam, saturated pink and orange revealed icons",
+      "built": "generated (3D render)",
+      "reusable": "yes: darkness with a moving spotlight that reveals one idea at a time, then the light itself becomes the wipe to a bright scene; motion only"
+    },
+    {
+      "id": "r1-s5",
+      "span": [
+        9,
+        12
+      ],
+      "shot": "medium close, a tilted phone in perspective, glossy icons and glass bubbles around it",
+      "camera": "slow orbit and push-in, dutch angle, shallow depth of field",
+      "moves": "a round icon badge floats in the centre; a sheet of paper unrolls upward from the bottom of the frame (9.6-10.2 s, smooth ease-out) and becomes the phone's screen; cards drop onto it and an orange slider fills; a translucent frosted-glass hand enters from the right and taps a button (about 10.5 s), the button squashes and the card behind it pops forward",
+      "text": "none readable",
+      "transition_out": "the objects burst outward and the camera whips into the cluster (about 12.0-12.4 s, motion blur)",
+      "palette": "bright cobalt blue, violet and cyan gradient, white paper, orange accents",
+      "built": "generated (3D render)",
+      "reusable": "yes: a flat sheet curls up into the screen it becomes; a stylised glass hand presses a button and the interface answers; motion only, never the hand design or UI"
+    },
+    {
+      "id": "r1-s6",
+      "span": [
+        12,
+        14.16
+      ],
+      "shot": "close, a dense cluster of glossy UI-symbol objects (gear, plus coin, cards, thumbs-up badge, ribbons)",
+      "camera": "fast fly-through, dutch angles, the lens passes very close to objects (about 13.24 s a gear crosses the lens as a foreground wipe)",
+      "moves": "objects tumble and rotate at different speeds; ribbons curl and unfurl; heavy foreground blur on close passes",
+      "text": "none",
+      "transition_out": "hard cut at 14.16 s (scene score 0.44) on the motion of a sweeping ribbon",
+      "palette": "violet, cobalt and cyan with orange and yellow accents",
+      "built": "generated (3D render)",
+      "reusable": "yes: a fast camera flight through a cloud of symbolic objects, using close foreground passes as hidden wipes; motion only"
+    },
+    {
+      "id": "r1-s7",
+      "span": [
+        14.16,
+        16
+      ],
+      "shot": "medium, a blank tilted phone; a ribbon wraps across it",
+      "camera": "slow push-in and slight orbit",
+      "moves": "the ribbon sweeps across the phone and leaves orange stroke lines on the screen; lines draw on, then a heading, cards and avatar tiles pop onto the screen in order (stagger about 0.2 s, scale with a small overshoot); a torus and cone float in front",
+      "text": "a short heading on the UI (third-party copy, ignored)",
+      "transition_out": "camera drops to a low angle (soft change at 15.96 s), continuous",
+      "palette": "cobalt, violet and lilac gradient, white screen, orange torus and strokes",
+      "built": "generated (3D render)",
+      "reusable": "yes: an empty screen is built element by element in front of the viewer (lines draw, then blocks pop); motion only"
+    },
+    {
+      "id": "r1-s8",
+      "span": [
+        16,
+        19
+      ],
+      "shot": "low angle, a curved phone standing on a glossy reflective floor, glass hand in front",
+      "camera": "slow arc around the device, low to the floor",
+      "moves": "the glass hand presses a wide button; the screen content scrolls up; floating icons and a glass bubble drift past",
+      "text": "button label and UI copy (third-party, ignored)",
+      "transition_out": "vertical whip about 0.25 s (19.0 s): the camera tilts down fast with heavy motion blur",
+      "palette": "violet to cobalt, cyan highlights, white screen, orange torus accent",
+      "built": "generated (3D render)",
+      "reusable": "yes: low hero angle on a reflective floor for a key interaction; vertical whip to change angle; motion only"
+    },
+    {
+      "id": "r1-s9",
+      "span": [
+        19.25,
+        22
+      ],
+      "shot": "high angle, a large tablet seen from above at a slant, two glass hands working on it",
+      "camera": "near top-down, slow drift",
+      "moves": "the hands drag and place cards; a chart panel is swapped for a table panel (slide-replace about 0.3 s); side tiles pop in",
+      "text": "none readable",
+      "transition_out": "camera rises and pulls back into the wide (about 22.0 s), continuous",
+      "palette": "lilac, violet and cobalt, white board, orange and blue panels",
+      "built": "generated (3D render)",
+      "reusable": "yes: two hands working on a workspace seen from above; one panel replaced by the next; motion only"
+    },
+    {
+      "id": "r1-s10",
+      "span": [
+        22,
+        24
+      ],
+      "shot": "wide high angle, many floating windows in layered frosted-glass planes",
+      "camera": "slow pull-back with a slight rotation",
+      "moves": "windows hover at different depths, small cards drift; frosted glass slabs pass in the foreground",
+      "text": "none readable",
+      "transition_out": "camera dives after one window into a ribbon tunnel (about 24.0 s), continuous with motion blur",
+      "palette": "violet, lilac and cobalt, frosted white glass",
+      "built": "generated (3D render)",
+      "reusable": "yes: pull back to show many parts as one layered system; motion only"
+    },
+    {
+      "id": "r1-s11",
+      "span": [
+        24,
+        26
+      ],
+      "shot": "medium, one window flying through a curved tunnel of pink and violet ribbons",
+      "camera": "chase camera, banking with the tunnel",
+      "moves": "the window spins and splits into its layers (exploded view: frame, screen and panels separate in depth, about 0.6 s, then rejoin), motion blur on every turn",
+      "text": "none",
+      "transition_out": "burst at about 26.0 s: the window rushes toward the lens and becomes the desktop monitor while ribbons and small objects explode outward from it",
+      "palette": "hot pink, magenta, violet and cobalt, warm yellow glints",
+      "built": "generated (3D render)",
+      "reusable": "yes: an object explodes into its layers in flight and reassembles, then a burst reveals the hero device; motion only"
+    },
+    {
+      "id": "r1-s12",
+      "span": [
+        26,
+        30
+      ],
+      "shot": "medium, desktop monitor on its pedestal again (bookend of r1-s1), confetti objects settling",
+      "camera": "slow push-in",
+      "moves": "ribbons and props settle around the monitor; a glass hand taps an upload button (about 28.5 s); the stacked windows collapse and rearrange into a new single dashboard layout (panels slide and resize, about 0.5 s, ease-in-out)",
+      "text": "UI headings (third-party, ignored)",
+      "transition_out": "about 30.0-30.4 s: a line draws out of the screen and folds into a paper plane that flies off; the camera follows it",
+      "palette": "cobalt and violet with cyan, white UI, orange props",
+      "built": "generated (3D render)",
+      "reusable": "yes: return to the opening device composition after the journey (bookend), now in its finished state; one tap reorganises the whole interface; motion only"
+    },
+    {
+      "id": "r1-s13",
+      "span": [
+        30.4,
+        32
+      ],
+      "shot": "follow shot, a small 3D folded object flying over curved pink and violet surfaces",
+      "camera": "chase camera, banking and rolling with the object",
+      "moves": "the object flies fast with streak lines and drifting particles; the scenery slides past with motion blur",
+      "text": "none",
+      "transition_out": "light wipe to white about 0.4 s (32.0 s): the background blows out to white while the object keeps flying",
+      "palette": "pink, magenta and violet, cyan-and-blue object, orange streaks",
+      "built": "generated (3D render)",
+      "reusable": "yes: chase one small object out of the scene and let the world blow out to white for the outro; motion only, never the paper-plane design"
+    }
+  ],
+  "visual_language": "A glossy 3D product film: devices (monitor, tablet, phones) and the interfaces on them are the heroes, surrounded by clouds of soft glossy symbol-objects (tori, spheres, gears, coins, ribbons, cones, glass bubbles). Medium: full 3D render, no flat illustration and no on-screen headline type; the only words are tiny UI labels. Each section lives in a monochrome colour world (blue, pink, yellow, dark navy, then a bright cobalt-violet-cyan world that carries the second half) and the camera almost never stops: slow push-ins and orbits on the devices, fast fly-throughs and chases between them. Rhythm: 13 readable shots in 32 s (about 2.4 s average), but most changes are continuous camera moves, whips, pushes and light wipes rather than cuts (one hard cut at 14.16 s); a music bed runs under the film, beat sync not measured. Moves are smooth and weighty in the holds (ease-in-out, gentle floating) and fast with motion blur in the transitions (0.2-0.4 s, ease-in into the move, ease-out on landing); UI elements pop in with small overshoots and short staggers. Signature moments: the flashlight beam revealing icons in the dark and then flooding the frame as a wipe; the camera flying through a phone screen into the next world; a paper sheet curling up into a screen; the window exploding into its layers inside a ribbon tunnel; the glass hand tapping and the interface answering; the bookend return to the opening monitor.",
+  "look": "Real 3D (not flat, not 2.5D): rounded, bevelled devices and soft-touch glossy plastic props with broad soft speculars; frosted translucent glass (the stylised hand, glass slabs, bubbles with refraction); a glossy reflective floor in the low-angle shot; soft diffuse studio light with gentle ambient occlusion and soft contact shading, no hard shadows; strong shallow depth of field with large out-of-focus foreground objects; heavy motion blur on whips and chases; one dark section lit only by a volumetric spotlight cone. Backgrounds are smooth gradient studios and abstract curved surfaces (no real-world setting). Colour: saturated monochrome worlds (sky blue, pink, yellow-orange, navy, cobalt-violet-cyan) with orange/yellow accents.",
+  "code_translation": "Not code-native (3D render). Per D55 it is built as real 3D in code with three.js: RoundedBox and lathe/tube geometry for devices, pedestal, tori, ribbons (TubeGeometry along curves); MeshPhysicalMaterial with clearcoat for glossy plastic, transmission + roughness for frosted glass (hand, slabs, bubbles), a reflective floor (MeshPhysicalMaterial or reflector); soft key light plus hemisphere/environment fill, soft shadows only; a SpotLight with a volumetric cone mesh (additive, soft-edged) for the dark reveal; depth of field as a bokeh/blur pass; motion blur by frame blending or directional blur on fast moves. UI screens are canvas textures drawn in code with brand colours and shaped Persian text (never split joined letters), mapped onto the device screens; panels that leave the screen are separate thin rounded planes in depth. Colour worlds are large gradient backdrops whose colours come from brand roles. Never flattened into 2D shapes.",
+  "continuity": [
+    "The camera never stops: scenes are joined by camera moves (push, orbit, chase, whip) rather than cuts, so the film reads as one flight.",
+    "Fly through a screen: the camera accelerates into a device's display and the next scene is behind it.",
+    "Monochrome colour worlds: each section owns one colour; a vertical push swaps world and colour while the hero object keeps its place in frame.",
+    "Light as a wipe: a moving light source reveals subjects in the dark, then swings into the lens and floods the frame into the next, brighter scene; a blow-out to white leads into the outro.",
+    "One shape becomes another: a flat sheet curls up into a screen; a drawn line folds into a flying object.",
+    "Exploded view in motion: an object splits into its layers in depth and reassembles while travelling.",
+    "Close foreground passes: an object crossing the lens at full blur hides a change of shot.",
+    "Interaction drives change: a stylised glass hand taps and the interface responds (pop, rearrange, scroll), so every state change has a cause on screen.",
+    "Build-on: an empty surface is filled element by element (lines draw, blocks pop with short staggers).",
+    "Bookend: the film returns to its opening composition, now in a finished state, before the outro.",
+    "Burst reveal: a rushing object turns into the hero while small objects explode outward around it."
+  ],
+  "risks": [
+    "Third-party product promo of unknown origin (closing brand mark and URL visible): ADAPT only. Never copy the device/UI designs, the paper-plane mark, the glass-hand design, the UI copy, the avatar portraits, the music, or the shot order one by one.",
+    "Source is 16:9 landscape; our default is 9:16: compositions must be rebuilt vertically (device centred and larger, symbol objects stacked above and below, chases turned to vertical travel where it reads better), inside the 9:16 safe zone.",
+    "The reference has almost no readable on-screen text: our Persian text must be added as its own layer (or as large UI text on the screens) with full hold times and minimum sizes; tiny UI-label scale from the reference is never used for words the viewer must read (readability ranks above the reference).",
+    "Fast fly-throughs with heavy blur and dutch angles (r1-s6, r1-s11, r1-s13) cannot carry text; keep them short, between voice lines, or as transitions.",
+    "Low source resolution (736x414): fine UI details and exact easing are estimated; spans outside the dense windows are about ±0.25 s.",
+    "The 1.5-2.0 s change from the blue to the pink world was not checked frame by frame; L5 should use the vertical push (r1-s2) as the verified world-swap.",
+    "The UI mode suits software/app topics; for other voiceover topics, devices and screens are replaced by subjects from the voiceover drawn in the same glossy 3D style (setting comes from the voiceover, never from this footage).",
+    "Reference colours (sky blue, pink, yellow-orange, navy, cobalt-violet-cyan, orange accents) map onto brand colour roles as colour worlds; never used as literal hex values; banned brand colours are dropped from the world sequence. Colours were read by eye, not sampled.",
+    "Text direction for Persian follows references/rtl-grammar.md (the reference has no text flow to follow).",
+    "The reference's music sets a smooth, continuous pace; L6 builds its own sound from the storyboard."
+  ],
+  "sha256": "dabc6a89fca4c26d0dc22ba110c9e1044175b951c934e1e2b660e198cba65c2b"
+}
