@@ -37,7 +37,7 @@ export function BrandSwitcher() {
       <button type="button" className="brand" aria-expanded={open} aria-controls="brand-list" onClick={() => setOpen((o) => !o)}
         aria-label={`برند فعال: ${active?.name ?? 'هیچ'}. برای عوض کردن برند بزن.`}>
         <BrandMark brand={active} />
-        <span className="brand-text"><b>استودیو موشن</b><span>{active ? active.name : loaded ? 'هنوز برندی نیست' : '…'}</span></span>
+        <span className="brand-text"><b>استودیو محتوا</b><span>{active ? active.name : loaded ? 'هنوز برندی نیست' : '…'}</span></span>
         <span className="brand-caret" aria-hidden="true">▾</span>
       </button>
       {open && (

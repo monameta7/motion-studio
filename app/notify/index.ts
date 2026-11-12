@@ -6,7 +6,7 @@ import { faNum } from '../fa.js';
 
 export type NotifyKind = 'job_done' | 'blocked' | 'failed' | 'paused_quota' | 'quota_warning' | 'topics_low' | 'missed_run' | 'skipped' | 'test';
 export const APP_ID = 'Mahdiyar.MotionStudio';
-export const TOAST_TITLE = 'استودیو موشن مهدیار';
+export const TOAST_TITLE = 'استودیو محتوا';
 
 export interface NotifyInput {
   kind: NotifyKind;
