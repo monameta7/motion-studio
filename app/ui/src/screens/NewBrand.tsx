@@ -24,6 +24,8 @@ export function BrandCreator({ schema, resume, onDone, onSkip }: { schema: Brand
   const [flow, setFlow] = useState(false);
   const prog = requiredProgress(schema, draft);
   const requiredSections = schema.sections.filter((s) => s.id !== 'visual' && s.questions.some((q) => schema.required.includes(`${s.id}.${q.id}`)));
+  /** «ده قانون طلایی» (D82) has no required question; it is offered at the end of the questions step, optional. */
+  const optionalSummary = schema.sections.find((s) => s.id === 'summary');
 
   const createFolder = async () => {
     if (!name.trim()) { setProblem('نام برند را بنویس.'); return; }
@@ -64,6 +66,13 @@ export function BrandCreator({ schema, resume, onDone, onSkip }: { schema: Brand
               <QuestionForm schema={schema} section={s} draft={draft} onChange={setDraft} requiredOnly />
             </section>
           ))}
+          {optionalSummary && (
+            <section className="stack" aria-label={optionalSummary.title}>
+              <h3>{optionalSummary.title}</h3>
+              <p className="muted small">{optionalSummary.why}</p>
+              <QuestionForm schema={schema} section={optionalSummary} draft={draft} onChange={setDraft} />
+            </section>
+          )}
           <div className="row-between">
             <button type="button" className="btn" onClick={() => setStep(0)} disabled={!!resume}>قبلی</button>
             <button type="button" className="btn primary" onClick={() => setStep(2)}>بعدی</button>
