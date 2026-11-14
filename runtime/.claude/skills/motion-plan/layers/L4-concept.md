@@ -103,7 +103,9 @@ When an opening frame image is supplied, link 1 starts on it: the image is frame
 
 ## 10. Owner assets
 
-Each image in `jobs/<slug>/input/` gets a link where it appears, chosen from the owner's directions (else the link whose voice line talks about it). Write it on that link's `see`. An owner asset is shown as it is, never redrawn; when it conflicts with the brand, keep the image exact and record the trade-off as a risk.
+Each image in `jobs/<slug>/input/` gets a link where it appears, chosen from the owner's directions (else the link whose voice line talks about it). Write it on that link's `see`, with how it is used (D84): shown as it is, changed as the directions say, or rebuilt as a moving product screen. With no direction, choose what the link needs: a screenshot whose voice line describes using the product is rebuilt; a photo, logo or finished picture is shown as it is. When a shown image conflicts with the brand, keep the image exact and record the trade-off as a risk.
+
+A product screen with no image (the owner gave only an idea, or the voice-over is about using a product) also gets its links here: one link per step the viewer must see the product do.
 
 ## Exit
 

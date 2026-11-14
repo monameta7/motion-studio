@@ -1,6 +1,7 @@
-// Responsibility: the Archive screen (docs/11): every job in a table (date, topic, brand, reference, status, duration, truth score) with filters; a row opens the job.
+// Responsibility: the Archive screen (docs/11): every job in a table (date, topic, brand, reference, status, duration, truth score) with filters; a row opens the job, «حذف» moves it to jobs/_trash (D85).
 import { useState } from 'react';
-import type { JobSummary } from '../api';
+import { api, ApiError, type JobSummary } from '../api';
+import { Confirm } from '../Modal';
 import { faDateTime, faDuration, faNum } from '../fa';
 import { go, useRefName } from '../hooks';
 import { STATUS_FA } from '../labels';
@@ -15,12 +16,20 @@ const FILTERS = [
   { id: 'cancelled', label: 'لغوشده', match: (j: JobSummary) => j.status === 'cancelled' },
 ] as const;
 
-export function Archive({ jobs }: { jobs: JobSummary[] }) {
+export function Archive({ jobs, reload }: { jobs: JobSummary[]; reload: () => Promise<unknown> }) {
   useScreenTour('archive');
   const [filter, setFilter] = useState<(typeof FILTERS)[number]['id']>('all');
   const [format, setFormat] = useState<'all' | '9x16' | '16x9'>('all');
   const [q, setQ] = useState('');
   const refName = useRefName();
+  const [doomed, setDoomed] = useState<JobSummary | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [problem, setProblem] = useState<string | null>(null);
+  const remove = async (j: JobSummary) => {
+    setBusy(true); setProblem(null);
+    try { await api.del(`/api/jobs/${j.slug}`); await reload(); } catch (e) { setProblem(e instanceof ApiError ? e.message : 'حذف نشد؛ دوباره امتحان کن.'); }
+    finally { setBusy(false); setDoomed(null); }
+  };
   const match = FILTERS.find((f) => f.id === filter)!.match;
   const list = jobs.filter((j) => match(j) && (format === 'all' || j.format === format) && (!q.trim() || j.title.includes(q.trim()) || j.topic.includes(q.trim())));
 
@@ -42,13 +51,14 @@ export function Archive({ jobs }: { jobs: JobSummary[] }) {
           </label>
         </div>
       </section>
+      {problem && <div className="problem" role="alert">{problem}</div>}
       <section className="card" data-tour="archive-list">
         {list.length === 0 ? (jobs.length === 0
           ? <EmptyState text="هنوز ویدیویی ساخته نشده است. هر ویدیویی که بسازی، اینجا می‌ماند." action={{ label: 'ساخت اولین ویدیو', href: '#/new' }} />
           : <EmptyState text="ویدیویی با این فیلتر نیست." action={{ label: 'پاک کردن فیلترها', onClick: () => { setFilter('all'); setFormat('all'); setQ(''); } }} />) : (
           <div className="table-wrap">
             <table className="archive">
-              <thead><tr><th scope="col">تاریخ</th><th scope="col">موضوع</th><th scope="col">برند</th><th scope="col">مرجع</th><th scope="col">وضعیت</th><th scope="col">مدت</th><th scope="col">حقیقت‌سنجی</th></tr></thead>
+              <thead><tr><th scope="col">تاریخ</th><th scope="col">موضوع</th><th scope="col">برند</th><th scope="col">مرجع</th><th scope="col">وضعیت</th><th scope="col">مدت</th><th scope="col">حقیقت‌سنجی</th><th scope="col"><span className="sr-only">حذف</span></th></tr></thead>
               <tbody>
                 {list.map((j) => (
                   <tr key={j.slug} onClick={() => go(`/jobs/${j.slug}`)}>
@@ -59,6 +69,7 @@ export function Archive({ jobs }: { jobs: JobSummary[] }) {
                     <td className="nowrap">{STATUS_FA[j.status]}</td>
                     <td className="nowrap">{j.duration ? faDuration(j.duration) : '—'}</td>
                     <td>{j.truth_score !== null ? faNum(Math.round(j.truth_score)) : '—'}</td>
+                    <td>{!j.active && j.status !== 'queued' && j.status !== 'running' && <button type="button" className="btn link" aria-label={`حذف ${j.title}`} onClick={(e) => { e.stopPropagation(); setDoomed(j); }}>حذف</button>}</td>
                   </tr>
                 ))}
               </tbody>
@@ -66,6 +77,7 @@ export function Archive({ jobs }: { jobs: JobSummary[] }) {
           </div>
         )}
       </section>
+      {doomed && <Confirm title="حذف ویدیو" text={`«${doomed.title}» از بایگانی برداشته می‌شود. فایل‌هایش پاک نمی‌شود و در پوشه‌ی حذف‌شده‌ها (jobs/_trash) می‌ماند.`} yes="حذف" busy={busy} onYes={() => void remove(doomed)} onNo={() => setDoomed(null)} />}
     </div>
   );
 }

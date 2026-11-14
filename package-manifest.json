@@ -1,7 +1,7 @@
 {
   "name": "motion-studio",
   "version": "0.1.0",
-  "built_at": "2026-11-13T08:30:20.727Z",
+  "built_at": "2026-11-14T12:41:48.425Z",
   "ui_built": true,
   "starter_refs": [
     "blue-gradient-type-01",
@@ -36,5 +36,5 @@
     "screen-demo-live-01",
     "soft-cards-type-01"
   ],
-  "files": 432
+  "files": 437
 }

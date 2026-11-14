@@ -4,7 +4,8 @@ import path from 'node:path';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import { ContentPackage, ScriptEditFile, readJson, writeJson } from '../contracts/index.js';
-import { calendarRepo, jobsRepo } from '../db/repositories.js';
+import { calendarRepo, jobsRepo, lockRepo } from '../db/repositories.js';
+import { pidAlive } from '../proc.js';
 import { activeBrandSlug, listBrands, readBrand } from '../brands/index.js';
 import { IntakeError, checkInput, copyImages, prepareImages, requestFromManual } from '../intake/index.js';
 import { continueHeld, requestHold, resumeJob, runJob } from '../orchestrator/index.js';
@@ -223,6 +224,23 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
     const file = exists(slug) ? safeJobFile(dirOf(slug), request.params['*']) : null;
     if (!file) return fail(reply, 404, 'فایل پیدا نشد.');
     return reply.header('Cache-Control', 'no-store').sendFile(path.relative(dirOf(slug), file).split(path.sep).join('/'), dirOf(slug));
+  });
+
+  /**
+   * Delete = move `jobs/<slug>/` to `jobs/_trash/<slug>-<time>` (recoverable, D85). A film being made or waiting in the queue is
+   * refused, and so is one a `npm run job` process holds. The jobs row stays (the slug is not reused; usage history keeps its job).
+   */
+  app.delete<{ Params: { slug: string } }>('/api/jobs/:slug', async (request, reply) => {
+    const { slug } = request.params;
+    if (!exists(slug)) return fail(reply, 404, 'این کار پیدا نشد.');
+    const lock = lockRepo.holder(ctx.db);
+    if (runner.isBusy(slug) || (lock?.job_slug === slug && pidAlive(lock.pid))) return fail(reply, 409, 'این فیلم همین الان در حال ساخت یا در صف است؛ اول لغوش کن یا بگذار تمام شود.');
+    try {
+      const trash = path.join(ctx.config.paths.jobs, '_trash');
+      fs.mkdirSync(trash, { recursive: true });
+      fs.renameSync(dirOf(slug), path.join(trash, `${slug}-${Date.now()}`));
+      return { ok: true };
+    } catch (e) { return sendError(reply, e); }
   });
 
   /** Live progress (docs/02 §7): the job detail on connect and after every change (state, script, rounds, plan, delivery, runner). */

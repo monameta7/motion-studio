@@ -10,6 +10,7 @@ import { jobsRepo, usageRepo } from '../../db/repositories.js';
 import { StageError, type Stage, type StageContext, type StageOutput } from '../../orchestrator/stages.js';
 import { runTool } from '../../proc.js';
 import { attachmentList } from '../plan/index.js';
+import { verifyUi, writeUiChecks } from './uiVerify.js';
 import { judgeFilm, measureFilm, measureVoiceLost, type FilmMeasure, type Span, type Tool } from './verify.js';
 
 export type RunFn = (o: RunOptions, c: LoadedConfig) => Promise<RunResult>;
@@ -25,8 +26,11 @@ export function missingDeliverables(dir: string): string[] {
   return [p.video, p.cover, p.qa, p.renderMd].filter((f) => !fs.existsSync(f)).map((f) => path.relative(dir, f).split(path.sep).join('/'));
 }
 
-/** Measures out/final.mp4 against the plan, records the numbers in logs/build-verify.json and returns the problems. */
-export async function verifyBuild(dir: string, run: Tool): Promise<{ problems: string[]; measure: FilmMeasure | null }> {
+/**
+ * Measures out/final.mp4 against the plan, records the numbers in logs/build-verify.json and returns the problems.
+ * With `engineDir`, a plan that has product screens (D84) is also checked on the built page (logs/ui-qa.json).
+ */
+export async function verifyBuild(dir: string, run: Tool, engineDir?: string): Promise<{ problems: string[]; measure: FilmMeasure | null }> {
   const p = buildPaths(dir);
   const missing = missingDeliverables(dir);
   if (missing.length) return { problems: missing.map((m) => `${m} was not written`), measure: null };
@@ -41,6 +45,7 @@ export async function verifyBuild(dir: string, run: Tool): Promise<{ problems: s
     try { voice_lost = await measureVoiceLost(p.video, voice, run); } catch (e) { problems.push((e as Error).message); }
     for (const [a, b] of voice_lost ?? []) problems.push(`voice missing in the film at ${a.toFixed(2)}–${b.toFixed(2)} s (film silent while plan/voice.wav speaks)`);
   }
+  if (engineDir) problems.push(...await verifyUi(dir, plan, engineDir, run));
   fs.mkdirSync(path.dirname(p.verify), { recursive: true });
   fs.writeFileSync(p.verify, `${JSON.stringify({ at: new Date().toISOString(), measure, voice_lost, problems }, null, 2)}\n`, 'utf8');
   return { problems, measure };
@@ -54,8 +59,11 @@ export function buildStage(runFn: RunFn = (o, c) => runClaude(o, { config: c }),
       const outputs = ['out/final.mp4', 'out/cover-4x5.png', 'out/qa.md', 'project/RENDER.md'];
       if (!fs.existsSync(path.join(ctx.dir, 'plan', 'scene-plan.json'))) throw new StageError('blocked', 'نقشه‌ی صحنه‌ها وجود ندارد؛ اول مرحله‌ی نقشه را اجرا کن.', 'plan/scene-plan.json missing');
       // A finished and verified film (the stage was interrupted after delivery) is kept.
-      if ((await verifyBuild(ctx.dir, tool)).problems.length === 0) return { outputs, tokens: { in: 0, out: 0 }, cost_usd_est: 0 };
+      if ((await verifyBuild(ctx.dir, tool, paths.engine)).problems.length === 0) return { outputs, tokens: { in: 0, out: 0 }, cost_usd_est: 0 };
 
+      // D84: the product-screen checks the app runs after the build, written first so motion-build can run them on its draft.
+      // An unreadable plan writes none here; the check after the build reads the plan through its contract and fails loudly then.
+      try { writeUiChecks(ctx.dir, readJson(path.join(ctx.dir, 'plan', 'scene-plan.json'), ScenePlan)); } catch { /* see above */ }
       const prompt = renderPrompt('build', { jobDir: ctx.dir, engineDir: paths.engine, extra: ctx.req.attachments.length ? ` Owner assets: ${attachmentList(ctx.dir, ctx.req.attachments)}.` : '' });
       const logs = path.join(ctx.dir, 'logs');
       fs.mkdirSync(logs, { recursive: true });
@@ -67,8 +75,8 @@ export function buildStage(runFn: RunFn = (o, c) => runClaude(o, { config: c }),
       });
       if (r.rateLimited && !r.ok) throw new StageError('paused_quota', 'سهمیه‌ی Claude پر شد؛ بعد از آزاد شدن خودش ادامه می‌دهد.', r.error ?? 'rate limit', r.resumeAt);
       if (!r.ok) throw new StageError('failed', 'ساخت فیلم با Claude خطا داد.', r.error ?? '');
-      const { problems } = await verifyBuild(ctx.dir, tool);
-      if (problems.length) throw new StageError('failed', 'فیلم ساخته شد ولی بررسی خودکار (مدت، صدا، بلندی) را رد نکرد.', problems.join('; '));
+      const { problems } = await verifyBuild(ctx.dir, tool, paths.engine);
+      if (problems.length) throw new StageError('failed', 'فیلم ساخته شد ولی بررسی خودکار (مدت، صدا، بلندی، صفحه‌ی محصول) را رد نکرد.', problems.join('; '));
       return { outputs, tokens: { in: r.usage.input_tokens, out: r.usage.output_tokens }, cost_usd_est: r.costUsdEst };
     },
   };

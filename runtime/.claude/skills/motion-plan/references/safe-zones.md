@@ -7,6 +7,8 @@ Fractions of the frame. `config.safe_zone` overrides these when the platform cha
 - **9:16:** keep text and logos out of the top 0.14 (username, audio label), the bottom 0.35 (caption), 0.06 on each side, and the right 0.21 below 0.60 of the height (like, comment, share buttons). Follows Instagram's Reels UI as published in September 2026.
 - **16:9:** 0.05 margins on all sides.
 
+Film size (`scene-plan.format`): 1080×1920 for 9:16, 1920×1080 for 16:9, 30 fps. Both formats take every component, product screen and owner image; only the framing changes. The cover's own size is in §Cover.
+
 ```json
 {"top": 0.14, "bottom": 0.35, "sides": 0.06, "right_rail": 0.21, "right_rail_from": 0.60}
 ```

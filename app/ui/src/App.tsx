@@ -21,7 +21,7 @@ import { Welcome } from './screens/Welcome';
 
 export function App() {
   const route = useRoute();
-  const { data } = usePoll<{ jobs: JobSummary[] }>('/api/jobs', 10000);
+  const { data, reload: reloadJobs } = usePoll<{ jobs: JobSummary[] }>('/api/jobs', 10000);
   const jobs = data?.jobs ?? [];
   const job = /^\/jobs\/([a-z0-9][a-z0-9._-]*)$/.exec(route)?.[1];
   // A fresh profile (no `onboarding_done`) opens the wizard first; an unreachable server keeps the normal screens.
@@ -36,7 +36,7 @@ export function App() {
   if (route === '/new') screen = <NewVideo />;
   else if (route === '/progress') screen = <ProgressList jobs={jobs} />;
   else if (job) screen = <Job slug={job} />;
-  else if (route === '/archive') screen = <Archive jobs={jobs} />;
+  else if (route === '/archive') screen = <Archive jobs={jobs} reload={reloadJobs} />;
   else if (route === '/library') screen = <Library />;
   else if (route === '/automation') screen = <Automation />;
   else if (route === '/brand/new') screen = <NewBrand />;

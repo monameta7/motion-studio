@@ -85,7 +85,11 @@ All files live in `jobs/<slug>/plan/`. Empty arrays or `null` when a source has 
   "actors": [{"id": "hero", "role": "", "born": 0.0, "dies": null,
               "states": [{"at": 0.0, "form": "", "value_ref": null, "morph_to": null}]}],
   "camera": [{"at": 0.0, "x": 540, "y": 960, "zoom": 1, "ease": "reveal"}],
-  "owner_assets": [{"file": "jobs/<slug>/input/01.png", "scenes": [2], "how": ""}],
+  "owner_assets": [{"file": "jobs/<slug>/input/01.png", "scenes": [2], "how": "", "mode": "show|edit|rebuild"}],
+  "ui_screens": [{"id": "u1", "product": "", "source": "image|idea|directions", "asset": "jobs/<slug>/input/01.png or null", "scenes": [2],
+                  "states": [{"id": "s1", "at": 0.0, "texts": [""]}],
+                  "actions": [{"id": "a1", "type": "click|type|move", "at": 0.0, "target": "send", "voice_word": {"line": 1, "index": 0}}],
+                  "elements": [{"name": "card", "source_box": [0, 0, 100, 100]}]}],
   "scenes": [
     {
       "id": 1,

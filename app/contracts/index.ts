@@ -11,4 +11,5 @@ export * from './brand.js';
 export * from './brandAnswers.js';
 export * from './guide.js';
 export * from './skillOutputs.js';
+export * from './uiRebuild.js';
 export * from './io.js';

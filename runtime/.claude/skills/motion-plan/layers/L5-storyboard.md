@@ -63,7 +63,19 @@ A reference move that cannot be built in code at all (live footage, real 3D, a r
 
 Everything is built in code: text, numbers, UI, diagrams, shapes, vector characters, particles, transitions. A scene may use an external clip or image only if the content package supplies its file, it is the opening frame, or it is an owner asset; set `asset` to that path. No file, no asset.
 
-**Owner assets:** every file in `jobs/<slug>/input/` is the `asset` of at least one scene, placed where and how the owner's directions say (else where the voice line talks about it). Keep its aspect ratio; never recolour, crop away its subject, distort or redraw it; text never covers it. List each one in `owner_assets` (`references/schemas.md` §D) with its scenes and how it is used.
+**Owner assets (D84):** every file in `jobs/<slug>/input/` appears in the film, placed where and how the owner's directions say (else where the voice line talks about it). List each one in `owner_assets` (`references/schemas.md` §D) with its scenes, `how` it is used and its `mode`:
+
+- `show`: drawn as it is. It is the `asset` of its scenes; aspect ratio kept, subject not cropped away, no recolour, text never covers it. The default for a photo, logo or finished picture with no direction.
+- `edit`: changed exactly as the directions say (crop, recolour, restyle, text over it) and no further. It is the `asset` of its scenes; `how` states each change.
+- `rebuild`: the blueprint of a product screen built in code. Its scenes' `asset` stays null and a `ui_screens` entry names it.
+
+With no direction for an image, choose the mode the film's flow needs and say why in `how`.
+
+**Reading an image in the film's format:** a `show` or `edit` image whose words the viewer must read (a screenshot, a document, a chart) follows the framing of `references/ui-screens.md` §5, like a product screen: when its shape differs from the film's (a desktop screenshot in 9:16), never shrink the whole image to the frame width; frame one region at a time and move between regions with the camera, so its smallest text that must be read is at least the minimum text size of motion-build (28 px at 1080 px wide in 9:16). Write the regions (source pixel rects), their order and times in `how`. An image the viewer only needs to recognise (a photo, a logo, a mood) may be shown whole.
+
+**Frame edges:** no text that must be read, and no card or panel that carries it, crosses the frame edge while it is on screen, except during a camera move; a sentence is never cut mid-line. A region that cannot fit is split into two shots.
+
+**Product screens:** when the film has one (from an image, the directions, or an idea), open `references/ui-screens.md` now and follow it: states, framing for the format, cursor and typing, actions on the voice's words, values from `plan/ui-source/<NN>.json`. Write `ui_screens` and give its scenes `component: "ui"` with `props.ui_screen`.
 
 ## 9. Props
 

@@ -36,6 +36,26 @@ export function BrandPage() {
   return <BrandScreen key={active.slug} slug={active.slug} />;
 }
 
+/** «حذف برند» with a confirm (D85): the folder goes to brand/_trash; the owner's hand-made brand has no button (it cannot be deleted). */
+function DeleteBrand({ slug, name }: { slug: string; name: string }) {
+  const { remove } = useBrand();
+  const [open, setOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [problem, setProblem] = useState<string | null>(null);
+  const yes = async () => {
+    setBusy(true);
+    const err = await remove(slug);
+    setBusy(false); setOpen(false); setProblem(err);
+  };
+  return (
+    <>
+      <button type="button" className="btn link" onClick={() => { setProblem(null); setOpen(true); }}>حذف برند</button>
+      {problem && <span className="problem" role="alert">{problem}</span>}
+      {open && <Confirm title="حذف برند" text={`برند «${name}» برداشته می‌شود. فایل‌هایش پاک نمی‌شود و در پوشه‌ی حذف‌شده‌ها (brand/_trash) می‌ماند. ویدیوهایی که با آن ساخته‌ای در بایگانی می‌مانند و اتوماسیونش خاموش می‌شود.`} yes="حذف" busy={busy} onYes={() => void yes()} onNo={() => setOpen(false)} />}
+    </>
+  );
+}
+
 function BrandScreen({ slug }: { slug: string }) {
   const { data: schema } = usePoll<BrandSchema>('/api/brand-core/schema', 0);
   const { data: info, reload, error } = usePoll<BrandInfo>(`/api/brand-core/${slug}`, 0);
@@ -55,7 +75,7 @@ function BrandScreen({ slug }: { slug: string }) {
   if (error && !info) return <div className="stack"><div className="page-head"><h1>برند من</h1></div><p className="problem" role="alert">{error}</p></div>;
   if (!schema || !info) return <p className="muted">در حال بارگذاری…</p>;
   // A brand folder that was created but never filled in (the creator was closed half-way): the creator continues it.
-  if (info.editable && !info.answers) return <div className="stack"><div className="page-head"><h1>برند من</h1></div><BrandCreator schema={schema} resume={{ slug, name: info.name }} onDone={() => void reload()} /></div>;
+  if (info.editable && !info.answers) return <div className="stack"><div className="page-head"><h1>برند من</h1><div className="head-side"><DeleteBrand slug={slug} name={info.name} /></div></div><BrandCreator schema={schema} resume={{ slug, name: info.name }} onDone={() => void reload()} /></div>;
 
   const tabs = info.editable ? [...schema.sections.map((s) => ({ id: s.id, label: s.title })), { id: 'docs', label: 'سندها' }, { id: 'versions', label: 'نسخه‌ها' }] : [{ id: 'docs', label: 'سندها' }];
   const section = schema.sections.find((s) => s.id === tab);
@@ -64,7 +84,7 @@ function BrandScreen({ slug }: { slug: string }) {
     <div className="stack brand-page">
       <div className="page-head row-between">
         <h1>برند من: {info.name}</h1>
-        <div className="head-side"><HelpButton /><a className="btn" href="#/brand/new">+ برند تازه</a></div>
+        <div className="head-side"><HelpButton /><a className="btn" href="#/brand/new">+ برند تازه</a>{info.editable && <DeleteBrand slug={slug} name={info.name} />}</div>
       </div>
       {!info.editable && <p className="problem">این برند فایل‌های دست‌ساز مالک است و فقط خواندنی است؛ هیچ‌چیزش تغییر نمی‌کند. برای برند خودت «برند تازه» بساز.</p>}
       <Summary slug={slug} info={info} draft={draft} />

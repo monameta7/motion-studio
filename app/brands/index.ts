@@ -78,7 +78,8 @@ export function readBrand(paths: Pick<Paths, 'brands'>, slug: string): Brand {
 export function listBrands(paths: Pick<Paths, 'brands'>): { brands: Brand[]; skipped: { slug: string; reason: string }[] } {
   const brands: Brand[] = [];
   const skipped: { slug: string; reason: string }[] = [];
-  const names = fs.existsSync(paths.brands) ? fs.readdirSync(paths.brands, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
+  // `_`-folders are not brands (`_trash` holds deleted ones).
+  const names = fs.existsSync(paths.brands) ? fs.readdirSync(paths.brands, { withFileTypes: true }).filter((e) => e.isDirectory() && !e.name.startsWith('_')).map((e) => e.name) : [];
   for (const slug of names) {
     try { brands.push(readBrand(paths, slug)); } catch (e) { skipped.push({ slug, reason: (e as Error).message }); }
   }
@@ -115,6 +116,20 @@ export function setActiveBrand(db: Db, config: LoadedConfig, slug: string): Bran
   const b = readBrand(config.paths, slug);
   settingsRepo.set(db, ACTIVE_BRAND_KEY, b.slug);
   return b;
+}
+
+/**
+ * Delete = move `brand/<slug>/` to `brand/_trash/<slug>-<time>` (recoverable, like a reference, D85). A v1 brand without brand.json
+ * (Mahdiyar) is never moved: its folder must stay as it is. Returns the trash folder.
+ */
+export function trashBrand(paths: Pick<Paths, 'brands'>, slug: string): string {
+  const b = readBrand(paths, slug);
+  if (!b.registered) throw new BrandError('این برند فایل‌های دست‌ساز مالک است و حذف نمی‌شود.', slug);
+  const trash = path.join(paths.brands, '_trash');
+  fs.mkdirSync(trash, { recursive: true });
+  const to = path.join(trash, `${slug}-${Date.now()}`);
+  fs.renameSync(b.dir, to);
+  return to;
 }
 
 /** What the content prompts say about a brand (Phase 8): its folder, its name, a short name, and the Persian font its tokens decide. */

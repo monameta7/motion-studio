@@ -1,4 +1,4 @@
-// Responsibility: section 1 of New video (docs/11 §1, D41, D42): «نوشتن موضوع» or «از تقویم محتوا»; the growing topic textarea with «+» for images (picker, drag-and-drop, paste), the thumbnail strip, the [ ] hint and check, and the «هوک» switch.
+// Responsibility: section 1 of New video (docs/11 §1, D41, D42, D84): «نوشتن موضوع» or «از تقویم محتوا»; the growing topic textarea with «+» for images (picker, drag-and-drop, paste), the thumbnail strip, the [ ] hint and check, and the «هوک» switch.
 import { useEffect, useRef, useState, type ClipboardEvent, type DragEvent } from 'react';
 import { api, ApiError, type CalendarEntry, type Upload } from '../api';
 import { CalendarPick } from './CalendarPick';
@@ -108,7 +108,7 @@ export function TopicBox({ topic, setTopic, images, setImages, hook, setHook, li
             ))}
             {busy && <li className="thumb loading" aria-live="polite">در حال افزودن…</li>}
           </ul>
-          <p className="muted small">همهٔ تصویرها داخل ویدیو استفاده می‌شوند</p>
+          <p className="muted small">همهٔ تصویرها داخل ویدیو استفاده می‌شوند. در [ ] بنویسید با هر تصویر چه شود؛ مثلاً [تصویر ۱ را بازسازی و متحرک کن].</p>
         </div>
       )}
       {problems.map((p) => <p key={p} className="problem" role="alert">{p}</p>)}

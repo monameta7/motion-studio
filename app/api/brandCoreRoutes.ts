@@ -13,6 +13,7 @@ import { docPath, handEditedDocs, listVersions, readAnswers, readBuild, restoreF
 import { writeJson } from '../contracts/index.js';
 import { imageKind } from '../intake/index.js';
 import { safeName } from './uploads.js';
+import { brandsOnRecord } from '../db/repositories.js';
 import { fail, sendError, type ApiContext } from './context.js';
 
 const LOGO_MAX = 8 * 1024 * 1024;
@@ -73,6 +74,8 @@ export function brandCoreRoutes(app: FastifyInstance, ctx: ApiContext): void {
     const taken = new Set(listBrands(paths).brands.map((b) => b.slug));
     // Folders that are not a usable brand also block their name.
     if (fs.existsSync(paths.brands)) for (const e of fs.readdirSync(paths.brands)) taken.add(e);
+    // A deleted brand's name stays taken (D85): its films and calendar days still carry it and would join the new brand.
+    for (const b of brandsOnRecord(ctx.db)) taken.add(b);
     const slug = slugFrom(body.data.name_en ?? '', taken);
     const dir = brandDir(paths, slug);
     fs.mkdirSync(dir, { recursive: true });

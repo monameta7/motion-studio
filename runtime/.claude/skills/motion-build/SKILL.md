@@ -67,7 +67,17 @@ One `index.html` plus `scenes/*.js` in `jobs/<slug>/project/`.
 - One shared timeline read from the plan; changing a scene's duration shifts every later scene.
 - Texts, colours and durations exposed as editable data at the top of the project.
 - Scenes with `asset`: draw the file as a separate layer (video via frame-accurate seek on a muted `<video>`, awaiting `seeked`), above the background and below text.
-- Owner assets (`scene-plan.owner_assets`, files in `jobs/<slug>/input/`): copy each into `project/assets/` and draw it in its scenes as the plan's `how` says; keep its aspect ratio (`object-fit: contain` unless the plan gives a crop that keeps the subject), never recolour, filter, distort or redraw it, and never let text cover it.
+- Owner assets (`scene-plan.owner_assets`, files in `jobs/<slug>/input/`), by `mode` (absent = `show`; D84):
+  - `show`: copy it into `project/assets/` and draw it in its scenes as the plan's `how` says; keep its aspect ratio (`object-fit: contain` unless the plan gives a crop that keeps the subject), never recolour, filter, distort or redraw it, and never let text cover it.
+  - `edit`: the same, plus exactly the changes `how` lists (crop, recolour, restyle, text over it), nothing more.
+  - `rebuild`: do not draw the image. Build the `ui_screens` entry that names it (next item).
+- Product screens (`scene-plan.ui_screens`, D84): build each as live HTML inside its scenes from the scene's `props` and the screen's `states` and `actions`: real elements, real text, never the screenshot as a background. Sizes, radius and colours come from the plan (measured in `plan/ui-source/<NN>.json`); the product's colours, icons and logo stay the product's. Every word is exactly a `states[].texts` string; never add interface text.
+  - Page contract (the app checks it after the build): the screen's root has `data-ui-screen="<id>"`; every `actions[].target` and every `elements[].name` is an element inside it with `data-ui-el="<name>"`; the film has one cursor element with `data-ui-cursor`, whose top-left corner is the pointer tip.
+  - At each `states[].at` every text of that state is visible (opacity above 0.05) and fully inside the frame: never cut by the frame edge (the app measures each text's box; a cut text fails the film). At each `click` action's `at` the cursor tip is inside its target.
+- Owner images shown or edited with regions in `how` (L5 §8): build the camera moves between those regions exactly; at each hold the region's text is at least the minimum size above and no card or text crosses the frame edge.
+  - Cursor: a curved path (cubic Bézier), eased in and out, arriving 0.2–0.3 s before the click; the target reacts to the click (press or ripple, 0.12–0.4 s). Typing: characters appear on a schedule computed once from a seeded random (14–18 characters a second, longer gap after a space), with a caret; done before the state's `at`. All of it a pure function of t (§3). Where the scene's `motion_ref` gives speeds or easing, those win.
+  - **Self-check before the final render:** the app writes `jobs/<slug>/logs/ui-checks.json` before this run and runs the same check on the delivered project afterwards; a problem then fails the film. After the draft, run `node "<engine>/ui-verify.mjs" "jobs/<slug>/project/index.html" "jobs/<slug>/logs/ui-checks.json" "jobs/<slug>/out/ui-qa" "jobs/<slug>/logs/ui-qa-self.json"` (absolute paths) and read the result: every state `found` with empty `missing` and `cut`, every click `on_target`, no `page_errors`. Fix the page (framing, camera, timing, the `data-ui-*` marks) and run it again until it is clean. Never edit `ui-checks.json` or the plan to pass it.
+  - Save the screen as a component in the library (§2) under the product's name.
 
 ## 4. Motion grammar
 
@@ -290,7 +300,7 @@ A separate composition, not a frame grabbed from the film. Content from the plan
 
 - `final.mp4`: the finished film with voice, music and effects, ready to publish
 - `cover.png`: the cover from §10; when the brand has a cover design system, `cover-4x5.png` (the master) instead, and no `cover.png`
-- `qa.md`: checks and results, a «look vs reference» line (dimensionality, light and shadow, materials, rhythm: matches or not, with a frame time), remaining flaws, scene time table; one line per owner asset with a time where it is fully visible in `final.mp4`
+- `qa.md`: checks and results, a «look vs reference» line (dimensionality, light and shadow, materials, rhythm: matches or not, with a frame time), remaining flaws, scene time table; one line per owner asset with its mode and a time where it is fully visible in `final.mp4` (for `rebuild`: a time where the rebuilt screen is complete); one line per product screen state with its time
 
 The editable project stays in `jobs/<slug>/project/`. New reusable components go to the library (§2).
 

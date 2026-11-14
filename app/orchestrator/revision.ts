@@ -157,7 +157,7 @@ export async function reviseJob(deps: RevisionDeps, slug: string, target: Revisi
       fs.writeFileSync(path.join(dir, 'content', 'revisions', `${backup}.caption-truth.json`), `${JSON.stringify(t.structured, null, 2)}\n`, 'utf8');
     } else {
       await call({ stage: 'revise', prompt: renderPrompt('revise', { jobDir: dir, target, note: note.trim() }) });
-      const v = await verifyBuild(dir, tool);
+      const v = await verifyBuild(dir, tool, config.paths.engine);
       if (v.problems.length) throw new StageError('failed', 'فیلم بازبینی‌شده بررسی خودکار را رد نکرد؛ نسخه‌ی قبلی در پوشه‌ی پشتیبان است.', `${backup}: ${v.problems.join('; ')}`);
     }
 

@@ -164,6 +164,12 @@ export class LockBusyError extends Error {
   }
 }
 
+/** Every brand slug a job or a calendar day carries, also of brands that were deleted (D85: such a slug is not given out again). */
+export function brandsOnRecord(db: Db): Set<string> {
+  const rows = db.prepare('SELECT brand FROM jobs UNION SELECT brand FROM calendar').all() as { brand: string }[];
+  return new Set(rows.map((r) => r.brand));
+}
+
 /** One job at a time (docs/02 §7). A lock whose process is gone (crash, kill) is taken over. */
 export const lockRepo = {
   acquire(db: Db, slug: string, pid: number = process.pid, isAlive: (pid: number) => boolean = pidAlive): void {

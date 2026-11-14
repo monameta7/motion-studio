@@ -85,6 +85,26 @@ const Scene = z.looseObject({
   key_frame: z.number().nonnegative().optional(),
 });
 
+/** D84: one product screen built in code: where it comes from, its states (what is on screen at a time) and the cursor actions on it. */
+const UiScreen = z.looseObject({
+  id: z.string().regex(/^u\d+$/),
+  product: z.string(),
+  source: z.enum(['image', 'idea', 'directions']),
+  asset: z.string().nullable(),
+  scenes: z.array(z.number().int().min(1)).min(1),
+  states: z.array(z.looseObject({ id: z.string().min(1), at: z.number().nonnegative(), texts: z.array(z.string().min(1)) })).min(1),
+  actions: z.array(z.looseObject({
+    id: z.string().min(1),
+    type: z.enum(['click', 'type', 'move']),
+    at: z.number().nonnegative(),
+    target: z.string().min(1),
+    voice_word: z.looseObject({ line: z.number().int().min(1), index: z.number().int().min(0) }).nullable(),
+  })),
+  // Parts of the source image to compare with the built element (report only): [x, y, w, h] in source pixels.
+  elements: z.array(z.looseObject({ name: z.string().min(1), source_box: z.tuple([z.number(), z.number(), z.number().positive(), z.number().positive()]) })).optional(),
+});
+export type UiScreen = z.infer<typeof UiScreen>;
+
 export const ScenePlan = z.looseObject({
   slug: z.string().min(1),
   status: z.enum(['ready', 'awaiting_review', 'blocked']),
@@ -106,8 +126,11 @@ export const ScenePlan = z.looseObject({
   world: z.looseObject({ w: z.number().positive(), h: z.number().positive(), regions: z.array(z.looseObject({ id: z.string() })) }).optional(),
   actors: z.array(z.looseObject({ id: z.string() })).optional(),
   camera: z.array(z.looseObject({ at: z.number().nonnegative() })).optional(),
-  // D42: where each owner image appears (docs/04); optional like the other v2 fields, checked against the request by the plan stage.
-  owner_assets: z.array(z.looseObject({ file: z.string().min(1), scenes: z.array(z.number().int().min(1)), how: z.string() })).optional(),
+  // D42, D84: where each owner image appears and how it is used (docs/04); optional like the other v2 fields, checked against the request by the plan stage.
+  // `mode`: show = as it is (the default when absent), edit = changed as the owner's directions say, rebuild = the blueprint of a `ui_screens` entry.
+  owner_assets: z.array(z.looseObject({ file: z.string().min(1), scenes: z.array(z.number().int().min(1)), how: z.string(), mode: z.enum(['show', 'edit', 'rebuild']).optional() })).optional(),
+  // D84: product screens built in code and animated (docs/04); checked by the plan stage (uiScreenProblems) and after the build (ui-verify).
+  ui_screens: z.array(UiScreen).optional(),
   scenes: z.array(Scene).min(1),
   outro: Outro,
   sound: z.looseObject({

@@ -36,7 +36,11 @@ Every item must pass; fix and recheck if not. A failure that belongs to an earli
 - Without a readable reference: no transition or move from `brand-profile.motion.avoid`; reveal durations inside `motion.durations_ms`.
 
 **Owner assets**
-- Every file in `jobs/<slug>/input/` is listed in `owner_assets` and is the `asset` of at least one scene listed there; it is shown unedited, aspect ratio kept, not covered by text.
+- Every file in `jobs/<slug>/input/` is listed in `owner_assets` with its scenes, `how` and `mode`. `show`: it is the `asset` of a listed scene, unedited, aspect ratio kept, not covered by text. `edit`: it is the `asset` of a listed scene and every change traces to the owner's directions. `rebuild`: a `ui_screens` entry has it as `asset`.
+- A `show` or `edit` image with words to read is framed by regions at a readable size when its shape differs from the film's (L5 §8), with the regions written in `how`; no text to be read crosses the frame edge.
+
+**Product screens** (only when `ui_screens` is not empty)
+- The checks of `references/ui-screens.md` §8 pass.
 
 **Timing**
 - `timing` is `measured`, or the estimate is listed as the first risk.
