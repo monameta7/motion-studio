@@ -1,5 +1,6 @@
 // Responsibility: section 3 of New video (docs/11 §1.3): filter chips and the library grid where the owner picks one to three references in order (hover or focus plays the preview), and the first card that adds a motion of the owner's own.
 import { useState } from 'react';
+import { useReveal } from '../hooks';
 import type { RefCard } from '../api';
 import { faDuration, faNum } from '../fa';
 import { EmptyState } from '../guide/EmptyState';
@@ -21,6 +22,7 @@ export const MAX_REFS = 3;
 export function RefGrid({ refs, selected, setSelected, onUpload, suggested = [] }: { refs: RefCard[]; selected: string[]; setSelected: (s: string[]) => void; onUpload: () => void; suggested?: string[] }) {
   const [filter, setFilter] = useState(0);
   const shown = refs.filter(FILTERS[filter]!.match);
+  const grid = useReveal<HTMLUListElement>(shown.length);
   const toggle = (slug: string) => {
     if (selected.includes(slug)) setSelected(selected.filter((s) => s !== slug));
     else if (selected.length < MAX_REFS) setSelected([...selected, slug]);
@@ -42,7 +44,7 @@ export function RefGrid({ refs, selected, setSelected, onUpload, suggested = [] 
           <button key={f.label} type="button" className={`chip${i === filter ? ' on' : ''}`} aria-pressed={i === filter} onClick={() => setFilter(i)}>{f.label}</button>
         ))}
       </div>
-      <ul className="ref-grid">
+      <ul className="ref-grid" ref={grid}>
         <li>
           <button type="button" className="ref-card upload" onClick={onUpload}>
             <span className="ref-media upload-media" aria-hidden="true">+</span>
@@ -60,17 +62,16 @@ export function RefGrid({ refs, selected, setSelected, onUpload, suggested = [] 
                 type="button" className={`ref-card${order >= 0 ? ' picked' : ''}`} aria-pressed={order >= 0} disabled={full}
                 onClick={() => toggle(r.slug)} onMouseEnter={(e) => play(e.currentTarget, true)} onMouseLeave={(e) => play(e.currentTarget, false)}
                 onFocus={(e) => play(e.currentTarget, true)} onBlur={(e) => play(e.currentTarget, false)}
-                aria-label={`${r.name_fa}${order >= 0 ? `، انتخاب ${faNum(order + 1)}` : ''}`}
               >
                 <span className={`ref-media f${r.format}`}>
-                  {r.thumb ? <img src={`/api/references/${r.slug}/thumb.webp`} alt="" loading="lazy" /> : <span className="no-thumb" aria-hidden="true">{r.name_fa.slice(0, 1)}</span>}
+                  {r.thumb ? <img src={`/api/references/${r.slug}/thumb.webp`} alt="" loading="lazy" decoding="async" /> : <span className="no-thumb" aria-hidden="true">{r.name_fa.slice(0, 1)}</span>}
                   {/* The short preview when the app has made one, else the reference itself; it plays while the mouse is on the card. */}
-                  <video src={`/api/references/${r.slug}/${r.preview ? 'preview.mp4' : 'video.mp4'}`} muted loop playsInline preload="metadata" aria-hidden="true" />
-                  <span className="dur">{faDuration(r.duration)}</span>
+                  <video src={`/api/references/${r.slug}/${r.preview ? 'preview.mp4' : 'video.mp4'}`} poster={r.thumb ? `/api/references/${r.slug}/thumb.webp` : undefined} muted loop playsInline preload="none" aria-hidden="true" />
+                  <span className="dur" aria-hidden="true">{faDuration(r.duration)}</span>
                   {order >= 0 && <span className="order" aria-hidden="true">{faNum(order + 1)}</span>}
                 </span>
                 <span className="ref-body">
-                  <b>{r.name_fa}</b>
+                  <b>{r.name_fa}</b>{order >= 0 && <span className="sr-only">، انتخاب {faNum(order + 1)}</span>}
                   <span className="muted small clamp">{r.use_fa}</span>
                   {reading ? <span className="muted small" role="status">در حال تحلیل…</span> : r.analysed && <span className="tag-ok">✓ تحلیل‌شده</span>}
                   {r.source === 'upload' && <span className="muted small">یک‌بار مصرف</span>}
@@ -82,7 +83,7 @@ export function RefGrid({ refs, selected, setSelected, onUpload, suggested = [] 
           );
         })}
       </ul>
-      {shown.length === 0 && refs.length > 0 && <EmptyState text="در این دسته مرجعی نیست." action={{ label: 'نمایش همه‌ی مرجع‌ها', onClick: () => setFilter(0) }} />}
+      {shown.length === 0 && refs.length > 0 && <EmptyState icon="search" text="در این دسته مرجعی نیست." action={{ label: 'نمایش همه‌ی مرجع‌ها', onClick: () => setFilter(0) }} />}
     </section>
   );
 }

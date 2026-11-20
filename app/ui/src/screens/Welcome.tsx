@@ -4,6 +4,7 @@ import { api, type ClaudeAccount, type KeyView, type SystemItem } from '../api';
 import { ClaudeAccountBox, GeminiKeyBox } from '../Account';
 import { faNum } from '../fa';
 import { go, usePoll } from '../hooks';
+import { SkeletonRows } from '../Skeleton';
 import type { BrandSchema } from '../brandcore/answers';
 import { BrandCreator } from './NewBrand';
 
@@ -162,7 +163,7 @@ function BrandStep({ onNext, onBack, onLater }: { onNext: () => void; onBack: ()
   const { data: schema } = usePoll<BrandSchema>('/api/brand-core/schema', 0);
   const { data: brands } = usePoll<{ brands: { slug: string; name: string }[] }>('/api/brands', 0);
   const [made, setMade] = useState(false);
-  if (!schema || !brands) return <p className="muted">در حال بارگذاری…</p>;
+  if (!schema || !brands) return <SkeletonRows />;
   const has = made || brands.brands.length > 0;
   return (
     <section className="stack" aria-labelledby="w4">

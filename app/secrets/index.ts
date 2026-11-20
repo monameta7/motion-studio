@@ -1,8 +1,8 @@
-// Responsibility: keep the user's Gemini key (D65): find it by precedence (environment → data/secrets.json → the owner's legacy ava-farsi .env, read only), save or remove it in data/secrets.json, and show it only masked.
+// Responsibility: keep the user's own keys: the Gemini key (D65; precedence environment → data/secrets.json → the legacy voice-app .env, read only) and how Claude Code signs in (D106: the user's own subscription or the user's own Anthropic API key); save or remove them in data/secrets.json, and show keys only masked.
 import fs from 'node:fs';
 import path from 'node:path';
 import type { LoadedConfig } from '../config.js';
-import { Secrets, geminiKey, writeJson } from '../contracts/index.js';
+import { Secrets, anthropicKey, geminiKey, writeJson, type ClaudeAuthMode } from '../contracts/index.js';
 
 /** Some Windows editors save with a byte-order mark; JSON.parse rejects it. */
 const BOM = new RegExp('^' + String.fromCharCode(0xfeff));
@@ -99,4 +99,43 @@ export function keyView(config: LoadedConfig, env: NodeJS.ProcessEnv = process.e
 export function redactKey(text: string, key: string | null | undefined): string {
   if (!key || key.length < 8) return text;
   return text.split(key).join(maskKey(key) ?? '');
+}
+
+/** How Claude Code signs in (D106). `key` is set only for `api_key`; a broken secrets file falls back to the subscription, which never bills a key by surprise. */
+export interface ClaudeAuth { mode: ClaudeAuthMode; key: string | null }
+
+export function claudeAuth(config: LoadedConfig): ClaudeAuth {
+  let s: Secrets | null;
+  try { s = readSecrets(config); } catch { return { mode: 'subscription', key: null }; }
+  if (s?.claude_auth !== 'api_key') return { mode: 'subscription', key: null };
+  return { mode: 'api_key', key: s.anthropic_api_key ?? null };
+}
+
+/** Saves the user's own Anthropic API key and switches Claude to it. The error never contains the key. */
+export function saveAnthropicKey(config: LoadedConfig, key: string, now: () => Date = () => new Date()): void {
+  const v = anthropicKey.safeParse(key);
+  if (!v.success) throw new SecretsError('این کلید درست به نظر نمی‌رسد: کلید API از Claude Console با sk-ant- شروع می‌شود و فاصله ندارد.');
+  writeJson(secretsFile(config), Secrets, { ...(readSecrets(config) ?? {}), anthropic_api_key: v.data, claude_auth: 'api_key', updated_at: now().toISOString() });
+}
+
+/** Switches between the subscription and a saved API key; the key stays saved when switching to the subscription. */
+export function setClaudeAuthMode(config: LoadedConfig, mode: ClaudeAuthMode, now: () => Date = () => new Date()): void {
+  const cur = readSecrets(config);
+  if (mode === 'api_key' && !cur?.anthropic_api_key) throw new SecretsError('هنوز کلید API ذخیره نشده؛ اول کلید را وارد کن.');
+  writeJson(secretsFile(config), Secrets, { ...(cur ?? {}), claude_auth: mode, updated_at: now().toISOString() });
+}
+
+/** Removes the saved Anthropic key; Claude goes back to the subscription. */
+export function removeAnthropicKey(config: LoadedConfig, now: () => Date = () => new Date()): void {
+  const cur = readSecrets(config);
+  if (!cur?.anthropic_api_key && cur?.claude_auth !== 'api_key') return;
+  const { anthropic_api_key: _drop, ...rest } = cur;
+  writeJson(secretsFile(config), Secrets, { ...rest, claude_auth: 'subscription', updated_at: now().toISOString() });
+}
+
+/** What the account card may show about the Claude key: the mode and the masked key, never the key. */
+export function claudeKeyView(config: LoadedConfig): { mode: ClaudeAuthMode; key_set: boolean; key_masked: string | null } {
+  let s: Secrets | null = null;
+  try { s = readSecrets(config); } catch { /* shown as subscription with no key */ }
+  return { mode: s?.claude_auth === 'api_key' ? 'api_key' : 'subscription', key_set: Boolean(s?.anthropic_api_key), key_masked: maskKey(s?.anthropic_api_key) };
 }

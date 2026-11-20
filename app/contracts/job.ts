@@ -1,6 +1,6 @@
 // Responsibility: the JobRequest and JobState contracts of docs/04 (request.json and state.json in every job folder).
 import { z } from 'zod';
-import { automationLevel, format, isoDateTime, sha256, slug, stageName, styleSource } from './common.js';
+import { anyStageName, automationLevel, format, isoDateTime, sha256, slug, styleSource, workspace } from './common.js';
 import { LEGACY_BRAND } from './brand.js';
 
 /** An owner image (D42), copied by intake to `input/NN.<ext>`; `file` is relative to the job folder. */
@@ -29,6 +29,16 @@ export const JobRequest = z.strictObject({
   style_source: styleSource,
   // Phase 8: the brand the film is made for (`brand/<slug>/`), fixed when the job is created; older request files read as the v1 brand.
   brand: slug.default(LEGACY_BRAND),
+  // D88 (Phase 11.2): the workspace and, for a video job, its visual style (`styles/<slug>/`); fixed at creation; older files read as motion with no style.
+  workspace: workspace.default('motion'),
+  style: slug.nullable().default(null),
+}).superRefine((r, ctx) => {
+  if (r.workspace === 'motion' && r.style !== null) ctx.addIssue({ code: 'custom', path: ['style'], message: 'a motion job has no visual style (D88)' });
+  if (r.workspace === 'video') {
+    if (r.style === null) ctx.addIssue({ code: 'custom', path: ['style'], message: 'a video job must name a visual style (D88)' });
+    if (r.references.length > 0) ctx.addIssue({ code: 'custom', path: ['references'], message: 'a video job has no reference motions (D88)' });
+    if (r.attachments.length > 0) ctx.addIssue({ code: 'custom', path: ['attachments'], message: 'a video job takes no owner images yet (D88, docs/13 V28)' });
+  }
 });
 export type JobRequest = z.infer<typeof JobRequest>;
 
@@ -54,15 +64,16 @@ export const JobError = z.strictObject({
 
 export const JobState = z.strictObject({
   status: jobStatus,
-  stage: stageName.nullable(),
+  // Phase 11.3 (D88): any stage of either workspace; a motion job only ever holds motion names (the order comes from its request's workspace).
+  stage: anyStageName.nullable(),
   attempt: z.number().int().min(1),
   started_at: isoDateTime.nullable(),
   updated_at: isoDateTime,
   resume_at: isoDateTime.nullable(),
-  stages: z.partialRecord(stageName, StageState),
+  stages: z.partialRecord(anyStageName, StageState),
   error: JobError.nullable(),
   // D45: set only while `status` is `held`; older state files have no field and read as null.
-  hold: z.strictObject({ requested_at: isoDateTime, stage: stageName, reason: z.literal('script_review') }).nullable().default(null),
+  hold: z.strictObject({ requested_at: isoDateTime, stage: anyStageName, reason: z.literal('script_review') }).nullable().default(null),
 });
 export type JobState = z.infer<typeof JobState>;
 

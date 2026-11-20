@@ -10,7 +10,8 @@ This file lists what ships inside this package and what the installer downloads,
 | Vazirmatn font | `app/brandcore/defaults/fonts/Vazirmatn[wght].woff2` | SIL Open Font License 1.1 (`OFL-Vazirmatn.txt` next to it) |
 | Inter font | `app/brandcore/defaults/fonts/Inter[wght].woff2` | SIL Open Font License 1.1 (`OFL-Inter.txt` next to it) |
 | Starter reference library (31 references) | `starter/refs/` | A short low-resolution preview, a thumbnail and a written analysis of each reference motion video. The full videos are not included. The videos belong to their makers; they are here only as style references. |
-| Skills (`hook`, `truth`, `motion-plan`, `motion-build`, `brand-build`) | `runtime/.claude/skills/` | Written by the app's owner; shipped with the app |
+| Starter visual styles (33 styles) | `starter/styles/` | A card picture and a short English style text of each, from the app owner's own page. Some texts name the look of a known studio, film, series, game or toy (for example Pixar, Studio Ghibli, LEGO); those names belong to their owners and are used only to describe a look. Nothing here comes from those owners. |
+| Skills (`hook`, `truth`, `motion-plan`, `motion-build`, `brand-build`, `video-prompts`) | `runtime/.claude/skills/` | Written by the app's owner; shipped with the app |
 
 ## Downloaded by the installer (not inside the package)
 
@@ -25,6 +26,7 @@ This file lists what ships inside this package and what the installer downloads,
 | Chromium (render engine) | Playwright download | BSD-3-Clause and others |
 | numpy, scipy, faster-whisper | pip | BSD-3-Clause, BSD-3-Clause, MIT |
 | Whisper `small` speech model | Hugging Face, on the first film | MIT |
+| Google Cloud CLI (only for the video workspace) | not installed by the installer; you install it yourself from `cloud.google.com/sdk` | Apache-2.0 and Google's terms; clips are made and billed on your own Google Cloud project |
 
 ## npm packages (installed by `npm ci`)
 

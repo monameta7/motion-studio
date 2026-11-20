@@ -1,10 +1,11 @@
-// Responsibility: the side panel of the calendar (docs/08 «Click a day → side panel»): add or edit one day's topic, note, style and format, move it by typing a date, and delete it.
+// Responsibility: the side panel of the calendar (docs/08 «Click a day → side panel»): add or edit one day's topic, note, style and format, move it by typing a date, and delete it; on the video calendar the style is a visual style (Phase 11.8).
 import { useState } from 'react';
 import { api, ApiError, type CalendarEntry, type RefCard } from '../api';
 import { parseDate, toJalali, ymdOf } from '../../../calendar/jalali';
 import { faNum } from '../fa';
 import { Field } from '../Field';
 import { useBrand } from '../brand';
+import { latin } from './Styles';
 
 const STATUS_FA: Record<CalendarEntry['status'], string> = {
   planned: 'برنامه‌ریزی‌شده', queued: 'در صف ساخت', running: 'در حال ساخت', awaiting_approval: 'منتظر شما', done: 'ساخته شد', failed: 'ساخت خطا داد', skipped: 'ردشده', empty: 'خالی',
@@ -19,7 +20,8 @@ export const jalaliField = (iso: string): string => {
 
 export interface DayDraft { date: string; entry: CalendarEntry | null }
 
-export function DayPanel({ draft, refs, onChanged, onClose }: { draft: DayDraft; refs: RefCard[]; onChanged: () => void; onClose: () => void }) {
+/** `workspace` and `styleOptions` are given only on the video calendar (Phase 11.8); the motion panel is as before. */
+export function DayPanel({ draft, refs, workspace, styleOptions, onChanged, onClose }: { draft: DayDraft; refs: RefCard[]; workspace?: 'video'; styleOptions?: { slug: string; name: string }[]; onChanged: () => void; onClose: () => void }) {
   const { entry } = draft;
   const { active } = useBrand();
   const editable = !entry || ['planned', 'failed', 'skipped', 'empty'].includes(entry.status);
@@ -39,7 +41,7 @@ export function DayPanel({ draft, refs, onChanged, onClose }: { draft: DayDraft;
     const body = { date, topic, note: note || null, style_override: style || null, format };
     try {
       // A new day goes into the active brand's calendar (Phase 8); a day never moves to another brand.
-      if (entry) await api.put(`/api/calendar/${entry.id}`, body); else await api.post('/api/calendar', { ...body, ...(active ? { brand: active.slug } : {}) });
+      if (entry) await api.put(`/api/calendar/${entry.id}`, body); else await api.post('/api/calendar', { ...body, ...(active ? { brand: active.slug } : {}), ...(workspace ? { workspace } : {}) });
       onChanged(); onClose();
     } catch (e) { setError(e instanceof ApiError ? e.message : 'ذخیره نشد؛ دوباره امتحان کن.'); setBusy(false); }
   };
@@ -62,11 +64,13 @@ export function DayPanel({ draft, refs, onChanged, onClose }: { draft: DayDraft;
       <Field label="روز (شمسی)">{(id) => <input id={id} className="text-input" inputMode="numeric" value={dateText} disabled={!editable} onChange={(e) => setDateText(e.target.value)} />}</Field>
       <Field label="موضوع">{(id) => <textarea id={id} className="text-input" rows={4} value={topic} disabled={!editable} onChange={(e) => setTopic(e.target.value)} />}</Field>
       <Field label="یادداشت (اختیاری)">{(id) => <input id={id} className="text-input" value={note} disabled={!editable} onChange={(e) => setNote(e.target.value)} />}</Field>
-      <Field label="سبک">
+      <Field label={styleOptions ? 'سبک تصویری' : 'سبک'}>
         {(id) => (
           <select id={id} value={style} disabled={!editable} onChange={(e) => setStyle(e.target.value)}>
             <option value="">خودکار</option>
-            {refs.filter((r) => r.source === 'library').map((r) => <option key={r.slug} value={r.slug}>{r.name_fa}</option>)}
+            {styleOptions
+              ? styleOptions.map((s) => <option key={s.slug} value={s.slug} className={latin(s.name)}>{s.name}</option>)
+              : refs.filter((r) => r.source === 'library').map((r) => <option key={r.slug} value={r.slug}>{r.name_fa}</option>)}
           </select>
         )}
       </Field>

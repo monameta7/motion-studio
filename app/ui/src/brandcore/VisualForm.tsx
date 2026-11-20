@@ -47,7 +47,7 @@ export function VisualForm({ slug, draft, onChange, onLogo }: { slug: string; dr
         <label htmlFor={logoId} className="q-label"><b>لوگو</b><span className="req"> (لازم)</span></label>
         <span className="muted small">یک فایل تصویر (پی‌ان‌جی، جی‌پی‌جی یا وب‌پی)، تا ۸ مگابایت؛ بهتر است پس‌زمینه‌ی شفاف داشته باشد. لوگو فقط در لوگوموشن پایانی ویدیو می‌آید.</span>
         <div className="logo-row">
-          {logo ? <img className="logo-preview" src={`/api/brands/${encodeURIComponent(slug)}/logo.png?v=${ver}`} alt="لوگوی بارگذاری‌شده" /> : <span className="logo-preview empty" aria-hidden="true" />}
+          {logo ? <img className="logo-preview" src={`/api/brands/${encodeURIComponent(slug)}/logo.png?w=160&v=${ver}`} alt="لوگوی بارگذاری‌شده" width={72} height={72} decoding="async" /> : <span className="logo-preview empty" aria-hidden="true" />}
           <input id={logoId} type="file" accept="image/png,image/jpeg,image/webp" disabled={busy} onChange={(e) => { const f = e.target.files?.[0]; if (f) void upload(f); e.target.value = ''; }} />
         </div>
       </div>

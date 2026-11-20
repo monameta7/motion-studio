@@ -16,5 +16,5 @@
     "rootDir": "."
   },
   "include": ["app/**/*.ts", "tests/**/*.ts", "vitest.config.ts", "eslint.config.js"],
-  "exclude": ["node_modules", "engine", "ava-farsi", "Brand Acessts", "jobs", "runtime", "_claude", "app/ui"]
+  "exclude": ["node_modules", "engine", "ava-farsi", "vendor", "jobs", "runtime", "_claude", "app/ui"]
 }

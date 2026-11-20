@@ -5,6 +5,8 @@ import { ClaudeAccountBox, GeminiKeyBox } from '../Account';
 import { ModelsCard } from './ModelsCard';
 import { faNum } from '../fa';
 import { usePoll } from '../hooks';
+import { SkeletonCard } from '../Skeleton';
+import { SubmitButton } from '../SubmitButton';
 import { HelpButton, useGuide, useScreenTour } from '../guide/Guide';
 
 const TONE_FA: Record<string, string> = { auto: 'خودکار (از روی متن)', formal: 'رسمی', narrative: 'روایی', friendly: 'دوستانه', meditative: 'آرام', energetic: 'پرانرژی' };
@@ -17,6 +19,7 @@ export function Settings() {
   const { data: disk, reload: reloadDisk } = usePoll<{ jobs_bytes: number; temp_bytes: number; free_bytes: number | null; jobs_count: number }>('/api/disk', 0);
   const [form, setForm] = useState<{ voice: string; tone: string; max5: number; max7: number; budget: string } | null>(null);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const [saving, setSaving] = useState(false);
   const [sentence, setSentence] = useState('سلام! این یک جمله‌ی آزمایشی برای صدای مهدیار هوش‌افزاست.');
   const [audio, setAudio] = useState<string | null>(null);
   const [testing, setTesting] = useState(false);
@@ -26,15 +29,15 @@ export function Settings() {
   useEffect(() => {
     if (s && !form) setForm({ voice: s.voice, tone: s.tone, max5: s.quota.max_5h_pct_to_start, max7: s.quota.max_7d_pct_to_start, budget: s.quota.app_tokens_5h_budget === null ? '' : String(s.quota.app_tokens_5h_budget) });
   }, [s, form]);
-  if (!s || !form) return <div className="card"><p className="muted">در حال بارگذاری…</p></div>;
+  if (!s || !form) return <div className="stack settings"><div className="page-head"><h1>تنظیمات</h1></div><SkeletonCard lines={5} /><SkeletonCard lines={4} /></div>;
 
   async function save() {
-    setMsg(null);
+    setMsg(null); setSaving(true);
     try {
       await api.put('/api/settings', { voice: form!.voice, tone: form!.tone, max_5h_pct_to_start: form!.max5, max_7d_pct_to_start: form!.max7, app_tokens_5h_budget: form!.budget.trim() ? Number(form!.budget) : null });
       await reload();
       setMsg({ ok: true, text: 'ذخیره شد.' });
-    } catch (e) { setMsg({ ok: false, text: e instanceof ApiError ? e.message : String(e) }); }
+    } catch (e) { setMsg({ ok: false, text: e instanceof ApiError ? e.message : String(e) }); } finally { setSaving(false); }
   }
 
   async function test() {
@@ -101,7 +104,7 @@ export function Settings() {
             <input type="number" min={1} value={form.budget} onChange={(e) => set('budget', e.target.value)} />
           </label>
         </div>
-        <div className="actions"><button type="button" className="btn primary" onClick={() => void save()}>ذخیره‌ی صدا و آستانه‌ها</button></div>
+        <div className="actions"><SubmitButton busy={saving} failed={msg?.ok === false} onClick={() => void save()}>ذخیره‌ی صدا و آستانه‌ها</SubmitButton></div>
         {msg && <p className={msg.ok ? 'success' : 'problem'} role="status">{msg.text}</p>}
       </section>
 
@@ -147,15 +150,18 @@ function GuideSettings() {
 function NotificationSettings() {
   const { data, reload } = usePoll<{ sound: boolean }>('/api/notifications', 0);
   const [sent, setSent] = useState(false);
+  /** The switch position shown while the server is still answering. */
+  const [shown, setShown] = useState<boolean | null>(null);
   if (!data) return null;
-  const toggle = async () => { await api.put('/api/notifications/settings', { sound: !data.sound }).catch(() => undefined); void reload(); };
+  const sound = shown ?? data.sound;
+  const toggle = async () => { setShown(!sound); await api.put('/api/notifications/settings', { sound: !sound }).catch(() => undefined); await reload(); setShown(null); };
   const test = async () => { await api.post('/api/notifications/test').catch(() => undefined); setSent(true); };
   return (
     <section className="card stack-sm" aria-labelledby="notify-h">
       <h2 id="notify-h">اعلان‌ها</h2>
       <p className="muted small">وقتی برنامه باز است، پایان هر ویدیو، خطا و توقف کار را با پیام ویندوز خبر می‌دهد؛ با کلیک روی پیام صفحه‌ی همان کار باز می‌شود.</p>
       <div className="switch-row">
-        <button type="button" role="switch" aria-checked={data.sound} className="switch" onClick={() => void toggle()}>
+        <button type="button" role="switch" aria-checked={sound} className="switch" onClick={() => void toggle()}>
           <span className="knob" aria-hidden="true" />
           <span>صدای اعلان</span>
         </button>

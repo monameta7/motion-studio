@@ -3,7 +3,9 @@ import { chromium } from 'playwright';
 import { pathToFileURL } from 'node:url';
 const [,, html, out, w, h, fpsS, t0S, t1S, fmt = 'jpeg'] = process.argv;
 const fps = Number(fpsS), t0 = Number(t0S), t1 = Number(t1S);
-const b = await chromium.launch({ args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader'] });
+// GPU first (ANGLE on Direct3D 11), SwiftShader when there is no usable GPU. On the 18 Nov 3D film: 4.1 min on the Intel GPU
+// against about 30 min on SwiftShader for the same 2295 frames, SSIM ≥ 0.995 between the two (owner, 2026-11-19).
+const b = await chromium.launch({ args: ['--allow-file-access-from-files', '--use-angle=d3d11', '--ignore-gpu-blocklist', '--enable-unsafe-swiftshader'] });
 const p = await b.newPage({ viewport: { width: Number(w), height: Number(h) } });
 const errors = []; p.on('pageerror', e => errors.push(String(e)));
 await p.goto(pathToFileURL(html).href);

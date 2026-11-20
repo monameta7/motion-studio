@@ -8,6 +8,9 @@ export function faNum(v: number | string, decimals?: number): string {
   return s.replace(/\d/g, (d) => DIGITS[Number(d)]!).replace(/(\d|[۰-۹])\.(?=[۰-۹])/g, '$1٫');
 }
 
+/** Money inside Persian text: «۰٫۷۱ دلار» (a «$0.71» in right-to-left text is drawn with the sign on the wrong side; seen in the 11.6 screenshots). */
+export const faUsd = (x: number): string => `${faNum(x, 2)} دلار`;
+
 /** Seconds as «۱:۰۷» (minutes:seconds). */
 export function faDuration(sec: number): string {
   const m = Math.floor(sec / 60);

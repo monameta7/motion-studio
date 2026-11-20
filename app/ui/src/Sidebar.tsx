@@ -1,10 +1,13 @@
-// Responsibility: the sidebar of every screen (docs/11 Sidebar): the brand switcher, navigation with the in-progress count, the quota card and the system status card.
+// Responsibility: the sidebar of every screen (docs/11 Sidebar): the brand switcher with the workspace switch under it, navigation with the in-progress count, the quota card and the system status card; on a phone it is the drawer that «بیشتر» opens.
+import { useEffect, useRef } from 'react';
 import type { JobSummary, Status } from './api';
 import { BrandSwitcher } from './BrandSwitcher';
 import { faAgo, faDateTime, faNum, faTime } from './fa';
 import { usePoll } from './hooks';
 import { ModelLevel } from './screens/ModelsCard';
 import { NotificationBell } from './NotificationBell';
+import { useWorkspace } from './workspace';
+import { WorkspaceSwitch } from './WorkspaceSwitch';
 
 /** Statuses that count as "در حال ساخت": everything not finished and not cancelled. */
 export const ACTIVE: JobSummary['status'][] = ['queued', 'running', 'awaiting_approval', 'held', 'blocked', 'failed', 'paused_quota', 'interrupted'];
@@ -31,23 +34,30 @@ function Meter({ label, pct, limit }: { label: string; pct: number | null; limit
   );
 }
 
-export function Sidebar({ route, jobs }: { route: string; jobs: JobSummary[] }) {
+export function Sidebar({ route, jobs, open, onClose }: { route: string; jobs: JobSummary[]; open: boolean; onClose: () => void }) {
+  // When the drawer opens it starts at its top and focus goes to its close button (shown on a phone only; last in the page order, first on the screen).
+  const close = useRef<HTMLButtonElement>(null);
+  useEffect(() => { if (!open) return; const b = close.current; if (b?.parentElement) b.parentElement.scrollTop = 0; b?.focus({ preventScroll: true }); }, [open]);
   const { data: s } = usePoll<Status>('/api/status', 30000);
   const active = jobs.filter((j) => ACTIVE.includes(j.status)).length;
   const current = (r: string) => route === r || (r === '/brand' && route === '/brand/new') || (r === '/progress' && route.startsWith('/jobs/'));
   const q = s?.quota;
+  // The library item follows the workspace switch (Phase 11.3): references for motion, visual styles for video.
+  const { active: ws } = useWorkspace();
+  const label = (n: (typeof NAV)[number]) => (n.route === '/library' && ws === 'video' ? 'کتابخانه‌ی سبک‌ها' : n.label);
   return (
-    <aside className="sidebar" aria-label="منوی اصلی">
+    <aside className="sidebar" id="side-menu" aria-label="منوی اصلی">
       <BrandSwitcher />
+      <WorkspaceSwitch />
 
       <NotificationBell />
 
       <nav className="nav">
         {NAV.map((n) => n.soon
-          ? <span key={n.route} className="soon" aria-disabled="true">{n.label}<small>به‌زودی</small></span>
+          ? <span key={n.route} className="soon" aria-disabled="true">{label(n)}<small>به‌زودی</small></span>
           : (
             <a key={n.route} href={`#${n.route}`} aria-current={current(n.route) ? 'page' : undefined}>
-              {n.label}
+              {label(n)}
               {n.count && active > 0 && <span className="count" aria-label={`${faNum(active)} کار`}>{faNum(active)}</span>}
             </a>
           ))}
@@ -78,6 +88,7 @@ export function Sidebar({ route, jobs }: { route: string; jobs: JobSummary[] }) 
         <div className="kv"><span className="muted">اجرای زمان‌بندی‌شده‌ی بعدی</span><b>{s?.next_run ? faDateTime(s.next_run.at) : '—'}</b></div>
         {s?.next_run && <p className="muted">برای برند «{s.next_run.brand_name}»</p>}
       </section>
+      <button type="button" ref={close} className="drawer-close" onClick={onClose}>بستن منو</button>
     </aside>
   );
 }

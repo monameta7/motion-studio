@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { api, ApiError, type RefCard, type RefGroup } from '../api';
 import { faDuration, faNum } from '../fa';
 import { Field } from '../Field';
-import { usePoll } from '../hooks';
+import { usePoll, useReveal } from '../hooks';
 import { GROUP_FA } from '../labels';
 import { Confirm, Modal } from '../Modal';
 import { FILTERS } from './RefGrid';
@@ -73,6 +73,7 @@ export function Library() {
   const [busy, setBusy] = useState(false);
   const [problem, setProblem] = useState<string | null>(null);
   const shown = all.filter(FILTERS[filter]!.match);
+  const grid = useReveal<HTMLUListElement>(shown.length);
 
   const act = async (fn: () => Promise<unknown>) => {
     setBusy(true); setProblem(null);
@@ -95,13 +96,13 @@ export function Library() {
             <button key={f.label} type="button" className={`chip${i === filter ? ' on' : ''}`} aria-pressed={i === filter} onClick={() => setFilter(i)}>{f.label}</button>
           ))}
         </div>
-        <ul className="ref-grid">
+        <ul className="ref-grid" ref={grid}>
           {shown.map((r) => (
             <li key={r.slug}>
               <article className="ref-card lib-card" aria-label={r.name_fa}>
                 <span className={`ref-media f${r.format}`} onMouseEnter={(e) => playing(e.currentTarget, true)} onMouseLeave={(e) => playing(e.currentTarget, false)}>
-                  {r.thumb ? <img src={`/api/references/${r.slug}/thumb.webp`} alt="" loading="lazy" /> : <span className="no-thumb" aria-hidden="true">{r.name_fa.slice(0, 1)}</span>}
-                  <video src={`/api/references/${r.slug}/${r.preview ? 'preview.mp4' : 'video.mp4'}`} muted loop playsInline preload="none" aria-hidden="true" />
+                  {r.thumb ? <img src={`/api/references/${r.slug}/thumb.webp`} alt="" loading="lazy" decoding="async" /> : <span className="no-thumb" aria-hidden="true">{r.name_fa.slice(0, 1)}</span>}
+                  <video src={`/api/references/${r.slug}/${r.preview ? 'preview.mp4' : 'video.mp4'}`} poster={r.thumb ? `/api/references/${r.slug}/thumb.webp` : undefined} muted loop playsInline preload="none" aria-hidden="true" />
                   <span className="dur">{faDuration(r.duration)}</span>
                 </span>
                 <div className="ref-body">
@@ -121,8 +122,8 @@ export function Library() {
           ))}
         </ul>
         {data && shown.length === 0 && (all.length === 0
-          ? <EmptyState text="کتابخانه‌ی مرجع هنوز خالی است. یک ویدیوی نمونه که سبکش را دوست داری اضافه کن؛ برنامه خودش آن را تحلیل می‌کند." action={{ label: 'اولین مرجع را اضافه کن', onClick: () => setDialog({ kind: 'upload' }) }} />
-          : <EmptyState text="در این دسته مرجعی نیست." action={{ label: 'نمایش همه‌ی مرجع‌ها', onClick: () => setFilter(0) }} />)}
+          ? <EmptyState icon="film" text="کتابخانه‌ی مرجع هنوز خالی است. یک ویدیوی نمونه که سبکش را دوست داری اضافه کن؛ برنامه خودش آن را تحلیل می‌کند." action={{ label: 'اولین مرجع را اضافه کن', onClick: () => setDialog({ kind: 'upload' }) }} />
+          : <EmptyState icon="search" text="در این دسته مرجعی نیست." action={{ label: 'نمایش همه‌ی مرجع‌ها', onClick: () => setFilter(0) }} />)}
       </section>
 
       {dialog?.kind === 'upload' && <UploadDialog onClose={() => setDialog(null)} onDone={() => void reload()} />}

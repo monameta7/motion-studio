@@ -181,7 +181,7 @@ export function libraryRoutes(app: FastifyInstance, ctx: ApiContext): void {
 
   /**
    * Files the app UI itself uses: the Persian fonts (D22) and the app mark, from the default brand's folder (`brand.default`): the
-   * app's own look (rule 13), which does not change with the active brand. Never Brand Acessts/. Brand logos: /api/brands/:slug/logo.png.
+   * app's own look (rule 13), which does not change with the active brand. Never brand/_source-assets/. Brand logos: /api/brands/:slug/logo.png.
    * A font that folder does not have comes from the app's own free copies (Vazirmatn, Inter): an install without the Mahdiyar brand (Phase 11, Q22).
    */
   app.get<{ Params: { file: string } }>('/api/brand/:file', async (request, reply) => {
@@ -237,6 +237,8 @@ export function libraryRoutes(app: FastifyInstance, ctx: ApiContext): void {
       /** Measured average of finished jobs (docs/03 Time budget); null until one finished on this machine. */
       estimate_min: stageRunsRepo.avgJobMinutes(ctx.db),
       stage_avg_min: stageRunsRepo.avgStageMinutes(ctx.db),
+      // Phase 11.3: each workspace has its own averages (the two keys above stay the motion ones).
+      by_workspace: Object.fromEntries((['motion', 'video'] as const).map((ws) => [ws, { estimate_min: stageRunsRepo.avgJobMinutes(ctx.db, 5, ws), stage_avg_min: stageRunsRepo.avgStageMinutes(ctx.db, 5, ws) }])),
       running: ctx.runner.running(),
       queued: ctx.runner.queued(),
       /** The next film any brand's schedule starts (its calendar day, start moment and brand), or null. */

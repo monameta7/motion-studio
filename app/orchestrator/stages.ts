@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { LoadedConfig } from '../config.js';
 import type { Db } from '../db/db.js';
-import type { JobRequest, JobState, StageName } from '../contracts/index.js';
+import type { AnyStageName, JobRequest, JobState } from '../contracts/index.js';
 import { runPreflight, type PreflightDeps } from '../preflight/index.js';
 
 export type StageFailure = 'blocked' | 'failed' | 'paused_quota';
@@ -33,14 +33,15 @@ export interface StageOutput {
 }
 
 export interface Stage {
-  name: StageName;
+  name: AnyStageName;
   run(ctx: StageContext): Promise<StageOutput>;
 }
 
-export type Registry = Record<StageName, Stage>;
+/** One stage per name of both workspaces (D88); each job runs only the names of its own order. */
+export type Registry = Record<AnyStageName, Stage>;
 
 /** Placeholder for a stage built in a later phase: records each start and end in logs/stub-runs.jsonl so resume can be tested. */
-export function stubStage(name: StageName, delayMs: () => number = () => Number(process.env.MMS_STUB_DELAY_MS ?? 0)): Stage {
+export function stubStage(name: AnyStageName, delayMs: () => number = () => Number(process.env.MMS_STUB_DELAY_MS ?? 0)): Stage {
   return {
     name,
     async run(ctx) {
@@ -56,12 +57,16 @@ export function stubStage(name: StageName, delayMs: () => number = () => Number(
   };
 }
 
-/** A stage that is not built yet: stops the job as `blocked` with a clear message, so a run ends after the last built stage instead of pretending to finish. */
-export function notBuiltStage(name: StageName, phase: number): Stage {
+/** Persian names of the video stages not built yet, for the message of `notBuiltStage`. */
+const NOT_BUILT_FA: Partial<Record<AnyStageName, string>> = { prompts: 'پرامپت کلیپ‌ها', clips: 'ساخت کلیپ‌ها', assemble: 'سرهم کردن ویدیو' };
+
+/** A stage that is not built yet: stops the job as `blocked` with a clear message, so a run ends after the last built stage instead of pretending to finish. `phase` is shown as written (Persian digits). */
+export function notBuiltStage(name: AnyStageName, phase: string): Stage {
+  const label = NOT_BUILT_FA[name];
   return {
     name,
     async run() {
-      throw new StageError('blocked', `این مرحله هنوز ساخته نشده (فاز ${phase}). کار تا مرحله‌ی قبلی کامل انجام شده و ذخیره است.`, `stage ${name} is built in phase ${phase}`);
+      throw new StageError('blocked', `${label ? `مرحله‌ی «${label}»` : 'این مرحله'} هنوز ساخته نشده (فاز ${phase}). کار تا مرحله‌ی قبلی کامل انجام شده و ذخیره است.`, `stage ${name} is built in phase ${phase}`);
     },
   };
 }
@@ -88,6 +93,10 @@ export function buildRegistry(preflight: Stage, overrides: Partial<Registry> = {
     plan: stubStage('plan'),
     build: stubStage('build'),
     package: stubStage('package'),
+    // Video workspace (D88): built in 11.4, 11.6 and 11.7; until then a video job stops here, after content and voice.
+    prompts: notBuiltStage('prompts', '۱۱.۴'),
+    clips: notBuiltStage('clips', '۱۱.۶'),
+    assemble: notBuiltStage('assemble', '۱۱.۷'),
     ...overrides,
   };
 }

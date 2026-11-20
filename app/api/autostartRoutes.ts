@@ -16,13 +16,14 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
 /**
  * The clock times the app should be opened at daily: each brand's film start minus 30 minutes (Phase 8: each brand has its own
- * schedule), sorted and joined by commas ("05:30,16:45"); null while every brand's automation is off.
+ * schedule; Phase 11.8: each workspace too, from its own average), sorted and joined by commas ("05:30,16:45"); null while every
+ * automation is off.
  */
 export function openAt(ctx: ApiContext): string | null {
-  const avg = stageRunsRepo.avgJobMinutes(ctx.db, 5);
+  const avg = { motion: stageRunsRepo.avgJobMinutes(ctx.db, 5), video: stageRunsRepo.avgJobMinutes(ctx.db, 5, 'video') };
   const times = new Set<string>();
   for (const s of listSchedules(ctx.db).filter((x) => x.enabled)) {
-    const start = startMoment('2030-06-15', s, avg).time;
+    const start = startMoment('2030-06-15', s, avg[s.workspace]).time;
     const total = (Number(start.slice(0, 2)) * 60 + Number(start.slice(3, 5)) - OPEN_BEFORE_MIN + 1440) % 1440;
     times.add(`${pad(Math.floor(total / 60))}:${pad(total % 60)}`);
   }

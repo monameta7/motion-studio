@@ -8,6 +8,8 @@ import { SaveFlow } from '../brandcore/SaveFlow';
 import { VisualForm } from '../brandcore/VisualForm';
 import { faDateTime, faNum } from '../fa';
 import { usePoll } from '../hooks';
+import { SkeletonCard } from '../Skeleton';
+import { StickyBar } from '../StickyBar';
 import { Confirm } from '../Modal';
 import { BrandCreator } from './NewBrand';
 import { HelpButton, useScreenTour } from '../guide/Guide';
@@ -73,7 +75,7 @@ function BrandScreen({ slug }: { slug: string }) {
 
   const dirty = useMemo(() => stable(draft) !== saved, [draft, saved]);
   if (error && !info) return <div className="stack"><div className="page-head"><h1>برند من</h1></div><p className="problem" role="alert">{error}</p></div>;
-  if (!schema || !info) return <p className="muted">در حال بارگذاری…</p>;
+  if (!schema || !info) return <SkeletonCard lines={4} />;
   // A brand folder that was created but never filled in (the creator was closed half-way): the creator continues it.
   if (info.editable && !info.answers) return <div className="stack"><div className="page-head"><h1>برند من</h1><div className="head-side"><DeleteBrand slug={slug} name={info.name} /></div></div><BrandCreator schema={schema} resume={{ slug, name: info.name }} onDone={() => void reload()} /></div>;
 
@@ -107,10 +109,10 @@ function BrandScreen({ slug }: { slug: string }) {
       </section>
 
       {info.editable && (
-        <div className="save-bar" role="region" aria-label="ثبت تغییرها">
+        <StickyBar className="save-bar" role="region" aria-label="ثبت تغییرها">
           <span aria-live="polite">{dirty ? 'تغییرهای ثبت‌نشده داری.' : 'همه‌ی تغییرها ثبت شده.'}</span>
           <button type="button" className="btn primary" disabled={!dirty && info.built} onClick={() => setFlow(true)}>{info.built ? 'ثبت' : 'ساخت سندهای برند'}</button>
-        </div>
+        </StickyBar>
       )}
       {flow && <SaveFlow slug={slug} answers={cleanAnswers(draft)} onClose={(changed) => { setFlow(false); if (changed) void reload(); }} />}
     </div>
@@ -124,7 +126,7 @@ function Summary({ slug, info, draft }: { slug: string; info: BrandInfo; draft: 
   const tone = ((draft.voice ?? {}) as { tone?: Record<string, number> }).tone ?? {};
   return (
     <section className="card brand-summary" aria-label="خلاصه‌ی برند">
-      {info.logo ? <img className="logo-preview" src={logoUrl(slug)} alt={`لوگوی ${info.name}`} /> : <span className="logo-preview empty" aria-hidden="true" />}
+      {info.logo ? <img className="logo-preview" src={logoUrl(slug, 160)} alt={`لوگوی ${info.name}`} width={72} height={72} decoding="async" /> : <span className="logo-preview empty" aria-hidden="true" />}
       <div className="stack-sm">
         <b>{info.name}</b>
         {v.colors && v.colors.length > 0 && <ul className="swatches" aria-label="رنگ‌ها">{v.colors.map((c, i) => <li key={i}><span className="swatch" style={{ background: c.hex }} aria-hidden="true" /><span className="latin small">{c.hex}</span><span className="muted small"> {c.name}</span></li>)}</ul>}
@@ -169,7 +171,7 @@ function DocView({ slug, doc, editable, onSaved }: { slug: string; doc: string; 
   const [text, setText] = useState<string | null>(null);
   const [msg, setMsg] = useState<{ ok: boolean; t: string } | null>(null);
   useEffect(() => { if (data) setText(data.text); }, [data]);
-  if (data === null || text === null) return <p className="muted">در حال بارگذاری…</p>;
+  if (data === null || text === null) return <SkeletonCard block lines={2} />;
   const save = async () => {
     try { await api.put(`/api/brand-core/${slug}/docs/${doc}`, { text }); setMsg({ ok: true, t: 'ذخیره شد.' }); onSaved(); } catch (e) { setMsg({ ok: false, t: e instanceof ApiError ? e.message : 'ذخیره نشد.' }); }
   };

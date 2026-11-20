@@ -14,12 +14,13 @@ const WAIT_MS = 1200;
 
 const reducedMotion = () => typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** The element of a step when it is really on the screen (not hidden, not zero-sized). */
+/** The element of a step when it is really on the screen (not hidden, not zero-sized, not pushed out sideways like the closed drawer on a phone, which no scroll brings back). */
 function find(selector: string | undefined): HTMLElement | null {
   if (!selector) return null;
   const el = document.querySelector<HTMLElement>(selector);
   if (!el || el.getClientRects().length === 0) return null;
   const r = el.getBoundingClientRect();
+  if (r.right <= 0 || r.left >= window.innerWidth) return null;
   return r.width > 0 && r.height > 0 ? el : null;
 }
 

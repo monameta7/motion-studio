@@ -8,6 +8,7 @@ import { SaveFlow } from '../brandcore/SaveFlow';
 import { VisualForm } from '../brandcore/VisualForm';
 import { faNum } from '../fa';
 import { go, usePoll } from '../hooks';
+import { SkeletonCard } from '../Skeleton';
 import { HelpButton, useScreenTour } from '../guide/Guide';
 
 const FREE_FONTS = { persian_font: { family: 'Vazirmatn', file: null, licence_ok: true }, latin_font: { family: 'Inter', file: null, licence_ok: true } };
@@ -110,7 +111,7 @@ export function NewBrand() {
   useScreenTour('brand-new');
   const { data: schema } = usePoll<BrandSchema>('/api/brand-core/schema', 0);
   const { choose } = useBrand();
-  if (!schema) return <p className="muted">در حال بارگذاری…</p>;
+  if (!schema) return <SkeletonCard lines={4} />;
   return (
     <div className="stack">
       <div className="page-head"><h1>ساخت برند تازه</h1><HelpButton /></div>

@@ -1,10 +1,11 @@
-// Responsibility: the In progress screen of one job (docs/11 §2): header with «توقف»/«ادامه», overall progress, the six stage rows (truth chips, voice play, plan link, build steps), the script panel, and the frame preview.
-import { useEffect, useState } from 'react';
+// Responsibility: the In progress screen of one job (docs/11 §2): header with «توقف»/«ادامه», overall progress, the six stage rows (truth chips, voice play, plan link, build steps, a video job's clip prompts with «کپی» and its clips), the script panel, and the frame preview.
+import { useEffect, useMemo, useState } from 'react';
 import { api, ApiError, fileUrl, type JobDetail, type StageName, type Status } from '../api';
 import { faDateTime, faDuration, faNum } from '../fa';
 import { usePoll, useRefName } from '../hooks';
-import { BUILD_STEPS, ROWS, ROW_STATE_FA, isPaused, rowState, statusText } from '../labels';
+import { BUILD_STEPS, NOW_FA, ROW_STATE_FA, STAGE_ORDER_OF, WORKSPACE_FA, isPaused, rowState, rowsFor, statusText } from '../labels';
 import { ScriptPanel } from './ScriptPanel';
+import { ClipsPanel } from './ClipsPanel';
 import { FirstTip, HelpButton } from '../guide/Guide';
 
 /** The newest rendered frame, checked every 5 s while the build runs. */
@@ -12,10 +13,31 @@ function Frame({ job }: { job: JobDetail }) {
   const building = job.state.stage === 'build' && job.status === 'running';
   const { data, reload } = usePoll<{ file: string | null }>(`/api/jobs/${job.slug}/frame`, building ? 5000 : 0);
   useEffect(() => { void reload(); }, [job.state.stage, reload]);
+  // A new picture once per answer (every 5 s while building), not on every render of the page (Phase 12).
+  const stamp = useMemo(() => Date.now(), [data]);
   return (
     <figure className={`frame-box f${job.format}`}>
-      {data?.file ? <img src={`${fileUrl(job.slug, data.file)}?t=${Date.now()}`} alt="آخرین فریم رندرشده" /> : <figcaption className="muted small">فریمی هنوز رندر نشده.</figcaption>}
+      {data?.file ? <img src={`${fileUrl(job.slug, data.file)}?t=${stamp}`} alt="آخرین فریم رندرشده" decoding="async" /> : <figcaption className="muted small">فریمی هنوز رندر نشده.</figcaption>}
     </figure>
+  );
+}
+
+/** Phase 11.4: one clip prompt, folded, with «کپی» (the whole English prompt, as the app sends it). */
+function PromptItem({ p }: { p: JobDetail['prompts'][number] }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => { try { await navigator.clipboard.writeText(p.text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { setCopied(false); } };
+  return (
+    <li className="prompt-item">
+      <div className="row-between">
+        <b>کلیپ {faNum(p.index)}</b>
+        <span className="muted small">{faNum(p.text.length)} حرف</span>
+        <button type="button" className="btn" onClick={() => void copy()} aria-label={`کپی پرامپت کلیپ ${faNum(p.index)}`}>{copied ? 'کپی شد' : 'کپی'}</button>
+      </div>
+      <details>
+        <summary>دیدن پرامپت</summary>
+        <pre className="qa-log prompt-text" dir="ltr">{p.text}</pre>
+      </details>
+    </li>
   );
 }
 
@@ -24,7 +46,7 @@ function Frame({ job }: { job: JobDetail }) {
  * When the running stage already took longer than usual, it says so instead of showing a number that would stay at «۱ دقیقه».
  */
 function remaining(job: JobDetail, avg: Partial<Record<StageName, number>>): string | null {
-  const order: StageName[] = ['preflight', 'content', 'voice', 'reference', 'plan', 'build', 'package'];
+  const order: StageName[] = STAGE_ORDER_OF[job.workspace];
   const cur = job.state.stage;
   if (!cur) return null;
   const curAvg = avg[cur];
@@ -51,18 +73,28 @@ export function Progress({ job }: { job: JobDetail }) {
   // D77: a script blocked below the truth gate is shown with its own two choices; «ادامه» would only block again.
   const scriptBlocked = job.script_blocked && job.script !== null;
   const idle = !job.active && !job.queued;
-  const canResume = idle && !scriptBlocked && ['interrupted', 'failed', 'blocked', 'paused_quota'].includes(job.status);
+  // Phase 11.4: a stage built in a later phase would only block again, so «ادامه» is not offered; the page says why.
+  const canResume = idle && !scriptBlocked && !job.not_built && ['interrupted', 'failed', 'blocked', 'paused_quota'].includes(job.status);
   // D45: the script is shown (and can be held) once the content stage is done.
   const scriptReady = job.script !== null && (job.state.stages.content?.status === 'done' || scriptBlocked);
   const canHold = scriptReady && !scriptBlocked && !held && job.status !== 'done' && job.status !== 'cancelled';
 
+  // The rows of the job's own workspace (Phase 11.3).
+  const ROWS = rowsFor(job.workspace);
   const done = ROWS.filter((r) => rowState(job, r.stages) === 'done').length;
   const started = job.state.started_at ?? job.request.created_at;
-  const eta = remaining(job, status?.stage_avg_min ?? {});
+  const eta = remaining(job, status?.by_workspace?.[job.workspace].stage_avg_min ?? (job.workspace === 'motion' ? status?.stage_avg_min ?? {} : {}));
 
-  const act = async (what: string, msg: string | null = null) => {
+  // A round chip under «کنترل کیفیت» clicked: that round's script is shown in place of the current one (a second click goes back).
+  const [pickedRound, setPickedRound] = useState<number | null>(null);
+  const rounds = job.round_scripts ?? [];
+  const shown = rounds.find((x) => x.round === pickedRound) ?? null;
+  // While blocked, «قبول» takes the round on screen, else the last one.
+  const acceptRound = shown?.round ?? rounds.at(-1)?.round ?? null;
+
+  const act = async (what: string, msg: string | null = null, body: unknown = {}) => {
     setBusy(true); setError(null);
-    try { await api.post(`/api/jobs/${job.slug}/${what}`); if (msg) setNotice(msg); } catch (e) { setError(e instanceof ApiError ? e.message : String(e)); } finally { setBusy(false); }
+    try { await api.post(`/api/jobs/${job.slug}/${what}`, body); if (msg) setNotice(msg); } catch (e) { setError(e instanceof ApiError ? e.message : String(e)); } finally { setBusy(false); }
   };
 
   return (
@@ -71,7 +103,7 @@ export function Progress({ job }: { job: JobDetail }) {
         <div className="stack-sm">
           <h1 className="topic-title">{job.title}</h1>
           <p className="muted small">
-            برند: {job.brand_name} · {job.format === '9x16' ? 'عمودی ۹:۱۶' : 'افقی ۱۶:۹'} · مرجع: {job.references.map(refName).join('، ')} · شروع: {faDateTime(started)}
+            {WORKSPACE_FA[job.workspace]} · برند: {job.brand_name} · {job.format === '9x16' ? 'عمودی ۹:۱۶' : 'افقی ۱۶:۹'} · {job.workspace === 'video' ? <>سبک: <bdi className="latin">{job.style_title ?? job.style ?? '—'}</bdi></> : `مرجع: ${job.references.map(refName).join('، ')}`} · شروع: {faDateTime(started)}
           </p>
         </div>
         <div className="actions">
@@ -81,7 +113,7 @@ export function Progress({ job }: { job: JobDetail }) {
         </div>
       </header>
 
-      <section className="card stack-sm" aria-label="پیشرفت کلی">
+      <section className="card stack-sm" aria-label="پیشرفت کلی" style={{ viewTransitionName: 'film' }}>
         <div className="row-between">
           <b>{statusText(job)}{job.queued ? ' — در صف، بعد از کار جاری شروع می‌شود' : ''}</b>
           <span className="muted small">مرحله {faNum(done)} از {faNum(ROWS.length)}{eta && job.status === 'running' ? ` · ${eta}` : ''}</span>
@@ -89,6 +121,7 @@ export function Progress({ job }: { job: JobDetail }) {
         <div className="progress" role="progressbar" aria-valuemin={0} aria-valuemax={ROWS.length} aria-valuenow={done} aria-label="مرحله‌های انجام‌شده"><i style={{ width: `${(done / ROWS.length) * 100}%` }} /></div>
         {(job.state.error && !paused) && <p className="problem" role="alert">{job.state.error.message_fa}</p>}
         {job.last_error && <p className="problem" role="alert">{job.last_error}</p>}
+        {job.not_built && idle && <p className="muted">«ادامه» فعلاً کاری نمی‌کند، برای همین دکمه‌اش اینجا نیست.</p>}
         {paused && <p className="muted">با «توقف» مکث شد. مرحله‌ی «{ROWS.find((r) => r.stages.includes(job.state.stage!))?.label ?? ''}» با «ادامه» دوباره اجرا می‌شود.</p>}
         {notice && <p className="success" role="status">{notice}</p>}
         <FirstTip id="held" when={held} />
@@ -109,13 +142,28 @@ export function Progress({ job }: { job: JobDetail }) {
                     <b>{r.label}</b>
                     <span className="muted small">{ROW_STATE_FA[st]}</span>
                   </div>
-                  {r.key === 'content' && scriptReady && (
+                  {st === 'running' && NOW_FA[r.key] && <p className="stage-now muted small">{NOW_FA[r.key]}</p>}
+                  {r.key === 'content' && (scriptReady || shown) && (
                     <div className="stage-body">
-                      <ScriptPanel key={held ? 'edit' : 'read'} job={job} editing={held}
-                        onDone={(restart) => { setNotice(restart ? `ادامه با متن تازه؛ دوباره اجرا می‌شود: ${restart}` : 'ادامه بدون تغییر.'); }} />
+                      {shown ? (
+                        <div className="stack-sm">
+                          <p className="muted small">متن دور {faNum(shown.round)} (امتیاز {faNum(Math.round(shown.score))}) · <button type="button" className="btn link" onClick={() => setPickedRound(null)}>برگشت به متن فعلی</button></p>
+                          <ol className="stack-sm">
+                            {shown.lines.map((l) => (
+                              <li key={l.id}>
+                                <b dir="auto">{l.text}</b>
+                                {l.on_screen.map((t) => <p key={t.index} className="muted small" dir="auto">روی صفحه: {t.text}</p>)}
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+                      ) : (
+                        <ScriptPanel key={held ? 'edit' : 'read'} job={job} editing={held}
+                          onDone={(restart) => { setNotice(restart ? `ادامه با متن تازه؛ دوباره اجرا می‌شود: ${restart}` : 'ادامه بدون تغییر.'); }} />
+                      )}
                       {scriptBlocked && idle && (
                         <div className="actions">
-                          <button type="button" className="btn primary" disabled={busy} onClick={() => { void act('accept-script', 'متن پذیرفته شد؛ ساخت با صدای گوینده ادامه پیدا می‌کند.'); }}>قبول همین متن</button>
+                          <button type="button" className="btn primary" disabled={busy} onClick={() => { void act('accept-script', `متن دور ${faNum(acceptRound ?? 0)} پذیرفته شد؛ ساخت با صدای گوینده ادامه پیدا می‌کند.`, acceptRound ? { round: acceptRound } : {}); }}>{rounds.length > 1 && acceptRound ? `قبول متن دور ${faNum(acceptRound)}` : 'قبول همین متن'}</button>
                           <button type="button" className="btn" disabled={busy} onClick={() => { void act('extra-round', 'یک دور دیگر نوشتن و بازبینی شروع شد.'); }}>یک دور دیگر</button>
                         </div>
                       )}
@@ -128,7 +176,16 @@ export function Progress({ job }: { job: JobDetail }) {
                   {r.key === 'truth' && job.rounds.length > 0 && (
                     <ul className="chips stage-body" aria-label="دورهای کنترل کیفیت">
                       {job.rounds.map((x) => (
-                        <li key={x.round} className={`chip${x.passed ? ' on' : ''}`}>دور {faNum(x.round)}: {faNum(Math.round(x.score))}{x.passed ? ' ✓' : ''}</li>
+                        rounds.some((s) => s.round === x.round) ? (
+                          <li key={x.round}>
+                            <button type="button" className={`chip${x.passed || x.round === pickedRound ? ' on' : ''}`} aria-pressed={x.round === pickedRound} title="دیدن متن این دور"
+                              onClick={() => setPickedRound(x.round === pickedRound ? null : x.round)}>
+                              دور {faNum(x.round)}: {faNum(Math.round(x.score))}{x.passed ? ' ✓' : ''}
+                            </button>
+                          </li>
+                        ) : (
+                          <li key={x.round} className={`chip${x.passed ? ' on' : ''}`}>دور {faNum(x.round)}: {faNum(Math.round(x.score))}{x.passed ? ' ✓' : ''}</li>
+                        )
                       ))}
                       <li className="muted small">حد قبولی {faNum(job.pass_score)}</li>
                     </ul>
@@ -150,6 +207,12 @@ export function Progress({ job }: { job: JobDetail }) {
                       </ol>
                     </details>
                   )}
+                  {r.key === 'prompts' && job.prompts.length > 0 && (
+                    <ol className="stage-body prompt-list" aria-label="پرامپت کلیپ‌ها">
+                      {job.prompts.map((p) => <PromptItem key={p.file} p={p} />)}
+                    </ol>
+                  )}
+                  {r.key === 'clips' && job.clips && <ClipsPanel job={job} idle={idle} onNotice={setNotice} onResume={canResume ? () => void act('resume') : null} />}
                   {r.key === 'build' && (
                     <ul className="sub-steps stage-body">{BUILD_STEPS.map((s) => <li key={s} className="small muted">{s}</li>)}</ul>
                   )}

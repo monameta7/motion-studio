@@ -4,7 +4,7 @@ import path from 'node:path';
 import type { LoadedConfig } from '../config.js';
 import type { Db } from '../db/db.js';
 import { usageRepo } from '../db/repositories.js';
-import { ReferenceMeta, type JobRequest } from '../contracts/index.js';
+import { ReferenceMeta, type JobRequest, type Workspace } from '../contracts/index.js';
 import { faNum } from '../fa.js';
 import { budgetGuard, readPlanStatus } from '../quota/index.js';
 import { runTool, type RunResult } from '../proc.js';
@@ -12,6 +12,11 @@ import { defaultAvaDeps } from '../stages/voice/avaClient.js';
 import { checkSubscriptionAuth, claudeVersion, type AuthStatus } from '../ai/claudeRunner.js';
 import { BrandError, brandDir, brandDirLabel, brandPrompt } from '../brands/index.js';
 import { usableWithoutVideo } from '../stages/reference/index.js';
+import { vertexStop } from '../stages/clips/index.js';
+import { VertexError, checkVertex, defaultVertexDeps, isCloudSession, type VertexDeps } from '../video/vertexClient.js';
+import { isUnattended, oneClipUsd, unattendedSpentTodayUsd } from '../video/unattended.js';
+import { jobDir } from '../orchestrator/jobFolder.js';
+import { usd } from '../stages/clips/index.js';
 
 export interface CheckResult { id: string; ok: boolean; reason_fa?: string; detail?: string }
 export interface PreflightResult { ok: boolean; results: CheckResult[]; reasons_fa: string[] }
@@ -31,6 +36,8 @@ export interface PreflightDeps {
   sleep: (ms: number) => Promise<void>;
   /** How long to wait for ava-farsi after starting it (docs/10: 60 s). */
   healthWaitMs: number;
+  /** Phase 11.6: the Vertex door's machine (gcloud, fetch); left out = the real one. Tests pass a fake. */
+  vertex?: VertexDeps;
 }
 
 export function defaultDeps(config: LoadedConfig, db: Db): PreflightDeps {
@@ -152,14 +159,52 @@ export function checkDisk(d: PreflightDeps): CheckResult {
   return free >= min ? ok('disk', `${free.toFixed(1)} GB`) : fail('disk', `فضای خالی دیسک ${faNum(free, 1)} گیگابایت است؛ دست‌کم ${faNum(min)} گیگابایت لازم است.`);
 }
 
-export function checkQuota(d: PreflightDeps): CheckResult {
+/**
+ * The Claude budget guard (docs/09). Phase 11.8 (D108): a video film starts up to its own 5-hour threshold (`quota.video_max_5h_pct_to_start`,
+ * 40: the heaviest measured content, 57 window points, + the prompts call, 4); the weekly threshold and the motion one are unchanged.
+ */
+export function checkQuota(d: PreflightDeps, ws: Workspace = 'motion'): CheckResult {
   const { cfg, paths } = d.config;
   const now = d.now();
   const plan = readPlanStatus(paths.quotaStatus, now, cfg.quota.status_max_age_min);
   const since = new Date(now - 5 * 3600 * 1000).toISOString();
-  const g = budgetGuard({ quota: cfg.quota, plan, appTokens5h: usageRepo.outputTokensSince(d.db, since), expectedJobTokens: usageRepo.avgOutputTokensPerJob(d.db) });
+  const quota = ws === 'video' ? { ...cfg.quota, max_5h_pct_to_start: cfg.quota.video_max_5h_pct_to_start } : cfg.quota;
+  const g = budgetGuard({ quota, plan, appTokens5h: usageRepo.outputTokensSince(d.db, since), expectedJobTokens: usageRepo.avgOutputTokensPerJob(d.db) });
   const detail = `plan status ${plan.fresh ? `fresh (${plan.ageMin?.toFixed(0)} min)` : 'not fresh'}: 5h=${String(plan.fiveHourPct)} 7d=${String(plan.sevenDayPct)}`;
   return g.ok ? ok('quota', detail) : fail('quota', g.reasons_fa.join(' '), detail);
+}
+
+/**
+ * Phase 11.6 (D89, D91 e, docs/13 V4, V5, V7), free: a video job is refused in the cloud session; on the PC the Google Cloud CLI is found,
+ * signed in, gives a token, and countTokens answers for a short text (project, API, permission, model in its location). The film's own
+ * estimate against the money cap is checked by the clips stage, once its prompts exist.
+ */
+export async function checkVideo(req: JobRequest, d: PreflightDeps): Promise<CheckResult[]> {
+  if (req.workspace !== 'video') return [];
+  const vd = d.vertex ?? defaultVertexDeps();
+  if (isCloudSession(vd)) return [fail('video', 'ویدیو فقط روی کامپیوتر خودت ساخته می‌شود (در نشست ابری Google Cloud CLI نیست، D89).', 'cloud session')];
+  try {
+    const r = await checkVertex(d.config.cfg.video, vd);
+    return [ok('video', `Vertex ${d.config.cfg.video.vertex.model} in ${d.config.cfg.video.vertex.location}: countTokens ${r.tokens}`)];
+  } catch (e) {
+    if (e instanceof VertexError) { const s = vertexStop(e, null); return [fail('video', s.message_fa, s.detail.slice(0, 400))]; }
+    return [fail('video', 'بررسی Google Cloud انجام نشد.', (e as Error).message.slice(0, 400))];
+  }
+}
+
+/**
+ * Phase 11.8 (D108, docs/13 V27): a video film the scheduler started that nobody has touched does not start when the day's cap for such
+ * films leaves less than one clip; nothing is spent and the day is told. The film's own estimate against what is left is checked again by
+ * the clips stage before its first purchase.
+ */
+export function checkVideoMoney(req: JobRequest, d: PreflightDeps): CheckResult[] {
+  if (req.workspace !== 'video' || req.source !== 'schedule' || !isUnattended(jobDir(d.config.paths.jobs, req.slug))) return [];
+  const cfg = d.config.cfg.video;
+  const spent = unattendedSpentTodayUsd(d.db, d.config.paths.jobs, d.now(), req.slug);
+  const detail = `unattended today ${spent.toFixed(3)} + one clip ${oneClipUsd(cfg).toFixed(3)} vs daily cap ${cfg.max_usd_per_day_unattended}`;
+  return spent + oneClipUsd(cfg) > cfg.max_usd_per_day_unattended + 1e-9
+    ? [fail('video_money', `سقف پول روزانه‌ی فیلم‌های خودکار ویدیو (${usd(cfg.max_usd_per_day_unattended)}) پر شده؛ امروز حدود ${usd(spent)} خرج شده. این فیلم شروع نشد و چیزی خرج نشد؛ اگر بخواهی خودت «ادامه» را بزن.`, detail)]
+    : [ok('video_money', detail)];
 }
 
 export async function runPreflight(req: JobRequest, d: PreflightDeps): Promise<PreflightResult> {
@@ -170,7 +215,9 @@ export async function runPreflight(req: JobRequest, d: PreflightDeps): Promise<P
     await checkVoiceApp(d),
     ...checkBrand(d, req.brand),
     checkDisk(d),
-    checkQuota(d),
+    checkQuota(d, req.workspace),
+    ...checkVideoMoney(req, d),
+    ...(await checkVideo(req, d)),
   ];
   const reasons_fa = results.filter((r) => !r.ok).map((r) => r.reason_fa!);
   return { ok: reasons_fa.length === 0, results, reasons_fa };

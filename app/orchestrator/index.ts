@@ -4,19 +4,19 @@ import path from 'node:path';
 import type { LoadedConfig } from '../config.js';
 import type { Db } from '../db/db.js';
 import { jobsRepo, lockRepo, stageRunsRepo } from '../db/repositories.js';
-import { HoldRequest, readJson, writeJson, type JobState, type StageName, type StageState } from '../contracts/index.js';
+import { HoldRequest, readJson, writeJson, type AnyStageName, type JobState, type StageState, type Workspace } from '../contracts/index.js';
 import { pidAlive } from '../proc.js';
 import { jobDir, listJobSlugs, readRequest, readState, writeState } from './jobFolder.js';
 import { ScriptEditError, applyScriptEdits, type EditOutcome } from './scriptEdit.js';
 import { StageError, type Registry } from './stages.js';
-import { STAGE_ORDER, assertTransition, canTransition, nextStage } from './state.js';
+import { assertTransition, canTransition, nextStage, stageOrder } from './state.js';
 
 export interface Orchestrator {
   config: LoadedConfig;
   db: Db;
   registry: Registry;
   now?: () => Date;
-  onStage?: (slug: string, stage: StageName, event: 'start' | 'done' | 'stop', state: JobState) => void;
+  onStage?: (slug: string, stage: AnyStageName, event: 'start' | 'done' | 'stop', state: JobState) => void;
   /** Tests shorten these (hold flag polling, wait for a stage that ignores the abort). */
   holdPollMs?: number;
   holdSettleMs?: number;
@@ -29,17 +29,17 @@ export const holdFile = (dir: string) => path.join(dir, 'control', 'hold.json');
 const HOLD_SETTLE_MS = 30000;
 class HoldStop extends Error {}
 
-/** The script exists only after content, so a hold applies to the stages after it (D45). */
-const holdable = (stage: StageName) => STAGE_ORDER.indexOf(stage) > STAGE_ORDER.indexOf('content');
+/** The script exists only after content, so a hold applies to the stages after it (D45), in the order of the job's workspace. */
+const holdable = (stage: AnyStageName, ws: Workspace) => stageOrder(ws).indexOf(stage) > stageOrder(ws).indexOf('content');
 
-function holdInfo(dir: string, stage: StageName, nowIso: string): NonNullable<JobState['hold']> {
+function holdInfo(dir: string, stage: AnyStageName, nowIso: string): NonNullable<JobState['hold']> {
   let at = nowIso;
   try { at = readJson(holdFile(dir), HoldRequest).requested_at; } catch { /* a hand-written flag without a time still holds */ }
   return { requested_at: at, stage, reason: 'script_review' };
 }
 /** The marker of a pause by the owner (D53): status `interrupted` with this message; «ادامه» runs the stage again. */
 export const PAUSED_DETAIL = 'paused by the owner';
-const pausedError = (stage: StageName) => ({ stage, message_fa: 'با «توقف» مکث شد؛ برای ادامه «ادامه» را بزن.', detail: PAUSED_DETAIL });
+const pausedError = (stage: AnyStageName) => ({ stage, message_fa: 'با «توقف» مکث شد؛ برای ادامه «ادامه» را بزن.', detail: PAUSED_DETAIL });
 const iso = (o: Orchestrator) => (o.now ? o.now() : new Date()).toISOString();
 
 function save(o: Orchestrator, dir: string, slug: string, state: JobState): JobState {
@@ -49,7 +49,7 @@ function save(o: Orchestrator, dir: string, slug: string, state: JobState): JobS
 }
 
 /** One line per stage run in logs/stage-runs.jsonl and SQLite, so minutes stay right when a stage runs more than once (docs/03 Metrics). */
-function recordRun(o: Orchestrator, dir: string, slug: string, stage: StageName, attempt: number, status: string, started: string, ended: string): void {
+function recordRun(o: Orchestrator, dir: string, slug: string, stage: AnyStageName, attempt: number, status: string, started: string, ended: string): void {
   const run = { job_slug: slug, stage, attempt, status, started_at: started, ended_at: ended, minutes: Math.max(0, (Date.parse(ended) - Date.parse(started)) / 60000) };
   fs.mkdirSync(path.join(dir, 'logs'), { recursive: true });
   fs.appendFileSync(path.join(dir, 'logs', 'stage-runs.jsonl'), `${JSON.stringify(run)}\n`, 'utf8');
@@ -74,6 +74,8 @@ function goTo(state: JobState, to: JobState['status']): JobState {
 export async function runJob(o: Orchestrator, slug: string, pause?: AbortSignal): Promise<JobState> {
   const dir = jobDir(o.config.paths.jobs, slug);
   const req = readRequest(dir);
+  // D88 (Phase 11.3): the stage order is the job's own workspace's, fixed in its request.
+  const ws = req.workspace;
   let state = readState(dir);
   if (state.status === 'done' || state.status === 'cancelled') return state;
   if (state.status === 'awaiting_approval' && !fs.existsSync(approvedFile(dir))) return state;
@@ -81,7 +83,7 @@ export async function runJob(o: Orchestrator, slug: string, pause?: AbortSignal)
   lockRepo.acquire(o.db, slug);
   try {
     for (;;) {
-      const stage = nextStage(state);
+      const stage = nextStage(state, ws);
       if (!stage) return save(o, dir, slug, { ...goTo(state, 'done'), stage: null, error: null });
       // Approval gate (docs/03 S5b): in review mode the build waits until the owner approves the plan.
       if (stage === 'build' && req.automation_level === 'review' && !fs.existsSync(approvedFile(dir))) {
@@ -98,7 +100,7 @@ export async function runJob(o: Orchestrator, slug: string, pause?: AbortSignal)
       }
 
       // The owner's hold (D45), checked before every stage after content.
-      if (holdable(stage) && fs.existsSync(holdFile(dir))) {
+      if (holdable(stage, ws) && fs.existsSync(holdFile(dir))) {
         state = save(o, dir, slug, { ...goTo(state, 'held'), stage, hold: holdInfo(dir, stage, iso(o)) });
         o.onStage?.(slug, stage, 'stop', state);
         return state;
@@ -116,7 +118,7 @@ export async function runJob(o: Orchestrator, slug: string, pause?: AbortSignal)
 
       // While a stage after content runs, a hold request stops it at once (the runner kills the CLI tree).
       const abort = new AbortController();
-      const poll = holdable(stage) ? setInterval(() => { if (fs.existsSync(holdFile(dir))) abort.abort(); }, o.holdPollMs ?? 1000) : undefined;
+      const poll = holdable(stage, ws) ? setInterval(() => { if (fs.existsSync(holdFile(dir))) abort.abort(); }, o.holdPollMs ?? 1000) : undefined;
       const onPause = () => abort.abort();
       pause?.addEventListener('abort', onPause, { once: true });
       try {
@@ -219,15 +221,22 @@ export function requestHold(o: Orchestrator, slug: string, by: 'ui' | 'cli', isA
   // Running in another process (CLI) or in this one (the UI server): the running stage sees the flag and stops itself.
   const runningNow = state.status === 'running' && holder?.job_slug === slug && (holder.pid === process.pid || isAlive(holder.pid));
   if (runningNow || state.status === 'held') return state;
-  const stage = nextStage(state) ?? 'package';
+  const stage = nextStage(state, readRequest(dir).workspace) ?? 'package';
   const stages = { ...state.stages };
   if (stages[stage]?.status === 'running') delete stages[stage];
   return save(o, dir, slug, { ...goTo(state, 'held'), stage, stages, error: null, hold: holdInfo(dir, stage, iso(o)) });
 }
 
+/** What a script edit makes stale in each workspace: a voice line from `voice`, on-screen texts only from the first stage that uses them. */
+const RESET: Record<Workspace, Record<'voice' | 'plan', AnyStageName[]>> = {
+  motion: { voice: ['voice', 'plan', 'build', 'package'], plan: ['plan', 'build', 'package'] },
+  // D88: the on-screen terms reach a video only through the clip prompts (11.4), so a texts-only edit makes the prompts again.
+  video: { voice: ['voice', 'prompts', 'clips', 'assemble', 'package'], plan: ['prompts', 'clips', 'assemble', 'package'] },
+};
+
 /** Stage results a script edit makes stale, with the files that would otherwise let the stage skip itself. */
-export function resetFrom(dir: string, stages: JobState['stages'], first: 'voice' | 'plan'): JobState['stages'] {
-  const order: StageName[] = first === 'voice' ? ['voice', 'plan', 'build', 'package'] : ['plan', 'build', 'package'];
+export function resetFrom(dir: string, stages: JobState['stages'], first: 'voice' | 'plan', ws: Workspace): JobState['stages'] {
+  const order = RESET[ws][first];
   const out = { ...stages };
   for (const s of order) delete out[s];
   // plan and build keep a finished, valid result on re-run; after an edit it must be made again (and approved again).
@@ -248,17 +257,31 @@ export function continueHeld(o: Orchestrator, slug: string): EditOutcome {
     if (e instanceof ScriptEditError) throw new ResumeRefused(e.message_fa);
     throw e;
   }
-  const stages = outcome.voiceChanged ? resetFrom(dir, state.stages, 'voice') : outcome.screenChanged ? resetFrom(dir, state.stages, 'plan') : state.stages;
+  const ws = readRequest(dir).workspace;
+  const stages = outcome.voiceChanged ? resetFrom(dir, state.stages, 'voice', ws) : outcome.screenChanged ? resetFrom(dir, state.stages, 'plan', ws) : state.stages;
   fs.rmSync(holdFile(dir), { force: true });
   save(o, dir, slug, { ...setStatus(state, 'running'), stages, hold: null, error: null });
   return outcome;
+}
+
+/** Phase 11.6: after the owner's clip choice («دوباره بساز», stale clips made again or kept), that stage and every one after it run again; nothing before it. */
+export function reopenStage(o: Orchestrator, slug: string, stage: AnyStageName): JobState {
+  const dir = jobDir(o.config.paths.jobs, slug);
+  const state = readState(dir);
+  if (state.status === 'running') throw new ResumeRefused('این کار همین الان در حال اجراست.');
+  const order = stageOrder(readRequest(dir).workspace);
+  const from = order.indexOf(stage);
+  if (from < 0) throw new ResumeRefused('این مرحله در این کار نیست.');
+  const stages = { ...state.stages };
+  for (const s of order.slice(from)) delete stages[s];
+  return save(o, dir, slug, { ...state, stages, error: null });
 }
 
 /** The owner's «توقف» for a job waiting in the UI queue (not started yet): it is marked paused before its next stage (D53). */
 export function pauseWaiting(o: Orchestrator, slug: string): JobState {
   const dir = jobDir(o.config.paths.jobs, slug);
   const state = readState(dir);
-  const stage = nextStage(state) ?? 'package';
+  const stage = nextStage(state, readRequest(dir).workspace) ?? 'package';
   return save(o, dir, slug, { ...goTo(state, 'interrupted'), stage, error: pausedError(stage), hold: null });
 }
 

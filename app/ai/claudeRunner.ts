@@ -7,6 +7,7 @@ import type { LoadedConfig } from '../config.js';
 import type { ClaudeEffort, ClaudeModel, ClaudeStage } from '../contracts/index.js';
 import { killTree } from '../proc.js';
 import { writePlanStatus, type PlanWindows } from '../quota/index.js';
+import { claudeAuth, type ClaudeAuth } from '../secrets/index.js';
 
 export const FORBIDDEN_FLAGS = ['--cloud', '--remote', '--remote-control', '--teleport', '--bg', '--background', '--dangerously-skip-permissions', '--bare'] as const;
 
@@ -19,13 +20,17 @@ export const ALLOWED_TOOLS = [
   'Bash(python3 *)', 'Bash(jq *)', 'Bash(echo *)', 'Bash(grep *)', 'Bash(head *)', 'Bash(tail *)', 'Bash(wc *)', 'Bash(sort *)', 'Bash(sed *)',
 ] as const;
 
-/** Environment variables that would switch the CLI from the subscription to paid API billing or another provider. */
+/**
+ * Environment variables that switch the CLI from the subscription to API billing or another provider. Stray ones are always removed,
+ * so a film never bills a key by surprise; the user's own key is put back only when the user chose it (D106: the product must not block
+ * a built-in sign-in method).
+ */
 const BILLING_ENV = ['ANTHROPIC_API_KEY', 'ANTHROPIC_AUTH_TOKEN', 'CLAUDE_CODE_USE_BEDROCK', 'CLAUDE_CODE_USE_VERTEX', 'CLAUDE_CODE_USE_FOUNDRY'];
 
 type Family = keyof LoadedConfig['cfg']['claude']['timeouts_min'];
 const FAMILY: Record<ClaudeStage, Family> = {
   'content-hook': 'content', 'content-hook-revise': 'content', 'content-truth': 'content',
-  reference: 'reference', suggest: 'suggest', plan: 'plan', build: 'build', revise: 'revise', 'brand-build': 'brand',
+  reference: 'reference', suggest: 'suggest', plan: 'plan', build: 'build', revise: 'revise', 'brand-build': 'brand', prompts: 'plan',
 };
 export const stageFamily = (s: ClaudeStage): Family => FAMILY[s];
 
@@ -145,9 +150,10 @@ export function resolveClaudeBin(loaded: LoadedConfig, env: NodeJS.ProcessEnv = 
   throw new Error('claude.exe not found on PATH (set claude.bin in config/app.config.json)');
 }
 
-export function childEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
+export function childEnv(base: NodeJS.ProcessEnv = process.env, auth?: ClaudeAuth): NodeJS.ProcessEnv {
   const env = { ...base };
   for (const k of BILLING_ENV) delete env[k];
+  if (auth?.mode === 'api_key' && auth.key) env.ANTHROPIC_API_KEY = auth.key;
   return env;
 }
 
@@ -257,8 +263,17 @@ export function clearAuthCache(): void { authCache = null; }
 /** Subscription logins: `claude.ai` on the owner's PC, `oauth_token` inside the owner's cloud session (D48). Never an API key. */
 const SUBSCRIPTION_AUTH_METHODS: readonly string[] = ['claude.ai', 'oauth_token'];
 
-/** `claude auth status` must report a subscription login (see `SUBSCRIPTION_AUTH_METHODS`); cached for `claude.auth_cache_min`. */
+/**
+ * With the subscription (default): `claude auth status` must report a subscription login (see `SUBSCRIPTION_AUTH_METHODS`); cached for
+ * `claude.auth_cache_min`. With the user's own API key (D106): ready when a key is saved; the CLI gets it in its environment only.
+ */
 export async function checkSubscriptionAuth(deps: RunnerDeps, force = false): Promise<AuthStatus> {
+  const chosen = claudeAuth(deps.config);
+  if (chosen.mode === 'api_key') {
+    return chosen.key
+      ? { ok: true, authMethod: 'api_key', detail: "the user's own Anthropic API key", loggedIn: true, email: null, plan: 'api' }
+      : { ok: false, authMethod: 'api_key', detail: 'API key chosen but none saved', loggedIn: false, email: null, plan: null };
+  }
   const now = (deps.now ?? Date.now)();
   if (!force && authCache && now - authCache.at < deps.config.cfg.claude.auth_cache_min * 60000) return authCache.status;
   let bin: string;
@@ -281,13 +296,13 @@ export async function checkSubscriptionAuth(deps: RunnerDeps, force = false): Pr
 
 const zeroUsage = (): Usage => ({ input_tokens: 0, output_tokens: 0, cache_read_input_tokens: 0, cache_creation_input_tokens: 0 });
 
-function readUsage(u: unknown): Usage {
+export function readUsage(u: unknown): Usage {
   const o = (u ?? {}) as Record<string, unknown>;
   const n = (k: string) => (typeof o[k] === 'number' ? (o[k] as number) : 0);
   return { input_tokens: n('input_tokens'), output_tokens: n('output_tokens'), cache_read_input_tokens: n('cache_read_input_tokens'), cache_creation_input_tokens: n('cache_creation_input_tokens') };
 }
 
-function readRateLimit(info: Record<string, unknown>): RateLimitInfo {
+export function readRateLimit(info: Record<string, unknown>): RateLimitInfo {
   const resets = typeof info.resetsAt === 'number' ? new Date(info.resetsAt * 1000).toISOString() : null;
   const uw = (info.unifiedWindows ?? {}) as Record<string, Record<string, unknown> | undefined>;
   const fh = uw.five_hour ?? {};
@@ -354,7 +369,7 @@ async function runClaudeOnce(opts: RunOptions, deps: RunnerDeps): Promise<RunRes
   const base: RunResult = { ok: false, usage: zeroUsage(), costUsdEst: 0, rateLimited: false, resumeAt: null, rateLimit: null, sessionId: '', model: null, timedOut: false, idle: false, logFile };
 
   const auth = await (deps.authCheck ?? (() => checkSubscriptionAuth(deps)))();
-  if (!auth.ok) return { ...base, error: `auth: Claude Code is not logged in with the Claude subscription (${auth.detail})` };
+  if (!auth.ok) return { ...base, error: `auth: Claude Code is not signed in with the user's subscription or API key (${auth.detail})` };
 
   const args = buildArgs(opts, loaded);
   let bin: string;
@@ -373,7 +388,7 @@ async function runClaudeOnce(opts: RunOptions, deps: RunnerDeps): Promise<RunRes
     const denials = new Map<string, number>();
     let child: ChildLike;
     try {
-      child = spawn(bin, args, { cwd: loaded.paths.runtime, env: childEnv() });
+      child = spawn(bin, args, { cwd: loaded.paths.runtime, env: childEnv(process.env, claudeAuth(loaded)) });
     } catch (e) {
       resolve({ ...r, error: `spawn failed: ${(e as Error).message}` });
       return;

@@ -6,7 +6,7 @@ import { parseArgs } from 'node:util';
 import { ConfigError, loadConfig, type LoadedConfig } from './config.js';
 import { openDb, type Db } from './db/db.js';
 import { LockBusyError, jobsRepo } from './db/repositories.js';
-import { ContractError, ScenePlan, TONES, readJson, type JobState, type StageName } from './contracts/index.js';
+import { ContractError, ScenePlan, TONES, readJson, type AnyStageName, type JobState } from './contracts/index.js';
 import { IntakeError, checkInput, copyImages, prepareImages, requestFromManual } from './intake/index.js';
 import { BrandError, activeBrand } from './brands/index.js';
 import { createJobFolder, jobDir, readState } from './orchestrator/jobFolder.js';
@@ -14,18 +14,23 @@ import { ResumeRefused, approvePlan, recoverInterrupted, rejectPlan, requestHold
 import { writeScriptEditFile } from './orchestrator/scriptEdit.js';
 import { buildRegistry, preflightStage } from './orchestrator/stages.js';
 import { packageStage } from './package/index.js';
+import { videoPackageStage, workspacePackage } from './package/video.js';
 import { defaultDeps } from './preflight/index.js';
 import { contentStage } from './stages/content/index.js';
 import { buildStage } from './stages/build/index.js';
 import { planStage } from './stages/plan/index.js';
+import { promptsStage } from './stages/prompts/index.js';
+import { clipsStage } from './stages/clips/index.js';
+import { assembleStage } from './stages/assemble/index.js';
 import { storyboardTable } from './stages/plan/storyboard.js';
 import { referenceStage } from './stages/reference/index.js';
 import { stopStartedAvaFarsi } from './stages/voice/avaClient.js';
 import { toneOverrideFile, voiceStage } from './stages/voice/index.js';
 import { preferPythonForThisProcess } from './pythonPath.js';
 
-const STAGE_FA: Record<StageName, string> = {
+const STAGE_FA: Record<AnyStageName, string> = {
   preflight: 'بررسی پیش از شروع', content: 'محتوا', voice: 'صدا', reference: 'خواندن مرجع', plan: 'نقشه‌ی صحنه‌ها', build: 'ساخت فیلم', package: 'بسته‌بندی خروجی',
+  prompts: 'پرامپت کلیپ‌ها', clips: 'ساخت کلیپ‌ها', assemble: 'سرهم کردن ویدیو',
 };
 const STATUS_FA: Record<JobState['status'], string> = {
   queued: 'در صف', running: 'در حال اجرا', awaiting_approval: 'منتظر تأیید نقشه', held: 'نگه داشته شد؛ سناریو را اصلاح کن و ادامه بده', blocked: 'متوقف شد؛ کار تو لازم است', failed: 'خطا',
@@ -57,7 +62,12 @@ export function makeOrchestrator(config: LoadedConfig, db: Db, print: (s: string
       reference: referenceStage(),
       plan: planStage(),
       build: buildStage(),
-      package: packageStage(),
+      // Phase 11.7: one `package` name for both workspaces; a motion job runs packageStage() exactly as before, a video job its own step.
+      package: workspacePackage(packageStage(), videoPackageStage()),
+      // Phase 11.4: the video workspace's prompts; Phase 11.6: its clips (Vertex, no Claude); Phase 11.7: the assembly (local, free).
+      prompts: promptsStage(),
+      clips: clipsStage(),
+      assemble: assembleStage(),
     }),
     onStage: (_slug, stage, event, state) => {
       if (event === 'start') print(`… ${STAGE_FA[stage]}`);

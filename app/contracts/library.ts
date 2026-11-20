@@ -1,6 +1,6 @@
 // Responsibility: the reference-library and automation contracts of docs/04 (ReferenceMeta, reading.json, CalendarEntry, Schedule).
 import { z } from 'zod';
-import { automationLevel, format, isoDate, isoDateTime, sha256, slug } from './common.js';
+import { automationLevel, format, isoDate, isoDateTime, sha256, slug, workspace } from './common.js';
 
 export const ReferenceMeta = z.strictObject({
   slug,
@@ -38,10 +38,18 @@ export const CalendarEntry = z.strictObject({
   job_id: z.uuid().nullable(),
   /** Phase 8: each brand has its own calendar; the 004 migration labels older days with the v1 brand. */
   brand: slug,
+  /** Phase 11.3 (D88): the workspace of the day; the 005 migration labels older days motion. Phase 11.8 (D107): each workspace has its own calendar. */
+  workspace: workspace.default('motion'),
 });
 export type CalendarEntry = z.infer<typeof CalendarEntry>;
+/** What a caller may write: a day without a workspace is a motion day. */
+export type CalendarEntryInput = z.input<typeof CalendarEntry>;
 
 const weekdayKey = z.enum(['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri']);
+
+/** Style rules of a motion schedule (references) and of a video schedule (visual styles, Phase 11.8 task 3). */
+export const MOTION_STYLE_RULES = ['suggest', 'weekday', 'rotate', 'fixed'] as const;
+export const VIDEO_STYLE_RULES = ['manual', 'last', 'rotate', 'fixed'] as const;
 
 export const Schedule = z.strictObject({
   enabled: z.boolean(),
@@ -53,7 +61,7 @@ export const Schedule = z.strictObject({
   automation_level: automationLevel,
   missed_run: z.enum(['run_once', 'skip']),
   style_rule: z.strictObject({
-    type: z.enum(['suggest', 'weekday', 'rotate', 'fixed']),
+    type: z.enum([...MOTION_STYLE_RULES, 'manual', 'last']),
     weekday_map: z.partialRecord(weekdayKey, slug),
     rotation: z.array(slug),
     fixed: slug.nullable(),
@@ -61,5 +69,10 @@ export const Schedule = z.strictObject({
   topics_low_warning_days: z.number().int().nonnegative(),
   /** Phase 8 (D74): the one schedule makes films for this brand, from this brand's calendar; set from the active brand when saved. */
   brand: slug,
+  /** Phase 11.8 (Q38 b, D107): each workspace of a brand has its own schedule and calendar; a schedule saved before reads as motion. */
+  workspace: workspace.default('motion'),
+}).superRefine((s, ctx) => {
+  const allowed: readonly string[] = s.workspace === 'video' ? VIDEO_STYLE_RULES : MOTION_STYLE_RULES;
+  if (!allowed.includes(s.style_rule.type)) ctx.addIssue({ code: 'custom', path: ['style_rule', 'type'], message: `a ${s.workspace} schedule has no «${s.style_rule.type}» style rule` });
 });
 export type Schedule = z.infer<typeof Schedule>;

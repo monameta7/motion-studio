@@ -5,13 +5,11 @@ import { ContentPackage, Manifest, ScenePlan, readJson, writeJson } from '../con
 import type { Db } from '../db/db.js';
 import { jobsRepo, stageRunsRepo, usageRepo } from '../db/repositories.js';
 import { StageError, type Stage, type StageContext, type StageOutput } from '../orchestrator/stages.js';
+import { ledgerMetrics, pipelineStage, writeLedger } from '../metrics/tokenLedger.js';
 import { loadRounds } from '../stages/content/index.js';
 
 /** Caption + hashtags exactly as in the package (docs/13 film acceptance 8). */
 export const captionText = (pkg: ContentPackage): string => `${pkg.caption}\n\n${pkg.hashtags.join(' ')}\n`;
-
-/** The pipeline stage a Claude call belongs to (usage rows name the Claude stage). */
-const pipelineStage = (claudeStage: string): string => (claudeStage.startsWith('content') ? 'content' : claudeStage);
 
 export interface StageMetric { minutes: number; runs: number; tokens_in: number; tokens_out: number; cost_usd_est: number }
 export interface JobMetrics { stages: Record<string, StageMetric>; wall_minutes: number; tokens_in: number; tokens_out: number; cost_usd_est: number }
@@ -80,7 +78,11 @@ export function packageStage(): Stage {
       const removed = cleanFrames(ctx.dir);
 
       const metrics = jobMetrics(ctx.db, ctx.req.slug);
-      fs.writeFileSync(path.join(ctx.dir, 'logs', 'metrics.json'), `${JSON.stringify({ ...metrics, frames_removed: removed }, null, 2)}\n`, 'utf8');
+      // The ledger reads the raw Claude logs: the cache tokens and the plan's own percentages, which the usage rows above do not sum (D96).
+      // A finished film is not held back by it: a problem with the ledger is recorded in its place.
+      let ledger: Record<string, unknown>;
+      try { ledger = ledgerMetrics(writeLedger(ctx.dir, ctx.req.slug)); } catch (e) { ledger = { error: (e as Error).message.slice(0, 300) }; }
+      fs.writeFileSync(path.join(ctx.dir, 'logs', 'metrics.json'), `${JSON.stringify({ ...metrics, ledger, frames_removed: removed }, null, 2)}\n`, 'utf8');
 
       const rounds = loadRounds(ctx.dir);
       const qaFile = path.join(out, 'qa.md');
@@ -96,7 +98,7 @@ export function packageStage(): Stage {
         created_at: new Date().toISOString(),
       });
       jobsRepo.setManifest(ctx.db, ctx.req.slug, JSON.stringify(manifest));
-      return { outputs: ['out/caption.txt', 'out/package.md', 'out/manifest.json', 'logs/metrics.json'] };
+      return { outputs: ['out/caption.txt', 'out/package.md', 'out/manifest.json', 'logs/metrics.json', ...('error' in ledger ? [] : ['logs/token-ledger.json'])] };
     },
   };
 }

@@ -5,7 +5,7 @@ import { logoUrl, useBrand } from './brand';
 
 /** The brand's logo, or its first letter on a tile when it has none. */
 export function BrandMark({ brand, size = 40 }: { brand: BrandCard | null; size?: number }) {
-  if (brand?.logo) return <img className="brand-logo" src={logoUrl(brand.slug)} alt="" width={size} height={size} />;
+  if (brand?.logo) return <img className="brand-logo" src={logoUrl(brand.slug, 96)} alt="" width={size} height={size} decoding="async" />;
   return <span className="brand-logo brand-letter" style={{ width: size, height: size }} aria-hidden="true">{[...(brand?.name ?? '؟')][0]}</span>;
 }
 

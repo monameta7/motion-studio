@@ -3,7 +3,7 @@ import { APP_TIMEZONE } from '../calendar/zone.js';
 import { createHash, randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { JobRequest, parseOrThrow, type Attachment, type JobRequest as JobRequestT } from '../contracts/index.js';
+import { JobRequest, parseOrThrow, type Attachment, type JobRequest as JobRequestT, type Workspace } from '../contracts/index.js';
 
 /** An input the owner must fix; nothing is created. */
 export class IntakeError extends Error {
@@ -117,6 +117,9 @@ export interface ManualInput {
   calendarEntryId?: string | null;
   /** The brand the film is made for (Phase 8): the active brand when New video was filled. */
   brand: string;
+  /** D88 (Phase 11.3): the workspace (left out: motion) and, for a video job, its visual style. */
+  workspace?: Workspace;
+  style?: string | null;
 }
 
 export interface ScheduledInput {
@@ -126,12 +129,14 @@ export interface ScheduledInput {
   format: '9x16' | '16x9';
   automationLevel: 'full' | 'review';
   calendarEntryId: string;
-  styleSource: 'day_override' | 'suggest' | 'weekday' | 'rotate' | 'fixed';
+  styleSource: 'day_override' | 'suggest' | 'weekday' | 'rotate' | 'fixed' | 'last';
   /** The schedule's brand (Phase 8). */
   brand: string;
+  /** Phase 11.8: a video day's film names its visual style instead of a reference (left out: a motion film, as before). */
+  workspace?: Workspace;
 }
 
-/** The request of a film the scheduler starts for a calendar day (docs/08): the day's topic with the hook on, no images, the chosen reference. */
+/** The request of a film the scheduler starts for a calendar day (docs/08): the day's topic with the hook on, no images, the chosen reference (on a video day: `reference` is the chosen visual style). */
 export function requestFromSchedule(input: ScheduledInput, isTaken: (slug: string) => boolean, when: Date = new Date()): JobRequestT {
   const topic = input.topic.trim();
   return parseOrThrow(JobRequest, {
@@ -143,12 +148,13 @@ export function requestFromSchedule(input: ScheduledInput, isTaken: (slug: strin
     topic_note: input.topicNote,
     hook_writes_voice: true,
     attachments: [],
-    references: [input.reference],
+    references: input.workspace === 'video' ? [] : [input.reference],
     format: input.format,
     automation_level: input.automationLevel,
     calendar_entry_id: input.calendarEntryId,
     style_source: input.styleSource,
     brand: input.brand,
+    ...(input.workspace === 'video' ? { workspace: 'video', style: input.reference } : {}),
   }, 'request.json');
 }
 
@@ -169,5 +175,27 @@ export function requestFromManual(input: ManualInput, isTaken: (slug: string) =>
     calendar_entry_id: input.calendarEntryId ?? null,
     style_source: 'manual',
     brand: input.brand,
+    workspace: input.workspace ?? 'motion',
+    style: input.style ?? null,
   }, 'request.json');
+}
+
+/**
+ * D88 (Phase 11.3): what a new job of each workspace may carry. A motion job has no visual style; a video job names one and has no
+ * reference and no «+» image (docs/13 V28). A calendar day must come from the same workspace's calendar (Phase 11.8, Q38 b: one calendar
+ * per workspace); `calendarDay` is that day's workspace, null without a day. Whether the style is in styles/ with its text is checked by the
+ * job route (Phase 11.5, app/styles styleProblem).
+ */
+export function checkWorkspaceInput(i: { workspace: Workspace; style: string | null; references: string[]; images: number; calendarDay: Workspace | null }): void {
+  if (i.calendarDay !== null && i.calendarDay !== i.workspace) {
+    throw new IntakeError(i.calendarDay === 'motion' ? 'این روز از تقویم موشن است؛ برای ویدیو یک روز از تقویم ویدیو انتخاب کن.' : 'این روز از تقویم ویدیو است؛ برای موشن یک روز از تقویم موشن انتخاب کن.', `day ${i.calendarDay} != job ${i.workspace}`);
+  }
+  if (i.workspace === 'motion') {
+    if (i.style !== null) throw new IntakeError('کار موشن سبک تصویری ندارد؛ برای موشن مرجع انتخاب کن.');
+    return;
+  }
+  if (i.images > 0) throw new IntakeError('در حالت ویدیو تصویر «+» پذیرفته نمی‌شود؛ تصویرها را بردار.', 'docs/13 V28');
+  if (i.references.length > 0) throw new IntakeError('کار ویدیو مرجع موشن ندارد؛ به جای آن سبک تصویری دارد.', 'D88');
+  if (!i.style) throw new IntakeError('یک سبک تصویری انتخاب کن.');
+  if (!/^[a-z0-9][a-z0-9._-]*$/.test(i.style)) throw new IntakeError('نام سبک تصویری نامعتبر است.', i.style);
 }

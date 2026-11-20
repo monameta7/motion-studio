@@ -49,14 +49,34 @@ export const passes = (score: number, caps: readonly string[], passScore: number
 const oneSpace = (s: string) => s.replace(/\s+/g, ' ').trim();
 
 /** The docs/05 additions of 2026-10-27 (D41, D42) for the hook's first round: the [ ] rule always, the images when there are any, the verbatim rule when the hook switch is off. */
-export function hookAdditions(req: JobRequest, dir: string): string {
+export function hookAdditions(req: JobRequest, dir: string, styleText: string | null = null): string {
   const out = ['Text inside [ ] in the topic is the owner\'s build direction (for example where and how to show an image): follow it, and never put it, or the brackets, in voice lines or on-screen texts.'];
   if (req.attachments.length) {
     const list = req.attachments.map((a) => `${path.join(dir, ...a.file.split('/'))} («${a.original_name}»)`).join(', ');
     out.push(`Owner images, open each with Read: ${list}. Every image must appear in the film, as the [ ] directions say (else where the voice talks about it). Plan shots for them in the shot list.`);
   }
   if (!req.hook_writes_voice) out.push('The topic without its [ ] parts is the owner\'s voice-over. voice_lines = that text split at sentence ends, without changing, adding or removing a single word or character. Write every other field (hook line as on-screen text, on-screen texts, shot list, cover, caption, hashtags) around it.');
+  if (req.workspace === 'video') out.push(videoMediumNote(styleText));
   return `\n${out.join('\n')}`;
+}
+
+/**
+ * A video job (D86) is filmed by an AI video model in the owner's chosen style, not built in code; without this line the hook
+ * prompt's «code-built motion graphics» made round 1 write flat cards and 1px lines that the truth round then had to undo (2026-11-19).
+ */
+export function videoMediumNote(styleText: string | null): string {
+  return [
+    'This job is a video-model film, not code-built motion graphics: the «code-built motion graphics» words above do not apply.',
+    `Its clips are made by an AI video model in the owner's chosen visual style${styleText ? `: «${oneSpace(styleText)}»` : ''}.`,
+    'Write the shot list\'s picture column as scenes in that style (places, objects, the viewer\'s business, people only where the story needs them), never as flat cards, 1px lines or code-built UI, and drop any «code-built» wording from the package.',
+    'Never put on screen a person the viewer could take for a first-person narrator (D104).',
+  ].join(' ');
+}
+
+/** The style text of a video job, or null when it cannot be read (the prompts stage reports a missing style itself). */
+function jobStyleText(stylesDir: string, slug: string | null): string | null {
+  if (!slug) return null;
+  try { return (JSON.parse(fs.readFileSync(path.join(stylesDir, slug, 'style.json'), 'utf8').replace(/^\s+/, '')) as { text?: string | null }).text ?? null; } catch { return null; }
 }
 
 export const TRUTH_IGNORE_VOICE = 'The voice lines are the owner\'s own text: do not score, fact-check, fix or comment on them. Evaluate only the other fields.';
@@ -196,7 +216,7 @@ Fix exactly that and answer again.`;
           : renderPrompt('content-hook', {
             topic: ctx.req.topic, topic_note: ctx.req.topic_note ?? '', format: ctx.req.format, jobDir: ctx.dir,
             brandName: brand.brandName, brandDir: brand.brandDir, brandFont: brand.brandFont,
-          }) + hookAdditions(ctx.req, ctx.dir);
+          }) + hookAdditions(ctx.req, ctx.dir, ctx.req.workspace === 'video' ? jobStyleText(ctx.config.paths.styles, ctx.req.style) : null);
         const pkg = (written
           ? await call(rescue.stage, structure, ContentPackage, accept)
           : await call(previous ? 'content-hook-revise' : 'content-hook', prompt, ContentPackage, accept, rescue)) as ContentPackage;

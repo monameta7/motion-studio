@@ -1,8 +1,8 @@
 // Responsibility: the contract of the guide progress (Phase 10, docs/04): which screen tours were finished or skipped and which first-time tips were shown, kept in settings key `guide`.
 import { z } from 'zod';
 
-/** One tour per screen (D76 c): the six of the phase file plus a short one for each other screen. */
-export const TOUR_IDS = ['new', 'progress', 'result', 'automation', 'library', 'settings', 'archive', 'jobs', 'brand', 'brand-new'] as const;
+/** One tour per screen (D76 c): the six of the phase file plus a short one for each other screen; the video workspace's own screens have their own (Phase 11.9). */
+export const TOUR_IDS = ['new', 'progress', 'result', 'automation', 'library', 'settings', 'archive', 'jobs', 'brand', 'brand-new', 'new-video', 'progress-video', 'result-video', 'automation-video', 'styles'] as const;
 export const tourId = z.enum(TOUR_IDS);
 export type TourId = z.infer<typeof tourId>;
 

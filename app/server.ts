@@ -20,6 +20,7 @@ import { accountRoutes } from './api/accountRoutes.js';
 import { onboardingRoutes } from './api/onboardingRoutes.js';
 import { guideRoutes } from './api/guideRoutes.js';
 import { brandRoutes } from './api/brandRoutes.js';
+import { workspaceRoutes } from './api/workspaceRoutes.js';
 import { brandCoreRoutes } from './api/brandCoreRoutes.js';
 import { BrandBuilder, SKILL_NAME } from './brandcore/build.js';
 import { defaultExists, systemCheck } from './onboarding/index.js';
@@ -31,6 +32,7 @@ import { checkQuota, notifyRoutes } from './api/notifyRoutes.js';
 import { jobRoutes } from './api/jobRoutes.js';
 import { scheduleRoutes } from './api/scheduleRoutes.js';
 import { libraryRoutes } from './api/libraryRoutes.js';
+import { styleRoutes } from './api/styleRoutes.js';
 import { suggestRoutes } from './api/suggestRoutes.js';
 import { systemRoutes } from './api/systemRoutes.js';
 import { JobRunner } from './api/runner.js';
@@ -40,6 +42,8 @@ import { suggestStyles } from './suggest/index.js';
 import { usageRepo } from './db/repositories.js';
 import { brandDir } from './brands/index.js';
 import { preferPythonForThisProcess } from './pythonPath.js';
+import { checkVideoSetup, type VideoCheck } from './video/unlock.js';
+import { defaultVertexDeps } from './video/vertexClient.js';
 
 export interface ServerOptions {
   config: LoadedConfig;
@@ -60,10 +64,12 @@ export interface ServerOptions {
   brandSkillReady?: () => boolean;
   /** PowerShell and schtasks for the autostart switch. Only the real server passes one; without it nothing on the machine is touched (tests). */
   systemTool?: Tool;
+  /** Phase 11.9: the check that opens the video workspace (Google Cloud CLI, sign-in, project, Vertex AI and billing). Only the real server passes the real one; without it the workspace counts as open, as before 11.9, and nothing reaches Google (tests, the stub). */
+  videoCheck?: VideoCheck;
   /** Windows toasts and the click-through; absent in tests, so they never pop a real toast. The bell works without them. */
   toast?: { show: ToastFn | null; open: (route: string) => void };
   /** The scheduler's clock and keep-awake helper; tests pass a fake clock. Without `keepAwake` nothing is started on the machine. */
-  scheduler?: { now?: () => Date; keepAwake?: KeepAwake; suggest?: (topic: string) => Promise<string[]> };
+  scheduler?: { now?: () => Date; keepAwake?: KeepAwake; suggest?: (topic: string) => Promise<string[]>; cloudSession?: () => boolean };
 }
 
 export async function buildServer(opts: ServerOptions): Promise<{ app: FastifyInstance; ctx: ApiContext }> {
@@ -86,6 +92,7 @@ export async function buildServer(opts: ServerOptions): Promise<{ app: FastifyIn
   const ctx: ApiContext = {
     config, db, o, runner, refReader, libraryTool, brandBuilder,
     systemTool: opts.systemTool ?? (async () => ({ code: 1, stdout: '', stderr: 'no system tool' })),
+    videoCheck: opts.videoCheck ?? (async () => ({ ok: true })),
     refreshAutostart: async () => undefined,
     notifier: new Notifier({ db, toast: opts.toast?.show ?? null, open: opts.toast?.open }),
     suggestRun,
@@ -113,7 +120,7 @@ export async function buildServer(opts: ServerOptions): Promise<{ app: FastifyIn
     ...opts.overrides,
   } as ApiContext;
   ctx.scheduler = new Scheduler({
-    config, db, o, runner, notifier: ctx.notifier, refReader, now: opts.scheduler?.now,
+    config, db, o, runner, notifier: ctx.notifier, refReader, now: opts.scheduler?.now, cloudSession: opts.scheduler?.cloudSession,
     keepAwake: opts.scheduler?.keepAwake ?? new KeepAwake(null),
     log: (line) => console.log(line),
     // The suggestion for a calendar day is the schedule's brand's (Phase 8).
@@ -135,6 +142,7 @@ export async function buildServer(opts: ServerOptions): Promise<{ app: FastifyIn
   await app.register(fastifyStatic, { root: hasUi ? uiDir : config.paths.root, serve: hasUi, wildcard: true });
   jobRoutes(app, ctx);
   libraryRoutes(app, ctx);
+  styleRoutes(app, ctx);
   suggestRoutes(app, ctx);
   calendarRoutes(app, ctx);
   notifyRoutes(app, ctx);
@@ -146,6 +154,7 @@ export async function buildServer(opts: ServerOptions): Promise<{ app: FastifyIn
   onboardingRoutes(app, ctx);
   guideRoutes(app, ctx);
   brandRoutes(app, ctx);
+  workspaceRoutes(app, ctx);
   brandCoreRoutes(app, ctx);
   // Any other GET outside /api is the single-page UI.
   app.setNotFoundHandler((request, reply) => {
@@ -166,7 +175,7 @@ export async function main(argv: string[]): Promise<number> {
     throw e;
   }
   const db = openDb(config.paths.db);
-  const { app, ctx } = await buildServer({ config, db, systemTool: runTool, toast: { show: windowsToast, open: (route) => openRoute(config.cfg.server.port, route) }, scheduler: { keepAwake: new KeepAwake() } });
+  const { app, ctx } = await buildServer({ config, db, systemTool: runTool, videoCheck: () => checkVideoSetup(config.cfg.video, defaultVertexDeps()), toast: { show: windowsToast, open: (route) => openRoute(config.cfg.server.port, route) }, scheduler: { keepAwake: new KeepAwake() } });
   // docs/03: a job the closed app left running is `interrupted` and resumes on start (`--no-resume` keeps it waiting, for example while testing).
   for (const slug of recoverInterrupted(ctx.o)) {
     if (argv.includes('--no-resume')) console.log(`کار «${slug}» نیمه‌کاره مانده بود؛ از صفحه‌ی آن ادامه بده.`);

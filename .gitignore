@@ -3,6 +3,7 @@
 /jobs/
 /data/
 /refs/
+/styles/
 /.motion/
 /config/app.config.json
 /.install-state.json

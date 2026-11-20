@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const PROMPT_NAMES = ['content-hook', 'content-truth', 'content-hook-revise', 'content-hook-structure', 'reference', 'suggest', 'name-reference', 'plan', 'build', 'revise'] as const;
+export const PROMPT_NAMES = ['content-hook', 'content-truth', 'content-hook-revise', 'content-hook-structure', 'reference', 'suggest', 'name-reference', 'plan', 'build', 'revise', 'video-prompts', 'video-brand-sheet'] as const;
 export type PromptName = (typeof PROMPT_NAMES)[number];
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));

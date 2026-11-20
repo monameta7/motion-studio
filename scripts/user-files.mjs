@@ -1,6 +1,6 @@
-// Responsibility: give an installed copy the user-owned files it needs (config, lexicon, starter library, empty brand/jobs folders) from starter/, never overwriting a file the user already has; on update it only adds config keys a newer version brought.
+// Responsibility: give an installed copy the user-owned files it needs (config, lexicon, starter library, starter visual styles, empty brand/jobs folders) from starter/, never overwriting a file the user already has; on update it only adds config keys a newer version brought.
 // Usage: node scripts/user-files.mjs [--root <install-dir>]
-// Safe to run again. It never deletes or replaces anything in brand/, jobs/, data/ or refs/.
+// Safe to run again. It never deletes or replaces anything in brand/, jobs/, data/, refs/ or styles/.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -78,6 +78,17 @@ export function ensureUserFiles(root) {
     fs.mkdirSync(refs, { recursive: true });
     for (const slug of slugs) copyDir(path.join(from, slug), path.join(refs, slug));
     done.push(`refs/: ${slugs.length} starter reference(s) copied`);
+  }
+
+  // Starter visual styles (Phase 11.9): only on a first install (no styles/ folder yet); a style the user deleted never comes back.
+  const styles = path.join(root, 'styles');
+  const stylesFrom = path.join(starter, 'styles');
+  if (!fs.existsSync(styles) && fs.existsSync(stylesFrom)) {
+    const from = stylesFrom;
+    const slugs = fs.readdirSync(from, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name);
+    fs.mkdirSync(styles, { recursive: true });
+    for (const slug of slugs) copyDir(path.join(from, slug), path.join(styles, slug));
+    done.push(`styles/: ${slugs.length} starter style(s) copied`);
   }
 
   for (const d of ['brand', 'jobs']) {

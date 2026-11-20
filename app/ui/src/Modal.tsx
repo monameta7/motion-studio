@@ -1,5 +1,6 @@
 // Responsibility: one modal dialog frame (the browser's own <dialog>: focus stays inside, Esc closes) used by the upload, edit and confirm dialogs of the library.
 import { useEffect, useId, useRef, type ReactNode } from 'react';
+import { SubmitButton } from './SubmitButton';
 
 export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -21,7 +22,7 @@ export function Confirm({ title, text, yes, busy, onYes, onNo }: { title: string
     <Modal title={title} onClose={onNo}>
       <p>{text}</p>
       <div className="row-between">
-        <button type="button" className="btn primary" disabled={busy} onClick={onYes}>{busy ? 'کمی صبر کن…' : yes}</button>
+        <SubmitButton busy={!!busy} failed onClick={onYes}>{busy ? 'کمی صبر کن…' : yes}</SubmitButton>
         <button type="button" className="btn" disabled={busy} onClick={onNo}>نه، برگرد</button>
       </div>
     </Modal>

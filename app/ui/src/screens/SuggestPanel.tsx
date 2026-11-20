@@ -42,7 +42,7 @@ export function SuggestPanel({ topic, refs, selected, onPick, onSuggested }: {
   },[clean, ready, library.length === 0]);
 
   if (!ready) return null;
-  if (library.length === 0) return <section className="card" aria-label="سبک پیشنهادی" data-tour="suggest"><EmptyState text="کتابخانه‌ی مرجع هنوز خالی است. سبک ویدیو از مرجع‌ها گرفته می‌شود؛ اول یک ویدیوی نمونه اضافه کن." action={{ label: 'رفتن به کتابخانه‌ی مرجع', href: '#/library' }} /></section>;
+  if (library.length === 0) return <section className="card" aria-label="سبک پیشنهادی" data-tour="suggest"><EmptyState icon="film" text="کتابخانه‌ی مرجع هنوز خالی است. سبک ویدیو از مرجع‌ها گرفته می‌شود؛ اول یک ویدیوی نمونه اضافه کن." action={{ label: 'رفتن به کتابخانه‌ی مرجع', href: '#/library' }} /></section>;
 
   const cards = (answer?.suggestions ?? []).map((s) => ({ s, ref: library.find((r) => r.slug === s.ref_slug) })).filter((x) => x.ref);
   return (
@@ -58,7 +58,7 @@ export function SuggestPanel({ topic, refs, selected, onPick, onSuggested }: {
             return (
               <li key={s.ref_slug} className="suggest-card">
                 <span className={`suggest-thumb f${ref!.format}`}>
-                  {ref!.thumb ? <img src={`/api/references/${s.ref_slug}/thumb.webp`} alt="" loading="lazy" /> : <span className="no-thumb" aria-hidden="true">{ref!.name_fa.slice(0, 1)}</span>}
+                  {ref!.thumb ? <img src={`/api/references/${s.ref_slug}/thumb.webp`} alt="" loading="lazy" decoding="async" /> : <span className="no-thumb" aria-hidden="true">{ref!.name_fa.slice(0, 1)}</span>}
                 </span>
                 <div className="suggest-body">
                   <div className="suggest-title"><b>{ref!.name_fa}</b><span className={`fit fit-${s.fit}`}>{FIT_FA[s.fit]}</span></div>

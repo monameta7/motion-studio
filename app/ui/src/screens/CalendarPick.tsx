@@ -1,4 +1,4 @@
-// Responsibility: New video's «از تقویم محتوا» (docs/11 §1): the card of today's calendar topic (or the nearest next one) with «تغییر» to choose another day that has not been made yet.
+// Responsibility: New video's «از تقویم محتوا» (docs/11 §1): the card of today's calendar topic (or the nearest next one) with «تغییر» to choose another day that has not been made yet; in the video workspace from the brand's video calendar (Phase 11.8).
 import { useEffect, useState } from 'react';
 import type { CalendarEntry, CalendarRange } from '../api';
 import { JALALI_MONTHS, WEEKDAYS_FA, addDays, toJalali, weekdayIndex, ymdOf } from '../../../calendar/jalali';
@@ -14,15 +14,15 @@ export const dayText = (iso: string): string => {
   return `${WEEKDAYS_FA[weekdayIndex(iso)]} ${faNum(j.d)} ${JALALI_MONTHS[j.m - 1]}`;
 };
 
-interface Props { day: CalendarEntry | null; setDay: (e: CalendarEntry | null) => void }
+interface Props { day: CalendarEntry | null; setDay: (e: CalendarEntry | null) => void; video?: boolean }
 
-export function CalendarPick({ day, setDay }: Props) {
+export function CalendarPick({ day, setDay, video = false }: Props) {
   // The range starts a little before today so the server's «today» (the computer's clock) is always inside it.
   const from = addDays(new Date().toISOString().slice(0, 10), -2);
   // The active brand's own calendar (Phase 8).
   const { active } = useBrand();
-  const { data } = usePoll<CalendarRange>(active ? `/api/calendar?from=${from}&to=${addDays(from, 120)}&brand=${encodeURIComponent(active.slug)}` : null, 0);
-  const mine = data && active && data.brand === active.slug ? data : null;
+  const { data } = usePoll<CalendarRange>(active ? `/api/calendar?from=${from}&to=${addDays(from, 120)}&brand=${encodeURIComponent(active.slug)}${video ? '&workspace=video' : ''}` : null, 0);
+  const mine = data && active && data.brand === active.slug && (data.workspace ?? 'motion') === (video ? 'video' : 'motion') ? data : null;
   const [choosing, setChoosing] = useState(false);
   const days = (mine?.entries ?? []).filter((e) => e.date >= (mine?.today ?? '') && STARTABLE.has(e.status) && e.topic.trim());
 
@@ -33,7 +33,7 @@ export function CalendarPick({ day, setDay }: Props) {
   if (days.length === 0) {
     return (
       <div className="cal-pick empty">
-        <p>در تقویم موضوعی برای امروز یا روزهای بعد نیست.</p>
+        <p>{video ? 'در تقویم ویدیو موضوعی برای امروز یا روزهای بعد نیست.' : 'در تقویم موضوعی برای امروز یا روزهای بعد نیست.'}</p>
         <a className="btn" href="#/automation">رفتن به تقویم</a>
       </div>
     );

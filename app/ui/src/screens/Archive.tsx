@@ -4,8 +4,9 @@ import { api, ApiError, type JobSummary } from '../api';
 import { Confirm } from '../Modal';
 import { faDateTime, faDuration, faNum } from '../fa';
 import { go, useRefName } from '../hooks';
-import { STATUS_FA } from '../labels';
+import { STATUS_FA, WORKSPACE_FA } from '../labels';
 import { ACTIVE } from '../Sidebar';
+import { SkeletonRows } from '../Skeleton';
 import { EmptyState } from '../guide/EmptyState';
 import { HelpButton, useScreenTour } from '../guide/Guide';
 
@@ -16,7 +17,7 @@ const FILTERS = [
   { id: 'cancelled', label: 'لغوشده', match: (j: JobSummary) => j.status === 'cancelled' },
 ] as const;
 
-export function Archive({ jobs, reload }: { jobs: JobSummary[]; reload: () => Promise<unknown> }) {
+export function Archive({ jobs, reload, loading }: { jobs: JobSummary[]; reload: () => Promise<unknown>; loading: boolean }) {
   useScreenTour('archive');
   const [filter, setFilter] = useState<(typeof FILTERS)[number]['id']>('all');
   const [format, setFormat] = useState<'all' | '9x16' | '16x9'>('all');
@@ -53,22 +54,22 @@ export function Archive({ jobs, reload }: { jobs: JobSummary[]; reload: () => Pr
       </section>
       {problem && <div className="problem" role="alert">{problem}</div>}
       <section className="card" data-tour="archive-list">
-        {list.length === 0 ? (jobs.length === 0
-          ? <EmptyState text="هنوز ویدیویی ساخته نشده است. هر ویدیویی که بسازی، اینجا می‌ماند." action={{ label: 'ساخت اولین ویدیو', href: '#/new' }} />
-          : <EmptyState text="ویدیویی با این فیلتر نیست." action={{ label: 'پاک کردن فیلترها', onClick: () => { setFilter('all'); setFormat('all'); setQ(''); } }} />) : (
+        {loading ? <SkeletonRows rows={4} /> : list.length === 0 ? (jobs.length === 0
+          ? <EmptyState icon="archive" text="هنوز ویدیویی ساخته نشده است. هر ویدیویی که بسازی، اینجا می‌ماند." action={{ label: 'ساخت اولین ویدیو', href: '#/new' }} />
+          : <EmptyState icon="search" text="ویدیویی با این فیلتر نیست." action={{ label: 'پاک کردن فیلترها', onClick: () => { setFilter('all'); setFormat('all'); setQ(''); } }} />) : (
           <div className="table-wrap">
             <table className="archive">
               <thead><tr><th scope="col">تاریخ</th><th scope="col">موضوع</th><th scope="col">برند</th><th scope="col">مرجع</th><th scope="col">وضعیت</th><th scope="col">مدت</th><th scope="col">حقیقت‌سنجی</th><th scope="col"><span className="sr-only">حذف</span></th></tr></thead>
               <tbody>
                 {list.map((j) => (
                   <tr key={j.slug} onClick={() => go(`/jobs/${j.slug}`)}>
-                    <td className="nowrap">{faDateTime(j.created_at, false)}</td>
-                    <td><a href={`#/jobs/${j.slug}`}>{j.title}</a></td>
-                    <td className="nowrap">{j.brand_name}</td>
-                    <td>{j.references.map(refName).join('، ')}</td>
-                    <td className="nowrap">{STATUS_FA[j.status]}</td>
-                    <td className="nowrap">{j.duration ? faDuration(j.duration) : '—'}</td>
-                    <td>{j.truth_score !== null ? faNum(Math.round(j.truth_score)) : '—'}</td>
+                    <td className="nowrap" data-label="تاریخ">{faDateTime(j.created_at, false)}</td>
+                    <td><a href={`#/jobs/${j.slug}`}>{j.title}</a> <span className={`ws-chip ws-${j.workspace}`}>{WORKSPACE_FA[j.workspace]}</span></td>
+                    <td className="nowrap" data-label="برند">{j.brand_name}</td>
+                    <td data-label="مرجع">{j.workspace === 'video' ? `سبک: ${j.style ?? '—'}` : j.references.map(refName).join('، ')}</td>
+                    <td className="nowrap" data-label="وضعیت">{STATUS_FA[j.status]}</td>
+                    <td className="nowrap" data-label="مدت">{j.duration ? faDuration(j.duration) : '—'}</td>
+                    <td data-label="حقیقت‌سنجی">{j.truth_score !== null ? faNum(Math.round(j.truth_score)) : '—'}</td>
                     <td>{!j.active && j.status !== 'queued' && j.status !== 'running' && <button type="button" className="btn link" aria-label={`حذف ${j.title}`} onClick={(e) => { e.stopPropagation(); setDoomed(j); }}>حذف</button>}</td>
                   </tr>
                 ))}

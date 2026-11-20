@@ -1,4 +1,4 @@
-// Responsibility: the account pieces the welcome wizard and Settings share: the Claude sign-in box (status, sign-in in the browser, other account, sign-out, re-check, manual guide) and the Gemini key box (masked key, enter or change it, the text-only AI Studio guide, voice test).
+// Responsibility: the account pieces the welcome wizard and Settings share: the Claude sign-in box (D106: the user's own subscription or own API key; status, sign-in in the browser, other account, sign-out, re-check, manual guide) and the Gemini key box (masked key, enter or change it, the text-only AI Studio guide, voice test).
 import { useState } from 'react';
 import { api, ApiError, type ClaudeAccount, type KeyView } from './api';
 import { usePoll } from './hooks';
@@ -23,6 +23,54 @@ export function ManualLoginGuide() {
   );
 }
 
+/** D106: the user picks how Claude Code signs in. The subscription is the default; the API key is billed by Anthropic to the user per use. */
+function ClaudeModeSwitch({ data, onDone }: { data: ClaudeAccount; onDone: (a: ClaudeAccount) => void }) {
+  const [value, setValue] = useState('');
+  const [editing, setEditing] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const run = async (f: () => Promise<ClaudeAccount>) => {
+    setBusy(true); setError(null);
+    try { onDone(await f()); setValue(''); setEditing(false); } catch (e) { setError(errText(e)); } finally { setBusy(false); }
+  };
+  const pick = (mode: 'subscription' | 'api_key') => {
+    if (mode === data.mode) return;
+    if (mode === 'api_key' && !data.key_set) { setEditing(true); return; }
+    void run(() => api.put<ClaudeAccount>('/api/account/claude/mode', { mode }));
+  };
+  const showForm = editing || (data.mode === 'api_key' && !data.key_set);
+  return (
+    <fieldset className="stack-sm">
+      <legend className="field-label">روش ورود به Claude</legend>
+      <label className="radio-row"><input type="radio" name="claude-mode" checked={data.mode === 'subscription' && !editing} disabled={busy} onChange={() => { setEditing(false); pick('subscription'); }} /> اشتراک Claude خودم (Pro یا Max)</label>
+      <label className="radio-row"><input type="radio" name="claude-mode" checked={data.mode === 'api_key' || editing} disabled={busy} onChange={() => pick('api_key')} /> کلید API خودم (از Claude Console)</label>
+      {(data.mode === 'api_key' || editing) && (
+        <p className="muted small">با کلید API، هزینه‌ی هر ویدیو را Anthropic مستقیم از حساب خودت می‌گیرد؛ سقف هزینه‌ی هر مرحله همان سقف تنظیمات است.</p>
+      )}
+      {data.mode === 'api_key' && data.key_set && !editing && (
+        <div className="actions">
+          <span>کلید: <bdi className="latin">{data.key_masked}</bdi></span>
+          <button type="button" className="btn" disabled={busy} onClick={() => setEditing(true)}>تغییر کلید</button>
+          <button type="button" className="btn link" disabled={busy} onClick={() => void run(() => api.del<ClaudeAccount>('/api/account/claude/key'))}>حذف کلید</button>
+        </div>
+      )}
+      {showForm && (
+        <>
+          <label className="stack-sm"><span className="field-label">کلید API از Claude Console</span>
+            <input className="text-input latin" type="password" autoComplete="off" spellCheck={false} value={value} placeholder="sk-ant-…" onChange={(e) => setValue(e.target.value)} />
+          </label>
+          <div className="actions">
+            <button type="button" className="btn primary" disabled={busy || !value.trim().startsWith('sk-ant-')} onClick={() => void run(() => api.put<ClaudeAccount>('/api/account/claude/key', { key: value }))}>{busy ? 'در حال ذخیره…' : 'ذخیره'}</button>
+            {editing && <button type="button" className="btn" disabled={busy} onClick={() => { setEditing(false); setValue(''); }}>انصراف</button>}
+          </div>
+          <p className="muted small">کلید فقط روی همین کامپیوتر ذخیره می‌شود و هیچ جا کامل نشان داده نمی‌شود.</p>
+        </>
+      )}
+      {error && <p className="problem" role="alert">{error}</p>}
+    </fieldset>
+  );
+}
+
 export function ClaudeAccountBox({ onChange }: { onChange?: (a: ClaudeAccount) => void }) {
   const { data, reload } = usePoll<ClaudeAccount>('/api/account/claude', 0);
   const [busy, setBusy] = useState<'login' | 'logout' | 'recheck' | null>(null);
@@ -40,6 +88,16 @@ export function ClaudeAccountBox({ onChange }: { onChange?: (a: ClaudeAccount) =
       await reload();
     }
   };
+
+  const modeDone = (a: ClaudeAccount) => { onChange?.(a); void reload(); };
+  if (shown?.mode === 'api_key') {
+    return (
+      <div className="stack-sm account-box" aria-live="polite">
+        {shown.ok ? <p className="success">Claude با کلید API خودت کار می‌کند.</p> : <p className="problem">{shown.message_fa}</p>}
+        <ClaudeModeSwitch data={shown} onDone={modeDone} />
+      </div>
+    );
+  }
 
   return (
     <div className="stack-sm account-box" aria-live="polite">
@@ -62,6 +120,7 @@ export function ClaudeAccountBox({ onChange }: { onChange?: (a: ClaudeAccount) =
       {shown?.ok && <p className="muted small">برای حساب دیگر: اگر مرورگر حساب قبلی را نشان داد، همان‌جا از آن خارج شو و با حساب دیگر وارد شو.</p>}
       {error && <p className="problem" role="alert">{error}</p>}
       {(error || (shown && !shown.ok)) && <ManualLoginGuide />}
+      {shown && <ClaudeModeSwitch data={shown} onDone={modeDone} />}
       {askLogout && (
         <Confirm title="خروج از حساب Claude" text="بعد از خروج، برنامه تا وقتی دوباره وارد نشوی هیچ ویدیویی نمی‌سازد. خارج شوم؟" yes="بله، خارج شو" busy={busy === 'logout'} onYes={() => void act('logout')} onNo={() => setAskLogout(false)} />
       )}

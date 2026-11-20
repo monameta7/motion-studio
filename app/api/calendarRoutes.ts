@@ -1,9 +1,9 @@
-// Responsibility: the content-calendar endpoints of the Automation screen: a date range, add, edit or move, delete, import a CSV/XLSX file and paste a list of topics (docs/08 «Calendar»); one topic per day in each brand's own calendar (Phase 8).
+// Responsibility: the content-calendar endpoints of the Automation screen: a date range, add, edit or move, delete, import a CSV/XLSX file and paste a list of topics (docs/08 «Calendar»); one topic per day in each brand's own calendar (Phase 8), one calendar per workspace (Phase 11.8, Q38 b).
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { isoDate, type CalendarEntry } from '../contracts/index.js';
+import { isoDate, workspace, type CalendarEntry, type Workspace } from '../contracts/index.js';
 import { getSchedule } from '../calendar/schedule.js';
 import { jalaliText, planFromList, planFromRows, type NewEntry, type PlanContext } from '../calendar/import.js';
 import { similarSince, similarTo } from '../calendar/warnings.js';
@@ -13,10 +13,14 @@ import { activeBrandSlug, readBrand } from '../brands/index.js';
 import { localDate } from '../intake/index.js';
 import { fail, sendError, type ApiContext } from './context.js';
 import { listReferences } from './libraryRoutes.js';
+import { listStyles } from '../styles/index.js';
 
-/** `brand`: which brand's calendar (Phase 8); the page sends the brand it shows, a request without one means the active brand. */
-const Range = z.object({ from: isoDate, to: isoDate, brand: z.string().optional() });
-const BrandQuery = z.object({ brand: z.string().optional() });
+/**
+ * `brand`: which brand's calendar (Phase 8); the page sends the brand it shows, a request without one means the active brand.
+ * `workspace`: which of the brand's two calendars (Phase 11.8, Q38 b); a request without one means the motion calendar, as before.
+ */
+const Range = z.object({ from: isoDate, to: isoDate, brand: z.string().optional(), workspace: workspace.optional() });
+const BrandQuery = z.object({ brand: z.string().optional(), workspace: workspace.optional() });
 const Topic = z.string().trim().min(1, 'موضوع را بنویس.');
 const Fields = z.strictObject({
   date: isoDate,
@@ -25,27 +29,31 @@ const Fields = z.strictObject({
   style_override: z.string().nullable().optional(),
   format: z.enum(['9x16', '16x9']).nullable().optional(),
   brand: z.string().optional(),
+  workspace: workspace.optional(),
 });
-// A day never moves to another brand's calendar.
-const Edit = Fields.omit({ brand: true }).partial();
-const Paste = z.strictObject({ text: z.string().max(200000), start_date: isoDate.optional(), brand: z.string().optional() });
+// A day never moves to another brand's calendar or to the other workspace's.
+const Edit = Fields.omit({ brand: true, workspace: true }).partial();
+const Paste = z.strictObject({ text: z.string().max(200000), start_date: isoDate.optional(), brand: z.string().optional(), workspace: workspace.optional() });
 const MAX_FILE = 2 * 1024 * 1024;
 /** A day's entry can be changed until its film starts. */
 const EDITABLE = new Set<CalendarEntry['status']>(['planned', 'failed', 'skipped', 'empty']);
 
 export function calendarRoutes(app: FastifyInstance, ctx: ApiContext): void {
   const { db } = ctx;
-  /** A brand's own schedule (Phase 8: each brand has one). */
-  const schedule = (brand: string) => getSchedule(db, brand);
+  /** A brand's own schedule in one workspace (Phase 8: each brand has one; Phase 11.8: one per workspace). */
+  const schedule = (brand: string, ws: Workspace = 'motion') => getSchedule(db, brand, ws);
   // Every schedule reads in the app's zone (D63), so «today» is the same for all brands.
   const today = () => localDate(new Date(), schedule(activeBrandSlug(db, ctx.config)).timezone);
   /** The brand a request names (it must exist, else BrandError → 400), or the active brand. */
   const brandOf = (named: string | undefined) => (named ? readBrand(ctx.config.paths, named).slug : activeBrandSlug(db, ctx.config));
-  const library = () => listReferences(ctx.config.paths.refs).filter((r) => r.source === 'library').map((r) => ({ slug: r.slug, name_fa: r.name_fa }));
-  const planContext = (brand: string): PlanContext => ({ today: today(), occupied: calendarRepo.occupiedDates(db, brand), library: library(), maxTopicChars: ctx.config.cfg.intake.max_brief_chars });
-  const styleOk = (slug: string | null | undefined) => !slug || library().some((l) => l.slug === slug);
-  const save = (entries: NewEntry[], brand: string) => db.transaction(() => {
-    for (const e of entries) calendarRepo.upsert(db, { id: randomUUID(), status: 'planned', job_id: null, ...e, brand });
+  /** What a day's «style» may name: a library reference on a motion day, a visual style with its text on a video day (Phase 11.8). */
+  const library = (ws: Workspace = 'motion') => (ws === 'video'
+    ? listStyles(ctx.config.paths.styles).filter((s) => s.text !== null).map((s) => ({ slug: s.slug, name_fa: s.title }))
+    : listReferences(ctx.config.paths.refs).filter((r) => r.source === 'library').map((r) => ({ slug: r.slug, name_fa: r.name_fa })));
+  const planContext = (brand: string, ws: Workspace = 'motion'): PlanContext => ({ today: today(), occupied: calendarRepo.occupiedDates(db, brand, ws), library: library(ws), maxTopicChars: ctx.config.cfg.intake.max_brief_chars });
+  const styleOk = (slug: string | null | undefined, ws: Workspace = 'motion') => !slug || library(ws).some((l) => l.slug === slug);
+  const save = (entries: NewEntry[], brand: string, ws: Workspace = 'motion') => db.transaction(() => {
+    for (const e of entries) calendarRepo.upsert(db, { id: randomUUID(), status: 'planned', job_id: null, ...e, brand, workspace: ws });
   })();
   const summary = (entries: NewEntry[], problems: { row: number; message_fa: string }[]) => ({ added: entries.length, problems: problems.map((p) => p.message_fa) });
 
@@ -54,13 +62,14 @@ export function calendarRoutes(app: FastifyInstance, ctx: ApiContext): void {
     if (!q.success) return fail(reply, 400, 'بازه‌ی تاریخ نامعتبر است.');
     try {
       const brand = brandOf(q.data.brand);
-      const s = schedule(brand);
+      const ws = q.data.workspace ?? 'motion';
+      const s = schedule(brand, ws);
       const now = today();
       // A planned day whose topic is too like a film of the same brand made in the last 30 days (docs/08); the film is still made unless the owner removes it.
       const past = calendarRepo.doneTopicsSince(db, similarSince(now), brand);
-      const entries = calendarRepo.range(db, q.data.from, q.data.to, brand).map((e) => ({ ...e, similar: e.status === 'planned' ? similarTo(e.topic, past) : null }));
-      // This brand's own automation: its run days and whether it is on.
-      return { entries, today: now, brand, run_days: s.weekdays, enabled: s.enabled };
+      const entries = calendarRepo.range(db, q.data.from, q.data.to, brand, ws).map((e) => ({ ...e, similar: e.status === 'planned' ? similarTo(e.topic, past) : null }));
+      // This brand's own automation in this workspace: its run days and whether it is on.
+      return { entries, today: now, brand, workspace: ws, run_days: s.weekdays, enabled: s.enabled };
     } catch (e) { return sendError(reply, e); }
   });
 
@@ -69,11 +78,12 @@ export function calendarRoutes(app: FastifyInstance, ctx: ApiContext): void {
     if (!b.success) return fail(reply, 400, b.error.issues[0]?.message ?? 'اطلاعات روز نامعتبر است.');
     if (b.data.date < today()) return fail(reply, 400, 'این روز گذشته است.');
     if (b.data.topic.length > ctx.config.cfg.intake.max_brief_chars) return fail(reply, 400, 'موضوع خیلی بلند است.');
-    if (!styleOk(b.data.style_override)) return fail(reply, 400, 'این سبک در کتابخانه نیست.');
+    const ws = b.data.workspace ?? 'motion';
+    if (!styleOk(b.data.style_override, ws)) return fail(reply, 400, 'این سبک در کتابخانه نیست.');
     try {
       const brand = brandOf(b.data.brand);
-      if (calendarRepo.occupiedDates(db, brand).has(b.data.date)) return fail(reply, 409, `روز ${jalaliText(b.data.date)} از قبل موضوع دارد.`);
-      const e: CalendarEntry = { id: randomUUID(), date: b.data.date, topic: b.data.topic, note: b.data.note || null, style_override: b.data.style_override ?? null, format: b.data.format ?? null, status: 'planned', job_id: null, brand };
+      if (calendarRepo.occupiedDates(db, brand, ws).has(b.data.date)) return fail(reply, 409, `روز ${jalaliText(b.data.date)} از قبل موضوع دارد.`);
+      const e: CalendarEntry = { id: randomUUID(), date: b.data.date, topic: b.data.topic, note: b.data.note || null, style_override: b.data.style_override ?? null, format: b.data.format ?? null, status: 'planned', job_id: null, brand, workspace: ws };
       calendarRepo.upsert(db, e);
       return reply.code(201).send(e);
     } catch (e) { return sendError(reply, e); }
@@ -89,12 +99,12 @@ export function calendarRoutes(app: FastifyInstance, ctx: ApiContext): void {
     next.note = next.note || null;
     if (next.date !== cur.date) {
       if (next.date < today()) return fail(reply, 400, 'این روز گذشته است.');
-      if (calendarRepo.occupiedDates(db, cur.brand).has(next.date)) return fail(reply, 409, `روز ${jalaliText(next.date)} از قبل موضوع دارد.`);
+      if (calendarRepo.occupiedDates(db, cur.brand, cur.workspace).has(next.date)) return fail(reply, 409, `روز ${jalaliText(next.date)} از قبل موضوع دارد.`);
       // A moved topic is planned again.
       next.status = 'planned';
     }
     if (next.topic.length > ctx.config.cfg.intake.max_brief_chars) return fail(reply, 400, 'موضوع خیلی بلند است.');
-    if (!styleOk(next.style_override)) return fail(reply, 400, 'این سبک در کتابخانه نیست.');
+    if (!styleOk(next.style_override, cur.workspace)) return fail(reply, 400, 'این سبک در کتابخانه نیست.');
     try { calendarRepo.upsert(db, next); return next; } catch (e) { return sendError(reply, e); }
   });
 
@@ -110,13 +120,15 @@ export function calendarRoutes(app: FastifyInstance, ctx: ApiContext): void {
   app.post('/api/calendar/import', async (request, reply) => {
     if (!request.isMultipart()) return fail(reply, 400, 'فایلی فرستاده نشد.');
     try {
-      const brand = brandOf(BrandQuery.parse(request.query).brand);
+      const query = BrandQuery.parse(request.query);
+      const brand = brandOf(query.brand);
+      const ws = query.workspace ?? 'motion';
       const part = await request.file({ limits: { fileSize: MAX_FILE + 1 } });
       if (!part) return fail(reply, 400, 'فایلی فرستاده نشد.');
       const buf = await part.toBuffer();
       if (part.file.truncated || buf.length > MAX_FILE) return fail(reply, 400, 'فایل بزرگ‌تر از ۲ مگابایت است.');
-      const plan = planFromRows(readTable(path.basename(part.filename), buf), planContext(brand));
-      save(plan.entries, brand);
+      const plan = planFromRows(readTable(path.basename(part.filename), buf), planContext(brand, ws));
+      save(plan.entries, brand, ws);
       return summary(plan.entries, plan.problems);
     } catch (e) {
       if (e instanceof TableError) return fail(reply, 400, e.message);
@@ -130,9 +142,10 @@ export function calendarRoutes(app: FastifyInstance, ctx: ApiContext): void {
     if (!b.success) return fail(reply, 400, 'لیست موضوع نامعتبر است.');
     try {
       const brand = brandOf(b.data.brand);
-      const c = planContext(brand);
-      const plan = planFromList(b.data.text, b.data.start_date ?? c.today, schedule(brand).weekdays, c);
-      save(plan.entries, brand);
+      const ws = b.data.workspace ?? 'motion';
+      const c = planContext(brand, ws);
+      const plan = planFromList(b.data.text, b.data.start_date ?? c.today, schedule(brand, ws).weekdays, c);
+      save(plan.entries, brand, ws);
       return summary(plan.entries, plan.problems);
     } catch (e) { return sendError(reply, e); }
   });

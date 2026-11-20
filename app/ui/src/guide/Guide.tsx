@@ -1,10 +1,10 @@
-// Responsibility: the guide around the screens (Phase 10): which screen's tour is current, opening it once by itself (D76 a) or from «؟», saving its progress, the «؟» panel with the short explanation and glossary, and the first-time tip card.
+// Responsibility: the guide around the screens (Phase 10): which screen's tour is current, opening it once by itself (D76 a) or from «؟», saving its progress, the «؟» panel with the short explanation and glossary (and the video words and prices on the video screens, Phase 11.9), and the first-time tip card.
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { GuideProgress, TipId, TourId } from '../../../contracts/guide';
 import { api } from '../api';
 import { Modal } from '../Modal';
 import { Tour } from './Tour';
-import { GLOSSARY, TIPS, TOURS } from './tours';
+import { DEFAULT_MONEY, fillMoney, GLOSSARY, TIPS, TOURS, VIDEO_GLOSSARY, VIDEO_TOURS, type GuideMoney, type TourStep } from './tours';
 
 interface GuideApi {
   progress: GuideProgress | null;
@@ -14,6 +14,8 @@ interface GuideApi {
   tipSeen: (id: TipId) => boolean;
   markTip: (id: TipId) => void;
   reset: () => Promise<void>;
+  /** The video guide's prices from the app's own config (D92, D108). */
+  money: GuideMoney;
 }
 
 const Ctx = createContext<GuideApi | null>(null);
@@ -27,12 +29,18 @@ export function GuideProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState<TourId | null>(null);
   // An unreachable server never blocks the screens: the guide then stays closed.
   useEffect(() => { api.get<GuideProgress>('/api/guide').then(setProgress, () => setProgress(null)); }, []);
+  // The numbers the video guide quotes come from config, so the guide says what Settings and New video say.
+  const [money, setMoney] = useState<GuideMoney>(DEFAULT_MONEY);
+  useEffect(() => {
+    api.get<{ video?: Partial<GuideMoney> }>('/api/workspace').then((r) => setMoney((m) => ({ ...m, ...r.video })), () => undefined);
+  }, []);
 
   // The current screen's tour opens by itself once, while nothing else of the guide is open.
   useEffect(() => {
     if (!progress || !current || open || progress.tours[current]) return;
-    const t = setTimeout(() => setOpen(current), AUTO_DELAY_MS);
-    return () => clearTimeout(t);
+    // Phase 11.9: not over the open phone drawer (the page behind it is inert); it opens once the drawer is closed.
+    const t = setInterval(() => { if (document.getElementById('main')?.hasAttribute('inert')) return; clearInterval(t); setOpen(current); }, AUTO_DELAY_MS);
+    return () => clearInterval(t);
   }, [progress, current, open]);
 
   const end = useCallback((state: 'done' | 'skipped') => {
@@ -52,12 +60,14 @@ export function GuideProvider({ children }: { children: ReactNode }) {
       api.post<GuideProgress>('/api/guide/tip', { id }).then(setProgress, () => undefined);
     },
     reset: async () => { setProgress(await api.post<GuideProgress>('/api/guide/reset')); },
+    money,
   };
+  const filled = (steps: TourStep[]): TourStep[] => steps.map((s) => ({ ...s, title: fillMoney(s.title, money), body: fillMoney(s.body, money) }));
 
   return (
     <Ctx.Provider value={value}>
       {children}
-      {open && <Tour key={open} steps={TOURS[open].steps} label={`راهنمای ${TOURS[open].name}`} onEnd={end} />}
+      {open && <Tour key={open} steps={filled(TOURS[open].steps)} label={`راهنمای ${TOURS[open].name}`} onEnd={end} />}
     </Ctx.Provider>
   );
 }
@@ -77,19 +87,20 @@ export function HelpButton() {
   const [shown, setShown] = useState(false);
   if (!g?.current) return null;
   const s = TOURS[g.current];
+  const words = VIDEO_TOURS.has(g.current) ? [...VIDEO_GLOSSARY, ...GLOSSARY] : GLOSSARY;
   return (
     <>
       <button type="button" className="help-btn" aria-label={`راهنمای ${s.name}`} title="راهنما" onClick={() => setShown(true)}>؟</button>
       {shown && (
         <Modal title={`راهنمای ${s.name}`} onClose={() => setShown(false)}>
-          <p>{s.about}</p>
+          <p>{fillMoney(s.about, g.money)}</p>
           <div className="actions">
             <button type="button" className="btn primary" onClick={() => { setShown(false); g.start(g.current!); }}>دیدن راهنمای قدم‌به‌قدم</button>
             <button type="button" className="btn" onClick={() => setShown(false)}>بستن</button>
           </div>
           <details className="glossary">
             <summary>واژه‌نامه</summary>
-            <dl>{GLOSSARY.map((w) => <div key={w.word}><dt>{w.word}</dt><dd>{w.text}</dd></div>)}</dl>
+            <dl>{words.map((w) => <div key={w.word}><dt>{w.word}</dt><dd>{fillMoney(w.text, g.money)}</dd></div>)}</dl>
           </details>
         </Modal>
       )}

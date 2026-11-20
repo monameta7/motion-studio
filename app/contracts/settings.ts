@@ -1,8 +1,9 @@
 // Responsibility: contracts for the files the owner tunes by hand (app.config.json, lexicon.json, tone-rules.json).
 import { z } from 'zod';
 import { TONES, format, tone, voice } from './common.js';
+import { VideoConfig } from './video.js';
 
-export const CLAUDE_STAGES = ['content-hook', 'content-hook-revise', 'content-truth', 'reference', 'suggest', 'plan', 'build', 'revise', 'brand-build'] as const;
+export const CLAUDE_STAGES = ['content-hook', 'content-hook-revise', 'content-truth', 'reference', 'suggest', 'plan', 'build', 'revise', 'brand-build', 'prompts'] as const;
 export const claudeStage = z.enum(CLAUDE_STAGES);
 export type ClaudeStage = z.infer<typeof claudeStage>;
 
@@ -24,7 +25,7 @@ export type StageSetting = z.infer<typeof stageSetting>;
 export const ClaudeStages = z.strictObject(Object.fromEntries(CLAUDE_STAGES.map((s) => [s, stageSetting])) as Record<ClaudeStage, typeof stageSetting>);
 export type ClaudeStages = z.infer<typeof ClaudeStages>;
 
-/** The D64 recommendation (all at high): Opus for the stages that write or judge the film, Sonnet for the small follow-up calls. */
+/** The D64 recommendation (all at high): Opus for the stages that write or judge the film, Sonnet for the small follow-up calls and, since D98, for the build. */
 export const RECOMMENDED_STAGES: ClaudeStages = {
   'content-hook': { model: 'claude-opus-5-5', effort: 'high' },
   'content-hook-revise': { model: 'claude-sonnet-5-5', effort: 'high' },
@@ -32,9 +33,11 @@ export const RECOMMENDED_STAGES: ClaudeStages = {
   reference: { model: 'claude-opus-5-5', effort: 'high' },
   suggest: { model: 'claude-sonnet-5-5', effort: 'high' },
   plan: { model: 'claude-opus-5-5', effort: 'high' },
-  build: { model: 'claude-opus-5-5', effort: 'high' },
+  build: { model: 'claude-sonnet-5-5', effort: 'high' }, // D98: Opus before 2026-11-17
   revise: { model: 'claude-sonnet-5-5', effort: 'high' },
   'brand-build': { model: 'claude-opus-5-5', effort: 'high' },
+  // Phase 11.4: the video workspace's clip plan (11.1 wrote its two proof prompts with Opus).
+  prompts: { model: 'claude-opus-5-5', effort: 'high' },
 };
 
 const relPath = z.string().min(1).refine((p) => !/^[A-Za-z]:|^[\\/]/.test(p), 'path must be relative to the project root');
@@ -73,6 +76,8 @@ export const AppConfig = z.strictObject({
   safe_zone: z.strictObject({ top: z.number(), bottom: z.number(), sides: z.number(), right_rail: z.number(), right_rail_from: z.number() }),
   quota: z.strictObject({
     max_5h_pct_to_start: z.number().min(0).max(100),
+    /** Phase 11.8 (D108, owner 2026-11-19): a video film starts up to this 5-hour use (the heaviest measured content, 57 points, + prompts 4). */
+    video_max_5h_pct_to_start: z.number().min(0).max(100).default(40),
     max_7d_pct_to_start: z.number().min(0).max(100),
     app_tokens_5h_budget: z.number().int().positive().nullable(),
     status_file: z.string().min(1),
@@ -81,6 +86,8 @@ export const AppConfig = z.strictObject({
   disk: z.strictObject({ min_free_gb: z.number().nonnegative(), delete_temp_frames: z.boolean() }),
   notifications: z.strictObject({ sound: z.boolean() }),
   ui: z.strictObject({ language: z.literal('fa'), calendar: z.enum(['jalali', 'gregorian']), week_start: z.enum(['sat', 'sun', 'mon']) }),
+  /** The video workspace (Phase 11.6, D91, D92): Vertex route, caps, prices with their date, clip thresholds. Missing = the defaults. */
+  video: VideoConfig.prefault({}),
 });
 export type AppConfig = z.infer<typeof AppConfig>;
 

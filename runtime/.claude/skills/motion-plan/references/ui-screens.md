@@ -26,7 +26,7 @@ Mixed: directions cover some moments, you plan the rest in the same style.
 | Value | From |
 |---|---|
 | Layout, element sizes, radius, spacing | The owner image, with the numbers in `plan/ui-source/<NN>.json` (the app measured the image's pixels: page background, element boxes, their main colours, in source pixels). Use those numbers; your eye only names what each box is. |
-| Colours, icons and logo **of the product** | The same image and file, kept exactly. They are not mapped to brand colours (the one exception to conflict-order item 5). Everything outside the screen (titles, step labels, background, outro) stays the brand's. |
+| Colours, icons and logo **of the product** | The same image and file, kept exactly. They are not mapped to brand colours (an exception to the brand zone of conflict-order item 5). Everything outside the screen (titles, step labels, background, outro) stays the brand's. |
 | Every word on the screen | Copied character for character from the image, from the owner's directions, or from the package's on-screen texts. Never written by you. A word in the image you cannot read with certainty: leave that element out and add a risk naming it. |
 | With `source: idea` (no image) | Layout and look from the reference's look and the brand tokens; words from the package and the voice lines; product name only if the package states it. No invented feature, number, user name or claim about a real product. Neutral interface words («ارسال», «جستجو», "Search") are allowed. |
 | Motion (speed, easing, how panels open) | The reference (conflict-order item 4). §5 below only fills what the reference does not show. |

@@ -6,16 +6,22 @@ import { z } from 'zod';
 import { ContentPackage, ScriptEditFile, readJson, writeJson } from '../contracts/index.js';
 import { calendarRepo, jobsRepo, lockRepo } from '../db/repositories.js';
 import { pidAlive } from '../proc.js';
-import { activeBrandSlug, listBrands, readBrand } from '../brands/index.js';
-import { IntakeError, checkInput, copyImages, prepareImages, requestFromManual } from '../intake/index.js';
-import { continueHeld, requestHold, resumeJob, runJob } from '../orchestrator/index.js';
+import { activeBrandSlug, brandDir, listBrands, readBrand } from '../brands/index.js';
+import { colourNamesOf } from '../stages/prompts/checks.js';
+import { markUsed, readStyle, styleProblem } from '../styles/index.js';
+import { IntakeError, checkInput, checkWorkspaceInput, copyImages, prepareImages, requestFromManual } from '../intake/index.js';
+import { continueHeld, reopenStage, requestHold, resumeJob, runJob } from '../orchestrator/index.js';
 import { createJobFolder, jobDir, readState } from '../orchestrator/jobFolder.js';
 import { REVISION_TARGETS, reviseScript } from '../orchestrator/revision.js';
 import { scriptPaths } from '../orchestrator/scriptEdit.js';
 import { isRoundsBlock, readDecision, writeDecision } from '../stages/content/decision.js';
 import { loadRounds } from '../stages/content/index.js';
+import { ClipActionError, decideStale, rebuildClip } from '../stages/clips/actions.js';
+import { readClips } from '../stages/clips/index.js';
+import { backupVideo, restartFinishedVideo, reviseVideoSound } from '../orchestrator/videoRevision.js';
+import { markAttended } from '../video/unattended.js';
 import { fail, sendError, type ApiContext } from './context.js';
-import { jobDetail, latestFrame, listJobs } from './jobView.js';
+import { isNotBuilt, jobDetail, latestFrame, listJobs } from './jobView.js';
 import { CHANGED } from './runner.js';
 import { removeUploads, uploadPath } from './uploads.js';
 
@@ -24,13 +30,20 @@ export const NewJobBody = z.strictObject({
   hook: z.boolean(),
   images: z.array(z.string()).default([]),
   format: z.enum(['9x16', '16x9']),
-  references: z.array(z.string()).min(1, 'یک مرجع انتخاب کن.').max(3, 'حداکثر سه مرجع.'),
+  // A motion job needs one to three references (the check below, same message as before); a video job has none (D88).
+  references: z.array(z.string()).max(3, 'حداکثر سه مرجع.'),
   // D54: no plan approval; UI jobs always run in full (the field stays for older clients and is ignored).
   review: z.boolean().optional(),
   /** «از تقویم محتوا»: the film is that calendar day's; its topic and note come from the day. */
   calendar_entry_id: z.uuid().optional(),
   /** The brand the page showed (Phase 8); left out: the active brand. A calendar day's film is always that day's brand. */
   brand: z.string().optional(),
+  /** D88 (Phase 11.3): the workspace of the new job; left out: motion. */
+  workspace: z.enum(['motion', 'video']).default('motion'),
+  /** A video job's visual style (`styles/<slug>/`, Phase 11.5): it must be in the library with its text. */
+  style: z.string().optional(),
+}).superRefine((b, ctx) => {
+  if (b.workspace === 'motion' && b.references.length === 0) ctx.addIssue({ code: 'custom', path: ['references'], message: 'یک مرجع انتخاب کن.' });
 });
 
 /** Calendar days a film can still be started for: not made yet, or failed / skipped before. */
@@ -41,7 +54,8 @@ const ReviseBody = z.strictObject({ target: z.enum(REVISION_TARGETS), note: z.st
 const ScriptBody = z.union([z.strictObject({ unchanged: z.literal(true) }), ScriptEditFile]);
 
 /** Top folders of a job the UI may read files from: the delivery, the owner images, the voice and the plan (voice play button, storyboard), frames for the preview. */
-const READABLE = new Set(['out', 'input', 'voice', 'plan', 'project']);
+// Phase 11.6: `video` for the clip previews (video/clips/*.mp4) on the job page.
+const READABLE = new Set(['out', 'input', 'voice', 'plan', 'project', 'video']);
 
 /** A job-relative path inside one of the readable folders, or null (no `..`, no absolute paths). */
 export function safeJobFile(dir: string, rel: string): string | null {
@@ -56,14 +70,21 @@ const firstIssue = (e: z.ZodError) => e.issues[0]?.message ?? 'درخواست ن
 export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
   const { o, runner } = ctx;
   const dirOf = (slug: string) => jobDir(ctx.config.paths.jobs, slug);
+  /**
+   * Every run the owner starts on an existing job (continue, a script choice, a clip choice, a revision) goes through here: a scheduled
+   * video film becomes the owner's own film, and only its per-film cap applies from now on (D108; app/video/unattended.ts).
+   */
+  const ownerEnqueue: typeof runner.enqueue = (slug, kind, fn) => { markAttended(dirOf(slug), new Date()); return runner.enqueue(slug, kind, fn); };
   const exists = (slug: string) => /^[a-z0-9][a-z0-9._-]*$/.test(slug) && fs.existsSync(path.join(dirOf(slug), 'state.json'));
   /** Brand slug → the name the cards show (Phase 8); a brand that is gone shows its slug. */
   const brandNames = () => new Map(listBrands(ctx.config.paths).brands.map((b) => [b.slug, b.name]));
   const detail = (slug: string) => {
-    const d = jobDetail(ctx.config.paths.jobs, slug, ctx.config.cfg.content.pass_score);
+    const d = jobDetail(ctx.config.paths.jobs, slug, ctx.config.cfg.content.pass_score, ctx.config.cfg.video);
     const busy = runner.isBusy(slug);
     return d && {
       ...d, brand_name: brandNames().get(d.brand) ?? d.brand,
+      // Phase 11.9 (novice test): a video job's style by its title, as the library shows it; a style that is gone shows its slug.
+      style_title: d.style ? readStyle(ctx.config.paths.styles, d.style)?.title ?? d.style : null,
       active: runner.running() === slug, queued: runner.queued().includes(slug), last_error: runner.lastError.get(slug) ?? null, revision_pending: busy ? null : d.revision_pending,
     };
   };
@@ -86,6 +107,13 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
       const brand = readBrand(ctx.config.paths, day?.brand ?? b.brand ?? activeBrandSlug(ctx.db, ctx.config)).slug;
       if (day && b.brand && b.brand !== day.brand) throw new IntakeError('این روز تقویم مال برند دیگری است؛ صفحه را دوباره باز کن.', `${day.brand} != ${b.brand}`);
       checkInput(topic, b.hook, ctx.config.cfg.intake);
+      checkWorkspaceInput({ workspace: b.workspace, style: b.style ?? null, references: b.references, images: b.images.length, calendarDay: day?.workspace ?? null });
+      // Phase 11.5: the style must be in styles/ with a text that keeps the prompt rules for this brand, before anything is spent.
+      if (b.workspace === 'video' && b.style) {
+        const tokens = path.join(brandDir(ctx.config.paths, brand), 'tokens.json');
+        const why = styleProblem(ctx.config.paths.styles, b.style, fs.existsSync(tokens) ? colourNamesOf(JSON.parse(fs.readFileSync(tokens, 'utf8'))) : []);
+        if (why) throw new IntakeError(why, b.style);
+      }
       for (const r of b.references) {
         if (!fs.existsSync(path.join(ctx.config.paths.refs, r, 'meta.json'))) throw new IntakeError(`مرجع «${r}» در کتابخانه نیست.`);
         const pending = ctx.refReader.status(r)?.state;
@@ -99,7 +127,7 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
       });
       const images = prepareImages(files, ctx.config.cfg.intake);
       const req = requestFromManual(
-        { topic, topicNote: day?.note ?? null, references: b.references, format: b.format, automationLevel: 'full', hookWritesVoice: b.hook, attachments: images.map((i) => i.attachment), calendarEntryId: day?.id ?? null, brand },
+        { topic, topicNote: day?.note ?? null, references: b.references, format: b.format, automationLevel: 'full', hookWritesVoice: b.hook, attachments: images.map((i) => i.attachment), calendarEntryId: day?.id ?? null, brand, workspace: b.workspace, style: b.style ?? null },
         (s) => jobsRepo.slugExists(ctx.db, s) || fs.existsSync(dirOf(s)),
       );
       const dir = createJobFolder(ctx.config.paths.jobs, req);
@@ -110,6 +138,8 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
         if (day) calendarRepo.upsert(ctx.db, { ...day, status: 'queued', job_id: req.id });
       })();
       removeUploads(ctx.uploadsDir, b.images);
+      // The default of the next video on New video (no Claude call).
+      if (req.style) markUsed(ctx.config.paths.styles, req.style);
       const { position } = runner.enqueue(req.slug, 'run', (pause) => runJob(o, req.slug, pause));
       return reply.code(201).send({ slug: req.slug, position });
     } catch (e) { return sendError(reply, e); }
@@ -130,6 +160,7 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
         return detail(slug);
       } catch (e) { return sendError(reply, e); }
     });
+  const readRequestOf = (dir: string) => (JSON.parse(fs.readFileSync(path.join(dir, 'request.json'), 'utf8')) as { workspace?: string }).workspace ?? 'motion';
   const notBusy = (slug: string) => { if (runner.isBusy(slug)) throw new IntakeError('این کار همین الان در حال اجرا یا در صف است.'); };
 
   action('stop', (slug) => runner.pause(slug));
@@ -137,32 +168,93 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
     notBusy(slug);
     const s = readState(dirOf(slug));
     if (s.status === 'held') throw new IntakeError('کار نگه داشته شده؛ سناریو را ذخیره کن یا «ادامه بدون تغییر» را بزن.');
-    runner.enqueue(slug, 'resume', (pause) => resumeJob(o, slug, false, pause));
+    // Phase 11.4: a stage built in a later phase would only block again; say so instead.
+    if (isNotBuilt(s)) throw new IntakeError(`«ادامه» فعلاً کاری نمی‌کند: ${s.error?.message_fa ?? 'این مرحله هنوز ساخته نشده.'}`);
+    // The owner's own press tries now even before the reset time Claude gave (it can be wrong); a still-full quota only pauses the job again.
+    ownerEnqueue(slug, 'resume', (pause) => resumeJob(o, slug, true, pause));
   });
   /** D77: the owner's answer to a script blocked below the truth gate; both continue the job at once. */
-  const decide = (slug: string, change: (d: ReturnType<typeof readDecision>, dir: string) => void) => {
+  const decide = (slug: string, change: (d: ReturnType<typeof readDecision>, dir: string) => void): void => {
     notBusy(slug);
     const dir = dirOf(slug);
     if (!isRoundsBlock(dir, readState(dir))) throw new IntakeError('این دکمه فقط برای سناریویی است که بعد از دورهای بازبینی متوقف شده.');
     const d = readDecision(dir);
     change(d, dir);
     writeDecision(dir, d);
-    runner.enqueue(slug, 'resume', (pause) => resumeJob(o, slug, false, pause));
+    ownerEnqueue(slug, 'resume', (pause) => resumeJob(o, slug, false, pause));
   };
-  action('accept-script', (slug) => decide(slug, (d, dir) => {
-    const last = loadRounds(dir).at(-1);
-    if (!last) throw new IntakeError('هنوز دوری از بازبینی ثبت نشده است.');
-    d.accepted = { at: new Date().toISOString(), round: last.round, score: last.score };
+  // The owner may pick any saved round (default: the last); a chosen earlier round's package becomes content/package.* (each round keeps its own copy under rounds/).
+  const AcceptBody = z.object({ round: z.number().int().min(1).optional() });
+  action('accept-script', (slug, body) => decide(slug, (d, dir) => {
+    const rounds = loadRounds(dir);
+    const want = AcceptBody.safeParse(body ?? {}).data?.round;
+    const pick = want === undefined ? rounds.at(-1) : rounds.find((r) => r.round === want);
+    if (!pick) throw new IntakeError(want === undefined ? 'هنوز دوری از بازبینی ثبت نشده است.' : 'این دور پیدا نشد.');
+    if (pick.round !== rounds.at(-1)?.round) {
+      const base = path.join(dir, 'content', 'rounds', String(pick.round).padStart(2, '0'));
+      const pkg = `${base}.package.json`;
+      const md = `${base}.package.md`;
+      if (!fs.existsSync(pkg) || !fs.existsSync(md)) throw new IntakeError('متن این دور روی دیسک کامل نیست.');
+      readJson(pkg, ContentPackage);
+      fs.copyFileSync(pkg, path.join(dir, 'content', 'package.json'));
+      fs.copyFileSync(md, path.join(dir, 'content', 'package.md'));
+    }
+    d.accepted = { at: new Date().toISOString(), round: pick.round, score: pick.score };
   }));
   action('extra-round', (slug) => decide(slug, (d) => { d.extra_rounds += 1; }));
   action('hold', (slug) => { requestHold(o, slug, 'ui'); runner.emit(CHANGED, { slug }); });
+  /**
+   * Phase 11.6 (D92, docs/13 V9, V20): the owner's paid clip choices. Each needs `confirm: true`, sent only after the page showed the
+   * price; then the clips stage runs again from the first clip that is not finished.
+   */
+  const ClipChoice = z.strictObject({ confirm: z.literal(true), index: z.number().int().min(1).optional(), choice: z.enum(['rebuild', 'keep']).optional() });
+  const clipChoice = (slug: string, raw: unknown, act: (dir: string, b: z.infer<typeof ClipChoice>) => void) => {
+    notBusy(slug);
+    const b = ClipChoice.safeParse(raw);
+    if (!b.success) throw new IntakeError('اول هزینه را ببین و تأیید کن.');
+    const dir = dirOf(slug);
+    const s = readState(dir);
+    if (readRequestOf(dir) !== 'video') throw new IntakeError('این کار ویدیو نیست.');
+    if (s.status === 'running' || s.status === 'queued') throw new IntakeError('این کار همین الان در حال اجراست.');
+    // Phase 11.7: on a finished film this is a revision: the delivery is backed up first, then the film runs again from its clips.
+    const backup = s.status === 'done' ? backupVideo(dir) : null;
+    try { act(dir, b.data); } catch (e) { if (e instanceof ClipActionError) throw new IntakeError(e.message_fa); throw e; }
+    if (backup) {
+      restartFinishedVideo(dir, backup, { index: b.data.index ?? null });
+      ownerEnqueue(slug, 'revise', (pause) => runJob(o, slug, pause));
+      return;
+    }
+    reopenStage(o, slug, 'clips');
+    ownerEnqueue(slug, 'resume', (pause) => resumeJob(o, slug, true, pause));
+  };
+  action('clip-rebuild', (slug, raw) => clipChoice(slug, raw, (dir, b) => {
+    if (!b.index) throw new IntakeError('شماره‌ی کلیپ لازم است.');
+    rebuildClip(dir, ctx.config.cfg.video, b.index);
+  }));
+  action('clips-stale', (slug, raw) => clipChoice(slug, raw, (dir, b) => {
+    if (readState(dir).status === 'done') throw new IntakeError('این فیلم تمام شده و کلیپ کهنه‌ای ندارد.');
+    if (!b.choice) throw new IntakeError('انتخاب کن: دوباره ساختن یا نگه داشتن.');
+    decideStale(dir, ctx.config.cfg.video, b.choice);
+  }));
   action('revise', (slug, raw) => {
     notBusy(slug);
     const b = ReviseBody.safeParse(raw);
     if (!b.success) throw new IntakeError('هدف اصلاح یا یادداشت درست نیست.');
     if (!b.data.note.trim()) throw new IntakeError('برای اصلاح یک یادداشت بنویس.');
     if (readState(dirOf(slug)).status !== 'done') throw new IntakeError('فقط کار تمام‌شده را می‌شود اصلاح کرد.');
-    runner.enqueue(slug, 'revise', () => ctx.revise(slug, b.data.target, b.data.note));
+    if (readRequestOf(dirOf(slug)) === 'video' && b.data.target !== 'caption') throw new IntakeError('در ویدیو با یادداشت فقط کپشن اصلاح می‌شود؛ کلیپ را با «دوباره بساز» و صدای کلیپ‌ها را در «صدا» عوض کن.');
+    ownerEnqueue(slug, 'revise', () => ctx.revise(slug, b.data.target, b.data.note));
+  });
+  /** Phase 11.7: a finished video film's sound revision: the clips' own sound kept 12 dB under the voice (D102) or off; on the PC, free. */
+  const VideoSoundBody = z.strictObject({ clip_sound: z.enum(['keep', 'off']) });
+  action('video-sound', (slug, raw) => {
+    notBusy(slug);
+    const b = VideoSoundBody.safeParse(raw);
+    if (!b.success) throw new IntakeError('انتخاب کن: صدای کلیپ‌ها بماند یا حذف شود.');
+    const dir = dirOf(slug);
+    if (readRequestOf(dir) !== 'video') throw new IntakeError('این کار ویدیو نیست.');
+    if (readState(dir).status !== 'done') throw new IntakeError('فقط کار تمام‌شده را می‌شود اصلاح کرد.');
+    ownerEnqueue(slug, 'revise', () => reviseVideoSound({ config: ctx.config, db: ctx.db }, slug, b.data.clip_sound));
   });
   action('open-folder', async (slug) => {
     const out = path.join(dirOf(slug), 'out');
@@ -190,6 +282,11 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
       notBusy(slug);
       const status = readState(dir).status;
       if (status !== 'held' && status !== 'done') throw new IntakeError('اول «توقف و اصلاح سناریو» را بزن.');
+      // V21 (Phase 11.7): once clips are made, a changed text can make clips be bought again; the page shows that price and sends confirm_clips=1.
+      const madeClips = readRequestOf(dir) === 'video' && (readClips(dir)?.clips.some((c) => c.status === 'done' || c.status === 'flagged') ?? false);
+      if (madeClips && !('unchanged' in body.data) && (request.query as { confirm_clips?: string }).confirm_clips !== '1') {
+        throw new IntakeError('اول هزینه‌ی کلیپ‌هایی را که ممکن است دوباره خریده شوند ببین و تأیید کن.');
+      }
       if ('unchanged' in body.data) {
         if (status === 'done') throw new IntakeError('تغییری برای اعمال نیست.');
         fs.rmSync(p.editFile, { force: true });
@@ -202,11 +299,11 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
       }
       if (status === 'held') {
         const outcome = continueHeld(o, slug);
-        runner.enqueue(slug, 'continue', (pause) => runJob(o, slug, pause));
+        ownerEnqueue(slug, 'continue', (pause) => runJob(o, slug, pause));
         const from = outcome.voiceChanged ? 'voice' : outcome.screenChanged ? 'plan' : readState(dir).stage;
         return { ...detail(slug), restart_from: from, changes: outcome.changes };
       }
-      runner.enqueue(slug, 'revise', () => reviseScript(o, slug));
+      ownerEnqueue(slug, 'revise', () => reviseScript(o, slug));
       return detail(slug);
     } catch (e) {
       fs.rmSync(p.editFile, { force: true });

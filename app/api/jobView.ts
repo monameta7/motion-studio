@@ -1,7 +1,8 @@
 // Responsibility: read one job folder into the plain JSON the UI shows (request, state, truth rounds, script, plan table, delivery), never writing anything.
 import fs from 'node:fs';
 import path from 'node:path';
-import { ContentPackage, Manifest, ScenePlan, ScriptEdits, VoiceLines, readJson, type JobRequest, type JobState } from '../contracts/index.js';
+import { AssemblyFile, ContentPackage, Manifest, ScenePlan, ScriptEdits, VideoConfig, VoiceLines, readJson, type JobRequest, type JobState } from '../contracts/index.js';
+import { clipsView, type ClipsView } from '../stages/clips/actions.js';
 import { loadRounds } from '../stages/content/index.js';
 import { jobDir, listJobSlugs, readRequest, readState } from '../orchestrator/jobFolder.js';
 import { revisionPendingFile, type RevisionPending } from '../orchestrator/revision.js';
@@ -37,6 +38,9 @@ export interface JobSummary {
   brand: string;
   /** Who started it: the owner or the schedule (Phase 10: the first scheduled film gets a first-time tip). */
   source: JobRequest['source'];
+  /** D88 (Phase 11.3): the job's own workspace and, for a video job, its visual style; the cards show its label. */
+  workspace: JobRequest['workspace'];
+  style: string | null;
 }
 
 export function jobSummary(jobsRoot: string, slug: string): JobSummary | null {
@@ -54,6 +58,8 @@ export function jobSummary(jobsRoot: string, slug: string): JobSummary | null {
     truth_score: manifest?.truth_score ?? rounds.at(-1)?.score ?? null,
     brand: req.brand,
     source: req.source,
+    workspace: req.workspace,
+    style: req.style,
   };
 }
 
@@ -87,6 +93,25 @@ export function scriptView(dir: string, state: JobState): ScriptView | null {
     voice_made: state.stages.voice?.status === 'done',
     edits: edits.length,
   };
+}
+
+/** D77+: every saved round's script (rounds/NN.package.json), so the owner can switch between rounds and accept the one they want. */
+export interface RoundScript { round: number; score: number; lines: { id: number; text: string; on_screen: { index: number; text: string; role: string }[] }[] }
+
+export function roundScripts(dir: string): RoundScript[] {
+  const rounds = tryRead(() => loadRounds(dir)) ?? [];
+  return rounds.flatMap((r) => {
+    const pkg = tryRead(() => readJson(path.join(dir, 'content', 'rounds', `${String(r.round).padStart(2, '0')}.package.json`), ContentPackage));
+    if (!pkg) return [];
+    return [{
+      round: r.round, score: r.score,
+      lines: pkg.voice_lines.map((l) => ({
+        id: l.id, text: l.text,
+        on_screen: pkg.on_screen_texts.map((t, index) => ({ index, text: t.text, role: t.role, voice_line: t.voice_line }))
+          .filter((t) => t.voice_line === l.id).map(({ voice_line: _v, ...t }) => t),
+      })),
+    }];
+  });
 }
 
 export interface PlanRow { id: number; start: number; end: number; beat: string; component: string; picture: string; texts: string[] }
@@ -130,6 +155,8 @@ export interface JobDetail extends JobSummary {
   script: ScriptView | null;
   /** D77: the truth rounds ran out below the gate; the last script is shown with «قبول همین متن» and «یک دور دیگر». */
   script_blocked: boolean;
+  /** Each saved round's script: a click on a round chip shows it; while blocked, the one on screen can be accepted. */
+  round_scripts: RoundScript[];
   /** D77: the owner accepted the script below the gate. */
   script_accepted: boolean;
   plan: ReturnType<typeof planView>;
@@ -145,15 +172,68 @@ export interface JobDetail extends JobSummary {
   revisions: { at: string; target: string; note?: string; backup: string; unexpected?: string[] }[];
   /** A revision the process was killed in the middle of (its marker file is still there), else null. The routes hide it while the job runs. */
   revision_pending: RevisionPending | null;
+  /** Phase 11.4: a video job's clip prompts (video/prompts/clip-NN.txt), in order; empty before the prompts stage. */
+  prompts: { index: number; file: string; text: string }[];
+  /** Phase 11.4: blocked at a stage that is not built yet (notBuiltStage); «ادامه» would only block again. */
+  not_built: boolean;
+  /** Phase 11.6: a video job's clips («کلیپ k از N», previews, money used, the owner's pending choice); null before the prompts exist. */
+  clips: ClipsView | null;
+  /**
+   * Phase 11.7: a video film's assembly (each clip's own sound, the clips kept with a flag, the outro frames), its cover checks, its ledger
+   * and what buying every clip again would cost (the V21 warning of a script edit); null for motion or before the clips exist.
+   */
+  video_result: VideoResult | null;
 }
 
-export function jobDetail(jobsRoot: string, slug: string, passScore: number): JobDetail | null {
+export interface VideoResult {
+  clip_sound_db: number | null;
+  clips: { index: number; sound: AssemblyFile['clips'][number]['sound']; flags: string[]; used_s: number }[];
+  flagged: number[];
+  outro_ok: boolean | null;
+  cover_problems: string[] | null;
+  ledger_usd: { claude: number; vertex: number; total: number } | null;
+  rebuy_usd: number;
+  cap_usd: number;
+}
+
+/** What the result page shows of a video film beyond the motion fields (Phase 11.7). */
+export function videoResultView(dir: string, clips: ClipsView | null, manifest: Manifest | null): VideoResult | null {
+  if (!clips) return null;
+  const a = tryRead(() => readJson(path.join(dir, 'video', 'assembly.json'), AssemblyFile));
+  const verify = tryRead(() => JSON.parse(fs.readFileSync(path.join(dir, 'logs', 'assemble-verify.json'), 'utf8')) as { outro_ssim?: { ssim: number | null }[] });
+  const cover = tryRead(() => JSON.parse(fs.readFileSync(path.join(dir, 'logs', 'cover-qa.json'), 'utf8')) as { problems: string[] });
+  return {
+    clip_sound_db: a?.clip_sound_db ?? null,
+    clips: a?.clips.map((c) => ({ index: c.index, sound: c.sound, flags: c.flags, used_s: c.used_s })) ?? [],
+    flagged: a?.flagged ?? [],
+    outro_ok: verify?.outro_ssim ? verify.outro_ssim.every((o) => o.ssim !== null && o.ssim >= 0.98) : null,
+    cover_problems: cover?.problems ?? null,
+    ledger_usd: manifest?.video?.ledger_usd ?? null,
+    rebuy_usd: Math.round(clips.clips.reduce((n, c) => n + c.price_usd, 0) * 100) / 100,
+    cap_usd: clips.cap_usd,
+  };
+}
+
+/** The clip prompts of a video job, in order. */
+export function promptsView(dir: string): JobDetail['prompts'] {
+  const folder = path.join(dir, 'video', 'prompts');
+  if (!fs.existsSync(folder)) return [];
+  return fs.readdirSync(folder).filter((f) => /^clip-\d{2}\.txt$/.test(f)).sort()
+    .map((f) => ({ index: Number(f.slice(5, 7)), file: `video/prompts/${f}`, text: fs.readFileSync(path.join(folder, f), 'utf8') }));
+}
+
+/** True when the job stopped at a stage built in a later phase (the detail notBuiltStage writes). */
+export const isNotBuilt = (state: JobState): boolean => state.status === 'blocked' && /^stage \w+ is built in phase /.test(state.error?.detail ?? '');
+
+export function jobDetail(jobsRoot: string, slug: string, passScore: number, video: VideoConfig = VideoConfig.parse({})): JobDetail | null {
   const summary = jobSummary(jobsRoot, slug);
   if (!summary) return null;
   const dir = jobDir(jobsRoot, slug);
   const state = readState(dir);
   const text = (rel: string) => tryRead(() => fs.readFileSync(path.join(dir, rel), 'utf8'));
   const exists = (rel: string) => (fs.existsSync(path.join(dir, rel)) ? rel : null);
+  const clips = summary.workspace === 'video' ? tryRead(() => clipsView(dir, video)) : null;
+  const manifest = tryRead(() => readJson(path.join(dir, 'out', 'manifest.json'), Manifest));
   return {
     ...summary,
     request: readRequest(dir),
@@ -162,9 +242,10 @@ export function jobDetail(jobsRoot: string, slug: string, passScore: number): Jo
     pass_score: passScore,
     script: scriptView(dir, state),
     script_blocked: isRoundsBlock(dir, state),
+    round_scripts: roundScripts(dir),
     script_accepted: (tryRead(() => readDecision(dir))?.accepted ?? null) !== null,
     plan: planView(dir),
-    manifest: tryRead(() => readJson(path.join(dir, 'out', 'manifest.json'), Manifest)),
+    manifest,
     qa_md: text('out/qa.md'),
     caption: text('out/caption.txt'),
     voice_file: exists('plan/voice.wav') ?? exists('voice/take-full.wav'),
@@ -172,9 +253,14 @@ export function jobDetail(jobsRoot: string, slug: string, passScore: number): Jo
       const v = readJson(path.join(dir, 'voice', 'lines.json'), VoiceLines);
       return { voice: v.voice, tone: v.tone, tone_source: v.tone_source, reasons: [...v.tone_reasons].sort((a, b) => b.points - a.points).slice(0, 3) };
     }),
-    verify: tryRead(() => JSON.parse(fs.readFileSync(path.join(dir, 'logs', 'build-verify.json'), 'utf8')) as JobDetail['verify']),
+    // A video film is measured by its assemble stage (Phase 11.7), a motion film by its build stage.
+    verify: tryRead(() => JSON.parse(fs.readFileSync(path.join(dir, 'logs', summary.workspace === 'video' ? 'assemble-verify.json' : 'build-verify.json'), 'utf8')) as JobDetail['verify']),
     revisions: (tryRead(() => fs.readFileSync(path.join(dir, 'logs', 'revisions.jsonl'), 'utf8')) ?? '').split('\n').filter(Boolean).slice(-5)
       .map((l) => tryRead(() => JSON.parse(l) as JobDetail['revisions'][number])).filter((r): r is JobDetail['revisions'][number] => r !== null),
     revision_pending: tryRead(() => JSON.parse(fs.readFileSync(revisionPendingFile(dir), 'utf8')) as RevisionPending),
+    prompts: summary.workspace === 'video' ? (tryRead(() => promptsView(dir)) ?? []) : [],
+    not_built: isNotBuilt(state),
+    clips,
+    video_result: summary.workspace === 'video' ? tryRead(() => videoResultView(dir, clips, manifest)) : null,
   };
 }

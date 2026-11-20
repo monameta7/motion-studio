@@ -1,19 +1,19 @@
 // Responsibility: small typed read/write functions for each table, so no other module writes SQL.
 import type { Db } from './db.js';
-import { CalendarEntry, JobRequest, ReferenceMeta, type JobStatus, type StageName } from '../contracts/index.js';
+import { CalendarEntry, JobRequest, ReferenceMeta, type AnyStageName, type CalendarEntryInput, type JobStatus, type Workspace } from '../contracts/index.js';
 import { pidAlive } from '../proc.js';
 
 const now = () => new Date().toISOString();
 
-export interface JobRow { id: string; slug: string; topic: string; format: string; source: string; status: string; stage: string | null; created_at: string; updated_at: string; request_json: string; brand: string }
+export interface JobRow { id: string; slug: string; topic: string; format: string; source: string; status: string; stage: string | null; created_at: string; updated_at: string; request_json: string; brand: string; workspace: string }
 
 export const jobsRepo = {
   insert(db: Db, req: JobRequest, status: JobStatus = 'queued'): void {
-    db.prepare(`INSERT INTO jobs (id, slug, topic, format, source, status, stage, created_at, updated_at, request_json, brand)
-                VALUES (@id, @slug, @topic, @format, @source, @status, NULL, @created_at, @updated_at, @request_json, @brand)`)
-      .run({ id: req.id, slug: req.slug, topic: req.topic, format: req.format, source: req.source, status, created_at: req.created_at, updated_at: now(), request_json: JSON.stringify(req), brand: req.brand });
+    db.prepare(`INSERT INTO jobs (id, slug, topic, format, source, status, stage, created_at, updated_at, request_json, brand, workspace)
+                VALUES (@id, @slug, @topic, @format, @source, @status, NULL, @created_at, @updated_at, @request_json, @brand, @workspace)`)
+      .run({ id: req.id, slug: req.slug, topic: req.topic, format: req.format, source: req.source, status, created_at: req.created_at, updated_at: now(), request_json: JSON.stringify(req), brand: req.brand, workspace: req.workspace });
   },
-  setStatus(db: Db, slug: string, status: JobStatus, stage: StageName | null): void {
+  setStatus(db: Db, slug: string, status: JobStatus, stage: AnyStageName | null): void {
     db.prepare('UPDATE jobs SET status = ?, stage = ?, updated_at = ? WHERE slug = ?').run(status, stage, now(), slug);
   },
   /** Archive entry (docs/03 S7): the delivered manifest on the job row. */
@@ -34,24 +34,36 @@ export const jobsRepo = {
 /** `brand`: the job's brand, or for a call outside a job (suggestion, library read) the active brand (Phase 8). */
 export interface UsageInput { job_id: string | null; brand: string; stage: string; model: string | null; tokens_in: number; tokens_out: number; cache_read: number; cache_write: number; cost_usd_est: number; at?: string }
 
-export interface StageRun { job_slug: string; stage: StageName; attempt: number; status: string; started_at: string; ended_at: string; minutes: number }
+export interface StageRun { job_slug: string; stage: AnyStageName; attempt: number; status: string; started_at: string; ended_at: string; minutes: number }
 
 export const stageRunsRepo = {
   insert(db: Db, r: StageRun): void {
     db.prepare(`INSERT INTO stage_runs (job_slug, stage, attempt, status, started_at, ended_at, minutes)
                 VALUES (@job_slug, @stage, @attempt, @status, @started_at, @ended_at, @minutes)`).run(r);
   },
-  /** Average wall minutes of the last `n` finished jobs (sum of their successful stage runs; failed or held runs include sleep/idle time); null before any job finished. Shown as «≈ X دقیقه». */
-  avgJobMinutes(db: Db, n = 5): number | null {
+  /**
+   * Average wall minutes of the last `n` finished jobs of one workspace (sum of their successful stage runs; failed or held runs include
+   * sleep/idle time); null before any job of it finished. Shown as «≈ X دقیقه»; the motion one also sets a ready_by start (Phase 11.3:
+   * the two workspaces never mix; motion is the default, so the motion schedule counts only motion films).
+   */
+  avgJobMinutes(db: Db, n = 5, ws: Workspace = 'motion'): number | null {
+    // Phase 11.8 (video only): a stage run that ended `blocked` also counts. It ends at the block, so it holds no waiting time, and the
+    // re-run after the owner's «قبول متن» takes seconds: on 2026-11-19 the done runs alone gave 5.2 minutes for a film that worked 22.4.
+    // The motion sum is unchanged.
+    const statuses = ws === 'video' ? "('done', 'blocked')" : "('done')";
     const rows = db.prepare(`SELECT SUM(r.minutes) AS m FROM stage_runs r JOIN jobs j ON j.slug = r.job_slug
-                             WHERE j.status = 'done' AND r.status = 'done' GROUP BY r.job_slug ORDER BY MAX(r.ended_at) DESC LIMIT ?`).all(n) as { m: number }[];
+                             WHERE j.status = 'done' AND r.status IN ${statuses} AND j.workspace = ? GROUP BY r.job_slug ORDER BY MAX(r.ended_at) DESC LIMIT ?`).all(ws, n) as { m: number }[];
     return rows.length ? rows.reduce((s, r) => s + r.m, 0) / rows.length : null;
   },
-  /** Average minutes of each stage over its last `n` successful runs; stages never finished on this machine are missing. Used for «حدود X دقیقه مانده». */
-  avgStageMinutes(db: Db, n = 5): Partial<Record<StageName, number>> {
+  /**
+   * Average minutes of each stage over its last `n` successful runs in jobs of one workspace; stages never finished on this machine are
+   * missing. Used for «حدود X دقیقه مانده». A run whose job has no row (a hand-made folder) counts as motion, as before Phase 11.3.
+   */
+  avgStageMinutes(db: Db, n = 5, ws: Workspace = 'motion'): Partial<Record<AnyStageName, number>> {
     const rows = db.prepare(`SELECT stage, AVG(minutes) AS m FROM (
-                               SELECT stage, minutes, ROW_NUMBER() OVER (PARTITION BY stage ORDER BY ended_at DESC) AS k FROM stage_runs WHERE status = 'done'
-                             ) WHERE k <= ? GROUP BY stage`).all(n) as { stage: StageName; m: number }[];
+                               SELECT r.stage, r.minutes, ROW_NUMBER() OVER (PARTITION BY r.stage ORDER BY r.ended_at DESC) AS k
+                               FROM stage_runs r LEFT JOIN jobs j ON j.slug = r.job_slug WHERE r.status = 'done' AND COALESCE(j.workspace, 'motion') = ?
+                             ) WHERE k <= ? GROUP BY stage`).all(ws, n) as { stage: AnyStageName; m: number }[];
     return Object.fromEntries(rows.map((r) => [r.stage, r.m]));
   },
   forJob(db: Db, slug: string): StageRun[] {
@@ -59,24 +71,33 @@ export const stageRunsRepo = {
   },
 };
 
+/** The usage rows of paid Vertex clip requests (D92 e: one row per request; the film's money ledger, not the Claude quota). */
+export const VERTEX_STAGE = 'clips';
+
 export const usageRepo = {
   insert(db: Db, u: UsageInput): void {
     db.prepare(`INSERT INTO usage (job_id, brand, stage, at, model, tokens_in, tokens_out, cache_read, cache_write, cost_usd_est)
                 VALUES (@job_id, @brand, @stage, @at, @model, @tokens_in, @tokens_out, @cache_read, @cache_write, @cost_usd_est)`).run({ ...u, at: u.at ?? now() });
   },
   /** Output tokens of every app Claude call since `sinceIso` (docs/09 Layer 1). */
+  /** Phase 11.8 (D108): the paid clip requests of scheduled films since `sinceIso`, with their job, for the daily cap of unattended films. */
+  scheduledClipRowsSince(db: Db, sinceIso: string): { slug: string; job_id: string; at: string; cost_usd_est: number }[] {
+    return db.prepare(`SELECT j.slug AS slug, u.job_id AS job_id, u.at AS at, u.cost_usd_est AS cost_usd_est FROM usage u JOIN jobs j ON j.id = u.job_id
+                       WHERE u.stage = '${VERTEX_STAGE}' AND u.at >= ? AND j.source = 'schedule' ORDER BY u.at`).all(sinceIso) as { slug: string; job_id: string; at: string; cost_usd_est: number }[];
+  },
   /** Tokens and cost of one job per Claude stage (every run, resumed ones included). */
   byJob(db: Db, jobId: string): { stage: string; tokens_in: number; tokens_out: number; cost_usd_est: number }[] {
     return db.prepare(`SELECT stage, SUM(tokens_in) AS tokens_in, SUM(tokens_out) AS tokens_out, SUM(cost_usd_est) AS cost_usd_est
                        FROM usage WHERE job_id = ? GROUP BY stage`).all(jobId) as { stage: string; tokens_in: number; tokens_out: number; cost_usd_est: number }[];
   },
   outputTokensSince(db: Db, sinceIso: string): number {
-    return (db.prepare('SELECT COALESCE(SUM(tokens_out), 0) AS n FROM usage WHERE at >= ?').get(sinceIso) as { n: number }).n;
+    // Phase 11.6: the clips stage's rows are Vertex (Google) tokens, not Claude's; they never count against the Claude window.
+    return (db.prepare(`SELECT COALESCE(SUM(tokens_out), 0) AS n FROM usage WHERE at >= ? AND stage <> '${VERTEX_STAGE}'`).get(sinceIso) as { n: number }).n;
   },
   /** Average output tokens per finished job over the last `n` finished jobs; null before any job finished (budget check off). */
   avgOutputTokensPerJob(db: Db, n = 5): number | null {
     const rows = db.prepare(`SELECT SUM(u.tokens_out) AS t FROM usage u JOIN jobs j ON j.id = u.job_id
-                             WHERE j.status = 'done' GROUP BY u.job_id ORDER BY MAX(u.at) DESC LIMIT ?`).all(n) as { t: number }[];
+                             WHERE j.status = 'done' AND u.stage <> '${VERTEX_STAGE}' GROUP BY u.job_id ORDER BY MAX(u.at) DESC LIMIT ?`).all(n) as { t: number }[];
     return rows.length ? rows.reduce((s, r) => s + r.t, 0) / rows.length : null;
   },
 };
@@ -98,29 +119,29 @@ export const settingsRepo = {
 };
 
 export const calendarRepo = {
-  upsert(db: Db, e: CalendarEntry): void {
+  upsert(db: Db, e: CalendarEntryInput): void {
     const v = CalendarEntry.parse(e);
-    // A day never moves to another brand: `brand` is written on insert only.
-    db.prepare(`INSERT INTO calendar (id, date, topic, note, style_override, format, status, job_id, brand)
-                VALUES (@id, @date, @topic, @note, @style_override, @format, @status, @job_id, @brand)
+    // A day never moves to another brand or workspace: `brand` and `workspace` are written on insert only.
+    db.prepare(`INSERT INTO calendar (id, date, topic, note, style_override, format, status, job_id, brand, workspace)
+                VALUES (@id, @date, @topic, @note, @style_override, @format, @status, @job_id, @brand, @workspace)
                 ON CONFLICT(id) DO UPDATE SET date = excluded.date, topic = excluded.topic, note = excluded.note, style_override = excluded.style_override,
                   format = excluded.format, status = excluded.status, job_id = excluded.job_id`).run(v);
   },
-  /** The days of one brand on `date`. */
-  byDate(db: Db, date: string, brand: string): CalendarEntry[] {
-    return (db.prepare('SELECT * FROM calendar WHERE date = ? AND brand = ?').all(date, brand) as unknown[]).map((r) => CalendarEntry.parse(r));
+  /** The days of one brand's calendar in one workspace on `date` (Phase 11.8, Q38 b: each workspace has its own calendar; motion by default). */
+  byDate(db: Db, date: string, brand: string, ws: Workspace = 'motion'): CalendarEntry[] {
+    return (db.prepare('SELECT * FROM calendar WHERE date = ? AND brand = ? AND workspace = ?').all(date, brand, ws) as unknown[]).map((r) => CalendarEntry.parse(r));
   },
   get(db: Db, id: string): CalendarEntry | undefined {
     const r = db.prepare('SELECT * FROM calendar WHERE id = ?').get(id);
     return r ? CalendarEntry.parse(r) : undefined;
   },
-  /** One brand's entries from `from` to `to` (both included), by date. */
-  range(db: Db, from: string, to: string, brand: string): CalendarEntry[] {
-    return (db.prepare('SELECT * FROM calendar WHERE date >= ? AND date <= ? AND brand = ? ORDER BY date').all(from, to, brand) as unknown[]).map((r) => CalendarEntry.parse(r));
+  /** One brand's entries of one workspace's calendar from `from` to `to` (both included), by date. */
+  range(db: Db, from: string, to: string, brand: string, ws: Workspace = 'motion'): CalendarEntry[] {
+    return (db.prepare('SELECT * FROM calendar WHERE date >= ? AND date <= ? AND brand = ? AND workspace = ? ORDER BY date').all(from, to, brand, ws) as unknown[]).map((r) => CalendarEntry.parse(r));
   },
-  /** Days of one brand that already hold a topic that has not been skipped (each brand has its own calendar). */
-  occupiedDates(db: Db, brand: string): Set<string> {
-    return new Set((db.prepare("SELECT date FROM calendar WHERE status != 'skipped' AND brand = ?").all(brand) as { date: string }[]).map((r) => r.date));
+  /** Days of one brand's calendar in one workspace that already hold a topic that has not been skipped (one topic per day in each calendar, D59 a). */
+  occupiedDates(db: Db, brand: string, ws: Workspace = 'motion'): Set<string> {
+    return new Set((db.prepare("SELECT date FROM calendar WHERE status != 'skipped' AND brand = ? AND workspace = ?").all(brand, ws) as { date: string }[]).map((r) => r.date));
   },
   delete(db: Db, id: string): void {
     db.prepare('DELETE FROM calendar WHERE id = ?').run(id);

@@ -55,6 +55,11 @@ export function migrateConfig(raw: unknown): { raw: unknown; changes: string[] }
   if (stages && typeof stages === 'object' && stages['brand-build'] === undefined) { stages['brand-build'] = structuredClone(RECOMMENDED_STAGES['brand-build']); changes.push('claude.stages.brand-build added (Phase 9)'); }
   const rec = claude.recommended as Record<string, unknown> | undefined;
   if (rec && typeof rec === 'object' && rec['brand-build'] === undefined) { rec['brand-build'] = structuredClone(RECOMMENDED_STAGES['brand-build']); changes.push('claude.recommended.brand-build added (Phase 9)'); }
+  // Phase 11.4: the video workspace's prompts stage (an older file has none); it uses the plan family's timeout and budget.
+  if (stages && typeof stages === 'object' && stages.prompts === undefined) { stages.prompts = structuredClone(RECOMMENDED_STAGES.prompts); changes.push('claude.stages.prompts added (Phase 11.4)'); }
+  if (rec && typeof rec === 'object' && rec.prompts === undefined) { rec.prompts = structuredClone(RECOMMENDED_STAGES.prompts); changes.push('claude.recommended.prompts added (Phase 11.4)'); }
+  // Phase 11.6: the video block (D91, D92), written out so the owner sees its caps and prices with their date (docs/13 V39).
+  if (next.video === undefined) { next.video = {}; changes.push('video added (Phase 11.6)'); }
   for (const [key, value] of [['timeouts_min', 40], ['max_budget_usd_per_call', 25]] as const) {
     const fam = claude[key] as Record<string, unknown> | undefined;
     if (fam && typeof fam === 'object' && fam.brand === undefined) { fam.brand = value; changes.push(`claude.${key}.brand added (Phase 9)`); }
@@ -88,6 +93,8 @@ export interface Paths {
   /** The brand registry folder (Phase 8); one brand is `<brands>/<slug>/`, resolved per job by app/brands. */
   brands: string;
   refs: string;
+  /** The visual styles of the video workspace (Phase 11.5, D86 g): `styles/<slug>/`, shared by every brand like refs/; not a config key. */
+  styles: string;
   jobs: string;
   motionCache: string;
   runtime: string;
@@ -139,6 +146,7 @@ export function loadConfig(root: string = PROJECT_ROOT, file: string = path.join
       config: file,
       brands: abs(cfg.paths.brands),
       refs: abs(cfg.paths.refs),
+      styles: abs('styles'),
       jobs: abs(cfg.paths.jobs),
       motionCache: abs(cfg.paths.motion_cache),
       runtime: abs(cfg.paths.runtime),

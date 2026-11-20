@@ -1,7 +1,7 @@
-// Responsibility: the Automation screen's calendar (docs/11 §4, docs/08 «Calendar»): a Jalali month with Saturday first, a topic and a status on every day, add, drag to another day, the side panel, CSV/XLSX import and paste of a list.
+// Responsibility: the Automation screen's calendar (docs/11 §4, docs/08 «Calendar»): a Jalali month with Saturday first, a topic and a status on every day, add, drag to another day, the side panel, CSV/XLSX import and paste of a list; the motion calendar, or the brand's own video calendar in the video workspace (Phase 11.8, Q38 b).
 import { APP_TIMEZONE } from '../../../calendar/zone';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { api, ApiError, type CalendarEntry, type CalendarRange, type ImportSummary, type RefCard } from '../api';
+import { api, ApiError, type CalendarEntry, type CalendarRange, type ImportSummary, type RefCard, type StylesList } from '../api';
 import { JALALI_MONTHS, WEEKDAYS_FA, addDays, isoOf, jalaliMonthLength, toGregorian, toJalali, weekdayIndex, ymdOf } from '../../../calendar/jalali';
 import { faNum } from '../fa';
 import { Field } from '../Field';
@@ -25,16 +25,21 @@ const firstDay = (mo: Month): string => isoOf(toGregorian({ y: mo.y, m: mo.m, d:
 const lastDay = (mo: Month): string => isoOf(toGregorian({ y: mo.y, m: mo.m, d: jalaliMonthLength(mo.y, mo.m) }));
 const shift = (mo: Month, by: number): Month => { const n = mo.y * 12 + (mo.m - 1) + by; return { y: Math.floor(n / 12), m: (n % 12) + 1 }; };
 
-export function Automation() {
-  useScreenTour('automation');
+export function Automation({ workspace = 'motion' }: { workspace?: 'motion' | 'video' }) {
+  useScreenTour(workspace === 'video' ? 'automation-video' : 'automation');
   const [month, setMonth] = useState<Month>(() => monthOf(localToday()));
-  // Each brand has its own calendar; the screen shows the active brand's (Phase 8).
+  // Each brand has its own calendar; the screen shows the active brand's (Phase 8), and in the video workspace its video calendar (Phase 11.8).
+  const video = workspace === 'video';
   const { active } = useBrand();
   const brandQuery = active ? `&brand=${encodeURIComponent(active.slug)}` : '';
-  const { data: raw, error, reload } = usePoll<CalendarRange>(active ? `/api/calendar?from=${firstDay(month)}&to=${lastDay(month)}${brandQuery}` : null, 30000);
-  // Never another brand's month while a switch is loading.
-  const data = raw && active && raw.brand === active.slug ? raw : null;
-  const { data: refData } = usePoll<{ references: RefCard[] }>('/api/references', 0);
+  const wsQuery = video ? '&workspace=video' : '';
+  const { data: raw, error, reload } = usePoll<CalendarRange>(active ? `/api/calendar?from=${firstDay(month)}&to=${lastDay(month)}${brandQuery}${wsQuery}` : null, 30000);
+  // Never another brand's (or the other workspace's) month while a switch is loading.
+  const data = raw && active && raw.brand === active.slug && (raw.workspace ?? 'motion') === workspace ? raw : null;
+  const { data: refData } = usePoll<{ references: RefCard[] }>(video ? null : '/api/references', 0);
+  // A video day's own style is a visual style with its text (Phase 11.5).
+  const { data: styleData } = usePoll<StylesList>(video ? '/api/styles' : null, 0);
+  const styleOptions = video ? (styleData?.styles ?? []).filter((s) => s.text).map((s) => ({ slug: s.slug, name: s.title })) : undefined;
   const [draft, setDraft] = useState<DayDraft | null>(null);
   const [result, setResult] = useState<ImportSummary | null>(null);
   const [pasting, setPasting] = useState(false);
@@ -49,6 +54,9 @@ export function Automation() {
   const length = jalaliMonthLength(month.y, month.m);
   const blanks = weekdayIndex(first);
   const days = Array.from({ length }, (_, i) => addDays(first, i));
+  /** The month as rows of seven cells; null is an empty cell before the first day. */
+  const cells: (string | null)[] = [...Array.from({ length: blanks }, () => null), ...days];
+  const weeks = Array.from({ length: Math.ceil(cells.length / 7) }, (_, i) => cells.slice(i * 7, i * 7 + 7));
   const runDays = data?.run_days ?? [true, true, true, true, true, true, false];
 
   /** «افزودن موضوع»: the app picks the day, the first free run-day from today on. */
@@ -69,7 +77,7 @@ export function Automation() {
     setProblem(null); setResult(null);
     const form = new FormData();
     form.append('file', file);
-    try { setResult(await api.post<ImportSummary>(`/api/calendar/import${brandQuery.replace('&', '?')}`, form)); await reload(); }
+    try { setResult(await api.post<ImportSummary>(`/api/calendar/import${brandQuery.replace('&', '?')}${video ? `${brandQuery ? '&' : '?'}workspace=video` : ''}`, form)); await reload(); }
     catch (e) { setProblem(e instanceof ApiError ? e.message : 'فایل خوانده نشد؛ دوباره امتحان کن.'); }
   };
 
@@ -78,7 +86,7 @@ export function Automation() {
 
   return (
     <div className="stack">
-      <div className="page-head"><h1>اتوماسیون</h1><div className="head-side">{active && <span className="brand-chip">تقویم برند: {active.name}</span>}<HelpButton /></div></div>
+      <div className="page-head"><h1>{video ? 'اتوماسیون ویدیو' : 'اتوماسیون'}</h1><div className="head-side">{active && <span className="brand-chip">{video ? 'تقویم ویدیوی برند' : 'تقویم برند'}: {active.name}</span>}<HelpButton /></div></div>
       {error && <div className="problem" role="alert">{error}</div>}
       {problem && <div className="problem" role="alert">{problem}</div>}
       {result && (
@@ -90,7 +98,7 @@ export function Automation() {
       )}
 
       <TopicsLowBanner />
-      <SchedulePanel />
+      <SchedulePanel workspace={workspace} />
 
       <div className="cal-layout">
         <section className="card stack" aria-labelledby="cal-h">
@@ -111,9 +119,10 @@ export function Automation() {
           </div>
 
           <div className="cal-grid" role="grid" aria-label={title}>
-            {WEEKDAYS_FA.map((w) => <div key={w} className="cal-head" role="columnheader">{w}</div>)}
-            {Array.from({ length: blanks }, (_, i) => <div key={`b${i}`} className="cal-blank" role="gridcell" aria-hidden="true" />)}
-            {days.map((iso) => {
+            {/* A grid needs rows (Lighthouse, Phase 12); the rows take no box of their own, so the seven-column layout is unchanged. */}
+            <div className="cal-row" role="row">{WEEKDAYS_FA.map((w) => <div key={w} className="cal-head" role="columnheader">{w}</div>)}</div>
+            {weeks.map((week, wi) => <div key={wi} className="cal-row" role="row">{week.map((iso, ci) => {
+              if (iso === null) return <div key={`b${ci}`} className="cal-blank" role="gridcell" />;
               const e = byDate.get(iso);
               const past = iso < today;
               const off = !runDays[weekdayIndex(iso)];
@@ -141,26 +150,26 @@ export function Automation() {
                   </button>
                 </div>
               );
-            })}
+            })}</div>)}
           </div>
-          {data && count === 0 && <EmptyState text="برای این ماه هنوز موضوعی نیست. یک موضوع بگذار، یا یک‌جا فایل یا لیستی از موضوع‌ها را وارد کن." action={{ label: 'اولین موضوع را اضافه کن', onClick: addTopic }} />}
+          {data && count === 0 && <EmptyState icon="calendar" text={video ? 'برای این ماه هنوز موضوع ویدیویی نیست. یک موضوع بگذار، یا یک‌جا فایل یا لیستی از موضوع‌ها را وارد کن؛ تقویم موشن جداست.' : 'برای این ماه هنوز موضوعی نیست. یک موضوع بگذار، یا یک‌جا فایل یا لیستی از موضوع‌ها را وارد کن.'} action={{ label: 'اولین موضوع را اضافه کن', onClick: addTopic }} />}
         </section>
 
-        {draft && <DayPanel key={`${draft.date}:${draft.entry?.id ?? 'new'}`} draft={draft} refs={refData?.references ?? []} onChanged={() => void reload()} onClose={() => setDraft(null)} />}
+        {draft && <DayPanel key={`${draft.date}:${draft.entry?.id ?? 'new'}`} draft={draft} refs={refData?.references ?? []} {...(video ? { workspace, styleOptions } : {})} onChanged={() => void reload()} onClose={() => setDraft(null)} />}
       </div>
 
-      {pasting && active && <PasteDialog brand={active.slug} onClose={() => setPasting(false)} onDone={(r) => { setResult(r); void reload(); }} />}
+      {pasting && active && <PasteDialog brand={active.slug} video={video} onClose={() => setPasting(false)} onDone={(r) => { setResult(r); void reload(); }} />}
     </div>
   );
 }
 
-function PasteDialog({ brand, onClose, onDone }: { brand: string; onClose: () => void; onDone: (r: ImportSummary) => void }) {
+function PasteDialog({ brand, video, onClose, onDone }: { brand: string; video: boolean; onClose: () => void; onDone: (r: ImportSummary) => void }) {
   const [text, setText] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const send = async () => {
     setBusy(true); setError(null);
-    try { onDone(await api.post<ImportSummary>('/api/calendar/paste', { text, brand })); onClose(); }
+    try { onDone(await api.post<ImportSummary>('/api/calendar/paste', { text, brand, ...(video ? { workspace: 'video' } : {}) })); onClose(); }
     catch (e) { setError(e instanceof ApiError ? e.message : 'اضافه نشد؛ دوباره امتحان کن.'); setBusy(false); }
   };
   return (

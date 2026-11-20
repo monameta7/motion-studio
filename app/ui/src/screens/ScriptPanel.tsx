@@ -1,9 +1,12 @@
-// Responsibility: the script panel (docs/11 §2, D45): read-only voice lines with their on-screen texts, «توقف و اصلاح سناریو», and the editor for a held job or a finished job's «متن گوینده» revision.
+// Responsibility: the script panel (docs/11 §2, D45): read-only voice lines with their on-screen texts, «توقف و اصلاح سناریو», and the editor for a held job or a finished job's «متن گوینده» revision (for a video film with clips made, behind a confirm with the price of the clips that may be bought again, V21).
 import { useState } from 'react';
 import { api, ApiError, type JobDetail, type ScriptLine } from '../api';
-import { faNum } from '../fa';
+import { faNum, faUsd } from '../fa';
+import { Confirm } from '../Modal';
 
 const RESTART_FA: Record<string, string> = { voice: 'صدای گوینده، نقشه، ساخت و بسته‌ی خروجی', plan: 'نقشه، ساخت و بسته‌ی خروجی' };
+/** A video job restarts from the same points, with its own stages (orchestrator RESET). */
+const RESTART_VIDEO_FA: Record<string, string> = { voice: 'صدای گوینده، پرامپت‌ها، کلیپ‌ها، سرهم کردن و بسته‌ی خروجی', plan: 'پرامپت‌ها، کلیپ‌ها، سرهم کردن و بسته‌ی خروجی' };
 
 /** Editable copy of the script: voice text by line id, on-screen text by index. */
 type Draft = { voice: Record<number, string>; screen: Record<number, string> };
@@ -12,14 +15,24 @@ const draftOf = (lines: ScriptLine[]): Draft => ({
   screen: Object.fromEntries(lines.flatMap((l) => l.on_screen.map((t) => [t.index, t.text]))),
 });
 
-/** Render with `key={editing ? 'edit' : 'read'}` so entering the editor starts from the current script. */
-export function ScriptPanel({ job, editing, onDone }: { job: JobDetail; editing: boolean; onDone?: (restartFa: string | null) => void }) {
+/**
+ * Render with `key={editing ? 'edit' : 'read'}` so entering the editor starts from the current script. `onDone` = the edit was sent;
+ * `onCancel` = «انصراف» on a finished film's revision: nothing was sent (2026-11-18: it used to call `onDone`, so the page said a revision had started).
+ */
+export function ScriptPanel({ job, editing, onDone, onCancel }: { job: JobDetail; editing: boolean; onDone?: (restartFa: string | null) => void; onCancel?: () => void }) {
   const script = job.script!;
   const [opened, setOpen] = useState(false);
   const open = editing || opened;
   const [draft, setDraft] = useState<Draft>(() => draftOf(script.lines));
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [asking, setAsking] = useState(false);
+  // V21 (Phase 11.7): clips already made can be bought again after a text change; the price is shown and confirmed before saving.
+  const made = job.workspace === 'video' ? (job.clips?.clips ?? []).filter((c) => c.status === 'done' || c.status === 'flagged') : [];
+  const rebuy = Math.round(made.reduce((n, c) => n + c.price_usd, 0) * 100) / 100;
+  const clipsWarning = made.length > 0
+    ? `با این تغییر، پرامپت کلیپ‌ها دوباره نوشته می‌شود (یک بار Claude) و هر کلیپی که پرامپتش عوض شود باید دوباره خریده شود: تا ${faNum(made.length)} کلیپ، حدود ${faUsd(rebuy)} (سقف هر فیلم ${faUsd(job.clips?.cap_usd ?? 10)}). کلیپ‌هایی که پرامپتشان عوض نشود رایگان می‌مانند و هیچ کلیپی بدون تأیید دوباره‌ی تو خریده نمی‌شود.`
+    : null;
 
   const voiceChanged = script.lines.some((l) => draft.voice[l.id] !== l.text);
   const anyChanged = voiceChanged || script.lines.some((l) => l.on_screen.some((t) => draft.screen[t.index] !== t.text));
@@ -33,8 +46,10 @@ export function ScriptPanel({ job, editing, onDone }: { job: JobDetail; editing:
         voice_lines: script.lines.map((l) => ({ id: l.id, text: draft.voice[l.id]!.trim() })),
         on_screen_texts: Object.entries(draft.screen).map(([i, text]) => ({ index: Number(i), text: text.trim() })).sort((a, b) => a.index - b.index),
       };
-      const r = await api.put<{ restart_from?: string }>(`/api/jobs/${job.slug}/script`, body);
-      onDone?.(r.restart_from ? RESTART_FA[r.restart_from] ?? null : null);
+      const r = await api.put<{ restart_from?: string }>(`/api/jobs/${job.slug}/script${!unchanged && clipsWarning ? '?confirm_clips=1' : ''}`, body);
+      setAsking(false);
+      const restart = job.workspace === 'video' ? RESTART_VIDEO_FA : RESTART_FA;
+      onDone?.(r.restart_from ? restart[r.restart_from] ?? null : null);
     } catch (e) { setError(e instanceof ApiError ? e.message : String(e)); } finally { setBusy(false); }
   }
 
@@ -78,14 +93,19 @@ export function ScriptPanel({ job, editing, onDone }: { job: JobDetail; editing:
       )}
       {editing && (
         <div className="stack-sm">
-          {voiceChanged && script.voice_made && <p className="problem">تغییر متن گوینده یک درخواست صدای جدید می‌گیرد (از ۱۰ درخواست روزانهٔ Gemini)</p>}
+          {voiceChanged && script.voice_made && <p className="problem">تغییر متن گوینده یک درخواست صدای جدید می‌گیرد (از ۱۰ درخواست روزانه‌ی Gemini)</p>}
+          {anyChanged && clipsWarning && <p className="problem">{clipsWarning}</p>}
           {empty && <p className="problem">هیچ متنی نباید خالی بماند.</p>}
           {error && <p className="problem" role="alert">{error}</p>}
           <div className="actions">
-            <button type="button" className="btn primary" disabled={busy || empty || !anyChanged} onClick={() => void save(false)}>ادامه با این متن</button>
+            <button type="button" className="btn primary" disabled={busy || empty || !anyChanged} onClick={() => (clipsWarning ? setAsking(true) : void save(false))}>ادامه با این متن</button>
             {job.status === 'held' && <button type="button" className="btn" disabled={busy} onClick={() => void save(true)}>ادامه بدون تغییر</button>}
-            {job.status === 'done' && <button type="button" className="btn" disabled={busy} onClick={() => onDone?.(null)}>انصراف</button>}
+            {job.status === 'done' && <button type="button" className="btn" disabled={busy} onClick={() => { setError(null); onCancel?.(); }}>انصراف</button>}
           </div>
+          {asking && clipsWarning && (
+            <Confirm title="کلیپ‌ها ممکن است دوباره خریده شوند" text={clipsWarning} yes={`بله، ذخیره کن (تا ${faUsd(rebuy)})`} busy={busy}
+              onYes={() => void save(false)} onNo={() => { setAsking(false); setError(null); }} />
+          )}
         </div>
       )}
     </div>

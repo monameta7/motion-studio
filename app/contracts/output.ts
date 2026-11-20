@@ -25,6 +25,16 @@ export const Manifest = z.strictObject({
     tokens_out: z.number().int().nonnegative(),
     cost_usd_est: z.number().nonnegative(),
   }),
+  /**
+   * Only on a video film (Phase 11.7): the clips, the clips kept with a flag, the level of their own sound (null = off) and the film's ledger in
+   * dollars: Claude (content, prompts) from its usage rows and Google Vertex from the clips' rows (D92 e). A motion manifest has no such field.
+   */
+  video: z.strictObject({
+    clips: z.number().int().min(1),
+    flagged: z.array(z.number().int().min(1)),
+    clip_sound_db: z.number().max(0).nullable(),
+    ledger_usd: z.strictObject({ claude: z.number().nonnegative(), vertex: z.number().nonnegative(), total: z.number().nonnegative() }),
+  }).optional(),
   created_at: isoDateTime,
 }).refine((m) => m.total_duration >= m.duration, { message: 'total_duration must include duration', path: ['total_duration'] });
 export type Manifest = z.infer<typeof Manifest>;

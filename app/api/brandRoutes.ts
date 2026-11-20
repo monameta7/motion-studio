@@ -1,4 +1,4 @@
-// Responsibility: the brand endpoints of the sidebar switcher (Phase 8): the list of brands with the active one, switching the active brand, each brand's logo, and deleting a brand (D85).
+// Responsibility: the brand endpoints of the sidebar switcher (Phase 8): the list of brands with the active one, switching the active brand, each brand's logo (and a small cached copy of it, Phase 12), and deleting a brand (D85).
 import fs from 'node:fs';
 import path from 'node:path';
 import type { FastifyInstance } from 'fastify';
@@ -13,6 +13,28 @@ const ActiveBody = z.strictObject({ slug: z.string().min(1) });
 /** A hand-made brand has logo.png; a brand made in «برند من» keeps the file the user uploaded (png, jpg or webp). */
 const LOGO_FILES = ['logo.png', 'logo.jpg', 'logo.webp'];
 const logoOf = (dir: string) => LOGO_FILES.find((f) => fs.existsSync(path.join(dir, f)));
+/** Widths of the small logo copies the UI asks for (2× the shown size: sidebar 40 px, brand page 72 px). */
+const LOGO_WIDTHS = new Set([96, 160]);
+
+/**
+ * Phase 12: a small PNG copy of a brand logo, made once by ffmpeg in `<data>/cache/logos` (git-ignored, outside the brand folder,
+ * which stays byte-identical) and named by the logo's size and time, so a new logo makes a new copy. Null when ffmpeg fails: the caller sends the original.
+ */
+async function smallLogo(ctx: ApiContext, b: Brand, file: string, width: number): Promise<{ dir: string; name: string } | null> {
+  const src = path.join(b.dir, file);
+  const st = fs.statSync(src);
+  const dir = path.join(path.dirname(ctx.config.paths.db), 'cache', 'logos');
+  const name = `${b.slug}-${width}-${st.size}-${Math.round(st.mtimeMs)}.png`;
+  if (fs.existsSync(path.join(dir, name))) return { dir, name };
+  fs.mkdirSync(dir, { recursive: true });
+  const tmp = path.join(dir, `${name}.${process.pid}.tmp.png`);
+  const r = await ctx.libraryTool('ffmpeg', ['-v', 'error', '-y', '-i', src, '-vf', `scale=${width}:${width}:force_original_aspect_ratio=decrease:flags=lanczos`, '-frames:v', '1', tmp], { timeoutMs: 20000 });
+  if (r.code !== 0 || !fs.existsSync(tmp) || fs.statSync(tmp).size === 0) { fs.rmSync(tmp, { force: true }); return null; }
+  fs.renameSync(tmp, path.join(dir, name));
+  // Older copies of this brand at this width are no longer used.
+  for (const f of fs.readdirSync(dir)) if (f.startsWith(`${b.slug}-${width}-`) && f !== name && f.endsWith('.png')) fs.rmSync(path.join(dir, f), { force: true });
+  return { dir, name };
+}
 
 export function brandRoutes(app: FastifyInstance, ctx: ApiContext): void {
   const card = (b: Brand) => ({ slug: b.slug, name: b.name, logo: logoOf(b.dir) !== undefined });
@@ -65,11 +87,16 @@ export function brandRoutes(app: FastifyInstance, ctx: ApiContext): void {
     } catch (e) { return sendError(reply, e); }
   });
 
-  app.get<{ Params: { slug: string } }>('/api/brands/:slug/logo.png', async (request, reply) => {
+  app.get<{ Params: { slug: string }; Querystring: { w?: string } }>('/api/brands/:slug/logo.png', async (request, reply) => {
     let b: Brand;
     try { b = readBrand(ctx.config.paths, request.params.slug); } catch { return fail(reply, 404, 'برند پیدا نشد.'); }
     const logo = logoOf(b.dir);
     if (!logo) return fail(reply, 404, 'این برند لوگو ندارد.');
+    const width = Number(request.query.w);
+    if (LOGO_WIDTHS.has(width)) {
+      const small = await smallLogo(ctx, b, logo, width).catch(() => null);
+      if (small) return reply.header('Cache-Control', 'max-age=60').sendFile(small.name, small.dir);
+    }
     return reply.header('Cache-Control', 'max-age=60').sendFile(logo, b.dir);
   });
 }

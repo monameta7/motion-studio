@@ -9,7 +9,7 @@ Executes `scene-plan.json` from motion-plan: builds every scene in code, renders
 
 Brand-agnostic: every identity value (colours, fonts, logo, outro) comes from `brand-profile.json`. Motion language (camera, transitions, durations, easing, rhythm, layout) comes from the plan, which takes it from the reference; where the plan states it, it beats the brand's motion defaults. Content comes only from the plan: never invent text, numbers or claims.
 
-**The look comes from the plan's `style_lock` and the reference (D55):** dimensionality, light, shadow, depth, materials and background are built as the reference has them. A 3D reference is built as real 3D (three.js with lights, shadows, perspective camera and depth-of-field blur; install it locally next to playwright: `npm i three`, copy `three.module.js` into `project/lib/` and load it by relative path, no CDN; headless WebGL works via the engine's `--enable-unsafe-swiftshader`), never as flat shapes. The brand's "no 3D / no shadow / flat" notes never limit a film with a reference. Reusable components in `.motion/<brand>/components/` are used only when they match that look; otherwise write a new one.
+**The look comes from the plan's `style_lock` and the reference (D55):** dimensionality, light, shadow, depth, materials and background are built as the reference has them. A 3D reference is built as real 3D (three.js with lights, shadows, perspective camera and depth-of-field blur; install it locally next to playwright: `npm i three`, copy `three.module.js` into `project/lib/` and load it by relative path, no CDN; headless WebGL: launch Chromium with `--use-angle=d3d11 --ignore-gpu-blocklist --enable-unsafe-swiftshader`, as the engine's `capture.mjs` does, so it renders on the GPU and falls back to SwiftShader only when there is none; any capture or stills script you write uses the same flags), never as flat shapes. The brand's "no 3D / no shadow / flat" notes never limit a film with a reference. Reusable components in `.motion/<brand>/components/` are used only when they match that look; otherwise write a new one.
 
 Runs unattended: no waiting, except the gate in §6. Paths are relative to the project root; times are absolute seconds on the film timeline.
 
@@ -28,7 +28,7 @@ Once per machine; install what is missing:
 
 From `brand-profile.json`, write `theme.json` and `theme.css` (CSS variables):
 
-- Colour roles; `banned_colors` never used.
+- Colour roles; `banned_colors` never used. Roles colour text, cards, UI, numbers, CTA and large background surfaces; objects, people and props drawn in a scene keep the colours the plan gives them (natural or the reference's), not brand roles (colour zones, motion-plan conflict-order item 5).
 - Local `@font-face` for every font file; fallback Google Fonts: Vazirmatn (Persian), Inter (Latin).
 - Type scale per format, and one style per text role (`hook`, `key`, `stat`, `label`, `cta`): size, weight, colour role, backing (none or a panel).
 - Spacing unit, radii, strokes, shadows from `shape` (neutral defaults when null) only when the plan has no reference look; with a reference, light, shadow and materials follow `style_lock`.
@@ -156,7 +156,7 @@ Checks (all automated):
 3. Text, read from the DOM with `page.evaluate` at each text's hold midpoint: computed font size ≥ the theme minimum; bounding box inside every `safe_zone` region from the plan and inside the frame (no clipping or overflow); contrast measured against background pixels sampled from the frame under the text box.
 4. Freezes: `ffmpeg -vf freezedetect=n=0.003:d=0.6` reports nothing outside planned holds.
 5. Flashes: mean luminance per frame; no more than 3 jumps above 0.4 within any second.
-6. Visual review: one contact sheet of stills at each cut (−1, 0, +1 frame) and one of each text hold midpoint (`ffmpeg ... tile`), looked at once. Check Persian joining, word order, Persian digits, missing glyph boxes, logo placement, colours inside the theme.
+6. Visual review: one contact sheet of stills at each cut (−1, 0, +1 frame) and one of each text hold midpoint (`ffmpeg ... tile`), looked at once. Check Persian joining, word order, Persian digits, missing glyph boxes, logo placement, text, card and background colours inside the theme, scene objects in the plan's own colours.
 
 Fix, re-render only the windows that changed, re-run only the checks they affect. At most 3 rounds; then deliver and list remaining flaws in `qa.md`.
 

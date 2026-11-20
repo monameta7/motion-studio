@@ -22,6 +22,7 @@ import { OutroError } from '../brandcore/outro.js';
 import type { KeyChangeOutcome } from '../stages/voice/avaClient.js';
 import type { SystemItem } from '../onboarding/index.js';
 import type { Scheduler } from '../scheduler/index.js';
+import type { VideoCheck } from '../video/unlock.js';
 
 export interface ApiContext {
   config: LoadedConfig;
@@ -55,6 +56,8 @@ export interface ApiContext {
   systemCheck: () => Promise<{ ok: boolean; items: SystemItem[] }>;
   /** After a Gemini key change: restart the ava-farsi this app started, leave a user-started one alone (D65); tests replace it. */
   restartVoice: () => Promise<KeyChangeOutcome>;
+  /** Phase 11.9 (D91): the free Google Cloud check that opens the video workspace; only the real server passes the real one, so tests and the stub never reach Google. */
+  videoCheck: VideoCheck;
   /** Opens a folder in the file manager (Windows Explorer); returns false where there is none (cloud session). */
   openFolder: (dir: string) => Promise<boolean>;
   /** The «برند من» rebuild (Phase 9): Claude only through the runner, the outro and palette by code. Tests replace its runner with a fake. */

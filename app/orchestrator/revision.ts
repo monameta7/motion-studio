@@ -11,6 +11,7 @@ import { ContentPackage, TruthRound, readJson, writeJson, type JobState } from '
 import type { Db } from '../db/db.js';
 import { jobsRepo, lockRepo, usageRepo } from '../db/repositories.js';
 import { packageStage } from '../package/index.js';
+import { videoPackageStage } from '../package/video.js';
 import { runTool } from '../proc.js';
 import { verifyBuild } from '../stages/build/index.js';
 import type { Tool } from '../stages/build/verify.js';
@@ -92,7 +93,7 @@ export async function reviseScript(o: Orchestrator, slug: string): Promise<Scrip
     throw e;
   }
   if (outcome.changes === 0) return { needsEdit: false, backup, outcome, state };
-  const stages = resetFrom(dir, state.stages, outcome.voiceChanged ? 'voice' : 'plan');
+  const stages = resetFrom(dir, state.stages, outcome.voiceChanged ? 'voice' : 'plan', readRequest(dir).workspace);
   // A finished job has no edge back to running; the revision starts it again as a new run of the reset stages (the delivery is in the backup).
   writeState(dir, { ...state, status: 'queued', stage: null, stages, error: null, hold: null, resume_at: null });
   fs.appendFileSync(path.join(dir, 'logs', 'revisions.jsonl'), `${JSON.stringify({ at: new Date().toISOString(), target: 'script', backup, ...outcome })}\n`, 'utf8');
@@ -113,6 +114,8 @@ export async function reviseJob(deps: RevisionDeps, slug: string, target: Revisi
   if (!note.trim()) throw new StageError('blocked', 'برای بازبینی یک توضیح بنویس.', 'empty note');
   if (readState(dir).status !== 'done') throw new StageError('blocked', 'فقط کار تمام‌شده را می‌شود بازبینی کرد.', `status ${readState(dir).status}`);
   const req = readRequest(dir);
+  // Phase 11.7: a video film has no motion build to revise; its clip, sound and script have their own paths (videoRevision.ts, the script editor).
+  if (req.workspace === 'video' && target !== 'caption') throw new StageError('blocked', 'در ویدیو فقط کپشن با یادداشت اصلاح می‌شود؛ کلیپ را با «دوباره بساز» و صدای کلیپ‌ها را در «صدا» عوض کن.', `video job, target ${target}`);
   // Phase 8: the job's own brand folder and names, never a global one.
   let brand: ReturnType<typeof brandPrompt> & { folder: string };
   try { brand = { ...brandPrompt(config.paths, req.brand), folder: brandDir(config.paths, req.brand) }; } catch (e) {
@@ -162,7 +165,8 @@ export async function reviseJob(deps: RevisionDeps, slug: string, target: Revisi
     }
 
     const state = readState(dir);
-    await packageStage().run({ config, db, req, dir, state, attempt: 1 });
+    // Each workspace's own package step (Phase 11.7); a motion job runs packageStage() as before.
+    await (req.workspace === 'video' ? videoPackageStage() : packageStage()).run({ config, db, req, dir, state, attempt: 1 });
     const after = await fingerprint(dir, tool);
     const wrong = unexpectedChanges(target, before, after);
     const changed = Object.fromEntries((Object.keys(before) as (keyof Fingerprint)[]).map((k) => [k, before[k] !== after[k]]));

@@ -15,7 +15,8 @@
     "start": "tsx app/server.ts",
     "ui:build": "vite build --config app/ui/vite.config.ts",
     "ui:dev": "vite --config app/ui/vite.config.ts",
-    "lib:add": "tsx app/library/addCli.ts"
+    "lib:add": "tsx app/library/addCli.ts",
+    "ledger": "tsx app/metrics/ledgerCli.ts"
   },
   "dependencies": {
     "@fastify/multipart": "^10.1.6",

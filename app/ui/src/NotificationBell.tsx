@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { api } from './api';
 import { faAgo, faNum } from './fa';
 import { go, usePoll } from './hooks';
+import { Icon } from './Icons';
 
 export interface Notice { id: number; at: string; kind: string; text: string; route: string; read: boolean }
 interface Feed { items: Notice[]; unread: number; sound: boolean }
@@ -13,6 +14,8 @@ export function NotificationBell() {
   const { data, reload } = usePoll<Feed>('/api/notifications', 5000);
   const [open, setOpen] = useState(false);
   const [toast, setToast] = useState<Notice | null>(null);
+  /** Counts new notifications; each one tilts the bell once (the key restarts the animation). */
+  const [tilt, setTilt] = useState(0);
   const seen = useRef<number | null>(null);
 
   // The first answer only sets the starting point; after that, a newer event is shown once as a message.
@@ -22,7 +25,7 @@ export function NotificationBell() {
     if (seen.current === null) { seen.current = top; return; }
     const fresh = data.items.find((n) => n.id > seen.current! && !n.read);
     seen.current = Math.max(seen.current, top);
-    if (fresh) setToast(fresh);
+    if (fresh) { setToast(fresh); setTilt((n) => n + 1); }
   }, [data]);
   // Going to another screen closes the list.
   useEffect(() => { const close = () => setOpen(false); window.addEventListener('hashchange', close); return () => window.removeEventListener('hashchange', close); }, []);
@@ -39,8 +42,11 @@ export function NotificationBell() {
 
   return (
     <>
-      <button type="button" className="bell" aria-expanded={open} aria-controls="bell-panel" onClick={() => setOpen(!open)}>
-        <span>اعلان‌ها</span>
+      <button type="button" className={`bell${tilt ? ' tilt' : ''}`} aria-expanded={open} aria-controls="bell-panel" onClick={() => setOpen(!open)}>
+        <span className="bell-label">
+          <Icon key={tilt} name="bell" className="bell-icon" />
+          اعلان‌ها
+        </span>
         {unread > 0 && <span className="count" aria-label={`${faNum(unread)} اعلان خوانده‌نشده`}>{faNum(unread)}</span>}
       </button>
 

@@ -14,12 +14,14 @@ interface Props {
   limits: { max_brief_chars: number; max_images: number; max_image_mb: number };
   /** «از تقویم محتوا»: the chosen calendar day; null while writing a topic. */
   fromCalendar: boolean; setFromCalendar: (b: boolean) => void;
+  /** The video workspace (Phase 11.3): no «+» images (docs/13 V28); a calendar day comes from the video calendar (Phase 11.8). */
+  video?: boolean;
   day: CalendarEntry | null; setDay: (e: CalendarEntry | null) => void;
 }
 
 const OK_TYPES = ['image/png', 'image/jpeg', 'image/webp'];
 
-export function TopicBox({ topic, setTopic, images, setImages, hook, setHook, limits, fromCalendar, setFromCalendar, day, setDay }: Props) {
+export function TopicBox({ topic, setTopic, images, setImages, hook, setHook, limits, fromCalendar, setFromCalendar, day, setDay, video = false }: Props) {
   const area = useRef<HTMLTextAreaElement>(null);
   const picker = useRef<HTMLInputElement>(null);
   const [problems, setProblems] = useState<string[]>([]);
@@ -58,8 +60,9 @@ export function TopicBox({ topic, setTopic, images, setImages, hook, setHook, li
     setProblems(errs);
   }
 
-  const onDrop = (e: DragEvent) => { e.preventDefault(); setDragging(false); void add([...e.dataTransfer.files]); };
+  const onDrop = (e: DragEvent) => { e.preventDefault(); setDragging(false); if (!video) void add([...e.dataTransfer.files]); };
   const onPaste = (e: ClipboardEvent) => {
+    if (video) return;
     const files = [...e.clipboardData.files].filter((f) => f.type.startsWith('image/'));
     if (files.length) { e.preventDefault(); void add(files); }
   };
@@ -78,7 +81,7 @@ export function TopicBox({ topic, setTopic, images, setImages, hook, setHook, li
         </div>
       </div>
 
-      {fromCalendar ? <CalendarPick day={day} setDay={setDay} /> : <>
+      {fromCalendar ? <CalendarPick day={day} setDay={setDay} video={video} /> : <>
 
       <label htmlFor="topic" className="field-label">موضوع، ایده یا سناریو</label>
       <div className={`topic-wrap${dragging ? ' drag' : ''}`} onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={onDrop}>
@@ -87,28 +90,32 @@ export function TopicBox({ topic, setTopic, images, setImages, hook, setHook, li
           placeholder="مثلاً: سه کاری که یک دستیار هوشمند برای پیج فروشگاهی انجام می‌دهد"
           aria-describedby="topic-hint topic-count"
         />
+        {!video && <>
         <button type="button" className="plus" aria-label="افزودن تصویر" title="افزودن تصویر" onClick={() => picker.current?.click()} disabled={busy || images.length >= limits.max_images}>+</button>
         <input ref={picker} type="file" accept="image/png,image/jpeg,image/webp" multiple hidden onChange={(e) => { void add([...(e.target.files ?? [])]); e.target.value = ''; }} />
+        </>}
       </div>
       <div className="row-between">
-        <p id="topic-hint" className="muted small">اختیاری: اگر دستوری برای ساخت تصویر داری، همین‌جا داخل [ ] بنویس؛ گوینده آن را نمی‌خواند. مثال: [عکس ۱ را در صحنه‌ی دوم نشان بده]</p>
+        <p id="topic-hint" className="muted small">{video
+          ? 'اختیاری: اگر دستوری برای ساخت داری، همین‌جا داخل [ ] بنویس؛ گوینده آن را نمی‌خواند. در حالت ویدیو تصویر «+» اضافه نمی‌شود.'
+          : 'اختیاری: اگر دستوری برای ساخت تصویر داری، همین‌جا داخل [ ] بنویس؛ گوینده آن را نمی‌خواند. مثال: [عکس ۱ را در صحنه‌ی دوم نشان بده]'}</p>
         <p id="topic-count" className="muted small" aria-live="polite">{nearLimit ? `${faNum(chars)} از ${faNum(limits.max_brief_chars)} حرف` : ''}</p>
       </div>
       {bracket && <p className="problem" role="alert">{bracket}</p>}
 
-      {(images.length > 0 || busy) && (
+      {!video && (images.length > 0 || busy) && (
         <div className="stack-sm">
           <ul className="thumbs" aria-label="تصویرهای اضافه‌شده">
             {images.map((im, i) => (
               <li key={im.id} className="thumb">
-                <img src={im.url} alt="" />
+                <img src={im.url} alt="" decoding="async" />
                 <span className="thumb-name"><b>{faNum(i + 1)}</b> <bdi>{im.name}</bdi></span>
                 <button type="button" className="x" aria-label={`حذف ${im.name}`} onClick={() => setImages((cur) => cur.filter((c) => c.id !== im.id))}>×</button>
               </li>
             ))}
             {busy && <li className="thumb loading" aria-live="polite">در حال افزودن…</li>}
           </ul>
-          <p className="muted small">همهٔ تصویرها داخل ویدیو استفاده می‌شوند. در [ ] بنویسید با هر تصویر چه شود؛ مثلاً [تصویر ۱ را بازسازی و متحرک کن].</p>
+          <p className="muted small">همه‌ی تصویرها داخل ویدیو استفاده می‌شوند. در [ ] بنویسید با هر تصویر چه شود؛ مثلاً [تصویر ۱ را بازسازی و متحرک کن].</p>
         </div>
       )}
       {problems.map((p) => <p key={p} className="problem" role="alert">{p}</p>)}

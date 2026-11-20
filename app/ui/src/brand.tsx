@@ -15,7 +15,8 @@ export interface BrandState {
 
 const BrandContext = createContext<BrandState>({ brands: [], active: null, choose: async () => null, remove: async () => null, loaded: false });
 
-export const logoUrl = (slug: string) => `/api/brands/${encodeURIComponent(slug)}/logo.png`;
+/** The brand's logo; `w` (96 or 160) asks for a small copy (Phase 12: the original can be over 600 kB and is shown at 40 px). */
+export const logoUrl = (slug: string, w?: 96 | 160) => `/api/brands/${encodeURIComponent(slug)}/logo.png${w ? `?w=${w}` : ''}`;
 
 export function BrandProvider({ children }: { children: ReactNode }) {
   const [view, setView] = useState<BrandsView | null>(null);

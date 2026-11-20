@@ -17,9 +17,13 @@ const names = ownerBuild
   ? { title: 'استودیو موشن مهدیار', short: 'استودیو موشن', welcome: 'به استودیوی موشن خوش آمدی' }
   : { title: 'استودیو محتوا', short: 'استودیو محتوا', welcome: 'به استودیوی محتوا خوش آمدی' };
 
+/** Phase 12: the UI font is fetched together with the script, so the first screen is drawn in its real font and nothing shifts when it arrives. */
+const fontFiles = ownerBuild ? ['YekanBakhFaNum-Regular', 'YekanBakhFaNum-SemiBold', 'YekanBakhFaNum-Bold', 'YekanBakhFaNum-ExtraBold'] : ['Vazirmatn[wght]'];
+const preloads = fontFiles.map((f) => `<link rel="preload" as="font" type="font/woff2" crossorigin href="/api/brand/${f}.woff2" />`).join('\n    ');
+
 export default defineConfig({
   root: here,
-  plugins: [react(), { name: 'app-name-title', transformIndexHtml: (html: string) => html.replace(/<title>[^<]*<\/title>/, `<title>${names.title}</title>`) }],
+  plugins: [react(), { name: 'app-name-title', transformIndexHtml: (html: string) => html.replace(/<title>[^<]*<\/title>/, `<title>${names.title}</title>\n    ${preloads}`) }],
   define: { __APP_NAMES__: JSON.stringify(names) },
   resolve: { alias: { '@ui-font': ownerBuild ? ownerCss : path.join(here, 'src', 'font-free.css') } },
   build: { outDir: process.env.MMS_UI_OUT || 'dist', emptyOutDir: true },

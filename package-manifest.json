@@ -1,7 +1,7 @@
 {
   "name": "motion-studio",
   "version": "0.1.0",
-  "built_at": "2026-11-14T12:41:48.425Z",
+  "built_at": "2026-11-20T04:48:41.903Z",
   "ui_built": true,
   "starter_refs": [
     "blue-gradient-type-01",
@@ -36,5 +36,40 @@
     "screen-demo-live-01",
     "soft-cards-type-01"
   ],
-  "files": 437
+  "starter_styles": [
+    "3d-pixar-style",
+    "90s-retro-anime-cel-shading",
+    "chalkboard-doodle-style",
+    "claymation-aardman-style",
+    "claymorphism-soft-3d",
+    "comic-book-graphic-novel-panels",
+    "crayon-kids-drawing-style",
+    "cyberpunk-neon-3d",
+    "fantasy-storybook-illustration",
+    "felt-fabric-puppet-style",
+    "flat-vector-illustration",
+    "glass-and-light-3d-render",
+    "ink-wash-sumi-e-style",
+    "isometric-3d-render",
+    "lego-brick-style",
+    "low-poly-3d",
+    "minimalist-line-art",
+    "noir-black-and-white-sketch",
+    "origami-paper-fold-style",
+    "paper-craft-stop-motion-layered-diorama",
+    "pastel-dreamy-3d-render",
+    "pixar-disney-hybrid",
+    "pixel-art-8-bit",
+    "realistic-cinematic-live-action-look",
+    "retro-1995-plastic-toy-3d-style",
+    "sand-animation-style",
+    "south-park-cutout-style",
+    "sticker-style-bold-outline",
+    "stop-motion-felt-puppet-coraline-style",
+    "studio-ghibli-anime-style",
+    "vintage-travel-poster-style",
+    "watercolor-illustration",
+    "wood-carving-whittled-figure-style"
+  ],
+  "files": 544
 }
