@@ -150,11 +150,14 @@ export function markUsed(root: string, slug: string, now = new Date()): void {
   if (m) writeJson(metaFile(root, slug), StyleMeta, { ...m, last_used_at: now.toISOString() });
 }
 
-/** The style used last, else the first of the library; null for an empty library. Only styles with a text count. */
+/** Before any style was used (a fresh install): style 31, the one both real films used (owner 2026-11-19: «سبک 31»), when the library has it. */
+export const STARTER_STYLE = 'glass-and-light-3d-render';
+
+/** The style used last, else the starter style, else the first of the library; null for an empty library. Only styles with a text count. */
 export function defaultStyle(styles: StyleMeta[]): string | null {
   const usable = styles.filter((s) => s.text);
   const used = usable.filter((s) => s.last_used_at).sort((a, b) => b.last_used_at!.localeCompare(a.last_used_at!));
-  return used[0]?.slug ?? usable[0]?.slug ?? null;
+  return used[0]?.slug ?? usable.find((s) => s.slug === STARTER_STYLE)?.slug ?? usable[0]?.slug ?? null;
 }
 
 /** Delete = move to `styles/_trash/<slug>-<time>` (the owner empties it himself, like refs/ D57 and D85). Returns the trash name. */
