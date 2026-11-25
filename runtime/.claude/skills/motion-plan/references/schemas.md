@@ -41,7 +41,7 @@ All files live in `jobs/<slug>/plan/`. Empty arrays or `null` when a source has 
   "status": "ready|awaiting_review",
   "central_idea": "",
   "chain": [{"id": 1, "lines": [1], "beat": "hook|problem|turn|solution|proof|cta|endcard",
-             "understand": "", "see": "", "metaphor": null,
+             "understand": "", "feel": "", "see": "", "metaphor": null,
              "becomes": 2, "relation": "cause|contrast|detail|consequence|answer|sequence",
              "handoff": "", "budget_s": 0}],
   "concepts": [{"id": "A", "tier": "conservative|balanced|bold", "metaphor": "", "hero": "",
@@ -98,6 +98,7 @@ All files live in `jobs/<slug>/plan/`. Empty arrays or `null` when a source has 
       "link": 1,
       "beat": "hook|problem|turn|solution|proof|cta|endcard",
       "understand": "",
+      "feel": "",
       "picture": "", "action": "", "camera": "",
       "purpose": "explain|connect|emphasize|reveal",
       "metaphor": null,
@@ -112,8 +113,8 @@ All files live in `jobs/<slug>/plan/`. Empty arrays or `null` when a source has 
                      "camera": {"move": "", "speed": "", "easing": ""}},
       "continuity": "",
       "handoff": "",
-      "borrowed_from": "r1-s3|NEW",
-      "adaptation": "KEEP|ADAPT|NEW",
+      "borrowed_from": "<ref-slug>/r1-s3|r1-s3|NEW",
+      "adaptation": "KEEP|ADAPT|NEW|REBUILD",
       "asset": null
     }
   ],

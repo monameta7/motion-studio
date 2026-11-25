@@ -2,10 +2,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { LoadedConfig } from '../config.js';
-import { VideoSound, writeJson, type JobState } from '../contracts/index.js';
+import { VideoCoverOptions, VideoSound, writeJson, type JobState } from '../contracts/index.js';
 import type { Db } from '../db/db.js';
 import { lockRepo } from '../db/repositories.js';
-import { videoPackageStage } from '../package/video.js';
+import { coverOptionsFile, videoPackageStage } from '../package/video.js';
 import { runTool } from '../proc.js';
 import { assembleStage } from '../stages/assemble/index.js';
 import type { Tool } from '../stages/build/verify.js';
@@ -15,7 +15,7 @@ import { StageError } from './stages.js';
 import { stageOrder } from './state.js';
 
 /** The video files a backup keeps next to out/: how the film was put together and which clips it used. */
-const VIDEO_RECORDS = ['video/assembly.json', 'video/clips.json', 'video/sound.json'];
+const VIDEO_RECORDS = ['video/assembly.json', 'video/clips.json', 'video/sound.json', 'video/cover.json'];
 
 function finishedVideo(dir: string): JobState {
   if (readRequest(dir).workspace !== 'video') throw new StageError('blocked', 'این کار ویدیو نیست.', 'not a video job');
@@ -47,6 +47,39 @@ export function restartFinishedVideo(dir: string, backup: string, record: Record
   writeState(dir, next);
   fs.appendFileSync(path.join(dir, 'logs', 'revisions.jsonl'), `${JSON.stringify({ at: new Date().toISOString(), target: 'clip', backup, ...record })}\n`, 'utf8');
   return next;
+}
+
+export interface VideoCoverResult { backup: string; options: { frame_s: number | null; logo: VideoCoverOptions['logo'] }; changed: Partial<Record<keyof Fingerprint, boolean>> }
+
+/**
+ * The cover revision of a video film: the moment of the reel behind the cover and the logo's place. Local and free (the cover is code,
+ * D102 c): the cover is drawn again from the finished film; the picture, the sound and the caption must not change.
+ */
+export async function reviseVideoCover(deps: VideoSoundDeps, slug: string, options: { frame_s: number | null; logo: VideoCoverOptions['logo'] }): Promise<VideoCoverResult> {
+  const { config, db } = deps;
+  const tool = deps.tool ?? ((c, a, o) => runTool(c, a, o));
+  const dir = jobDir(config.paths.jobs, slug);
+  const state = finishedVideo(dir);
+  const req = readRequest(dir);
+  lockRepo.acquire(db, slug);
+  try {
+    const before = await fingerprint(dir, tool);
+    const backup = backupVideo(dir);
+    const pending: RevisionPending = { at: new Date().toISOString(), target: 'cover', note: JSON.stringify(options), backup };
+    fs.writeFileSync(revisionPendingFile(dir), `${JSON.stringify(pending)}\n`, 'utf8');
+    writeJson(coverOptionsFile(dir), VideoCoverOptions, { ...options, at: new Date().toISOString() });
+    await videoPackageStage({ tool }).run({ config, db, req, dir, state, attempt: 1 });
+    const after = await fingerprint(dir, tool);
+    const wrong = unexpectedChanges('cover', before, after);
+    const changed = Object.fromEntries((Object.keys(before) as (keyof Fingerprint)[]).map((k) => [k, before[k] !== after[k]]));
+    const note = `${options.frame_s === null ? 'لحظه‌ی پیش‌فرض' : `ثانیه ${options.frame_s}`}، لوگو ${options.logo === 'under' ? 'زیر متن' : 'پایین وسط'}`;
+    fs.appendFileSync(path.join(dir, 'logs', 'revisions.jsonl'), `${JSON.stringify({ at: new Date().toISOString(), target: 'cover', note, backup, changed, unexpected: wrong })}\n`, 'utf8');
+    if (wrong.length) throw new StageError('failed', 'اصلاح کاور چیزی غیر از کاور را هم عوض کرد؛ نسخه‌ی قبلی در پوشه‌ی پشتیبان است.', `${backup}: ${wrong.join('; ')}`);
+    return { backup, options, changed };
+  } finally {
+    fs.rmSync(revisionPendingFile(dir), { force: true });
+    lockRepo.release(db);
+  }
 }
 
 export interface VideoSoundDeps { config: LoadedConfig; db: Db; tool?: Tool; preset?: string }

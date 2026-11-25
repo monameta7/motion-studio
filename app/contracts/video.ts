@@ -265,6 +265,11 @@ export type AssemblyFile = z.infer<typeof AssemblyFile>;
 export const VideoSound = z.strictObject({ clip_sound: z.enum(['keep', 'off']), at: isoDateTime });
 export type VideoSound = z.infer<typeof VideoSound>;
 
+/** The owner's cover choices for one film (`video/cover.json`): the moment of the reel behind the cover (default: the middle of the first clip) and where the logo sits. */
+export const COVER_LOGO_PLACES = ['under', 'bottom'] as const;
+export const VideoCoverOptions = z.strictObject({ frame_s: z.number().min(0).max(600).nullable(), logo: z.enum(COVER_LOGO_PLACES), at: isoDateTime });
+export type VideoCoverOptions = z.infer<typeof VideoCoverOptions>;
+
 /**
  * `control/unattended.json` (Phase 11.8, D108): written by the scheduler when it queues a calendar day's video film. While `attended_at` is
  * null nobody has touched the film, and its clips count against the daily cap for unattended films; the owner's first action on the job

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { ContentPackage, ScriptEditFile, readJson, writeJson } from '../contracts/index.js';
+import { COVER_LOGO_PLACES, ContentPackage, ScriptEditFile, readJson, writeJson } from '../contracts/index.js';
 import { calendarRepo, jobsRepo, lockRepo } from '../db/repositories.js';
 import { pidAlive } from '../proc.js';
 import { activeBrandSlug, brandDir, listBrands, readBrand } from '../brands/index.js';
@@ -18,8 +18,9 @@ import { isRoundsBlock, readDecision, writeDecision } from '../stages/content/de
 import { loadRounds } from '../stages/content/index.js';
 import { ClipActionError, decideStale, rebuildClip } from '../stages/clips/actions.js';
 import { readClips } from '../stages/clips/index.js';
-import { backupVideo, restartFinishedVideo, reviseVideoSound } from '../orchestrator/videoRevision.js';
+import { backupVideo, restartFinishedVideo, reviseVideoCover, reviseVideoSound } from '../orchestrator/videoRevision.js';
 import { markAttended } from '../video/unattended.js';
+import { coverPreview } from './coverPreview.js';
 import { fail, sendError, type ApiContext } from './context.js';
 import { isNotBuilt, jobDetail, latestFrame, listJobs } from './jobView.js';
 import { CHANGED } from './runner.js';
@@ -242,7 +243,7 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
     if (!b.success) throw new IntakeError('هدف اصلاح یا یادداشت درست نیست.');
     if (!b.data.note.trim()) throw new IntakeError('برای اصلاح یک یادداشت بنویس.');
     if (readState(dirOf(slug)).status !== 'done') throw new IntakeError('فقط کار تمام‌شده را می‌شود اصلاح کرد.');
-    if (readRequestOf(dirOf(slug)) === 'video' && b.data.target !== 'caption') throw new IntakeError('در ویدیو با یادداشت فقط کپشن اصلاح می‌شود؛ کلیپ را با «دوباره بساز» و صدای کلیپ‌ها را در «صدا» عوض کن.');
+    if (readRequestOf(dirOf(slug)) === 'video' && b.data.target !== 'caption') throw new IntakeError('در ویدیو با یادداشت فقط کپشن اصلاح می‌شود؛ کلیپ را با «دوباره بساز»، صدای کلیپ‌ها را در «صدا» و کاور را در «کاور» عوض کن.');
     ownerEnqueue(slug, 'revise', () => ctx.revise(slug, b.data.target, b.data.note));
   });
   /** Phase 11.7: a finished video film's sound revision: the clips' own sound kept 12 dB under the voice (D102) or off; on the PC, free. */
@@ -255,6 +256,17 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
     if (readRequestOf(dir) !== 'video') throw new IntakeError('این کار ویدیو نیست.');
     if (readState(dir).status !== 'done') throw new IntakeError('فقط کار تمام‌شده را می‌شود اصلاح کرد.');
     ownerEnqueue(slug, 'revise', () => reviseVideoSound({ config: ctx.config, db: ctx.db }, slug, b.data.clip_sound));
+  });
+  /** A finished video film's cover revision: the moment of the reel behind the cover and the logo's place; the cover is code, so it is local and free. */
+  const VideoCoverBody = z.strictObject({ frame_s: z.number().min(0).max(600).nullable(), logo: z.enum(COVER_LOGO_PLACES) });
+  action('video-cover', (slug, raw) => {
+    notBusy(slug);
+    const b = VideoCoverBody.safeParse(raw);
+    if (!b.success) throw new IntakeError('لحظه‌ی فیلم یا جای لوگو درست نیست.');
+    const dir = dirOf(slug);
+    if (readRequestOf(dir) !== 'video') throw new IntakeError('این کار ویدیو نیست.');
+    if (readState(dir).status !== 'done') throw new IntakeError('فقط کار تمام‌شده را می‌شود اصلاح کرد.');
+    ownerEnqueue(slug, 'revise', () => reviseVideoCover({ config: ctx.config, db: ctx.db }, slug, b.data));
   });
   action('open-folder', async (slug) => {
     const out = path.join(dirOf(slug), 'out');
@@ -314,6 +326,14 @@ export function jobRoutes(app: FastifyInstance, ctx: ApiContext): void {
   app.get<{ Params: { slug: string } }>('/api/jobs/:slug/frame', async (request, reply) => {
     if (!exists(request.params.slug)) return fail(reply, 404, 'این کار پیدا نشد.');
     return { file: latestFrame(dirOf(request.params.slug)) };
+  });
+
+  /** Phase 11.9: a 540 px JPEG of the film's cover for the Result page (the video cover PNG is a photo of about 0.7 MB); the PNG itself stays the download. */
+  app.get<{ Params: { slug: string } }>('/api/jobs/:slug/cover-preview.jpg', async (request, reply) => {
+    const { slug } = request.params;
+    const file = exists(slug) ? await coverPreview(path.join(dirOf(slug), 'out', 'cover-4x5.png')) : null;
+    if (!file) return fail(reply, 404, 'کاور پیدا نشد.');
+    return reply.header('Cache-Control', 'no-store').type('image/jpeg').send(fs.createReadStream(file));
   });
 
   app.get<{ Params: { slug: string; '*': string } }>('/api/jobs/:slug/files/*', async (request, reply) => {

@@ -1,7 +1,7 @@
 {
   "name": "motion-studio",
   "version": "0.1.0",
-  "built_at": "2026-11-20T05:53:09.669Z",
+  "built_at": "2026-11-25T20:21:33.541Z",
   "ui_built": true,
   "starter_refs": [
     "blue-gradient-type-01",
@@ -71,5 +71,5 @@
     "watercolor-illustration",
     "wood-carving-whittled-figure-style"
   ],
-  "files": 544
+  "files": 546
 }

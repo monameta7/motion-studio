@@ -95,6 +95,30 @@ export function uiScreenProblems(plan: ScenePlan, audio: AudioJson, attachments:
   return out;
 }
 
+/** Words that mark empty stand-in text on a card, list, message or screen («skeleton lines», «placeholder», «lorem»…). */
+// `placeholder` is also an input box's own hint text ("the placeholder disappears as the topic types"); only that use passes.
+export const PLACEHOLDER_TEXT = /\bskeleton\b|(?<!(input|field|search)\s)placeholder(?!\s+(disappears|vanishes|fades|clears|hint))|\blorem\b|\bdummy\s+(text|copy|lines?)|filler text|greeked|متن نمونه|نمونه متن/i;
+
+/**
+ * D118 (owner, 2026-11-25): no card, list, message or screen is drawn with empty stand-in lines. Its items carry short phrases of the voice
+ * itself, or are drawn with icons and shapes when no phrase fits (motion-plan L5 §6). Scans each scene's `picture`, `action` and every
+ * string inside `props`; an out-of-focus background part is written as «abstract (background)» and passes.
+ */
+export function placeholderProblems(plan: ScenePlan): string[] {
+  const out: string[] = [];
+  const walk = (v: unknown, where: string, id: number) => {
+    if (typeof v === 'string') { if (PLACEHOLDER_TEXT.test(v)) out.push(`scene ${id}: ${where} says «${v.slice(0, 80)}»; no empty stand-in lines on a card, list, message or screen: use short phrases of the voice itself, or icons and shapes (D118, L5 §6)`); return; }
+    if (Array.isArray(v)) { v.forEach((x, i) => walk(x, `${where}[${i}]`, id)); return; }
+    if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, id);
+  };
+  for (const sc of plan.scenes) {
+    walk(sc.picture, 'picture', sc.id);
+    walk(sc.action, 'action', sc.id);
+    walk(sc.props, 'props', sc.id);
+  }
+  return out;
+}
+
 const uiSourceFile = (dir: string, a: Attachment) => path.join(dir, 'plan', 'ui-source', `${path.basename(a.file, path.extname(a.file))}.json`);
 
 /**
@@ -129,7 +153,7 @@ export function verifyPlan(dir: string, attachments: readonly Attachment[] = [])
     const pkg = readJson(path.join(dir, 'content', 'package.json'), ContentPackage);
     const voice = readJson(path.join(dir, 'voice', 'lines.json'), VoiceLines);
     if (plan.status === 'blocked') return [`scene-plan.status is "blocked": ${plan.risks.join('; ')}`];
-    return [...checkPlan(plan, pkg, audio, voice), ...ownerAssetProblems(plan, attachments), ...uiScreenProblems(plan, audio, attachments)];
+    return [...checkPlan(plan, pkg, audio, voice), ...ownerAssetProblems(plan, attachments), ...uiScreenProblems(plan, audio, attachments), ...placeholderProblems(plan)];
   } catch (e) {
     return [e instanceof ContractError ? e.message : (e as Error).message];
   }

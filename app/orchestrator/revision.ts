@@ -115,7 +115,7 @@ export async function reviseJob(deps: RevisionDeps, slug: string, target: Revisi
   if (readState(dir).status !== 'done') throw new StageError('blocked', 'فقط کار تمام‌شده را می‌شود بازبینی کرد.', `status ${readState(dir).status}`);
   const req = readRequest(dir);
   // Phase 11.7: a video film has no motion build to revise; its clip, sound and script have their own paths (videoRevision.ts, the script editor).
-  if (req.workspace === 'video' && target !== 'caption') throw new StageError('blocked', 'در ویدیو فقط کپشن با یادداشت اصلاح می‌شود؛ کلیپ را با «دوباره بساز» و صدای کلیپ‌ها را در «صدا» عوض کن.', `video job, target ${target}`);
+  if (req.workspace === 'video' && target !== 'caption') throw new StageError('blocked', 'در ویدیو با یادداشت فقط کپشن اصلاح می‌شود؛ کلیپ را با «دوباره بساز»، صدای کلیپ‌ها را در «صدا» و کاور را در «کاور» عوض کن.', `video job, target ${target}`);
   // Phase 8: the job's own brand folder and names, never a global one.
   let brand: ReturnType<typeof brandPrompt> & { folder: string };
   try { brand = { ...brandPrompt(config.paths, req.brand), folder: brandDir(config.paths, req.brand) }; } catch (e) {

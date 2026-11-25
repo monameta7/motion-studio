@@ -6,6 +6,7 @@ import { usePoll, useRefName } from '../hooks';
 import { BUILD_STEPS, NOW_FA, ROW_STATE_FA, STAGE_ORDER_OF, WORKSPACE_FA, isPaused, rowState, rowsFor, statusText } from '../labels';
 import { ScriptPanel } from './ScriptPanel';
 import { ClipsPanel } from './ClipsPanel';
+import { PromptsPanel } from './PromptsPanel';
 import { FirstTip, HelpButton } from '../guide/Guide';
 
 /** The newest rendered frame, checked every 5 s while the build runs. */
@@ -23,24 +24,6 @@ function Frame({ job }: { job: JobDetail }) {
 }
 
 /** Phase 11.4: one clip prompt, folded, with «کپی» (the whole English prompt, as the app sends it). */
-function PromptItem({ p }: { p: JobDetail['prompts'][number] }) {
-  const [copied, setCopied] = useState(false);
-  const copy = async () => { try { await navigator.clipboard.writeText(p.text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { setCopied(false); } };
-  return (
-    <li className="prompt-item">
-      <div className="row-between">
-        <b>کلیپ {faNum(p.index)}</b>
-        <span className="muted small">{faNum(p.text.length)} حرف</span>
-        <button type="button" className="btn" onClick={() => void copy()} aria-label={`کپی پرامپت کلیپ ${faNum(p.index)}`}>{copied ? 'کپی شد' : 'کپی'}</button>
-      </div>
-      <details>
-        <summary>دیدن پرامپت</summary>
-        <pre className="qa-log prompt-text" dir="ltr">{p.text}</pre>
-      </details>
-    </li>
-  );
-}
-
 /**
  * «حدود X دقیقه مانده» from each stage's measured average (stage_runs): the stages still to run plus what is left of the running one.
  * When the running stage already took longer than usual, it says so instead of showing a number that would stay at «۱ دقیقه».
@@ -208,9 +191,7 @@ export function Progress({ job }: { job: JobDetail }) {
                     </details>
                   )}
                   {r.key === 'prompts' && job.prompts.length > 0 && (
-                    <ol className="stage-body prompt-list" aria-label="پرامپت کلیپ‌ها">
-                      {job.prompts.map((p) => <PromptItem key={p.file} p={p} />)}
-                    </ol>
+                    <div className="stage-body" aria-label="پرامپت کلیپ‌ها"><PromptsPanel job={job} withClips={false} /></div>
                   )}
                   {r.key === 'clips' && job.clips && <ClipsPanel job={job} idle={idle} onNotice={setNotice} onResume={canResume ? () => void act('resume') : null} />}
                   {r.key === 'build' && (

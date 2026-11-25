@@ -173,7 +173,7 @@ export interface JobDetail extends JobSummary {
   /** A revision the process was killed in the middle of (its marker file is still there), else null. The routes hide it while the job runs. */
   revision_pending: RevisionPending | null;
   /** Phase 11.4: a video job's clip prompts (video/prompts/clip-NN.txt), in order; empty before the prompts stage. */
-  prompts: { index: number; file: string; text: string }[];
+  prompts: { index: number; file: string; text: string; glance: PromptGlance; start_frame: string | null }[];
   /** Phase 11.4: blocked at a stage that is not built yet (notBuiltStage); «ادامه» would only block again. */
   not_built: boolean;
   /** Phase 11.6: a video job's clips («کلیپ k از N», previews, money used, the owner's pending choice); null before the prompts exist. */
@@ -214,12 +214,67 @@ export function videoResultView(dir: string, clips: ClipsView | null, manifest: 
   };
 }
 
-/** The clip prompts of a video job, in order. */
+/** What the screen shows first of a clip prompt: its own part, read from the skill's template lines; every field is null or empty when a line is not there. */
+export interface PromptGlance {
+  /** «0–10 s» of the reel. */
+  range: string | null;
+  /** The uploaded start image, as the prompt says it («none: …» or «the last frame of clip 1»). */
+  start: string | null;
+  /** What must become clear in this clip, and what the viewer should be able to say after it. */
+  goal: string | null;
+  after: string | null;
+  /** The English terms drawn on screen, each with when it shows. */
+  terms: { text: string; when: string }[];
+  /** This clip's silent beat notes («0–3 s: …»). */
+  beats: { at: string; text: string }[];
+  /** The line number (0-based) where this clip's own part starts, so the full view can open there. */
+  focus_line: number | null;
+}
+
+/** Reads the parts of one clip prompt for display only; it checks or changes nothing (the template belongs to the video-prompts skill, rule 4). */
+export function promptGlance(text: string): PromptGlance {
+  const lines = text.split(/\r?\n/);
+  const at = (re: RegExp, from = 0) => { for (let i = from; i < lines.length; i++) if (re.test(lines[i]!)) return i; return -1; };
+  const focus = at(/^THIS CLIP\b/);
+  const after = (re: RegExp) => { const i = at(re, Math.max(0, focus)); return i < 0 ? null : lines[i]!.replace(re, '').trim() || null; };
+  const terms: PromptGlance['terms'] = [];
+  const t = at(/^On-screen English lettering:/, Math.max(0, focus));
+  if (focus >= 0 && t >= 0) {
+    for (let i = t + 1; i + 1 < lines.length; i += 2) {
+      const term = lines[i]!.trim(), when = lines[i + 1]!.trim();
+      if (!term || !when || term.split(/\s+/).length > 3 || when.split(/\s+/).length < 3) break;
+      terms.push({ text: term, when });
+    }
+  }
+  const beats: PromptGlance['beats'] = [];
+  const n = at(/^THIS CLIP'S NARRATION/, Math.max(0, focus));
+  if (focus >= 0 && n >= 0) {
+    for (let i = n + 1; i < lines.length; i++) {
+      const m = /^(\d+(?:\.\d+)?\s*[–-]\s*\d+(?:\.\d+)?\s*s):\s*(.+)$/.exec(lines[i]!.trim());
+      if (m) beats.push({ at: m[1]!, text: m[2]! });
+      else if (beats.length && !lines[i]!.trim()) break;
+    }
+  }
+  const range = focus >= 0 ? (/\(([\d.]+\s*[–-]\s*[\d.]+\s*s)\b/.exec(lines[focus + 1] ?? '')?.[1] ?? null) : null;
+  return {
+    range,
+    start: focus >= 0 ? after(/^Uploaded image:\s*/) : null,
+    goal: focus >= 0 ? after(/^What must become clear in these \d+ seconds, in the order the voice says it:\s*/) : null,
+    after: focus >= 0 ? after(/^After this clip the viewer should be able to say:\s*/) : null,
+    terms, beats, focus_line: focus >= 0 ? focus : null,
+  };
+}
+
+/** The clip prompts of a video job, in order, each with its glance and its start frame (when the clip had one). */
 export function promptsView(dir: string): JobDetail['prompts'] {
   const folder = path.join(dir, 'video', 'prompts');
   if (!fs.existsSync(folder)) return [];
-  return fs.readdirSync(folder).filter((f) => /^clip-\d{2}\.txt$/.test(f)).sort()
-    .map((f) => ({ index: Number(f.slice(5, 7)), file: `video/prompts/${f}`, text: fs.readFileSync(path.join(folder, f), 'utf8') }));
+  return fs.readdirSync(folder).filter((f) => /^clip-\d{2}\.txt$/.test(f)).sort().map((f) => {
+    const nn = f.slice(5, 7);
+    const text = fs.readFileSync(path.join(folder, f), 'utf8');
+    const frame = `video/frames/clip-${nn}-start.png`;
+    return { index: Number(nn), file: `video/prompts/${f}`, text, glance: promptGlance(text), start_frame: fs.existsSync(path.join(dir, ...frame.split('/'))) ? frame : null };
+  });
 }
 
 /** True when the job stopped at a stage built in a later phase (the detail notBuiltStage writes). */

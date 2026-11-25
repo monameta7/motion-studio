@@ -9,6 +9,8 @@ Executes `scene-plan.json` from motion-plan: builds every scene in code, renders
 
 Brand-agnostic: every identity value (colours, fonts, logo, outro) comes from `brand-profile.json`. Motion language (camera, transitions, durations, easing, rhythm, layout) comes from the plan, which takes it from the reference; where the plan states it, it beats the brand's motion defaults. Content comes only from the plan: never invent text, numbers or claims.
 
+**Each scene is its reference shot (D116):** build the framing, camera, action, transitions and timing of the reading row in its `borrowed_from` (`motion_ref` first), with the plan's own objects, locations, characters and texts in place of the reference's (D113). Build the objects the plan designs for this film as real, detailed objects in the reference's rendering style, never as generic shapes. A floor reflection is subtle: faint and fading out within a short distance, never a second readable copy of the scene upside down.
+
 **The look comes from the plan's `style_lock` and the reference (D55):** dimensionality, light, shadow, depth, materials and background are built as the reference has them. A 3D reference is built as real 3D (three.js with lights, shadows, perspective camera and depth-of-field blur; install it locally next to playwright: `npm i three`, copy `three.module.js` into `project/lib/` and load it by relative path, no CDN; headless WebGL: launch Chromium with `--use-angle=d3d11 --ignore-gpu-blocklist --enable-unsafe-swiftshader`, as the engine's `capture.mjs` does, so it renders on the GPU and falls back to SwiftShader only when there is none; any capture or stills script you write uses the same flags), never as flat shapes. The brand's "no 3D / no shadow / flat" notes never limit a film with a reference. Reusable components in `.motion/<brand>/components/` are used only when they match that look; otherwise write a new one.
 
 Runs unattended: no waiting, except the gate in §6. Paths are relative to the project root; times are absolute seconds on the film timeline.
@@ -156,7 +158,7 @@ Checks (all automated):
 3. Text, read from the DOM with `page.evaluate` at each text's hold midpoint: computed font size ≥ the theme minimum; bounding box inside every `safe_zone` region from the plan and inside the frame (no clipping or overflow); contrast measured against background pixels sampled from the frame under the text box.
 4. Freezes: `ffmpeg -vf freezedetect=n=0.003:d=0.6` reports nothing outside planned holds.
 5. Flashes: mean luminance per frame; no more than 3 jumps above 0.4 within any second.
-6. Visual review: one contact sheet of stills at each cut (−1, 0, +1 frame) and one of each text hold midpoint (`ffmpeg ... tile`), looked at once. Check Persian joining, word order, Persian digits, missing glyph boxes, logo placement, text, card and background colours inside the theme, scene objects in the plan's own colours.
+6. Visual review: one contact sheet of stills at each cut (−1, 0, +1 frame) and one of each text hold midpoint (`ffmpeg ... tile`), looked at once. Check Persian joining, word order, Persian digits, missing glyph boxes, logo placement, text, card and background colours inside the theme, scene objects in the plan's own colours. Then the reference-world check (D113, D116): compare these stills with the plan's replacement table and the reference's own frames; any object, location, character, text or logo of the reference still on screen is replaced in code before delivery. In the same stills: a list, card or screen the voice talks about shows its words (not empty lines), key phrases are large, and no reflection reads as a mirrored copy; each frame has one clear focal point and is no busier than its reference shot (plan L5 §4b); fix before delivery.
 
 Fix, re-render only the windows that changed, re-run only the checks they affect. At most 3 rounds; then deliver and list remaining flaws in `qa.md`.
 
@@ -300,7 +302,7 @@ A separate composition, not a frame grabbed from the film. Content from the plan
 
 - `final.mp4`: the finished film with voice, music and effects, ready to publish
 - `cover.png`: the cover from §10; when the brand has a cover design system, `cover-4x5.png` (the master) instead, and no `cover.png`
-- `qa.md`: checks and results, a «look vs reference» line (dimensionality, light and shadow, materials, rhythm: matches or not, with a frame time), remaining flaws, scene time table; one line per owner asset with its mode and a time where it is fully visible in `final.mp4` (for `rebuild`: a time where the rebuilt screen is complete); one line per product screen state with its time
+- `qa.md`: checks and results, a «look vs reference» line (dimensionality, light and shadow, materials, rhythm: matches or not, with a frame time), remaining flaws, scene time table; one line per owner asset with its mode and a time where it is fully visible in `final.mp4` (for `rebuild`: a time where the rebuilt screen is complete); one line per product screen state with its time; one line per replacement of the reference's world (reference → scenario) with a time where it shows
 
 The editable project stays in `jobs/<slug>/project/`. New reusable components go to the library (§2).
 

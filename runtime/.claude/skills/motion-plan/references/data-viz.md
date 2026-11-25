@@ -24,6 +24,13 @@ A number is **shown as a moving, proportioned object**, not only as text. The fi
 - Persian digits on Persian screens (motion-build converts).
 - If the style brief forbids visible numbers, keep the proportion in the object and record in `risks` that the exact figure is not shown.
 
+## In a reference shot (RECREATE, D117)
+
+- A number lives inside its borrowed shot: it takes the place of an element the shot already moves (a card, a bar, a ring, a headline, an object that grows or turns) and moves with that element's own timing and easing.
+- Pick, among fitting shots, one whose moving element lands near the number word; when it does not, only the shot's still hold may shift (L5 §1), never its moves.
+- With no element to carry it, the figure takes the shot's headline place at headline size (L5 §6) and a proportioned object joins it.
+- Only numbers the voice says (owner rule 6); the integrity rules above still hold.
+
 ## Timing
 
 - The counter or growth starts on the number word in the voice (from `audio.json`) and lands within 0.6 s.

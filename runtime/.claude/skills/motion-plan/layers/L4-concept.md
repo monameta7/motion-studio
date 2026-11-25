@@ -8,6 +8,22 @@ The question for every idea is not "what cool image goes here?" but: **what is t
 
 Load now: `references/metaphor-bank.md`, `references/rtl-grammar.md`, `references/data-viz.md`.
 
+## 0. Team of roles (owner rule 3, D116)
+
+Plan as a team. Each role checks the plan at its step and signs its line in `plan.md` (passed, or what it changed).
+
+| Role | Checklist |
+|---|---|
+| Creative director | one idea for the whole film; the strongest reference sequences are picked; the signature moment is earned; the film's feel arc (§2) and the art-direction list (L5 §4b) hold |
+| Content strategist | every link serves the voice's message and the CTA; nothing off-topic; every link answers: what does the voice explain here, how is it shown, how does it become the next idea |
+| Voice writer | on-screen text is the voice's own words and numbers; every hold readable |
+| Senior motion designer | each scene is its reference shot: framing, camera, action, transition and timing match the reading rows; the picks are the complex ones; every join between shots of different references, and every REBUILD scene, carries the story (L5 §5) |
+| 3D and object designer | every object is made for this film from the scenario's world, in the reference's rendering style; none is the reference's object |
+| Experienced editor | cuts on the voice's words and pauses; the references' rhythm; no static picture beyond the hold rule; each scene's cut and hold support its `feel` |
+| Sound designer | cues on cuts and actions (L6), weighted by each scene's `feel` |
+| Product narrator | product films: for each feature the camera goes to it, the action happens, the result is shown |
+| Truth reviewer | every number and claim sourced and drawn true to scale inside its shot (`references/data-viz.md`); nothing of the reference's world, text or brand left |
+
 ## 1. Understand before designing
 
 Read the package and `audio.json`. List, without drawing anything yet:
@@ -30,6 +46,7 @@ Rules:
 
 - Every voice line belongs to exactly one link (`lines`). A link may cover several short lines; a long line may be split across two links at a clause boundary.
 - Each link names its `beat` (hook, problem, turn, solution, proof, cta, endcard).
+- Each link names its `feel`: what the viewer should feel or realise at that moment, in a few words (curiosity, tension, recognition, relief, confidence, urge to act), following the voice's own arc. The feel changes only where the voice turns. In RECREATE the feel never changes a shot's moves: it decides between fitting reference shots, what the shot puts first (which element, which word), how the shot's still part is used where the voice timing leaves room (cuts stay on the voice's words, L5 §2) and the weight of its sound.
 - The `becomes` relation is a meaning link first (cause, contrast, zoom into detail, consequence, answer). The physical handoff is chosen later; it may be a morph, a carry, a camera move or a motivated cut.
 - No orphan link: every link except the last has a `becomes`, and every link except the first is reached by one.
 - Budget: from `audio.json`, each link's available seconds. A link with less than 1.2 s merges with a neighbour.
@@ -46,7 +63,7 @@ Design three distinct concepts for the same chain:
 
 Each concept states: central metaphor; `hero` (the one persistent element that travels through the film); spatial logic (how the world is laid out and how the camera moves through it); one `signature` moment (a single memorable visual surprise, tied to the proof or the turn, never decoration); and how two or three key links hand off.
 
-All three use the reference's motion language (camera, transitions, rhythm, composition, layout, animation style) and its look (dimensionality, depth, light and shadow, materials, background feel; D55) and the brand's identity (colours, fonts, logo); they differ in world and metaphor, not in motion language. In all three, the world, subjects, props, settings and metaphors are derived from the voice-over and the package, never from the reference footage. With no readable reference they stay inside `motion.avoid`. In RECREATE mode, write one concept only.
+All three use the reference's motion language (camera, transitions, rhythm, composition, layout, animation style) and its look (dimensionality, depth, light and shadow, materials, background feel; D55) and the brand's identity (colours, fonts, logo); they differ in world and metaphor, not in motion language. In all three, the world, subjects, props, settings and metaphors are derived from the voice-over and the package, never from the reference footage. With no readable reference they stay inside `motion.avoid`. In RECREATE mode, write one concept only: the pick list. For each link, the reading row it uses (`borrowed_from`, any reference), why it fits, and its `complexity`; when no row fits, the row whose camera language and action it rebuilds for the scenario (owner rule 1). Among fitting rows the most complex wins. Every chosen reference gives at least one scene when one of its shots fits a link; a reference left out is named in `risks` with the reason (the first app RECREATE film used 2 of its 4 references).
 
 ## 4. Choose
 
@@ -96,6 +113,10 @@ Characters are defined per film from the voiceover, not from a fixed sheet. When
 
 - Every number in a link becomes an actor or scene element per `references/data-viz.md`, with `value_ref` to the package claim. A number with no sourced claim is dropped.
 - Every abstract idea gets a metaphor from `references/metaphor-bank.md` or a better one in the same spirit: simple, readable without the voice, not a cliché. The chosen metaphor is written on its link.
+
+## 8b. Objects made for this film (owner rule 4)
+
+For every object a borrowed shot features (a car, a truck, a phone, a card, a device), design the scenario's own object in its place: what it is, its shape, material and detail, in the reference's rendering style, and which reference object it replaces. Do the same for locations and characters (D113). These go into the scenes' `props` and `actors`, and the replacement table (reference → scenario) into `plan.md` (L8 §2).
 
 ## 9. Opening frame
 

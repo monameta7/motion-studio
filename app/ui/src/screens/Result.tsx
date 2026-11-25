@@ -1,21 +1,22 @@
-// Responsibility: the Result screen of a finished job (docs/11 §3): player, voice tone, cover with the profile-grid view, caption copy, QA checklist, revision box (with «متن گوینده»; for a video film: one clip, sound, caption, script), files and «باز کردن پوشه».
+// Responsibility: the Result screen of a finished job (docs/11 §3): player, voice tone, cover with the profile-grid view, caption copy, QA checklist, a video film's clip prompts, revision box (with «متن گوینده»; for a video film: one clip, sound, caption, script), files and «باز کردن پوشه».
 import { useEffect, useState, type ReactNode } from 'react';
-import { api, ApiError, fileUrl, type JobDetail } from '../api';
+import { api, ApiError, coverPreviewUrl, fileUrl, type JobDetail } from '../api';
 import { faDateTime, faDuration, faNum, faUsd } from '../fa';
 import { useRefName } from '../hooks';
 import { SubmitButton } from '../SubmitButton';
 import { WORKSPACE_FA } from '../labels';
 import { ScriptPanel } from './ScriptPanel';
 import { ClipsPanel } from './ClipsPanel';
+import { PromptsPanel } from './PromptsPanel';
 import { HelpButton } from '../guide/Guide';
 
 const TONE_FA: Record<string, string> = { formal: 'رسمی', narrative: 'روایی', friendly: 'دوستانه', meditative: 'آرام', energetic: 'پرانرژی' };
 const TARGETS = [
   { id: 'video', label: 'ویدیو' }, { id: 'cover', label: 'کاور' }, { id: 'caption', label: 'کپشن' }, { id: 'sound', label: 'صدا' }, { id: 'script', label: 'متن گوینده' },
 ] as const;
-/** Phase 11.7: a video film is revised by clip (paid), sound (free), caption and script; it has no motion build or designed cover to revise. */
+/** Phase 11.7: a video film is revised by clip (paid), sound (free), cover (free: moment and logo place), caption and script; it has no motion build to revise. */
 const VIDEO_TARGETS = [
-  { id: 'clip', label: 'یک کلیپ' }, { id: 'sound', label: 'صدا' }, { id: 'caption', label: 'کپشن' }, { id: 'script', label: 'متن گوینده' },
+  { id: 'clip', label: 'یک کلیپ' }, { id: 'sound', label: 'صدا' }, { id: 'cover', label: 'کاور' }, { id: 'caption', label: 'کپشن' }, { id: 'script', label: 'متن گوینده' },
 ] as const;
 type Target = (typeof TARGETS)[number]['id'] | 'clip';
 const TARGET_FA: Record<string, string> = Object.fromEntries([...TARGETS, ...VIDEO_TARGETS].map((t) => [t.id, t.label]));
@@ -94,6 +95,49 @@ function VideoSoundChoice({ job, working, onSent }: { job: JobDetail; working: b
   );
 }
 
+const LOGO_FA = {
+  under: { title: 'زیر زیرتیتر', hint: 'لوگوی بزرگ وسط‌چین، زیر متن کاور' },
+  bottom: { title: 'پایین، وسط', hint: 'لوگوی بزرگ پایین کاور' },
+} as const;
+
+/** The cover of a finished video film: the moment of the reel behind it and where the logo sits; the cover is drawn on the PC, free. */
+function VideoCoverChoice({ job, working, onSent }: { job: JobDetail; working: boolean; onSent: (label: string) => void }) {
+  const length = Math.floor(job.manifest?.duration ?? 600);
+  const [useDefault, setUseDefault] = useState(true);
+  const [second, setSecond] = useState('5');
+  const [logo, setLogo] = useState<'under' | 'bottom'>('under');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  async function apply() {
+    setBusy(true); setError(null);
+    try {
+      const s = Number(second);
+      if (!useDefault && (!Number.isFinite(s) || s < 0 || s > length)) throw new Error(`لحظه باید بین ۰ و ${faNum(length)} ثانیه باشد.`);
+      await api.post(`/api/jobs/${job.slug}/video-cover`, { frame_s: useDefault ? null : s, logo });
+      onSent(TARGET_FA.cover!);
+    } catch (e) { setError(e instanceof ApiError ? e.message : e instanceof Error ? e.message : String(e)); } finally { setBusy(false); }
+  }
+  return (
+    <div className="stack-sm">
+      <span className="field-label" id="cover-logo-l">جای لوگو روی کاور</span>
+      <div className="format-grid" role="radiogroup" aria-labelledby="cover-logo-l">
+        {(['under', 'bottom'] as const).map((k) => (
+          <label key={k} className={`format-card${logo === k ? ' on' : ''}`}>
+            <input type="radio" name="cover-logo" value={k} checked={logo === k} onChange={() => setLogo(k)} />
+            <span><b>{LOGO_FA[k].title}</b><span className="muted small"> — {LOGO_FA[k].hint}</span></span>
+          </label>
+        ))}
+      </div>
+      <label className="field-label" htmlFor="cover-sec">کدام لحظه‌ی فیلم پشت کاور باشد</label>
+      <label className="small"><input type="checkbox" checked={useDefault} onChange={(e) => setUseDefault(e.target.checked)} /> لحظه‌ی پیش‌فرض (وسط کلیپ اول)</label>
+      {!useDefault && <input id="cover-sec" type="number" min={0} max={length} step={0.5} value={second} onChange={(e) => setSecond(e.target.value)} aria-label="ثانیه" />}
+      <p className="small muted">فقط کاور دوباره ساخته می‌شود؛ تصویر، صدا و کپشن عوض نمی‌شوند و هزینه‌ای ندارد.</p>
+      {error && <p className="problem" role="alert">{error}</p>}
+      <div className="actions"><SubmitButton busy={busy} failed={!!error} disabled={working} onClick={() => void apply()}>اعمال اصلاح (رایگان)</SubmitButton></div>
+    </div>
+  );
+}
+
 function Revision({ job }: { job: JobDetail }) {
   const video = job.workspace === 'video';
   const targets = video ? VIDEO_TARGETS : TARGETS;
@@ -143,6 +187,8 @@ function Revision({ job }: { job: JobDetail }) {
         <ClipsPanel job={job} idle={!working} finished onResume={null} onNotice={() => { setSent(TARGET_FA.clip!); setPhase('started'); }} />
       ) : video && target === 'sound' ? (
         <VideoSoundChoice job={job} working={working} onSent={(l) => { setSent(l); setPhase('started'); }} />
+      ) : video && target === 'cover' ? (
+        <VideoCoverChoice job={job} working={working} onSent={(l) => { setSent(l); setPhase('started'); }} />
       ) : (
         <div className="stack-sm">
           <label htmlFor="rev-note" className="field-label">یادداشت اصلاح</label>
@@ -179,6 +225,8 @@ export function Result({ job, fresh = false }: { job: JobDetail; fresh?: boolean
   const refName = useRefName();
   // Files change on a revision; the job's update time keeps the browser from showing the old one.
   const v = encodeURIComponent(job.updated_at);
+  // Phase 11.9: a video film's cover is a photo PNG (about 0.7 MB, phone LCP 10 s); the page shows its 540 px JPEG. A motion cover is a light graphic and stays as it is.
+  const coverSrc = job.workspace === 'video' ? coverPreviewUrl(job.slug) : fileUrl(job.slug, 'out/cover-4x5.png');
 
   async function copy() {
     if (!job.caption) return;
@@ -204,7 +252,7 @@ export function Result({ job, fresh = false }: { job: JobDetail; fresh?: boolean
       <div className="result-grid">
         <section className="card stack-sm" aria-labelledby="player-h">
           <h2 id="player-h">فیلم</h2>
-          <video className={`player f${job.format}`} controls preload="metadata" poster={`${fileUrl(job.slug, 'out/cover-4x5.png')}?v=${v}`} src={`${fileUrl(job.slug, 'out/final.mp4')}?v=${v}`} />
+          <video className={`player f${job.format}`} controls preload="metadata" poster={`${coverSrc}?v=${v}`} src={`${fileUrl(job.slug, 'out/final.mp4')}?v=${v}`} />
           {job.voice && (
             <p className="small muted">
               صدا: <bdi className="latin">{job.voice.voice}</bdi> · لحن {TONE_FA[job.voice.tone] ?? job.voice.tone}{job.voice.tone_source === 'auto' ? ' (انتخاب خودکار)' : ''}
@@ -220,7 +268,7 @@ export function Result({ job, fresh = false }: { job: JobDetail; fresh?: boolean
             </button>
           </div>
           <div className={`cover-box${grid ? ' grid-view' : ''}${fresh ? ' fresh' : ''}`}>
-            <img src={`${fileUrl(job.slug, 'out/cover-4x5.png')}?v=${v}`} alt={`کاور: ${job.topic}`} width={1080} height={1350} decoding="async" />
+            <img src={`${coverSrc}?v=${v}`} alt={`کاور: ${job.topic}`} width={1080} height={1350} decoding="async" />
           </div>
           {grid && <p className="small muted">بالا و پایین تیره شده: بخشی که در گرید پروفایل دیده نمی‌شود.</p>}
         </section>
@@ -251,6 +299,16 @@ export function Result({ job, fresh = false }: { job: JobDetail; fresh?: boolean
               هزینه‌ی این فیلم (برآورد برنامه): حدود {faUsd(m.video.ledger_usd.total)}؛ ساخت کلیپ‌ها با Google {faUsd(m.video.ledger_usd.vertex)}، Claude {faUsd(m.video.ledger_usd.claude)}. سرهم کردن، صدا، کاور و بسته‌ی خروجی روی همین کامپیوتر و رایگان است.
             </p>
           )}
+        </section>
+      )}
+
+      {job.workspace === 'video' && job.prompts.length > 0 && (
+        <section className="card stack" aria-labelledby="prompts-h">
+          <div className="stack-sm">
+            <h2 id="prompts-h">پرامپت کلیپ‌ها</h2>
+            <p className="small muted">هر کلیپ با همین متن از مدل ویدیو ساخته شد. خلاصه‌ی بخش مخصوص هر کلیپ اینجاست؛ متن کامل را می‌شود دید، کپی یا دانلود کرد.</p>
+          </div>
+          <PromptsPanel job={job} />
         </section>
       )}
 

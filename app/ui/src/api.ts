@@ -152,7 +152,11 @@ export interface JobDetail extends JobSummary {
   /** A revision that was cut off (app closed or restarted mid-way); null otherwise. */
   revision_pending: { at: string; target: string; note: string; backup: string } | null;
   /** Phase 11.4: a video job's clip prompts, in order. */
-  prompts: { index: number; file: string; text: string }[];
+  prompts: {
+    index: number; file: string; text: string; start_frame: string | null;
+    /** The clip's own part of the prompt, read for display (app/api/jobView.ts promptGlance). */
+    glance: { range: string | null; start: string | null; goal: string | null; after: string | null; terms: { text: string; when: string }[]; beats: { at: string; text: string }[]; focus_line: number | null };
+  }[];
   /** Phase 11.4: blocked at a stage built in a later phase; «ادامه» would only block again. */
   not_built: boolean;
   /** Phase 11.6: a video job's clips (app/stages/clips/actions.ts ClipsView); null before its prompts exist. */
@@ -189,3 +193,5 @@ export interface ClipsView {
 }
 
 export const fileUrl = (slug: string, rel: string) => `/api/jobs/${slug}/files/${rel.split('/').map(encodeURIComponent).join('/')}`;
+/** Phase 11.9: the 540 px JPEG of a finished film's cover (the page shows it; the PNG stays the download). */
+export const coverPreviewUrl = (slug: string) => `/api/jobs/${slug}/cover-preview.jpg`;

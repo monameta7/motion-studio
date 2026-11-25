@@ -74,8 +74,11 @@ const Scene = z.looseObject({
   texts: z.array(z.looseObject({ text: z.string().min(1), role: textRole, in: z.number().nonnegative(), out: z.number().nonnegative(), zone: z.enum(['upper', 'middle', 'lower']) })),
   transition_out: z.enum(['needle-zoom', 'fly-through', 'morph', 'carry', 'wipe', 'match-shape', 'hard-cut', 'none']),
   continuity: z.string(),
-  borrowed_from: z.string().regex(/^(r\d+-s\d+|NEW)$/),
-  adaptation: z.enum(['KEEP', 'ADAPT', 'NEW']),
+  // D116: with several references the plan may name the reference too (`purple-3d-type-01/r3-s8`); the first live RECREATE plan did, and was refused once.
+  // The second live plan wrote `purple-3d-type-01:r3-s9`; both separators are accepted (schemas.md names `/`).
+  borrowed_from: z.string().regex(/^(([a-z0-9][a-z0-9._-]*[/:])?r\d+-s\d+|NEW)$/),
+  // D116 (owner, 2026-11-24): REBUILD = no reference shot fits the line, so the named shot's camera language and action are rebuilt for the scenario.
+  adaptation: z.enum(['KEEP', 'ADAPT', 'NEW', 'REBUILD']),
   asset: z.string().nullable(),
   // motion-plan v2 additions (references/schemas.md §D): optional, so a v1 plan still passes
   link: z.number().int().min(1).optional(),

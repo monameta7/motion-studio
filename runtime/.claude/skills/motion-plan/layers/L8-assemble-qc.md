@@ -14,7 +14,7 @@ Merge into `scene-plan.json`: header fields; `style_lock` and `chain` from `conc
 
 ## 2. plan.md
 
-In this order: status line; mode; defaults picked; brand sources used; style lock; semantic chain table (link, lines, understand, see, becomes, handoff); the three concepts and the reason for the choice; reading table; adaptation map; storyboard table (scene, time, beat, picture, component, transition, purpose, key frame); sound cue list; cover decision; risks.
+In this order: status line; mode; defaults picked; brand sources used; style lock; semantic chain table (link, lines, understand, see, becomes, handoff); the three concepts and the reason for the choice; reading table; adaptation map; the team-of-roles lines (L4 §0); the replacement table, reference → scenario (objects, locations, characters, texts; L4 §8b); storyboard table (scene, time, beat, picture, component, transition, purpose, key frame); sound cue list; cover decision; risks.
 
 ## 3. Checks
 
@@ -22,7 +22,7 @@ Every item must pass; fix and recheck if not. A failure that belongs to an earli
 
 **Story**
 - Every voice line belongs to one chain link; no orphan link; every link has a handoff.
-- Every scene has `understand`, `purpose`, `key_frame`; no move without a purpose.
+- Every scene has `understand`, `feel`, `purpose`, `key_frame`; no move without a purpose; the feel arc follows the voice (it changes only where the voice turns).
 - No picture unchanged for more than 2.5 s without development.
 - Every actor appears in at least two links; every `character` scene uses a `cast` id; one look per id.
 
@@ -34,6 +34,16 @@ Every item must pass; fix and recheck if not. A failure that belongs to an earli
 - With a readable reference: every scene with a reading row in `borrowed_from` has `motion_ref`, and its camera moves, transitions, durations and easing match those rows, even where the brand's `motion.avoid` or `motion.durations_ms` say otherwise; no brand motion rule replaced a reference move; every `transition_out` is one of the eight values.
 - With a readable reference (D55): `style_lock` takes its dimensionality, light, shadow, materials and background feel from the reading's `look`; it contains none of "flat", "no shadow", "no 3D", "no depth" unless the reference is flat; no scene's picture is flatter than the reference; the average shot length is within 30% of the reference's (text readability may lengthen single holds, and `plan.md` says where).
 - Without a readable reference: no transition or move from `brand-profile.motion.avoid`; reveal durations inside `motion.durations_ms`.
+
+**Recreate** (with a readable reference, D116)
+- Every scene names its reading row in `borrowed_from`, is KEEP or REBUILD, and has `motion_ref`; its framing, camera, action and timing are that row's.
+- Among fitting rows the picks are the complex ones; a simpler pick where a more complex row fits is explained in `risks`.
+- Every object, location, character, text and logo seen in the borrowed rows has a replacement from the scenario's world in the replacement table; none is left in any scene's picture or props.
+- Every on-screen text is the voice's own words or numbers; every list, card, message or screen carries the voice's own short phrases or icons, never stand-in lines (no «skeleton», «placeholder», «lorem» anywhere in a scene's picture, action or props: the app refuses them, D118); key phrases at least the reference shot's text scale.
+- Every chosen reference gives at least one scene, or `risks` says why not.
+- Every join between shots of different references and every way into or out of a REBUILD scene has a `continuity` that names the relation and the carried element (L5 §5).
+- Art direction (L5 §4b): no scene busier than its reference shot; one focal point per frame; no more text blocks at once than the shot has.
+- Every role of L4 §0 has its line in `plan.md`.
 
 **Owner assets**
 - Every file in `jobs/<slug>/input/` is listed in `owner_assets` with its scenes, `how` and `mode`. `show`: it is the `asset` of a listed scene, unedited, aspect ratio kept, not covered by text. `edit`: it is the `asset` of a listed scene and every change traces to the owner's directions. `rebuild`: a `ui_screens` entry has it as `asset`.
@@ -49,7 +59,7 @@ Every item must pass; fix and recheck if not. A failure that belongs to an earli
 
 **Text and data**
 - Every text exact, within word limits, inside its line's span at entry, meets its hold time, sourced if it is a claim.
-- Every number on screen has a `value_ref` and a proportioned visual (`references/data-viz.md`).
+- Every number on screen has a `value_ref` and a proportioned visual (`references/data-viz.md`); in RECREATE it rides an element its borrowed shot already moves, or takes the shot's headline place (data-viz «In a reference shot»).
 - Direction and order follow `references/rtl-grammar.md`; text inside `safe_zone`.
 
 **Build readiness**

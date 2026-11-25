@@ -109,7 +109,7 @@ export function libraryRoutes(app: FastifyInstance, ctx: ApiContext): void {
         name_fa: (name || file.name).slice(0, 80) || 'موشن آپلودی',
         use_fa: (fields.use_fa ?? '').trim().slice(0, 300),
         tags: [group], group, source: 'library',
-        rights_note: `uploaded by the owner in the app on ${new Date().toISOString().slice(0, 10)}; origin not stated → plan mode ADAPT, never RECREATE`,
+        rights_note: `uploaded by the owner in the app on ${new Date().toISOString().slice(0, 10)}; origin not stated; used shot by shot like every reference, its text, objects, places, people and logos always replaced (D116)`,
       }, { config: ctx.config, db: ctx.db, tool: ctx.libraryTool, runFn: () => Promise.reject(new Error('not used')) });
       // The same video again (under another name or the same): nothing is stored or read twice. An old one-time upload saved now is not a repeat.
       if (stored.kind === 'duplicate' || !stored.promoted && stored.existed) return reply.send({ duplicate: true, slug: stored.kind === 'duplicate' ? stored.of : stored.slug, message_fa: 'این ویدیو از قبل در کتابخانه هست.' });

@@ -10,6 +10,8 @@ Load now: `references/transitions.md`, `references/safe-zones.md`, `references/d
 
 For each reference shot: **KEEP** (structure and motion reused, content replaced), **ADAPT** (motion idea kept, visual redesigned for brand and topic) or **DROP**. For each chain link: the reference shot it borrows, or `NEW`. Keep the reference's rhythm: scale its shot lengths to the voice lines.
 
+In RECREATE (every film with a readable reference, D116) each scene is **KEEP** (the reference shot as it is, its world replaced) or **REBUILD** (no shot fits: the named shot's camera language and action rebuilt for the scenario, D113); never `NEW` without a row and never ADAPT to a looser version. Every scene's `borrowed_from` names its row and `motion_ref` copies it. A shot keeps its own move durations; only a still hold inside it may grow or shrink to meet the voice.
+
 ## 2. Scenes from links
 
 One scene per link, or per split of a link; plus the end card when there is no outro (`voice_line: null`).
@@ -18,7 +20,7 @@ One scene per link, or per split of a link; plus the end card when there is no o
 - Scene times continuous, no gaps or overlaps; the last scene ends at `audio.json` duration.
 - Every cut lands on a line boundary or a word boundary from `audio.json`. Prefer a pause from `audio.json.pauses` when one sits within 0.3 s of the intended cut.
 
-Each scene copies from its link: `beat`, `understand`, `picture` (from `see`), `handoff`, `metaphor`. It adds `action`, `camera`, `component`, `props`, `texts`, `transition_out`, `motion_ref` (with a readable reference, §5), `continuity`, `purpose`, `key_frame`, `actor_states`, `borrowed_from`, `adaptation`, `asset`.
+Each scene copies from its link: `beat`, `understand`, `feel`, `picture` (from `see`), `handoff`, `metaphor`. It adds `action`, `camera`, `component`, `props`, `texts`, `transition_out`, `motion_ref` (with a readable reference, §5), `continuity`, `purpose`, `key_frame`, `actor_states`, `borrowed_from`, `adaptation`, `asset`.
 
 - **Setting and variety:** each scene's setting, subject and props come from its voice line and its link (L4), never from the reference's scenery; `borrowed_from` carries motion and look (rendering, light, depth, materials; D55) but never its objects. Consecutive scenes differ in `component`, composition or shot scale, and no component or layout repeats three scenes in a row, unless the reading table shows that repetition as the reference's deliberate rhythm (and even then the content differs).
 - `continuity` = the link's `handoff` in one line (motion-build reads this field).
@@ -37,6 +39,14 @@ Every move in `action` and `camera` carries a `purpose`: `explain`, `connect`, `
 
 Motion follows the reference (router conflict order, item 4): camera moves, move durations, easing, rhythm, shot length, composition and layout come from the reading table rows the scene borrows from, even when the brand lists that move in `brand-profile.motion.avoid` or gives other durations. Colours, fonts and logo stay the brand's. **Rhythm is the reference's too:** the camera or picture changes about as often as the reading's average shot length (a reference at ~2.4 s per shot gives a new shot, whip or camera move every ~2.5 s inside a voice line); a long voice line is cut into several shots, text stays readable across them (carry it over the cut). Only when no reference is readable: never use a move listed in `brand-profile.motion.avoid`; keep reveal durations inside `brand-profile.motion.durations_ms`; when the brand's personality is calm, editorial or minimal, prefer masked reveals, slides, morphs, match-shapes and line drawing, and use `needle-zoom` or `fly-through` at most twice per film.
 
+## 4b. Art direction (owner, 2026-11-25, D117)
+
+Each frame reads like premium editorial motion design, inside the reference's own look:
+
+- **Put first:** one clear focal point per frame; a visible hierarchy (key phrase, then hero object, then supporting elements); intentional empty space; text, objects and UI aligned on one spacing system.
+- **Avoid:** generic AI-looking pictures (shiny random blobs, stock-photo scenes); a 3D object with no role in the story; a background busier than the reference shot's; more text blocks on screen at once than the reference shot has (at most two when it has none); particles or effects the reference shot does not have.
+- **The reference shot is the ceiling for density:** a scene may be as rich as its shot, never busier. Richness comes from the shot's own choreography and the objects made for this film (L4 §8b), not from added decoration.
+
 ## 5. Transitions
 
 With a readable reference, copy the reference's motion exactly, in two fields:
@@ -46,10 +56,15 @@ With a readable reference, copy the reference's motion exactly, in two fields:
 
 A reference move that cannot be built in code at all (live footage, real 3D, a real face) is replaced by the nearest buildable move with the same timing and direction, and listed in `risks`. Otherwise choose `transition_out` per `references/transitions.md`: the least distracting transition that carries the handoff. Order of preference: an actor transform or carry that the world already provides → camera travel between regions → match-shape or morph → a motivated hard cut that keeps one anchor (position, colour, direction). Never a chain of unrelated hard cuts. The last scene's `transition_out` is `none`.
 
+**Joins that tell the story (D117):** in RECREATE two places are new, because no reference shows them: the cut between shots of two different references, and the way into and out of a REBUILD scene. At each, the end of one shot starts the next: the same object, a shape, a direction of motion or a colour accent carries over, using the outgoing shot's own transition move when it has one. The join says how the two ideas relate (cause, contrast, zoom into a detail, consequence, answer); write that relation in `continuity`. A hard cut there keeps at least one anchor (position, colour or direction).
+
 ## 6. On-screen text
 
 - Never subtitles. Text only when it adds information: a number, a key term, a contrast label, the CTA.
+- Only the voice's own words and numbers (owner rule 6, D113): every string is a run of words the voice says, in its order; no added label, number or slogan.
 - Short and exact: hook ≤7 words, others ≤10. Each string belongs to one voice line and appears between that line's first and last word times (`in` ≥ first word start). Key text enters on or just after an emphasis word.
+- Size: a key phrase is large and readable at a glance on a phone, at least the reference shot's own text scale; when the reference shot carries a headline, the voice's key phrase takes that place and size. A small label is only for secondary words.
+- Words on objects (D118, owner 2026-11-25): a list, card, note, message, page or screen shows real words at a readable size, and they are the voice's own (owner rule 6). When the voice names such items but not their content ("read its first few answers"), each item carries a short phrase the voice says nearby (e.g. «لیست قیمت», «لحن برندت», «جواب خوب»); when no phrase fits, the item is drawn with an icon or a shape. Never empty stand-in lines: the words «skeleton», «placeholder», «lorem» are refused by the app's plan check. An out-of-focus part in the far background is written as «abstract (background)».
 - Readability: each text stays visible at least `1.0 + 0.05 × characters` seconds. If its line is shorter, let it run into the next scene (set `out` later) or shorten the text. Never leave a text below its hold time.
 - Every number, price or claim on screen exists in the content package with a source; otherwise drop it. Numbers follow `references/data-viz.md`: shown as a moving, proportioned object, the figure as a label on it.
 - Zones and order follow `references/rtl-grammar.md` and stay inside `references/safe-zones.md`.
@@ -70,6 +85,8 @@ Everything is built in code: text, numbers, UI, diagrams, shapes, vector charact
 - `rebuild`: the blueprint of a product screen built in code. Its scenes' `asset` stays null and a `ui_screens` entry names it.
 
 With no direction for an image, choose the mode the film's flow needs and say why in `how`.
+
+**Shown never means static (owner, 2026-11-23, D116):** the camera may zoom into, travel across and frame parts of any owner image; in `edit` and `rebuild`, parts may be cut out, selected, clicked and typed into, and the result of each action is shown.
 
 **Reading an image in the film's format:** a `show` or `edit` image whose words the viewer must read (a screenshot, a document, a chart) follows the framing of `references/ui-screens.md` §5, like a product screen: when its shape differs from the film's (a desktop screenshot in 9:16), never shrink the whole image to the frame width; frame one region at a time and move between regions with the camera, so its smallest text that must be read is at least the minimum text size of motion-build (28 px at 1080 px wide in 9:16). Write the regions (source pixel rects), their order and times in `how`. An image the viewer only needs to recognise (a photo, a logo, a mood) may be shown whole.
 

@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { brandDir } from '../brands/index.js';
-import { AssemblyFile, ContentPackage, Manifest, readJson, writeJson } from '../contracts/index.js';
+import { AssemblyFile, ContentPackage, Manifest, VideoCoverOptions, readJson, writeJson } from '../contracts/index.js';
 import { jobsRepo, usageRepo } from '../db/repositories.js';
 import { StageError, type Stage, type StageContext, type StageOutput } from '../orchestrator/stages.js';
 import { runTool } from '../proc.js';
@@ -22,6 +22,9 @@ export function workspacePackage(motion: Stage, video: Stage): Stage {
  * so a film made before a later cover design is not refused by the revision's «only the sound changed» guard.
  */
 export interface VideoPackageDeps { tool?: Tool; keepCover?: boolean }
+
+/** The owner's cover choices for this film (written by the cover revision). */
+export const coverOptionsFile = (dir: string): string => path.join(dir, 'video', 'cover.json');
 
 const r4 = (x: number) => Math.round(x * 10000) / 10000;
 
@@ -56,9 +59,13 @@ export function videoPackageStage(deps: VideoPackageDeps = {}): Stage {
         try { cover = JSON.parse(fs.readFileSync(coverQa, 'utf8')) as CoverResult; } catch { cover = undefined; }
       }
       if (!cover) try {
+        // The owner's cover choices (revision «کاور»): the moment behind the cover (kept inside the reel) and the logo's place.
+        const bodyS = assembly.body_frames / assembly.fps;
+        const choice = fs.existsSync(coverOptionsFile(ctx.dir)) ? readJson(coverOptionsFile(ctx.dir), VideoCoverOptions) : null;
+        const frameS = choice?.frame_s == null ? coverFrameSeconds(bodyS) : Math.round(Math.min(choice.frame_s, Math.max(0, bodyS - 0.1)) * 1000) / 1000;
         cover = await makeCover({
           dir: ctx.dir, root: ctx.config.paths.root, brandDir: brandDir(ctx.config.paths, ctx.req.brand), engineDir: ctx.config.paths.engine,
-          cover: pkg.cover, frameS: coverFrameSeconds(assembly.body_frames / assembly.fps), tool,
+          cover: pkg.cover, frameS, logoPlace: choice?.logo ?? 'under', tool,
         });
       } catch (e) { throw new StageError('failed', 'کاور ویدیو ساخته نشد.', (e as Error).message); }
       fs.writeFileSync(path.join(ctx.dir, 'logs', 'cover-qa.json'), `${JSON.stringify(cover, null, 2)}\n`, 'utf8');

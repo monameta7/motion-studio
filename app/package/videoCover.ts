@@ -4,8 +4,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { z } from 'zod';
-import type { ContentPackage } from '../contracts/index.js';
+import type { ContentPackage, VideoCoverOptions } from '../contracts/index.js';
 import type { RunResult } from '../proc.js';
+
+export type LogoPlace = VideoCoverOptions['logo'];
 
 export type Tool = (cmd: string, args: string[], opts?: { timeoutMs?: number }) => Promise<RunResult>;
 
@@ -25,6 +27,9 @@ export const TEXT_PAD_X = 96;
 export const FRAME_BLUR_PX = 7;
 /** Opacity of the brand's dark colour behind the middle of the cover; the contrast check takes the worst case (text over a white pixel). */
 export const SCRIM_CENTRE = 0.64;
+/** The logo's width and its gap under the subline (the logo file is square with clear space around the mark). */
+export const LOGO_PX = 320;
+export const LOGO_GAP_PX = 36;
 /** The text block's centre may be this far from the cover's centre (rounding of the layout). */
 export const CENTRE_TOLERANCE_PX = 6;
 /** The frame of the reel under the text: the middle of the first clip (or of a shorter reel). */
@@ -99,9 +104,12 @@ export const coverContrast = (d: CoverDesign): number => contrast(d.band, blend(
 /**
  * The cover page (owner, 2026-11-19): the reel frame fills the whole cover, lightly blurred and darkened; the hook headline sits
  * exactly in the middle, large, in the brand's light colour over a soft scrim of its dark colour, the subline smaller under it;
- * the logo small at the bottom left. The headline shrinks from HEADLINE_PX until it fits in three lines, never breaking a word.
+ * the logo large and without a box (owner, 2026-11-23): the original logo, lit by a soft glow that follows its own shape, centred under the
+ * subline inside the text block (`under`, default) or centred at the bottom (`bottom`). The headline shrinks from HEADLINE_PX until it fits in
+ * three lines and the whole block stays within BAND_MAX_SHARE of the height, never breaking a word.
  */
-export function coverHtml(d: CoverDesign, cover: ContentPackage['cover'], frameFile: string): string {
+export function coverHtml(d: CoverDesign, cover: ContentPackage['cover'], frameFile: string, place: LogoPlace = 'under'): string {
+  const logo = d.logo ? `<img id="logo" src="${esc(pathToFileURL(d.logo).href)}" alt="">` : '';
   const fmt = (f: string) => ({ '.woff2': 'woff2', '.woff': 'woff', '.ttf': 'truetype', '.otf': 'opentype' })[path.extname(f).toLowerCase()] ?? 'woff2';
   const faces = d.faces.map((x) => `@font-face{font-family:'${d.family}';src:url('${pathToFileURL(x.file).href}') format('${fmt(x.file)}');font-weight:${x.weight};}`).join('\n');
   const dark = rgb(d.text);
@@ -116,17 +124,21 @@ body{position:relative;font-family:'${d.family}',Tahoma,sans-serif;color:${d.ban
 #band{position:absolute;left:${TEXT_PAD_X}px;right:${TEXT_PAD_X}px;top:50%;transform:translateY(-50%);text-align:center}
 #headline{margin:0;font-weight:${d.headlineWeight};font-size:${HEADLINE_PX}px;line-height:1.16;text-wrap:balance;word-break:keep-all;overflow-wrap:normal;text-shadow:0 6px 32px rgba(${dark},.55)}
 #subline{margin:28px 0 0;font-weight:${d.sublineWeight};font-size:${Math.round(HEADLINE_PX * SUBLINE_RATIO)}px;line-height:1.35;text-wrap:balance;opacity:.94;text-shadow:0 3px 18px rgba(${dark},.6)}
-#logo{position:absolute;left:${COVER_MARGIN}px;bottom:${COVER_MARGIN}px;background:${d.band};border-radius:24px;padding:14px 18px;line-height:0}
-#logo img{height:96px;width:auto}
+#logo{display:block;width:${LOGO_PX}px;height:auto;filter:drop-shadow(0 0 8px rgba(255,255,255,.95)) drop-shadow(0 0 24px rgba(255,255,255,.55))}
+#band #logo{margin:${LOGO_GAP_PX}px auto 0}
+body>#logo{position:absolute;left:50%;transform:translateX(-50%);bottom:${COVER_MARGIN}px}
 </style></head><body>
 <div id="picture"><img src="${esc(pathToFileURL(frameFile).href)}" alt=""></div>
 <div id="scrim"></div>
-<div id="band"><h1 id="headline">${esc(cover.headline)}</h1>${cover.subline ? `<p id="subline">${esc(cover.subline)}</p>` : ''}</div>
-${d.logo ? `<div id="logo"><img src="${esc(pathToFileURL(d.logo).href)}" alt=""></div>` : ''}
+<div id="band"><h1 id="headline">${esc(cover.headline)}</h1>${cover.subline ? `<p id="subline">${esc(cover.subline)}</p>` : ''}${logo && place === 'under' ? logo : ''}</div>
+${logo && place === 'bottom' ? logo : ''}
 <script>
 document.fonts.ready.then(function () {
-  var h = document.getElementById('headline'), s = document.getElementById('subline'), size = ${HEADLINE_PX};
-  var fits = function () { var lh = size * 1.16; return h.scrollWidth <= h.clientWidth + 1 && h.getBoundingClientRect().height <= lh * 3 + 2; };
+  var h = document.getElementById('headline'), s = document.getElementById('subline'), b = document.getElementById('band'), g = document.querySelector('body>#logo'), size = ${HEADLINE_PX};
+  var fits = function () {
+    var lh = size * 1.16, r = b.getBoundingClientRect();
+    return h.scrollWidth <= h.clientWidth + 1 && h.getBoundingClientRect().height <= lh * 3 + 2 && r.height <= ${Math.floor(COVER_H * BAND_MAX_SHARE)} && (!g || r.bottom <= g.getBoundingClientRect().top - 24);
+  };
   while (size > ${HEADLINE_MIN_PX} && !fits()) { size -= 4; h.style.fontSize = size + 'px'; if (s) s.style.fontSize = Math.round(size * ${SUBLINE_RATIO}) + 'px'; }
 });
 </script>
@@ -177,7 +189,7 @@ export interface CoverResult { file: string; frame_s: number; problems: string[]
  * Makes `out/cover-4x5.png`: the frame at `frameS` of the finished film, the page in `video/cover/`, the screenshot, the checks.
  * Throws when nothing could be rendered; a cover that renders but breaks a rule comes back with its problems.
  */
-export async function makeCover(o: { dir: string; root: string; brandDir: string; engineDir: string; cover: ContentPackage['cover']; frameS: number; tool: Tool }): Promise<CoverResult> {
+export async function makeCover(o: { dir: string; root: string; brandDir: string; engineDir: string; cover: ContentPackage['cover']; frameS: number; logoPlace?: LogoPlace; tool: Tool }): Promise<CoverResult> {
   const work = path.join(o.dir, 'video', 'cover');
   fs.mkdirSync(work, { recursive: true });
   const frame = path.join(work, 'frame.png');
@@ -186,7 +198,7 @@ export async function makeCover(o: { dir: string; root: string; brandDir: string
   if (f.code !== 0 || !fs.existsSync(frame)) throw new Error(`cover frame at ${o.frameS} s failed: ${(f.stderr || f.error || '').slice(-300)}`);
   const d = coverDesign(o.root, o.brandDir);
   const html = path.join(work, 'cover.html');
-  const page = coverHtml(d, o.cover, frame);
+  const page = coverHtml(d, o.cover, frame, o.logoPlace ?? 'under');
   const png = path.join(o.dir, 'out', 'cover-4x5.png');
   // The same frame and the same page make the same cover: kept as it is (a sound or caption revision must not change it).
   const key = crypto.createHash('sha256').update(fs.readFileSync(frame)).update(page).digest('hex');

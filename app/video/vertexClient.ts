@@ -86,10 +86,32 @@ export function findGcloudSdk(cfg: VideoConfig, d: Pick<VertexDeps, 'env' | 'exi
 
 const SIGNIN_PATTERN = /reauthentication required|invalid_grant|no credentialed accounts|you do not currently have an active account|gcloud auth login|refresh token has expired|not logged in/i;
 
-/** Runs gcloud as the SDK's own Python with `lib\gcloud.py` (no shell, D91 a). */
+/**
+ * The Python that runs `lib\gcloud.py`, in the order `gcloud.cmd` itself uses: `CLOUDSDK_PYTHON`, then the SDK's bundled
+ * Python, then the first real Python on PATH. Some installs (e.g. Windows on ARM) ship no bundled Python. The Microsoft
+ * Store stubs in `WindowsApps` are skipped: they only open the Store. Returns null when there is none.
+ */
+export function findGcloudPython(sdk: string, d: Pick<VertexDeps, 'env' | 'exists' | 'platform'>): string | null {
+  const win = d.platform === 'win32';
+  const fromEnv = d.env.CLOUDSDK_PYTHON?.trim();
+  if (fromEnv && d.exists(fromEnv)) return fromEnv;
+  const bundled = path.join(sdk, 'platform', 'bundledpython', win ? 'python.exe' : 'python3');
+  if (d.exists(bundled)) return bundled;
+  const names = win ? ['python.exe', 'python3.exe'] : ['python3', 'python'];
+  for (const dir of (d.env.PATH ?? d.env.Path ?? '').split(path.delimiter).filter(Boolean)) {
+    if (/[\\/]WindowsApps[\\/]?$/i.test(dir)) continue;
+    for (const n of names) {
+      const p = path.join(dir, n);
+      if (d.exists(p)) return p;
+    }
+  }
+  return null;
+}
+
+/** Runs gcloud as Python with `lib\gcloud.py` (no shell, D91 a). */
 async function gcloud(sdk: string, args: string[], d: VertexDeps, timeoutMs = 90000): Promise<RunResult> {
-  const py = path.join(sdk, 'platform', 'bundledpython', d.platform === 'win32' ? 'python.exe' : 'python3');
-  if (!d.exists(py)) throw new VertexError('no_sdk', `the Google Cloud CLI has no bundled Python at ${py}`);
+  const py = findGcloudPython(sdk, d);
+  if (!py) throw new VertexError('no_sdk', `the Google Cloud CLI has no bundled Python in ${path.join(sdk, 'platform', 'bundledpython')} and no Python was found in CLOUDSDK_PYTHON or on PATH`);
   return d.runTool(py, [path.join(sdk, 'lib', 'gcloud.py'), ...args], { timeoutMs, env: { ...d.env, CLOUDSDK_CORE_DISABLE_PROMPTS: '1' } });
 }
 
